@@ -1014,45 +1014,54 @@
       });
       const haveTitle = new Set(recipes.map((r) => (r.section + "::" + r.title).toLowerCase()));
 
+      const byTitle = new Map();
+      recipes.forEach((r) => {
+        byTitle.set((r.section + "::" + r.title).toLowerCase(), r);
+      });
+
+      async function patchRecipe(existing, s) {
+        const patch = {
+          title: s.title,
+          subtitle: s.subtitle || "",
+          protein_note: s.protein_note || "",
+          tags: s.tags || [],
+          ingredients: s.ingredients || [],
+          steps: s.steps || [],
+          note: s.note || "",
+          section: s.section,
+        };
+        const same =
+          existing.title === patch.title
+          && existing.section === patch.section
+          && JSON.stringify(existing.steps || []) === JSON.stringify(patch.steps)
+          && JSON.stringify(existing.ingredients || []) === JSON.stringify(patch.ingredients);
+        if (same) return false;
+        if (isLocalMode()) {
+          const db = readLocalDb();
+          const row = db.recipes.find((r) => r.id === existing.id);
+          if (row) Object.assign(row, patch, { updated_at: new Date().toISOString() });
+          writeLocalDb(db);
+        } else {
+          await rest("recipes?id=eq." + encodeURIComponent(existing.id), {
+            method: "PATCH",
+            body: patch,
+            timeoutMs: 15000,
+          });
+        }
+        return true;
+      }
+
       const toInsert = [];
       for (const s of seed.recipes) {
         const sid = mealDbId(s.note);
-        const existing = sid ? byMealDb.get(sid) : null;
+        const key = (s.section + "::" + s.title).toLowerCase();
+        const existing = (sid && byMealDb.get(sid)) || byTitle.get(key) || null;
         if (existing && existing.id) {
-          // Atualiza para versão PT (mantém favorito)
-          const patch = {
-            title: s.title,
-            subtitle: s.subtitle || "",
-            protein_note: s.protein_note || "",
-            tags: s.tags || [],
-            ingredients: s.ingredients || [],
-            steps: s.steps || [],
-            note: s.note || "",
-            section: s.section,
-          };
-          const same =
-            existing.title === patch.title
-            && JSON.stringify(existing.steps || []) === JSON.stringify(patch.steps)
-            && JSON.stringify(existing.ingredients || []) === JSON.stringify(patch.ingredients);
-          if (!same) {
-            if (isLocalMode()) {
-              const db = readLocalDb();
-              const row = db.recipes.find((r) => r.id === existing.id);
-              if (row) Object.assign(row, patch, { updated_at: new Date().toISOString() });
-              writeLocalDb(db);
-            } else {
-              await rest("recipes?id=eq." + encodeURIComponent(existing.id), {
-                method: "PATCH",
-                body: patch,
-                timeoutMs: 15000,
-              });
-            }
-            changed = true;
-          }
+          // Atualiza catálogo seed (quantidades, PT, etc.) — mantém favorito
+          if (await patchRecipe(existing, s)) changed = true;
           continue;
         }
 
-        const key = (s.section + "::" + s.title).toLowerCase();
         if (!haveTitle.has(key)) {
           toInsert.push(s);
           haveTitle.add(key);

@@ -3,7 +3,8 @@
   const SKIP = new Set([
     "sal", "pimenta", "pimenta preta", "pimenta branca", "sal e pimenta",
     "agua", "agua morna", "qb", "q b", "a gosto", "para provar", "provar",
-    "enrolar", "opcional",
+    "enrolar", "opcional", "pitada", "pitada de sal", "pitada de sal e pimenta",
+    "1 pitada de sal e pimenta",
   ]);
 
   // Preferências de correspondência → nomes da TCA (normalizados)
@@ -31,7 +32,13 @@
     "peito de frango": "frango peito sem pele cru",
     "coxas de frango": "frango coxa com pele crua",
     atum: "atum conserva em oleo",
+    "atum escorrido": "atum conserva em oleo",
     "atum em conserva": "atum conserva em oleo",
+    "lata de atum": "atum conserva em oleo",
+    paprika: "colorau",
+    paprica: "colorau",
+    colorau: "colorau",
+    cominhos: "cominhos",
     pao: "pao de trigo",
     "pao de forma": "pao de trigo",
     banana: "banana",
@@ -160,26 +167,53 @@
   function parseIngredient(line) {
     const raw = String(line || "").trim();
     if (!raw) return null;
+
+    // Prioridade: peso/volume entre parênteses no texto original
+    // (o normalize remove parênteses)
+    let grams = null;
+    let parenFood = null;
+    const paren = raw.match(/\((\d+[.,]?\d*)\s*(g|ml)\)/i);
+    if (paren) {
+      grams = Number(String(paren[1]).replace(",", "."));
+      parenFood = normalize(raw.replace(/\([^)]*\)/g, " "));
+    }
+
     let text = normalize(raw);
     if (!text || SKIP.has(text)) return null;
 
-    // "sal e pimenta", "a gosto"
-    if (/^(sal|pimenta)\b/.test(text) && text.length < 24) return null;
+    // sal / pimenta / pitadas — irrelevantes para kcal
+    if (/\bpitada\b/.test(text)) return null;
+    if (/^(sal|pimenta)\b/.test(text) && text.length < 28) return null;
     if (/\b(a gosto|qb|q b|para provar)\b/.test(text)) {
       text = text.replace(/\b(a gosto|qb|q b|para provar).*$/, "").trim();
       if (!text || SKIP.has(text)) return null;
     }
 
-    let grams = null;
-    let foodText = text;
+    let foodText = parenFood || text;
+    let m;
+
+    if (grams != null && parenFood) {
+      foodText = parenFood
+        .replace(/^\d+[\d\s\/\.]*\s*/, "")
+        .replace(/^(fatias?|unidades?|latas?|colheres?)\s+(de\s+)?/, "")
+        .replace(/^(sopa|cha)\s+(de\s+)?/, "")
+        .replace(/^colher de cha de\s+/, "")
+        .replace(/^colher de sopa de\s+/, "")
+        .replace(/^(ovos?|ovo)\b/, "ovo")
+        .replace(/\b\d+\s*g\b/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
 
     // N g / N ml
-    let m = text.match(/^(\d+[\d\s\/\.]*?)\s*(g|gr|gramas?|kg|ml|cl|dl|l|litros?|oz|lb|libras?)\b\s*(?:de\s+)?(.+)$/);
-    if (m) {
-      const qty = parseFraction(m[1].replace(/\s+/g, " "));
-      const unit = m[2];
-      foodText = m[3];
-      if (qty != null) grams = qty * (UNIT_G[unit] || 1);
+    if (grams == null) {
+      m = text.match(/^(\d+[\d\s\/\.]*?)\s*(g|gr|gramas?|kg|ml|cl|dl|l|litros?|oz|lb|libras?)\b\s*(?:de\s+)?(.+)$/);
+      if (m) {
+        const qty = parseFraction(m[1].replace(/\s+/g, " "));
+        const unit = m[2];
+        foodText = m[3];
+        if (qty != null) grams = qty * (UNIT_G[unit] || 1);
+      }
     }
 
     // N colher(es) de sopa/chá de X
@@ -190,6 +224,10 @@
         foodText = m[3];
         if (qty != null) grams = qty * (m[2] === "sopa" ? 15 : 5);
       }
+    } else if (/\bcolheres?\s+de\s+(sopa|cha)\b/.test(text)) {
+      // já temos gramas do parênteses; limpar foodText para o alimento
+      m = text.match(/colheres?\s+de\s+(?:sopa|cha)\s+(?:de\s+)?(.+)$/);
+      if (m) foodText = m[1].replace(/\b\d+\s*g\b/g, " ").replace(/\s+/g, " ").trim();
     }
 
     // N xícara(s) / chávena(s) de X
