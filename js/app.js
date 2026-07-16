@@ -26,8 +26,8 @@
   };
 
   const SEARCH_SUGGESTIONS = [
-    "ovos", "atum", "frango", "nutella", "queijo", "banana",
-    "massa", "bacon", "salmão", "chocolate", "batata", "iogurte",
+    "Ovos", "Atum", "Frango", "Nutella", "Queijo", "Banana",
+    "Massa", "Bacon", "Salmão", "Chocolate", "Batata", "Iogurte",
   ];
 
   const COOK_METHODS = [
@@ -100,6 +100,15 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  /** Capitaliza a 1.ª letra de cada palavra para chips/UI */
+  function displayLabel(str) {
+    return String(str || "")
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((w) => w.charAt(0).toLocaleUpperCase("pt") + w.slice(1))
+      .join(" ");
   }
 
   function linesToArr(text) {
