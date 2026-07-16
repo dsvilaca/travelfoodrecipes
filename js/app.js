@@ -18,6 +18,7 @@
     shopping: [],
     screen: "manha",
     busy: false,
+    authBusy: false,
   };
 
   const $ = (sel, root = document) => root.querySelector(sel);
@@ -331,32 +332,47 @@
     if (emailEl) emailEl.textContent = state.user?.email || "";
     if (modeEl) {
       modeEl.textContent = MareDB.isLocalMode()
-        ? "Modo neste telemóvel (dados neste dispositivo)"
-        : "Modo cloud (Supabase)";
+        ? "Modo local (NÃO está na base de dados)"
+        : "Ligado ao Supabase (base de dados)";
     }
   }
 
   async function afterLogin(session, notice) {
     state.user = session.user;
     showAuth(false);
+    go("manha");
     updateAccountMeta();
-    toast(notice || "A preparar dados…");
+    toast(notice || "Sessão iniciada");
     try {
       const seeded = await MareDB.seedIfEmpty();
-      if (seeded) toast("Receitas iniciais carregadas");
+      if (seeded) toast("Receitas iniciais carregadas na BD");
+      await refreshData();
     } catch (err) {
       console.error(err);
-      toast(MareDB.isLocalMode()
-        ? (err.message || "Erro ao carregar dados iniciais")
-        : "Erro no seed: corre o schema.sql no Supabase");
+      toast(err.message || "Erro a carregar dados da BD");
+      authMessage(err.message || "Erro a carregar dados da BD");
     }
-    await refreshData();
     updateAccountMeta();
-    go("manha");
+  }
+
+  async function refreshDbStatus() {
+    const el = $("#dbStatus");
+    if (!el || !globalThis.MareDB?.probeStatus) return;
+    el.textContent = "A verificar Supabase…";
+    el.className = "db-status";
+    try {
+      const status = await MareDB.probeStatus();
+      el.textContent = status.message;
+      el.className = "db-status " + (status.ok ? "ok" : "warn");
+    } catch (err) {
+      el.textContent = err.message || "Erro no diagnóstico";
+      el.className = "db-status warn";
+    }
   }
 
   async function handleAuthSubmit(e) {
     if (e) e.preventDefault();
+    if (state.authBusy) return;
     const email = ($("#authEmail")?.value || "").trim();
     const password = $("#authPassword")?.value || "";
     const mode = $("#authMode")?.value || "signup";
@@ -371,20 +387,28 @@
     }
     const submit = $("#authSubmit");
     const prevLabel = submit.textContent;
+    state.authBusy = true;
     submit.disabled = true;
-    submit.textContent = "A entrar…";
-    authMessage("A criar sessão…");
+    submit.textContent = "A ligar à BD…";
+    authMessage("A autenticar no Supabase (máx. 10s)…");
     try {
       const data = mode === "signup"
         ? await MareDB.signUp(email, password)
         : await MareDB.signIn(email, password);
-      if (!data?.session) throw new Error("Não foi possível entrar.");
-      await afterLogin(data.session, data.notice || "Conta pronta");
+      if (!data?.session) throw new Error("Não foi possível obter sessão da BD.");
+      authMessage("Sessão OK — a carregar dados…");
+      await afterLogin(
+        data.session,
+        MareDB.isLocalMode() ? "Entraste em modo local (sem BD)" : "Ligado à base de dados"
+      );
     } catch (err) {
       console.error(err);
       authMessage(err.message || "Erro de autenticação");
-      submit.textContent = prevLabel;
+      refreshDbStatus();
+    } finally {
+      state.authBusy = false;
       submit.disabled = false;
+      submit.textContent = prevLabel;
     }
   }
 
@@ -480,9 +504,11 @@
         return;
       }
 
+      refreshDbStatus();
+
       const session = await MareDB.getSession();
-      if (session) {
-        await afterLogin(session);
+      if (session && !MareDB.isLocalMode()) {
+        await afterLogin(session, "Sessão Supabase restaurada");
       } else {
         showAuth(true);
       }
@@ -490,14 +516,13 @@
       try {
         MareDB.getClient().auth.onAuthStateChange((_event, session) => {
           if (MareDB.isLocalMode()) return;
-          if (!session) {
+          if (!session && state.user && !state.authBusy) {
             state.user = null;
             showAuth(true);
+            refreshDbStatus();
           }
         });
-      } catch (_) {
-        // Sem Supabase — modo local basta
-      }
+      } catch (_) { /* ignore */ }
     } catch (err) {
       console.error(err);
       showAuth(true);

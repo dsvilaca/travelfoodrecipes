@@ -44,10 +44,11 @@ git push -u origin main
 
 ### 3) Primeiro login na app
 
-1. No Supabase: **Authentication → Providers → Email** → ativa Email e **desliga Confirm email** (senão não consegues entrar de imediato)
-2. Abre a app → **Criar conta** (email + password)
-3. Se o Supabase ainda pedir confirmação / der rate limit: usa **Neste telemóvel** — a app funciona neste dispositivo (adicionar/apagar receitas e itens da lista)
-4. Na primeira entrada, as receitas e a lista iniciais são carregadas automaticamente
+1. No Supabase: **Authentication → Providers → Email** → ativa Email e **desliga Confirm email** (obrigatório)
+2. Se vires rate limit de email: espera ~1 hora ou ajusta **Authentication → Rate Limits**
+3. Confirma que correste [`supabase/schema.sql`](supabase/schema.sql) no SQL Editor
+4. Abre a app → **Criar conta** (email + password)
+5. Na primeira entrada, as receitas e a lista iniciais são carregadas na BD automaticamente
 
 ## Funcionalidades
 

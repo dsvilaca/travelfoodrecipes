@@ -12,6 +12,7 @@
 
   let client = null;
   let clientFailed = false;
+  let lastStatus = null;
 
   function hasSupabaseLib() {
     return !!(global.supabase && typeof global.supabase.createClient === "function");
@@ -20,7 +21,7 @@
   function getClient() {
     if (client) return client;
     if (clientFailed || !hasSupabaseLib()) {
-      throw new Error("Supabase indisponível — a app continua em modo local.");
+      throw new Error("Biblioteca Supabase indisponível.");
     }
     const cfg = getConfig();
     try {
@@ -47,12 +48,18 @@
     else localStorage.removeItem(MODE_KEY);
   }
 
+  function withTimeout(promise, ms, label) {
+    let timer;
+    const timeout = new Promise((_, reject) => {
+      timer = setTimeout(() => reject(new Error(label || ("Timeout (" + ms + "ms)"))), ms);
+    });
+    return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+  }
+
   function readLocalDb() {
     try {
       const raw = localStorage.getItem(LOCAL_DB_KEY);
-      if (!raw) {
-        return { users: [], sessionEmail: null, recipes: [], shopping: [] };
-      }
+      if (!raw) return { users: [], sessionEmail: null, recipes: [], shopping: [] };
       const db = JSON.parse(raw);
       return {
         users: db.users || [],
@@ -84,20 +91,26 @@
   function mapAuthError(err) {
     const code = err?.code || err?.error_code || "";
     const msg = String(err?.message || err?.msg || err || "Erro de autenticação");
-    if (code === "over_email_send_rate_limit" || /rate limit/i.test(msg)) {
-      return new Error("Limite de emails do Supabase. Espera 1 hora ou usa «Neste telemóvel».");
+    if (code === "over_email_send_rate_limit" || /rate limit|Timeout/i.test(msg)) {
+      return new Error(
+        "Supabase bloqueou emails (rate limit). Espera ~1 hora OU no dashboard: Authentication → Rate Limits. Também desliga Confirm email."
+      );
     }
-    if (code === "email_not_confirmed" || /not confirmed|confirm/i.test(msg)) {
-      return new Error("Email ainda não confirmado. No Supabase: Authentication → Providers → Email → desliga Confirm email. Ou usa «Neste telemóvel».");
+    if (code === "email_not_confirmed" || /not confirmed/i.test(msg)) {
+      return new Error(
+        "Email não confirmado. No Supabase: Authentication → Providers → Email → desliga «Confirm email»."
+      );
     }
     if (code === "invalid_credentials" || /invalid login/i.test(msg)) {
-      return new Error("Email ou password incorretos (ou a conta ainda não está confirmada).");
+      return new Error(
+        "Login inválido. Se acabaste de criar conta: desliga Confirm email no Supabase, apaga o utilizador em Authentication → Users, e cria de novo."
+      );
     }
     if (code === "user_already_exists" || /already registered|already exists/i.test(msg)) {
-      return new Error("Esta conta já existe — tenta Entrar, ou «Neste telemóvel».");
+      return new Error("Conta já existe — muda para Entrar, ou apaga o user no Supabase e cria de novo.");
     }
     if (code === "email_provider_disabled") {
-      return new Error("Registo por email desativado no Supabase.");
+      return new Error("Email provider desativado no Supabase.");
     }
     return new Error(msg);
   }
@@ -107,49 +120,157 @@
       const u = new URL(global.location.href);
       u.hash = "";
       u.search = "";
-      return u.toString().replace(/\/$/, "/") || u.origin + u.pathname;
+      return u.origin + u.pathname.replace(/\/?$/, "/");
     } catch (_) {
       return undefined;
     }
   }
 
-  async function getSession() {
-    // Preferir sessão local (rápida e fiável no iPhone)
-    if (authMode() === "local" || authMode() == null) {
-      const db = readLocalDb();
-      if (db.sessionEmail) {
-        const user = localUserFromEmail(db.sessionEmail);
-        setAuthMode("local");
-        return { user, access_token: "local" };
-      }
-      if (authMode() === "local") return null;
-    }
-    if (!hasSupabaseLib()) return null;
+  async function probeStatus() {
+    const cfg = getConfig();
+    const status = {
+      ok: false,
+      emailEnabled: false,
+      autoconfirm: false,
+      tablesOk: false,
+      message: "",
+    };
     try {
-      const { data, error } = await getClient().auth.getSession();
-      if (error) throw mapAuthError(error);
-      return data.session;
-    } catch (_) {
-      return null;
+      const settingsRes = await withTimeout(
+        fetch(cfg.supabaseUrl + "/auth/v1/settings", {
+          headers: {
+            apikey: cfg.supabaseAnonKey,
+            Authorization: "Bearer " + cfg.supabaseAnonKey,
+          },
+        }),
+        8000,
+        "Timeout a contactar Supabase"
+      );
+      const settings = await settingsRes.json();
+      status.emailEnabled = !!(settings?.external?.email);
+      status.autoconfirm = !!settings?.mailer_autoconfirm;
+      status.disableSignup = !!settings?.disable_signup;
+
+      const tablesRes = await withTimeout(
+        fetch(cfg.supabaseUrl + "/rest/v1/recipes?select=id&limit=1", {
+          headers: {
+            apikey: cfg.supabaseAnonKey,
+            Authorization: "Bearer " + cfg.supabaseAnonKey,
+          },
+        }),
+        8000,
+        "Timeout nas tabelas"
+      );
+      status.tablesOk = tablesRes.status === 200;
+
+      if (!status.emailEnabled) {
+        status.message = "Email login desativado no Supabase.";
+      } else if (!status.autoconfirm) {
+        status.message =
+          "BD acessível, mas «Confirm email» está LIGADO — por isso a sessão fica presa. Desliga em Authentication → Providers → Email.";
+      } else if (!status.tablesOk) {
+        status.message = "Auth OK, mas faltam tabelas. Corre supabase/schema.sql no SQL Editor.";
+      } else {
+        status.ok = true;
+        status.message = "Supabase pronto (email + BD).";
+      }
+    } catch (err) {
+      status.message = err.message || "Não foi possível contactar o Supabase.";
     }
+    lastStatus = status;
+    return status;
+  }
+
+  function getLastStatus() {
+    return lastStatus;
+  }
+
+  async function getSession() {
+    // Sessão Supabase persistida
+    if (hasSupabaseLib()) {
+      try {
+        const { data, error } = await withTimeout(
+          getClient().auth.getSession(),
+          6000,
+          "Timeout a ler sessão Supabase"
+        );
+        if (!error && data?.session) {
+          setAuthMode("supabase");
+          return data.session;
+        }
+      } catch (_) { /* tenta local */ }
+    }
+
+    if (authMode() === "local") {
+      const db = readLocalDb();
+      if (!db.sessionEmail) return null;
+      return { user: localUserFromEmail(db.sessionEmail), access_token: "local" };
+    }
+    return null;
+  }
+
+  async function cloudSignIn(email, password) {
+    const { data, error } = await withTimeout(
+      getClient().auth.signInWithPassword({ email, password }),
+      10000,
+      "Timeout no login Supabase"
+    );
+    if (error) throw error;
+    if (!data?.session) throw new Error("Supabase não devolveu sessão.");
+    setAuthMode("supabase");
+    // limpa sessão local para não misturar
+    const db = readLocalDb();
+    db.sessionEmail = null;
+    writeLocalDb(db);
+    return data;
+  }
+
+  async function cloudSignUp(email, password) {
+    const { data, error } = await withTimeout(
+      getClient().auth.signUp({
+        email,
+        password,
+        options: { emailRedirectTo: siteRedirectTo() },
+      }),
+      10000,
+      "Timeout no registo Supabase"
+    );
+    if (error) throw error;
+    if (data?.session) {
+      setAuthMode("supabase");
+      const db = readLocalDb();
+      db.sessionEmail = null;
+      writeLocalDb(db);
+      return data;
+    }
+    // Conta criada sem sessão = confirm email obrigatório
+    throw new Error(
+      "Conta criada no Supabase mas sem sessão: «Confirm email» está ligado. Desliga em Authentication → Providers → Email → Confirm email, apaga o user em Users se preciso, e volta a Criar conta."
+    );
   }
 
   async function signIn(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
-    const db = readLocalDb();
-    const local = db.users.find((u) => u.email === normalized);
-    if (local && local.password !== password) {
-      throw new Error("Password incorreta para esta conta neste telemóvel.");
+    if (!hasSupabaseLib()) throw new Error("Supabase JS não carregou. Recarrega a página.");
+    try {
+      return await cloudSignIn(normalized, password);
+    } catch (err) {
+      throw mapAuthError(err);
     }
-    // Entrar/criar já neste dispositivo — sem esperar pelo Supabase
-    return signInLocal(normalized, password);
   }
 
   async function signUp(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
-    return signUpLocal(normalized, password, {
-      notice: "Conta pronta. Já podes usar a app.",
-    });
+    if (!hasSupabaseLib()) throw new Error("Supabase JS não carregou. Recarrega a página.");
+    try {
+      // Se já existir, tenta login direto
+      try {
+        return await cloudSignIn(normalized, password);
+      } catch (_) { /* cria nova */ }
+      return await cloudSignUp(normalized, password);
+    } catch (err) {
+      throw mapAuthError(err);
+    }
   }
 
   function signUpLocal(email, password, extra = {}) {
@@ -158,7 +279,7 @@
     let user = db.users.find((u) => u.email === normalized);
     if (user) {
       if (user.password !== password) {
-        throw new Error("Já existe uma conta local com este email e outra password.");
+        throw new Error("Já existe conta local com outra password neste telemóvel.");
       }
     } else {
       user = { email: normalized, password, id: "local-" + normalized };
@@ -172,7 +293,7 @@
       user: sessionUser,
       session: { user: sessionUser },
       local: true,
-      notice: extra.notice || null,
+      notice: extra.notice || "Modo local (sem BD).",
     };
   }
 
@@ -180,15 +301,10 @@
     const normalized = String(email || "").trim().toLowerCase();
     const db = readLocalDb();
     const user = db.users.find((u) => u.email === normalized);
-    if (!user || user.password !== password) {
-      // cria se não existir (atalho «neste telemóvel»)
-      return signUpLocal(normalized, password);
+    if (user && user.password !== password) {
+      throw new Error("Password local incorreta.");
     }
-    db.sessionEmail = normalized;
-    writeLocalDb(db);
-    setAuthMode("local");
-    const sessionUser = localUserFromEmail(normalized);
-    return { user: sessionUser, session: { user: sessionUser }, local: true };
+    return signUpLocal(normalized, password, { notice: "Modo local (sem BD)." });
   }
 
   async function signOut() {
@@ -201,8 +317,12 @@
       return;
     }
     setAuthMode(null);
-    const { error } = await getClient().auth.signOut();
-    if (error) throw mapAuthError(error);
+    try {
+      const { error } = await withTimeout(getClient().auth.signOut(), 5000, "Timeout logout");
+      if (error) throw mapAuthError(error);
+    } catch (_) {
+      setAuthMode(null);
+    }
   }
 
   function isLocalMode() {
@@ -218,12 +338,11 @@
         || String(a.created_at || "").localeCompare(String(b.created_at || ""))
       );
     }
-    const { data, error } = await getClient()
-      .from("recipes")
-      .select("*")
-      .order("section")
-      .order("sort_order")
-      .order("created_at");
+    const { data, error } = await withTimeout(
+      getClient().from("recipes").select("*").order("section").order("sort_order").order("created_at"),
+      10000,
+      "Timeout a ler receitas"
+    );
     if (error) throw error;
     return data || [];
   }
@@ -238,12 +357,7 @@
       if (recipe.id) {
         const idx = db.recipes.findIndex((r) => r.id === recipe.id);
         if (idx < 0) throw new Error("Receita não encontrada");
-        db.recipes[idx] = {
-          ...db.recipes[idx],
-          ...recipe,
-          user_id: session.user.id,
-          updated_at: now,
-        };
+        db.recipes[idx] = { ...db.recipes[idx], ...recipe, user_id: session.user.id, updated_at: now };
         writeLocalDb(db);
         return db.recipes[idx];
       }
@@ -273,11 +387,11 @@
       user_id: session.user.id,
       updated_at: new Date().toISOString(),
     };
-    const { data, error } = await getClient()
-      .from("recipes")
-      .upsert(payload)
-      .select()
-      .single();
+    const { data, error } = await withTimeout(
+      getClient().from("recipes").upsert(payload).select().single(),
+      10000,
+      "Timeout a guardar receita"
+    );
     if (error) throw error;
     return data;
   }
@@ -289,7 +403,11 @@
       writeLocalDb(db);
       return;
     }
-    const { error } = await getClient().from("recipes").delete().eq("id", id);
+    const { error } = await withTimeout(
+      getClient().from("recipes").delete().eq("id", id),
+      10000,
+      "Timeout a apagar receita"
+    );
     if (error) throw error;
   }
 
@@ -303,12 +421,11 @@
       writeLocalDb(db);
       return row;
     }
-    const { data, error } = await getClient()
-      .from("recipes")
-      .update({ is_favorite: isFavorite })
-      .eq("id", id)
-      .select()
-      .single();
+    const { data, error } = await withTimeout(
+      getClient().from("recipes").update({ is_favorite: isFavorite }).eq("id", id).select().single(),
+      10000,
+      "Timeout favorito"
+    );
     if (error) throw error;
     return data;
   }
@@ -322,12 +439,11 @@
         || String(a.created_at || "").localeCompare(String(b.created_at || ""))
       );
     }
-    const { data, error } = await getClient()
-      .from("shopping_items")
-      .select("*")
-      .order("category")
-      .order("sort_order")
-      .order("created_at");
+    const { data, error } = await withTimeout(
+      getClient().from("shopping_items").select("*").order("category").order("sort_order").order("created_at"),
+      10000,
+      "Timeout a ler lista"
+    );
     if (error) throw error;
     return data || [];
   }
@@ -352,11 +468,11 @@
       return row;
     }
 
-    const { data, error } = await getClient()
-      .from("shopping_items")
-      .insert({ ...item, user_id: session.user.id })
-      .select()
-      .single();
+    const { data, error } = await withTimeout(
+      getClient().from("shopping_items").insert({ ...item, user_id: session.user.id }).select().single(),
+      10000,
+      "Timeout a adicionar item"
+    );
     if (error) throw error;
     return data;
   }
@@ -370,12 +486,11 @@
       writeLocalDb(db);
       return row;
     }
-    const { data, error } = await getClient()
-      .from("shopping_items")
-      .update(patch)
-      .eq("id", id)
-      .select()
-      .single();
+    const { data, error } = await withTimeout(
+      getClient().from("shopping_items").update(patch).eq("id", id).select().single(),
+      10000,
+      "Timeout a atualizar item"
+    );
     if (error) throw error;
     return data;
   }
@@ -387,7 +502,11 @@
       writeLocalDb(db);
       return;
     }
-    const { error } = await getClient().from("shopping_items").delete().eq("id", id);
+    const { error } = await withTimeout(
+      getClient().from("shopping_items").delete().eq("id", id),
+      10000,
+      "Timeout a apagar item"
+    );
     if (error) throw error;
   }
 
@@ -456,11 +575,19 @@
     }));
 
     if (recipeRows.length) {
-      const { error } = await getClient().from("recipes").insert(recipeRows);
+      const { error } = await withTimeout(
+        getClient().from("recipes").insert(recipeRows),
+        20000,
+        "Timeout no seed de receitas"
+      );
       if (error) throw error;
     }
     if (shopRows.length) {
-      const { error } = await getClient().from("shopping_items").insert(shopRows);
+      const { error } = await withTimeout(
+        getClient().from("shopping_items").insert(shopRows),
+        20000,
+        "Timeout no seed da lista"
+      );
       if (error) throw error;
     }
     return true;
@@ -490,6 +617,8 @@
     signUpLocal,
     signOut,
     isLocalMode,
+    probeStatus,
+    getLastStatus,
     listRecipes,
     upsertRecipe,
     deleteRecipe,
