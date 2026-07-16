@@ -823,6 +823,31 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   word-break: break-all;
 }
 
+.acct-hint,
+.acct-diet-status {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.acct-diet-status {
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.diet-filter-note {
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--sea);
+  line-height: 1.35;
+}
+
+.diet-filter-note:empty {
+  display: none;
+}
+
 .acct-mode {
   font-size: 0.82rem;
   color: var(--muted);
