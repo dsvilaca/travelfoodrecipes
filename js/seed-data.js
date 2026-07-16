@@ -21,7 +21,8 @@ window.MARE_SEED = {
         "Tira do lume ainda húmidos.",
         "Serve com pão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Serious Eats scrambled eggs: https://www.seriouseats.com/fluffy-scrambled-eggs"
+      "note": "Baseado em técnicas clássicas · ref. Serious Eats scrambled eggs: https://www.seriouseats.com/fluffy-scrambled-eggs",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -46,7 +47,8 @@ window.MARE_SEED = {
         "Frita em manteiga até dourar.",
         "Sirva com mel."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes French Toast: https://www.allrecipes.com/recipe/7016/french-toast-i/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes French Toast: https://www.allrecipes.com/recipe/7016/french-toast-i/",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -71,7 +73,8 @@ window.MARE_SEED = {
         "Frita conchas; vira quando houver bolhas.",
         "Empilha e serve."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes pancakes: https://www.allrecipes.com/recipe/21014/good-old-fashioned-pancakes/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes pancakes: https://www.allrecipes.com/recipe/21014/good-old-fashioned-pancakes/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -95,7 +98,8 @@ window.MARE_SEED = {
         "Deita ovos batidos.",
         "Coze 18–22 min."
       ],
-      "note": "Baseado em técnicas clássicas · ref. NYT Egg Muffins: https://cooking.nytimes.com/recipes/1026058-egg-muffins"
+      "note": "Baseado em técnicas clássicas · ref. NYT Egg Muffins: https://cooking.nytimes.com/recipes/1026058-egg-muffins",
+      "servings": 4
     },
     {
       "section": "manha",
@@ -117,7 +121,8 @@ window.MARE_SEED = {
         "Frio durante a noite.",
         "De manhã envolve e junta fruta."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes overnight oats: https://www.allrecipes.com/recipe/240406/overnight-oats/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes overnight oats: https://www.allrecipes.com/recipe/240406/overnight-oats/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -138,7 +143,8 @@ window.MARE_SEED = {
         "Mel em fio.",
         "Granola por cima."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC breakfast: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC breakfast: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -161,7 +167,8 @@ window.MARE_SEED = {
         "Frita/pocha ovos.",
         "Monta."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC avocado toast: https://www.bbcgoodfood.com/recipes/smashed-avocado-on-toast"
+      "note": "Baseado em técnicas clássicas · ref. BBC avocado toast: https://www.bbcgoodfood.com/recipes/smashed-avocado-on-toast",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -183,7 +190,8 @@ window.MARE_SEED = {
         "Junta ovos mexidos e queijo.",
         "Recheia tortilha e enrola."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes breakfast burritos: https://www.allrecipes.com/recipe/16354/breakfast-burritos/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes breakfast burritos: https://www.allrecipes.com/recipe/16354/breakfast-burritos/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -209,7 +217,8 @@ window.MARE_SEED = {
         "Parte ovos em covas; tapa 5–8 min.",
         "Serve com pão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. NYT shakshuka: https://cooking.nytimes.com/recipes/1014721-shakshuka-with-feta"
+      "note": "Baseado em técnicas clássicas · ref. NYT shakshuka: https://cooking.nytimes.com/recipes/1014721-shakshuka-with-feta",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -231,7 +240,8 @@ window.MARE_SEED = {
         "Coze em manteiga puxando bordas.",
         "Queijo no centro; dobra."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Serious Eats omelette: https://www.seriouseats.com/the-best-french-omelette-recipe"
+      "note": "Baseado em técnicas clássicas · ref. Serious Eats omelette: https://www.seriouseats.com/the-best-french-omelette-recipe",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -253,7 +263,8 @@ window.MARE_SEED = {
         "Ajusta espessura.",
         "Serve com mel e fruta."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC porridge: https://www.bbcgoodfood.com/recipes/perfect-porridge"
+      "note": "Baseado em técnicas clássicas · ref. BBC porridge: https://www.bbcgoodfood.com/recipes/perfect-porridge",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -274,7 +285,8 @@ window.MARE_SEED = {
         "Deita na taça.",
         "Coberturas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC smoothies: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC smoothies: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -295,7 +307,8 @@ window.MARE_SEED = {
         "Cobre com salmão.",
         "Limão e pimenta."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC smoked salmon bagel: https://www.bbcgoodfood.com/recipes/smoked-salmon-bagel"
+      "note": "Baseado em técnicas clássicas · ref. BBC smoked salmon bagel: https://www.bbcgoodfood.com/recipes/smoked-salmon-bagel",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -317,7 +330,8 @@ window.MARE_SEED = {
         "Frita ovos.",
         "Monta e cobre com salsa."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes huevos rancheros: https://www.allrecipes.com/recipe/14054/huevos-rancheros/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes huevos rancheros: https://www.allrecipes.com/recipe/14054/huevos-rancheros/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -337,7 +351,8 @@ window.MARE_SEED = {
         "Coze na máquina até dourar.",
         "Serve com fruta."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes waffles: https://www.allrecipes.com/recipe/20513/classic-waffles/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes waffles: https://www.allrecipes.com/recipe/20513/classic-waffles/",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -357,7 +372,8 @@ window.MARE_SEED = {
         "Deita cottage.",
         "Junta fruta, mel e sementes."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC high-protein breakfast: https://www.bbcgoodfood.com/recipes/collection/high-protein-breakfast-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC high-protein breakfast: https://www.bbcgoodfood.com/recipes/collection/high-protein-breakfast-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -378,7 +394,8 @@ window.MARE_SEED = {
         "Ovos mexidos.",
         "Recheia e enrola."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes breakfast wraps: https://www.allrecipes.com/recipe/244949/easy-breakfast-wraps/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes breakfast wraps: https://www.allrecipes.com/recipe/244949/easy-breakfast-wraps/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -400,7 +417,8 @@ window.MARE_SEED = {
         "Frio ≥4 h.",
         "Serve com fruta."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC chia pudding: https://www.bbcgoodfood.com/recipes/chia-seed-pudding"
+      "note": "Baseado em técnicas clássicas · ref. BBC chia pudding: https://www.bbcgoodfood.com/recipes/chia-seed-pudding",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -420,7 +438,8 @@ window.MARE_SEED = {
         "Tritura tudo 40 s.",
         "Ajusta com leite."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC smoothies: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC smoothies: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -441,7 +460,8 @@ window.MARE_SEED = {
         "Frita até crocante.",
         "Serve com ovos fritos."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Serious Eats hash browns: https://www.seriouseats.com/crispy-hash-browns-recipe"
+      "note": "Baseado em técnicas clássicas · ref. Serious Eats hash browns: https://www.seriouseats.com/crispy-hash-browns-recipe",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -461,7 +481,8 @@ window.MARE_SEED = {
         "Banana em rodelas.",
         "Enrolha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes PB banana: https://www.allrecipes.com/recipe/20979/peanut-butter-and-banana-sandwiches/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes PB banana: https://www.allrecipes.com/recipe/20979/peanut-butter-and-banana-sandwiches/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -482,7 +503,8 @@ window.MARE_SEED = {
         "Mistura com ovos e queijo.",
         "Forno 190 °C 15–20 min."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC frittata: https://www.bbcgoodfood.com/recipes/basic-frittata-recipe"
+      "note": "Baseado em técnicas clássicas · ref. BBC frittata: https://www.bbcgoodfood.com/recipes/basic-frittata-recipe",
+      "servings": 3
     },
     {
       "section": "manha",
@@ -501,7 +523,8 @@ window.MARE_SEED = {
       "steps": [
         "Mistura tudo até cremoso."
       ],
-      "note": "Baseado em técnicas clássicas · ref. high-protein bowl: https://www.bbcgoodfood.com/recipes/collection/high-protein-breakfast-recipes"
+      "note": "Baseado em técnicas clássicas · ref. high-protein bowl: https://www.bbcgoodfood.com/recipes/collection/high-protein-breakfast-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -522,7 +545,8 @@ window.MARE_SEED = {
         "Junta ovos.",
         "Coze em lume baixo e vira."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC Spanish tortilla: https://www.bbcgoodfood.com/recipes/spanish-tortilla"
+      "note": "Baseado em técnicas clássicas · ref. BBC Spanish tortilla: https://www.bbcgoodfood.com/recipes/spanish-tortilla",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -544,7 +568,8 @@ window.MARE_SEED = {
         "160 °C 20–25 min.",
         "Esfria e guarda."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC granola: https://www.bbcgoodfood.com/recipes/super-healthy-granola"
+      "note": "Baseado em técnicas clássicas · ref. BBC granola: https://www.bbcgoodfood.com/recipes/super-healthy-granola",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -564,7 +589,8 @@ window.MARE_SEED = {
         "Deita ovo no remoinho 3–4 min.",
         "Serve no pão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Serious Eats poached eggs: https://www.seriouseats.com/perfect-poached-eggs"
+      "note": "Baseado em técnicas clássicas · ref. Serious Eats poached eggs: https://www.seriouseats.com/perfect-poached-eggs",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -583,7 +609,8 @@ window.MARE_SEED = {
         "Namoro coalhada.",
         "Cobre com frutos e mel."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC breakfast: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC breakfast: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -605,7 +632,8 @@ window.MARE_SEED = {
         "Frita finos.",
         "Recheia doce ou salgado."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC crepes: https://www.bbcgoodfood.com/recipes/easy-crepes"
+      "note": "Baseado em técnicas clássicas · ref. BBC crepes: https://www.bbcgoodfood.com/recipes/easy-crepes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -626,7 +654,8 @@ window.MARE_SEED = {
         "Natas + ovos + queijo.",
         "180 °C 10–12 min."
       ],
-      "note": "Baseado em técnicas clássicas · ref. NYT baked eggs: https://cooking.nytimes.com/recipes/1013070-baked-eggs"
+      "note": "Baseado em técnicas clássicas · ref. NYT baked eggs: https://cooking.nytimes.com/recipes/1013070-baked-eggs",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -645,7 +674,8 @@ window.MARE_SEED = {
         "Quando unir, salpica queijo.",
         "Bom."
       ],
-      "note": "Baseado em técnicas clássicas · ref. TudoGostoso tapioca: https://www.tudogostoso.com.br/receita/29876-tapioca.htm"
+      "note": "Baseado em técnicas clássicas · ref. TudoGostoso tapioca: https://www.tudogostoso.com.br/receita/29876-tapioca.htm",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -665,7 +695,8 @@ window.MARE_SEED = {
         "Mistura e leva ao frio.",
         "De manhã envolve."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC bircher: https://www.bbcgoodfood.com/recipes/bircher-muesli-apple-banana"
+      "note": "Baseado em técnicas clássicas · ref. BBC bircher: https://www.bbcgoodfood.com/recipes/bircher-muesli-apple-banana",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -686,7 +717,8 @@ window.MARE_SEED = {
         "Doura dos dois lados.",
         "Corte."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes breakfast quesadilla: https://www.allrecipes.com/recipe/14250/breakfast-quesadilla/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes breakfast quesadilla: https://www.allrecipes.com/recipe/14250/breakfast-quesadilla/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -706,7 +738,8 @@ window.MARE_SEED = {
         "Frita colheradas em lume baixo.",
         "Vira com cuidado."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC banana pancakes: https://www.bbcgoodfood.com/recipes/banana-pancakes"
+      "note": "Baseado em técnicas clássicas · ref. BBC banana pancakes: https://www.bbcgoodfood.com/recipes/banana-pancakes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -726,7 +759,8 @@ window.MARE_SEED = {
         "Tosta pão.",
         "Ricotta + mel + nozes."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC ricotta toast: https://www.bbcgoodfood.com/recipes/ricotta-toast"
+      "note": "Baseado em técnicas clássicas · ref. BBC ricotta toast: https://www.bbcgoodfood.com/recipes/ricotta-toast",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -747,7 +781,8 @@ window.MARE_SEED = {
         "Junta ovos.",
         "Queijo no fim."
       ],
-      "note": "Baseado em técnicas clássicas · ref. adaptação Serious Eats: https://www.seriouseats.com/fluffy-scrambled-eggs"
+      "note": "Baseado em técnicas clássicas · ref. adaptação Serious Eats: https://www.seriouseats.com/fluffy-scrambled-eggs",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -768,7 +803,8 @@ window.MARE_SEED = {
         "Monta sandes e tosta.",
         "Ovo estrelado em cima."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC croque-madame: https://www.bbcgoodfood.com/recipes/croque-madame"
+      "note": "Baseado em técnicas clássicas · ref. BBC croque-madame: https://www.bbcgoodfood.com/recipes/croque-madame",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -789,7 +825,8 @@ window.MARE_SEED = {
         "Mistura e refrigerar.",
         "Banana de manhã."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes overnight oats: https://www.allrecipes.com/recipe/240406/overnight-oats/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes overnight oats: https://www.allrecipes.com/recipe/240406/overnight-oats/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -809,7 +846,8 @@ window.MARE_SEED = {
         "Frita bacon e ovo.",
         "Monta e derrete queijo."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes BEC: https://www.allrecipes.com/recipe/212961/bacon-egg-and-cheese-sandwich/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes BEC: https://www.allrecipes.com/recipe/212961/bacon-egg-and-cheese-sandwich/",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -831,7 +869,8 @@ window.MARE_SEED = {
         "Azeite e ovos.",
         "Orégãos."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC pan con tomate: https://www.bbcgoodfood.com/recipes/pan-con-tomate"
+      "note": "Baseado em técnicas clássicas · ref. BBC pan con tomate: https://www.bbcgoodfood.com/recipes/pan-con-tomate",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -853,7 +892,8 @@ window.MARE_SEED = {
         "Formas de muffin.",
         "180 °C 18–22 min."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC banana oat muffins: https://www.bbcgoodfood.com/recipes/banana-oat-muffins"
+      "note": "Baseado em técnicas clássicas · ref. BBC banana oat muffins: https://www.bbcgoodfood.com/recipes/banana-oat-muffins",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -873,7 +913,8 @@ window.MARE_SEED = {
         "Murcha espinafres com alho.",
         "Junta ovos mexidos."
       ],
-      "note": "Baseado em técnicas clássicas · ref. adaptação scramble: https://www.seriouseats.com/fluffy-scrambled-eggs"
+      "note": "Baseado em técnicas clássicas · ref. adaptação scramble: https://www.seriouseats.com/fluffy-scrambled-eggs",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -895,7 +936,8 @@ window.MARE_SEED = {
         "Mistura tudo num tabuleiro.",
         "180 °C cerca de 40 min até firme."
       ],
-      "note": "Baseado em técnicas clássicas · ref. NYT breakfast casserole: https://cooking.nytimes.com/recipes/1024346-breakfast-casserole"
+      "note": "Baseado em técnicas clássicas · ref. NYT breakfast casserole: https://cooking.nytimes.com/recipes/1024346-breakfast-casserole",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -918,7 +960,8 @@ window.MARE_SEED = {
         "Frio durante a noite.",
         "Forno até dourar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. NYT overnight French toast: https://cooking.nytimes.com/recipes/1019102-overnight-french-toast"
+      "note": "Baseado em técnicas clássicas · ref. NYT overnight French toast: https://cooking.nytimes.com/recipes/1019102-overnight-french-toast",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -939,7 +982,8 @@ window.MARE_SEED = {
         "Ovo esmagado.",
         "Enrolha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC wraps: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC wraps: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -959,7 +1003,8 @@ window.MARE_SEED = {
         "Ovos na mesma frigideira.",
         "Pão tostado."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico diner: https://www.allrecipes.com/recipe/16354/breakfast-burritos/"
+      "note": "Baseado em técnicas clássicas · ref. clássico diner: https://www.allrecipes.com/recipe/16354/breakfast-burritos/",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -978,7 +1023,8 @@ window.MARE_SEED = {
         "Assa batata 200 °C ~40 min.",
         "Abre e cobre com iogurte."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC sweet potato: https://www.bbcgoodfood.com/recipes/collection/sweet-potato-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC sweet potato: https://www.bbcgoodfood.com/recipes/collection/sweet-potato-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -1000,7 +1046,8 @@ window.MARE_SEED = {
         "Frita.",
         "Derrete queijo em cima."
       ],
-      "note": "Baseado em técnicas clássicas · ref. adaptação French toast: https://www.allrecipes.com/recipe/7016/french-toast-i/"
+      "note": "Baseado em técnicas clássicas · ref. adaptação French toast: https://www.allrecipes.com/recipe/7016/french-toast-i/",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -1019,7 +1066,8 @@ window.MARE_SEED = {
       "steps": [
         "Monta em camadas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC breakfast: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC breakfast: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -1041,7 +1089,8 @@ window.MARE_SEED = {
         "Junta ovos e mexe.",
         "Salsa."
       ],
-      "note": "Baseado em técnicas clássicas · ref. migas ibéricas / bread scramble: https://www.bbcgoodfood.com/recipes/collection/egg-recipes"
+      "note": "Baseado em técnicas clássicas · ref. migas ibéricas / bread scramble: https://www.bbcgoodfood.com/recipes/collection/egg-recipes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -1064,7 +1113,8 @@ window.MARE_SEED = {
         "Queijo e fiambre.",
         "Fruta a acompanhar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico PT: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. clássico PT: https://www.pingodoce.pt/receitas/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1087,7 +1137,8 @@ window.MARE_SEED = {
         "Junta ovo picado se usares.",
         "Espalha no pão. Mantém frio."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico PT sandes atum: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. clássico PT sandes atum: https://www.pingodoce.pt/receitas/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1112,7 +1163,8 @@ window.MARE_SEED = {
         "Empilha peru, bacon, abacate, tomate e alface.",
         "Enrolha apertado."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Tastes Lovely turkey wrap: https://www.tasteslovely.com/california-turkey-club-wrap/"
+      "note": "Baseado em técnicas clássicas · ref. Tastes Lovely turkey wrap: https://www.tasteslovely.com/california-turkey-club-wrap/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1136,7 +1188,8 @@ window.MARE_SEED = {
         "Recheia com vegetais e feta.",
         "Enrolha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Mediterranean picnic wraps: https://lifeandsprinkles.com/mediterranean-picnic-wraps/"
+      "note": "Baseado em técnicas clássicas · ref. Mediterranean picnic wraps: https://lifeandsprinkles.com/mediterranean-picnic-wraps/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1157,7 +1210,8 @@ window.MARE_SEED = {
         "Esmaga com maionese.",
         "Espalha no pão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico egg mayo: https://www.bbcgoodfood.com/recipes/egg-mayonnaise-sandwiches"
+      "note": "Baseado em técnicas clássicas · ref. clássico egg mayo: https://www.bbcgoodfood.com/recipes/egg-mayonnaise-sandwiches",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1178,7 +1232,8 @@ window.MARE_SEED = {
         "Salmão.",
         "Limão; enrola. Mantém frio."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC smoked salmon: https://www.bbcgoodfood.com/recipes/smoked-salmon-bagel"
+      "note": "Baseado em técnicas clássicas · ref. BBC smoked salmon: https://www.bbcgoodfood.com/recipes/smoked-salmon-bagel",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1200,7 +1255,8 @@ window.MARE_SEED = {
         "Recheia wrap com alface.",
         "Embrulha frio."
       ],
-      "note": "Baseado em técnicas clássicas · ref. picnic chicken wrap: https://picklestravel.com/5-rotisserie-chicken-wrap-sandwich-recipes-for-summer/"
+      "note": "Baseado em técnicas clássicas · ref. picnic chicken wrap: https://picklestravel.com/5-rotisserie-chicken-wrap-sandwich-recipes-for-summer/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1221,7 +1277,8 @@ window.MARE_SEED = {
         "Mistura com maionese.",
         "Muitas areias."
       ],
-      "note": "Baseado em técnicas clássicas · ref. rotisserie chicken sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes"
+      "note": "Baseado em técnicas clássicas · ref. rotisserie chicken sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1244,7 +1301,8 @@ window.MARE_SEED = {
         "Juliana de vegetais.",
         "Enrolha bem."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC hummus wrap: https://www.bbcgoodfood.com/recipes/hummus-wrap"
+      "note": "Baseado em técnicas clássicas · ref. BBC hummus wrap: https://www.bbcgoodfood.com/recipes/hummus-wrap",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1265,7 +1323,8 @@ window.MARE_SEED = {
         "Frita bacon crocante; arrefece.",
         "Monta com maionese, alface e tomate."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes BLT: https://www.allrecipes.com/recipe/14497/blt-sandwich/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes BLT: https://www.allrecipes.com/recipe/14497/blt-sandwich/",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1286,7 +1345,8 @@ window.MARE_SEED = {
         "Cobre com fiambre e queijo.",
         "Enrolha apertado; corta em rodelas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. pinwheel sandwiches: https://www.allrecipes.com/recipe/23694/tortilla-pinwheels/"
+      "note": "Baseado em técnicas clássicas · ref. pinwheel sandwiches: https://www.allrecipes.com/recipe/23694/tortilla-pinwheels/",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1306,7 +1366,8 @@ window.MARE_SEED = {
         "Queijo dentro; doura na frigideira.",
         "Pode ir morna na mala térmica."
       ],
-      "note": "Baseado em técnicas clássicas · ref. grilled cheese: https://www.allrecipes.com/recipe/23891/grilled-cheese-sandwich/"
+      "note": "Baseado em técnicas clássicas · ref. grilled cheese: https://www.allrecipes.com/recipe/23891/grilled-cheese-sandwich/",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1328,7 +1389,8 @@ window.MARE_SEED = {
         "Mistura atum e restantes.",
         "Tempera e leva frio."
       ],
-      "note": "Baseado em técnicas clássicas · ref. tuna pasta salad: https://www.allrecipes.com/recipe/16726/tuna-pasta-salad/"
+      "note": "Baseado em técnicas clássicas · ref. tuna pasta salad: https://www.allrecipes.com/recipe/16726/tuna-pasta-salad/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1350,7 +1412,8 @@ window.MARE_SEED = {
         "Azeite e sal.",
         "Embrulha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. caprese sandwich: https://www.bbcgoodfood.com/recipes/caprese-sandwich"
+      "note": "Baseado em técnicas clássicas · ref. caprese sandwich: https://www.bbcgoodfood.com/recipes/caprese-sandwich",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1372,7 +1435,8 @@ window.MARE_SEED = {
         "Espalha; põe peru e alface.",
         "Enrolha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. turkey avocado wrap: https://mandiofthemountains.com/turkey-wrap-with-bacon-and-avocado/"
+      "note": "Baseado em técnicas clássicas · ref. turkey avocado wrap: https://mandiofthemountains.com/turkey-wrap-with-bacon-and-avocado/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1394,7 +1458,8 @@ window.MARE_SEED = {
         "Mistura gordura/limão.",
         "Espalha no pão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico PT: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. clássico PT: https://www.pingodoce.pt/receitas/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1416,7 +1481,8 @@ window.MARE_SEED = {
         "Junta frango e parmesão.",
         "Enrolha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. chicken Caesar wrap: https://www.bbcgoodfood.com/recipes/chicken-caesar-wrap"
+      "note": "Baseado em técnicas clássicas · ref. chicken Caesar wrap: https://www.bbcgoodfood.com/recipes/chicken-caesar-wrap",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1437,7 +1503,8 @@ window.MARE_SEED = {
         "Carne e rúcula.",
         "Data."
       ],
-      "note": "Baseado em técnicas clássicas · ref. deli roast beef: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes"
+      "note": "Baseado em técnicas clássicas · ref. deli roast beef: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1460,7 +1527,8 @@ window.MARE_SEED = {
         "Mistura vegetais e grão.",
         "Tempera azeite-limão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. couscous salad: https://www.bbcgoodfood.com/recipes/moroccan-couscous"
+      "note": "Baseado em técnicas clássicas · ref. couscous salad: https://www.bbcgoodfood.com/recipes/moroccan-couscous",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1483,7 +1551,8 @@ window.MARE_SEED = {
         "Monta 3 andares.",
         "Espeta e corta triângulos."
       ],
-      "note": "Baseado em técnicas clássicas · ref. club sandwich: https://www.allrecipes.com/recipe/14496/club-sandwich/"
+      "note": "Baseado em técnicas clássicas · ref. club sandwich: https://www.allrecipes.com/recipe/14496/club-sandwich/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1505,7 +1574,8 @@ window.MARE_SEED = {
         "Espalha ranch.",
         "Recheia e enrola."
       ],
-      "note": "Baseado em técnicas clássicas · ref. buffalo chicken wrap: https://picklestravel.com/5-rotisserie-chicken-wrap-sandwich-recipes-for-summer/"
+      "note": "Baseado em técnicas clássicas · ref. buffalo chicken wrap: https://picklestravel.com/5-rotisserie-chicken-wrap-sandwich-recipes-for-summer/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1526,7 +1596,8 @@ window.MARE_SEED = {
         "Mel e nozes.",
         "Data."
       ],
-      "note": "Baseado em técnicas clássicas · ref. soft picnic: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes"
+      "note": "Baseado em técnicas clássicas · ref. soft picnic: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1548,7 +1619,8 @@ window.MARE_SEED = {
         "Mistura ingredientes.",
         "Tempera."
       ],
-      "note": "Baseado em técnicas clássicas · ref. insalata di riso: https://www.bbcgoodfood.com/recipes/collection/rice-salad-recipes"
+      "note": "Baseado em técnicas clássicas · ref. insalata di riso: https://www.bbcgoodfood.com/recipes/collection/rice-salad-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1570,7 +1642,8 @@ window.MARE_SEED = {
         "Mistura feijão, milho e arroz.",
         "Recheia com salsa e queijo."
       ],
-      "note": "Baseado em técnicas clássicas · ref. southwestern wrap: https://picklestravel.com/5-rotisserie-chicken-wrap-sandwich-recipes-for-summer/"
+      "note": "Baseado em técnicas clássicas · ref. southwestern wrap: https://picklestravel.com/5-rotisserie-chicken-wrap-sandwich-recipes-for-summer/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1590,7 +1663,8 @@ window.MARE_SEED = {
         "Mistura tudo até patê.",
         "Espalha e embala frio."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. clássico: https://www.pingodoce.pt/receitas/",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1612,7 +1686,8 @@ window.MARE_SEED = {
         "Recheia falafel e vegetais.",
         "Molho por cima."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC falafel pittas: https://www.bbcgoodfood.com/recipes/falafel-burgers"
+      "note": "Baseado em técnicas clássicas · ref. BBC falafel pittas: https://www.bbcgoodfood.com/recipes/falafel-burgers",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1633,7 +1708,8 @@ window.MARE_SEED = {
         "Mortadela e queijo.",
         "Azeite."
       ],
-      "note": "Baseado em técnicas clássicas · ref. italian deli: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes"
+      "note": "Baseado em técnicas clássicas · ref. italian deli: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1653,7 +1729,8 @@ window.MARE_SEED = {
         "Mistura.",
         "Espalha e enrola."
       ],
-      "note": "Baseado em técnicas clássicas · ref. tuna wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes"
+      "note": "Baseado em técnicas clássicas · ref. tuna wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1675,7 +1752,8 @@ window.MARE_SEED = {
         "Frango, queijo e tomate.",
         "Opcional: aquecer para derreter."
       ],
-      "note": "Baseado em técnicas clássicas · ref. pesto chicken sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes"
+      "note": "Baseado em técnicas clássicas · ref. pesto chicken sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1697,7 +1775,8 @@ window.MARE_SEED = {
         "Mistura erva e tomate.",
         "Tempera."
       ],
-      "note": "Baseado em técnicas clássicas · ref. tabbouleh: https://www.bbcgoodfood.com/recipes/tabbouleh"
+      "note": "Baseado em técnicas clássicas · ref. tabbouleh: https://www.bbcgoodfood.com/recipes/tabbouleh",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1717,7 +1796,8 @@ window.MARE_SEED = {
         "Abre baguete.",
         "Queijo + doce + rúcula."
       ],
-      "note": "Baseado em técnicas clássicas · ref. cheese picnic loaf: https://www.bbcgoodfood.com/recipes/collection/picnic-recipes"
+      "note": "Baseado em técnicas clássicas · ref. cheese picnic loaf: https://www.bbcgoodfood.com/recipes/collection/picnic-recipes",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1739,7 +1819,8 @@ window.MARE_SEED = {
         "Tempera.",
         "Enrolha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. egg avocado wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes"
+      "note": "Baseado em técnicas clássicas · ref. egg avocado wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1759,7 +1840,8 @@ window.MARE_SEED = {
         "Mostarda no pão.",
         "Carne e picles."
       ],
-      "note": "Baseado em técnicas clássicas · ref. leftover roast sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes"
+      "note": "Baseado em técnicas clássicas · ref. leftover roast sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1779,7 +1861,8 @@ window.MARE_SEED = {
         "Coze e arrefece massa.",
         "Envolve pesto e extras."
       ],
-      "note": "Baseado em técnicas clássicas · ref. pesto pasta salad: https://www.bbcgoodfood.com/recipes/pesto-pasta-salad"
+      "note": "Baseado em técnicas clássicas · ref. pesto pasta salad: https://www.bbcgoodfood.com/recipes/pesto-pasta-salad",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1800,7 +1883,8 @@ window.MARE_SEED = {
         "Pepino, tudo bem.",
         "Corta em retângulos."
       ],
-      "note": "Baseado em técnicas clássicas · ref. cucumber sandwiches: https://www.bbcgoodfood.com/recipes/cucumber-sandwiches"
+      "note": "Baseado em técnicas clássicas · ref. cucumber sandwiches: https://www.bbcgoodfood.com/recipes/cucumber-sandwiches",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1822,7 +1906,8 @@ window.MARE_SEED = {
         "Iogurte no wrap.",
         "Recheia frango e vegetais."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Greek chicken wrap: https://picklestravel.com/5-rotisserie-chicken-wrap-sandwich-recipes-for-summer/"
+      "note": "Baseado em técnicas clássicas · ref. Greek chicken wrap: https://picklestravel.com/5-rotisserie-chicken-wrap-sandwich-recipes-for-summer/",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1844,7 +1929,8 @@ window.MARE_SEED = {
         "Monta camadas.",
         "Azeite e pimenta."
       ],
-      "note": "Baseado em técnicas clássicas · ref. niçoise sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes"
+      "note": "Baseado em técnicas clássicas · ref. niçoise sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1864,7 +1950,8 @@ window.MARE_SEED = {
         "Corta baguete.",
         "Unta e recheia."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico picnic: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. clássico picnic: https://www.pingodoce.pt/receitas/",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1886,7 +1973,8 @@ window.MARE_SEED = {
         "Tomate e rúcula.",
         "Enrolha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. italian wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes"
+      "note": "Baseado em técnicas clássicas · ref. italian wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1908,7 +1996,8 @@ window.MARE_SEED = {
         "Mistura tudo.",
         "Leva frio."
       ],
-      "note": "Baseado em técnicas clássicas · ref. chickpea salad: https://www.bbcgoodfood.com/recipes/collection/chickpea-recipes"
+      "note": "Baseado em técnicas clássicas · ref. chickpea salad: https://www.bbcgoodfood.com/recipes/collection/chickpea-recipes",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1928,7 +2017,8 @@ window.MARE_SEED = {
         "Mostarda.",
         "Carne e picles."
       ],
-      "note": "Baseado em técnicas clássicas · ref. deli pastrami: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes"
+      "note": "Baseado em técnicas clássicas · ref. deli pastrami: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1949,7 +2039,8 @@ window.MARE_SEED = {
         "Mistura atum com maionese picante.",
         "Recheia e enrola."
       ],
-      "note": "Baseado em técnicas clássicas · ref. spicy tuna wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes"
+      "note": "Baseado em técnicas clássicas · ref. spicy tuna wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -1969,7 +2060,8 @@ window.MARE_SEED = {
         "Assa beringela antecipadamente.",
         "Monta sandes fria."
       ],
-      "note": "Baseado em técnicas clássicas · ref. aubergine sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes"
+      "note": "Baseado em técnicas clássicas · ref. aubergine sandwich: https://www.bbcgoodfood.com/recipes/collection/sandwich-recipes",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -1991,7 +2083,8 @@ window.MARE_SEED = {
         "Mistura restantes.",
         "Tempera."
       ],
-      "note": "Baseado em técnicas clássicas · ref. quinoa salad: https://www.bbcgoodfood.com/recipes/collection/quinoa-recipes"
+      "note": "Baseado em técnicas clássicas · ref. quinoa salad: https://www.bbcgoodfood.com/recipes/collection/quinoa-recipes",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -2011,7 +2104,8 @@ window.MARE_SEED = {
         "Esmaga ovos com mostarda e maionese.",
         "Espalha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. egg mustard sandwich: https://www.bbcgoodfood.com/recipes/egg-mayonnaise-sandwiches"
+      "note": "Baseado em técnicas clássicas · ref. egg mustard sandwich: https://www.bbcgoodfood.com/recipes/egg-mayonnaise-sandwiches",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -2031,7 +2125,8 @@ window.MARE_SEED = {
         "Mistura camarão com molho.",
         "Alface e enrola. Mantém muito frio."
       ],
-      "note": "Baseado em técnicas clássicas · ref. prawn cocktail wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes"
+      "note": "Baseado em técnicas clássicas · ref. prawn cocktail wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -2051,7 +2146,8 @@ window.MARE_SEED = {
         "Desfia e mistura.",
         "Espalha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. coronation/chicken mayo: https://www.bbcgoodfood.com/recipes/coronation-chicken"
+      "note": "Baseado em técnicas clássicas · ref. coronation/chicken mayo: https://www.bbcgoodfood.com/recipes/coronation-chicken",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -2071,7 +2167,8 @@ window.MARE_SEED = {
         "Recheia.",
         "Corta em quadrados."
       ],
-      "note": "Baseado em técnicas clássicas · ref. picnic focaccia: https://www.bbcgoodfood.com/recipes/collection/picnic-recipes"
+      "note": "Baseado em técnicas clássicas · ref. picnic focaccia: https://www.bbcgoodfood.com/recipes/collection/picnic-recipes",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -2092,7 +2189,8 @@ window.MARE_SEED = {
         "Mistura lentilhas com feta e pepino.",
         "Enrolha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. lentil wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes"
+      "note": "Baseado em técnicas clássicas · ref. lentil wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -2113,7 +2211,8 @@ window.MARE_SEED = {
         "Fiambre e queijo.",
         "Opcional: tosta e leva morna."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico PT: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. clássico PT: https://www.pingodoce.pt/receitas/",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -2135,7 +2234,8 @@ window.MARE_SEED = {
         "Pão à parte.",
         "Mantém fresco."
       ],
-      "note": "Baseado em técnicas clássicas · ref. antipasti picnic: https://www.bbcgoodfood.com/recipes/collection/picnic-recipes"
+      "note": "Baseado em técnicas clássicas · ref. antipasti picnic: https://www.bbcgoodfood.com/recipes/collection/picnic-recipes",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -2154,7 +2254,8 @@ window.MARE_SEED = {
         "Água fria.",
         "Sal na hora."
       ],
-      "note": "Baseado em técnicas clássicas · ref. meal prep eggs: https://www.seriouseats.com/hard-boiled-eggs"
+      "note": "Baseado em técnicas clássicas · ref. meal prep eggs: https://www.seriouseats.com/hard-boiled-eggs",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2171,7 +2272,8 @@ window.MARE_SEED = {
       "steps": [
         "Abre e rega com mel."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC breakfast: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC breakfast: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2190,7 +2292,8 @@ window.MARE_SEED = {
         "Tritura até liso.",
         "Garrafa fria."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC smoothies: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC smoothies: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2207,7 +2310,8 @@ window.MARE_SEED = {
       "steps": [
         "Espalha e come."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. clássico: https://www.pingodoce.pt/receitas/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2224,7 +2328,8 @@ window.MARE_SEED = {
       "steps": [
         "Mergulha ou espalma na pita."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC hummus: https://www.bbcgoodfood.com/recipes/best-hummus"
+      "note": "Baseado em técnicas clássicas · ref. BBC hummus: https://www.bbcgoodfood.com/recipes/best-hummus",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2242,7 +2347,8 @@ window.MARE_SEED = {
       "steps": [
         "Mistura e porciona em sacos."
       ],
-      "note": "Baseado em técnicas clássicas · ref. trail mix: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. trail mix: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2260,7 +2366,8 @@ window.MARE_SEED = {
         "Coze ou aquece.",
         "Sal por cima."
       ],
-      "note": "Baseado em técnicas clássicas · ref. edamame snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. edamame snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2277,7 +2384,8 @@ window.MARE_SEED = {
       "steps": [
         "Monta na hora."
       ],
-      "note": "Baseado em técnicas clássicas · ref. cheese crackers: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. cheese crackers: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2297,7 +2405,8 @@ window.MARE_SEED = {
         "Tritura ou amassa.",
         "Bola e refrigerar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. energy balls: https://www.bbcgoodfood.com/recipes/energy-balls"
+      "note": "Baseado em técnicas clássicas · ref. energy balls: https://www.bbcgoodfood.com/recipes/energy-balls",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2315,7 +2424,8 @@ window.MARE_SEED = {
       "steps": [
         "Mistura na taça."
       ],
-      "note": "Baseado em técnicas clássicas · ref. high protein snack: https://www.bbcgoodfood.com/recipes/collection/high-protein-breakfast-recipes"
+      "note": "Baseado em técnicas clássicas · ref. high protein snack: https://www.bbcgoodfood.com/recipes/collection/high-protein-breakfast-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2332,7 +2442,8 @@ window.MARE_SEED = {
       "steps": [
         "Espalha generoso."
       ],
-      "note": "Baseado em técnicas clássicas · ref. PB bread: https://www.allrecipes.com/recipe/20979/peanut-butter-and-banana-sandwiches/"
+      "note": "Baseado em técnicas clássicas · ref. PB bread: https://www.allrecipes.com/recipe/20979/peanut-butter-and-banana-sandwiches/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2350,7 +2461,8 @@ window.MARE_SEED = {
       "steps": [
         "Espalma cream cheese em rodelas ou barcos de pepino."
       ],
-      "note": "Baseado em técnicas clássicas · ref. cucumber boats: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. cucumber boats: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2369,7 +2481,8 @@ window.MARE_SEED = {
       "steps": [
         "Fragmentar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. chocolate banana smoothie: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes"
+      "note": "Baseado em técnicas clássicas · ref. chocolate banana smoothie: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2390,7 +2503,8 @@ window.MARE_SEED = {
         "Tempera.",
         "Torre por 20–25 min a 200 °C."
       ],
-      "note": "Baseado em técnicas clássicas · ref. roasted chickpeas: https://www.bbcgoodfood.com/recipes/roasted-chickpeas"
+      "note": "Baseado em técnicas clássicas · ref. roasted chickpeas: https://www.bbcgoodfood.com/recipes/roasted-chickpeas",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -2409,7 +2523,8 @@ window.MARE_SEED = {
       "steps": [
         "Mistura na taça."
       ],
-      "note": "Baseado em técnicas clássicas · ref. savory cottage: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. savory cottage: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2426,7 +2541,8 @@ window.MARE_SEED = {
       "steps": [
         "Fatias + dip."
       ],
-      "note": "Baseado em técnicas clássicas · ref. apple PB: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. apple PB: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2444,7 +2560,8 @@ window.MARE_SEED = {
       "steps": [
         "Enrolha apertado; corta ao meio."
       ],
-      "note": "Baseado em técnicas clássicas · ref. mini wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes"
+      "note": "Baseado em técnicas clássicas · ref. mini wrap: https://www.bbcgoodfood.com/recipes/collection/wrap-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2462,7 +2579,8 @@ window.MARE_SEED = {
       "steps": [
         "Tritura iogurte com fruta congelada."
       ],
-      "note": "Baseado em técnicas clássicas · ref. frozen yogurt: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. frozen yogurt: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2481,7 +2599,8 @@ window.MARE_SEED = {
         "Atum no pão.",
         "Queijo em cima; gratinar ou micro-ondas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. tuna melt mini: https://www.allrecipes.com/recipe/16345/tuna-melt/"
+      "note": "Baseado em técnicas clássicas · ref. tuna melt mini: https://www.allrecipes.com/recipe/16345/tuna-melt/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2500,7 +2619,8 @@ window.MARE_SEED = {
         "Mistura pimenta no hummus.",
         "Serve com cenoura."
       ],
-      "note": "Baseado em técnicas clássicas · ref. hummus snack: https://www.bbcgoodfood.com/recipes/best-hummus"
+      "note": "Baseado em técnicas clássicas · ref. hummus snack: https://www.bbcgoodfood.com/recipes/best-hummus",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2517,7 +2637,8 @@ window.MARE_SEED = {
       "steps": [
         "Banana + quadrados de chocolate."
       ],
-      "note": "Baseado em técnicas clássicas · ref. simple snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. simple snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2537,7 +2658,8 @@ window.MARE_SEED = {
         "Milho até abrir.",
         "Sal."
       ],
-      "note": "Baseado em técnicas clássicas · ref. stovetop popcorn: https://www.allrecipes.com/recipe/11887/homemade-popcorn/"
+      "note": "Baseado em técnicas clássicas · ref. stovetop popcorn: https://www.allrecipes.com/recipe/11887/homemade-popcorn/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2555,7 +2677,8 @@ window.MARE_SEED = {
         "Grelha fatias 2 min/lado.",
         "Limão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. halloumi snack: https://www.bbcgoodfood.com/recipes/collection/halloumi-recipes"
+      "note": "Baseado em técnicas clássicas · ref. halloumi snack: https://www.bbcgoodfood.com/recipes/collection/halloumi-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2573,7 +2696,8 @@ window.MARE_SEED = {
       "steps": [
         "Mistura na taça."
       ],
-      "note": "Baseado em técnicas clássicas · ref. ricotta honey: https://www.bbcgoodfood.com/recipes/ricotta-toast"
+      "note": "Baseado em técnicas clássicas · ref. ricotta honey: https://www.bbcgoodfood.com/recipes/ricotta-toast",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2591,7 +2715,8 @@ window.MARE_SEED = {
       "steps": [
         "Unta e asa 200 °C até macias/douradas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. sweet potato rounds: https://www.bbcgoodfood.com/recipes/collection/sweet-potato-recipes"
+      "note": "Baseado em técnicas clássicas · ref. sweet potato rounds: https://www.bbcgoodfood.com/recipes/collection/sweet-potato-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2610,7 +2735,8 @@ window.MARE_SEED = {
       "steps": [
         "Fragmentar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. iced coffee milk: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes"
+      "note": "Baseado em técnicas clássicas · ref. iced coffee milk: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2627,7 +2753,8 @@ window.MARE_SEED = {
       "steps": [
         "Enrola fiambre no queijo."
       ],
-      "note": "Baseado em técnicas clássicas · ref. meat cheese sticks: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. meat cheese sticks: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2649,7 +2776,8 @@ window.MARE_SEED = {
         "Tempera.",
         "Sirva batatas fritas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. guacamole: https://www.bbcgoodfood.com/recipes/guacamole"
+      "note": "Baseado em técnicas clássicas · ref. guacamole: https://www.bbcgoodfood.com/recipes/guacamole",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2668,7 +2796,8 @@ window.MARE_SEED = {
         "Mistura patê.",
         "Come à colher ou com pão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. tuna snack: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. tuna snack: https://www.pingodoce.pt/receitas/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2686,7 +2815,8 @@ window.MARE_SEED = {
       "steps": [
         "Mistura e arrefece até firmar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. yogurt jelly: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. yogurt jelly: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2704,7 +2834,8 @@ window.MARE_SEED = {
       "steps": [
         "Esmaga e espalma."
       ],
-      "note": "Baseado em técnicas clássicas · ref. avocado snack: https://www.bbcgoodfood.com/recipes/smashed-avocado-on-toast"
+      "note": "Baseado em técnicas clássicas · ref. avocado snack: https://www.bbcgoodfood.com/recipes/smashed-avocado-on-toast",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2721,7 +2852,8 @@ window.MARE_SEED = {
       "steps": [
         "Mergulha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. veggie dip: https://www.bbcgoodfood.com/recipes/guacamole"
+      "note": "Baseado em técnicas clássicas · ref. veggie dip: https://www.bbcgoodfood.com/recipes/guacamole",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2741,7 +2873,8 @@ window.MARE_SEED = {
         "Mistura na caneca.",
         "Micro-ondas 60–90 s."
       ],
-      "note": "Baseado em técnicas clássicas · ref. mug cookie: https://www.bbcgoodfood.com/recipes/collection/mug-cake-recipes"
+      "note": "Baseado em técnicas clássicas · ref. mug cookie: https://www.bbcgoodfood.com/recipes/collection/mug-cake-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2760,7 +2893,8 @@ window.MARE_SEED = {
       "steps": [
         "Tempera e come com pão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. greek snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. greek snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2779,7 +2913,8 @@ window.MARE_SEED = {
       "steps": [
         "Tritura bem."
       ],
-      "note": "Baseado em técnicas clássicas · ref. green smoothie: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes"
+      "note": "Baseado em técnicas clássicas · ref. green smoothie: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2798,7 +2933,8 @@ window.MARE_SEED = {
         "Chips + queijo + proteína.",
         "Micro-ondas até derreter."
       ],
-      "note": "Baseado em técnicas clássicas · ref. microwave nachos: https://www.allrecipes.com/recipe/27078/microwave-nachos/"
+      "note": "Baseado em técnicas clássicas · ref. microwave nachos: https://www.allrecipes.com/recipe/27078/microwave-nachos/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2816,7 +2952,8 @@ window.MARE_SEED = {
         "Espalma queijo no peru.",
         "Enrolha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. deli roll-ups: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. deli roll-ups: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2833,7 +2970,8 @@ window.MARE_SEED = {
       "steps": [
         "Tigela mista."
       ],
-      "note": "Baseado em técnicas clássicas · ref. antipasti snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. antipasti snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2851,7 +2989,8 @@ window.MARE_SEED = {
       "steps": [
         "Molha ou rega o pão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. pa amb oli snack: https://www.bbcgoodfood.com/recipes/pan-con-tomate"
+      "note": "Baseado em técnicas clássicas · ref. pa amb oli snack: https://www.bbcgoodfood.com/recipes/pan-con-tomate",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2868,7 +3007,8 @@ window.MARE_SEED = {
       "steps": [
         "Monta na taça."
       ],
-      "note": "Baseado em técnicas clássicas · ref. yogurt granola: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes"
+      "note": "Baseado em técnicas clássicas · ref. yogurt granola: https://www.bbcgoodfood.com/recipes/collection/breakfast-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2887,7 +3027,8 @@ window.MARE_SEED = {
         "Coze.",
         "Azeite e sal."
       ],
-      "note": "Baseado em técnicas clássicas · ref. boiled potatoes snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. boiled potatoes snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2905,7 +3046,8 @@ window.MARE_SEED = {
       "steps": [
         "Patê de atum em folhas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. tuna lettuce cups: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. tuna lettuce cups: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2924,7 +3066,8 @@ window.MARE_SEED = {
       "steps": [
         "Aquece mexendo."
       ],
-      "note": "Baseado em técnicas clássicas · ref. hot cocoa: https://www.bbcgoodfood.com/recipes/collection/hot-chocolate-recipes"
+      "note": "Baseado em técnicas clássicas · ref. hot cocoa: https://www.bbcgoodfood.com/recipes/collection/hot-chocolate-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2942,7 +3085,8 @@ window.MARE_SEED = {
       "steps": [
         "Torre por 8–10 min a 180 °C."
       ],
-      "note": "Baseado em técnicas clássicas · ref. roasted pumpkin seeds: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. roasted pumpkin seeds: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2959,7 +3103,8 @@ window.MARE_SEED = {
       "steps": [
         "Fatias alternadas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. fruit cheese: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. fruit cheese: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2975,7 +3120,8 @@ window.MARE_SEED = {
       "steps": [
         "Reaquece 30–40 s no micro-ondas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. NYT egg muffins: https://cooking.nytimes.com/recipes/1026058-egg-muffins"
+      "note": "Baseado em técnicas clássicas · ref. NYT egg muffins: https://cooking.nytimes.com/recipes/1026058-egg-muffins",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -2994,7 +3140,8 @@ window.MARE_SEED = {
         "Tapioca na frigideira.",
         "Coco; Tudo bem."
       ],
-      "note": "Baseado em técnicas clássicas · ref. tapioca doce: https://www.tudogostoso.com.br/receita/29876-tapioca.htm"
+      "note": "Baseado em técnicas clássicas · ref. tapioca doce: https://www.tudogostoso.com.br/receita/29876-tapioca.htm",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -3010,7 +3157,8 @@ window.MARE_SEED = {
       "steps": [
         "Serve bem frio em copo."
       ],
-      "note": "Baseado em técnicas clássicas · ref. gazpacho: https://www.bbcgoodfood.com/recipes/gazpacho"
+      "note": "Baseado em técnicas clássicas · ref. gazpacho: https://www.bbcgoodfood.com/recipes/gazpacho",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -3029,7 +3177,8 @@ window.MARE_SEED = {
         "Base de queijo.",
         "Atum por cima."
       ],
-      "note": "Baseado em técnicas clássicas · ref. rice cake snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes"
+      "note": "Baseado em técnicas clássicas · ref. rice cake snack: https://www.bbcgoodfood.com/recipes/collection/snack-recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -3048,7 +3197,8 @@ window.MARE_SEED = {
       "steps": [
         "Fragmentar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. strawberry milkshake: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes"
+      "note": "Baseado em técnicas clássicas · ref. strawberry milkshake: https://www.bbcgoodfood.com/recipes/collection/smoothie-recipes",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3072,7 +3222,8 @@ window.MARE_SEED = {
         "Queijo no fim.",
         "Monta."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico burger: https://www.seriouseats.com/smash-burgers-recipe"
+      "note": "Baseado em técnicas clássicas · ref. clássico burger: https://www.seriouseats.com/smash-burgers-recipe",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3096,7 +3247,8 @@ window.MARE_SEED = {
         "Tomate 15 min.",
         "Mistura massa."
       ],
-      "note": "Baseado em técnicas clássicas · ref. ragu rápido: https://www.bbcgoodfood.com/recipes/best-spaghetti-bolognese-recipe"
+      "note": "Baseado em técnicas clássicas · ref. ragu rápido: https://www.bbcgoodfood.com/recipes/best-spaghetti-bolognese-recipe",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3118,7 +3270,8 @@ window.MARE_SEED = {
         "Vinho e reduz.",
         "Pão com molho."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Pingo Doce bifanas: https://www.pingodoce.pt/receitas/bifanas-a-moda-do-porto/"
+      "note": "Baseado em técnicas clássicas · ref. Pingo Doce bifanas: https://www.pingodoce.pt/receitas/bifanas-a-moda-do-porto/",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3140,7 +3293,8 @@ window.MARE_SEED = {
         "Frita até dourar.",
         "Limão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. escalope clássico: https://www.bbcgoodfood.com/recipes/chicken-schnitzel"
+      "note": "Baseado em técnicas clássicas · ref. escalope clássico: https://www.bbcgoodfood.com/recipes/chicken-schnitzel",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3163,7 +3317,8 @@ window.MARE_SEED = {
         "Natas + tempero.",
         "Mistura massa."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes Cajun Chicken Pasta: https://www.allrecipes.com/recipe/8778/cajun-chicken-pasta/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes Cajun Chicken Pasta: https://www.allrecipes.com/recipe/8778/cajun-chicken-pasta/",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3187,7 +3342,8 @@ window.MARE_SEED = {
         "Molho manteiga+natas+parmesão.",
         "Junta tudo."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes Chicken Alfredo: https://www.allrecipes.com/recipe/25303/chicken-fettuccini-alfredo/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes Chicken Alfredo: https://www.allrecipes.com/recipe/25303/chicken-fettuccini-alfredo/",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3209,7 +3365,8 @@ window.MARE_SEED = {
         "Salteia frango.",
         "Envolve pesto e queijo."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Allrecipes penne pesto chicken: https://www.allrecipes.com/recipe/26284/penne-with-chicken-and-pesto/"
+      "note": "Baseado em técnicas clássicas · ref. Allrecipes penne pesto chicken: https://www.allrecipes.com/recipe/26284/penne-with-chicken-and-pesto/",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3231,7 +3388,8 @@ window.MARE_SEED = {
         "Ovos estrelados em cima.",
         "Acompanhar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. clássico PT: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. clássico PT: https://www.pingodoce.pt/receitas/",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3253,7 +3411,8 @@ window.MARE_SEED = {
         "Alho no azeite.",
         "Junta atum e massa."
       ],
-      "note": "Baseado em técnicas clássicas · ref. classic pantry pasta: https://www.bbcgoodfood.com/recipes/tuna-pasta"
+      "note": "Baseado em técnicas clássicas · ref. classic pantry pasta: https://www.bbcgoodfood.com/recipes/tuna-pasta",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3276,7 +3435,8 @@ window.MARE_SEED = {
         "Aquece tortilhas.",
         "Recheia."
       ],
-      "note": "Baseado em técnicas clássicas · ref. beef tacos: https://www.bbcgoodfood.com/recipes/beef-tacos"
+      "note": "Baseado em técnicas clássicas · ref. beef tacos: https://www.bbcgoodfood.com/recipes/beef-tacos",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3299,7 +3459,8 @@ window.MARE_SEED = {
         "Ovos mexidos.",
         "Batata palha no fim."
       ],
-      "note": "Baseado em técnicas clássicas · ref. adaptação Brás: https://www.teleculinaria.pt/"
+      "note": "Baseado em técnicas clássicas · ref. adaptação Brás: https://www.teleculinaria.pt/",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3324,7 +3485,8 @@ window.MARE_SEED = {
         "Ferve molho tomate-cerveja.",
         "Banha e gratinar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Teleculinária / Pingo Doce: https://www.pingodoce.pt/receitas/francesinha/"
+      "note": "Baseado em técnicas clássicas · ref. Teleculinária / Pingo Doce: https://www.pingodoce.pt/receitas/francesinha/",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3345,7 +3507,8 @@ window.MARE_SEED = {
         "Grelha 3–4 min/lado.",
         "Limão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC grilled salmon: https://www.bbcgoodfood.com/recipes/collection/salmon-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBC grilled salmon: https://www.bbcgoodfood.com/recipes/collection/salmon-recipes",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3369,7 +3532,8 @@ window.MARE_SEED = {
         "Caldo aos poucos.",
         "Manteiga e parmesão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC mushroom risotto: https://www.bbcgoodfood.com/recipes/mushroom-risotto"
+      "note": "Baseado em técnicas clássicas · ref. BBC mushroom risotto: https://www.bbcgoodfood.com/recipes/mushroom-risotto",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3391,7 +3555,8 @@ window.MARE_SEED = {
         "Assa 200 °C até cozido.",
         "Descanse 10 minutos."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC roast chicken: https://www.bbcgoodfood.com/recipes/perfect-roast-chicken"
+      "note": "Baseado em técnicas clássicas · ref. BBC roast chicken: https://www.bbcgoodfood.com/recipes/perfect-roast-chicken",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3415,7 +3580,8 @@ window.MARE_SEED = {
         "Feijão 20 min.",
         "Arroz."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC chilli con carne: https://www.bbcgoodfood.com/recipes/chilli-con-carne-recipe"
+      "note": "Baseado em técnicas clássicas · ref. BBC chilli con carne: https://www.bbcgoodfood.com/recipes/chilli-con-carne-recipe",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3436,7 +3602,8 @@ window.MARE_SEED = {
         "Tomate, queijo, toppings.",
         "Tapa até derreter."
       ],
-      "note": "Baseado em técnicas clássicas · ref. skillet pizza: https://www.bbcgoodfood.com/recipes/collection/pizza-recipes"
+      "note": "Baseado em técnicas clássicas · ref. skillet pizza: https://www.bbcgoodfood.com/recipes/collection/pizza-recipes",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3460,7 +3627,8 @@ window.MARE_SEED = {
         "Natas.",
         "Arroz e batata palha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. strogonoff BR/PT: https://www.tudogostoso.com.br/receita/2525-estrogonofe-de-frango.htm"
+      "note": "Baseado em técnicas clássicas · ref. strogonoff BR/PT: https://www.tudogostoso.com.br/receita/2525-estrogonofe-de-frango.htm",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3480,7 +3648,8 @@ window.MARE_SEED = {
         "Camadas molho/massa/queijo.",
         "180 °C 35–45 min."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC lasagne: https://www.bbcgoodfood.com/recipes/classic-lasagne"
+      "note": "Baseado em técnicas clássicas · ref. BBC lasagne: https://www.bbcgoodfood.com/recipes/classic-lasagne",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3501,7 +3670,8 @@ window.MARE_SEED = {
         "Batata primeiro 20 min.",
         "Peixe por cima mais 15 min."
       ],
-      "note": "Baseado em técnicas clássicas · ref. traybake peixe: https://www.bbcgoodfood.com/recipes/collection/traybake-recipes"
+      "note": "Baseado em técnicas clássicas · ref. traybake peixe: https://www.bbcgoodfood.com/recipes/collection/traybake-recipes",
+      "servings": 3
     },
     {
       "section": "jantar",
@@ -3524,7 +3694,8 @@ window.MARE_SEED = {
         "Líquido 15 min.",
         "Arroz."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC chicken curry: https://www.bbcgoodfood.com/recipes/easy-chicken-curry"
+      "note": "Baseado em técnicas clássicas · ref. BBC chicken curry: https://www.bbcgoodfood.com/recipes/easy-chicken-curry",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3543,7 +3714,8 @@ window.MARE_SEED = {
         "Recheia e doura.",
         "Corte."
       ],
-      "note": "Baseado em técnicas clássicas · ref. quesadilla: https://www.bbcgoodfood.com/recipes/collection/quesadilla-recipes"
+      "note": "Baseado em técnicas clássicas · ref. quesadilla: https://www.bbcgoodfood.com/recipes/collection/quesadilla-recipes",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3564,7 +3736,8 @@ window.MARE_SEED = {
         "Grelha 4–5 min/lado.",
         "Descansar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. pork chops: https://www.bbcgoodfood.com/recipes/collection/pork-chop-recipes"
+      "note": "Baseado em técnicas clássicas · ref. pork chops: https://www.bbcgoodfood.com/recipes/collection/pork-chop-recipes",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3585,7 +3758,8 @@ window.MARE_SEED = {
         "Bacon Dourado.",
         "Mistura ovos+queijo fora do lume com massa quente."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Serious Eats carbonara: https://www.seriouseats.com/spaghetti-alla-carbonara-recipe"
+      "note": "Baseado em técnicas clássicas · ref. Serious Eats carbonara: https://www.seriouseats.com/spaghetti-alla-carbonara-recipe",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3606,7 +3780,8 @@ window.MARE_SEED = {
         "Salteia frango e vegetais.",
         "Serve em tortilhas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC chicken fajitas: https://www.bbcgoodfood.com/recipes/chicken-fajitas"
+      "note": "Baseado em técnicas clássicas · ref. BBC chicken fajitas: https://www.bbcgoodfood.com/recipes/chicken-fajitas",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3628,7 +3803,8 @@ window.MARE_SEED = {
         "Ovos.",
         "Batata palha."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Teleculinária bacalhau Brás: https://teleculinaria.pt/"
+      "note": "Baseado em técnicas clássicas · ref. Teleculinária bacalhau Brás: https://teleculinaria.pt/",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3652,7 +3828,8 @@ window.MARE_SEED = {
         "Mistura e leva ao forno.",
         "Ovos e azeitonas."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Gomes de Sá: https://arcadasportofado.pt/receitas/bacalhau-a-gomes-de-sa-2/"
+      "note": "Baseado em técnicas clássicas · ref. Gomes de Sá: https://arcadasportofado.pt/receitas/bacalhau-a-gomes-de-sa-2/",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3674,7 +3851,8 @@ window.MARE_SEED = {
         "Junta grão.",
         "Tritura parcial se quiseres."
       ],
-      "note": "Baseado em técnicas clássicas · ref. vegetable soup: https://www.bbcgoodfood.com/recipes/collection/soup-recipes"
+      "note": "Baseado em técnicas clássicas · ref. vegetable soup: https://www.bbcgoodfood.com/recipes/collection/soup-recipes",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3697,7 +3875,8 @@ window.MARE_SEED = {
         "Soja+mel+alho até engrossar.",
         "Arroz."
       ],
-      "note": "Baseado em técnicas clássicas · ref. teriyaki chicken: https://www.bbcgoodfood.com/recipes/teriyaki-chicken"
+      "note": "Baseado em técnicas clássicas · ref. teriyaki chicken: https://www.bbcgoodfood.com/recipes/teriyaki-chicken",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3717,7 +3896,8 @@ window.MARE_SEED = {
         "Omelete com recheio.",
         "Pão a acompanhar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. dinner omelette: https://www.seriouseats.com/the-best-french-omelette-recipe"
+      "note": "Baseado em técnicas clássicas · ref. dinner omelette: https://www.seriouseats.com/the-best-french-omelette-recipe",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3739,7 +3919,8 @@ window.MARE_SEED = {
         "Grelha virando.",
         "Serve com arroz ou pão."
       ],
-      "note": "Baseado em técnicas clássicas · ref. chicken skewers: https://www.bbcgoodfood.com/recipes/collection/skewer-recipes"
+      "note": "Baseado em técnicas clássicas · ref. chicken skewers: https://www.bbcgoodfood.com/recipes/collection/skewer-recipes",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3762,7 +3943,8 @@ window.MARE_SEED = {
         "Salteia camarão com alho.",
         "Envolve."
       ],
-      "note": "Baseado em técnicas clássicas · ref. garlic prawn pasta: https://www.bbcgoodfood.com/recipes/garlic-prawn-pasta"
+      "note": "Baseado em técnicas clássicas · ref. garlic prawn pasta: https://www.bbcgoodfood.com/recipes/garlic-prawn-pasta",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3783,7 +3965,8 @@ window.MARE_SEED = {
         "Cobre com puré.",
         "Gratinar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBC shepherd's pie: https://www.bbcgoodfood.com/recipes/shepherds-pie"
+      "note": "Baseado em técnicas clássicas · ref. BBC shepherd's pie: https://www.bbcgoodfood.com/recipes/shepherds-pie",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3805,7 +3988,8 @@ window.MARE_SEED = {
         "Vegetais.",
         "Molho até engrossar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. kung pao style: https://www.bbcgoodfood.com/recipes/collection/stir-fry-recipes"
+      "note": "Baseado em técnicas clássicas · ref. kung pao style: https://www.bbcgoodfood.com/recipes/collection/stir-fry-recipes",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3827,7 +4011,8 @@ window.MARE_SEED = {
         "Arroz + caldo.",
         "Coze até secar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. arroz de frango PT: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. arroz de frango PT: https://www.pingodoce.pt/receitas/",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3849,7 +4034,8 @@ window.MARE_SEED = {
         "Cobertura.",
         "Forno."
       ],
-      "note": "Baseado em técnicas clássicas · ref. moussaka: https://www.bbcgoodfood.com/recipes/moussaka"
+      "note": "Baseado em técnicas clássicas · ref. moussaka: https://www.bbcgoodfood.com/recipes/moussaka",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3869,7 +4055,8 @@ window.MARE_SEED = {
         "Grelha salsichas.",
         "Puré cremoso."
       ],
-      "note": "Baseado em técnicas clássicas · ref. bangers and mash: https://www.bbcgoodfood.com/recipes/bangers-mash"
+      "note": "Baseado em técnicas clássicas · ref. bangers and mash: https://www.bbcgoodfood.com/recipes/bangers-mash",
+      "servings": 3
     },
     {
       "section": "jantar",
@@ -3889,7 +4076,8 @@ window.MARE_SEED = {
         "Grelha frango.",
         "Fatia sobre salada."
       ],
-      "note": "Baseado em técnicas clássicas · ref. grilled chicken salad: https://www.bbcgoodfood.com/recipes/collection/chicken-salad-recipes"
+      "note": "Baseado em técnicas clássicas · ref. grilled chicken salad: https://www.bbcgoodfood.com/recipes/collection/chicken-salad-recipes",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3911,7 +4099,8 @@ window.MARE_SEED = {
         "Salteia proteína e ovo.",
         "Molho e amendoim."
       ],
-      "note": "Baseado em técnicas clássicas · ref. pad thai: https://www.bbcgoodfood.com/recipes/pad-thai"
+      "note": "Baseado em técnicas clássicas · ref. pad thai: https://www.bbcgoodfood.com/recipes/pad-thai",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3932,7 +4121,8 @@ window.MARE_SEED = {
         "Cobre puré.",
         "Gratinar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. cottage pie: https://www.bbcgoodfood.com/recipes/cottage-pie"
+      "note": "Baseado em técnicas clássicas · ref. cottage pie: https://www.bbcgoodfood.com/recipes/cottage-pie",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3954,7 +4144,8 @@ window.MARE_SEED = {
         "Grelha rápido.",
         "Alho e salsa."
       ],
-      "note": "Baseado em técnicas clássicas · ref. grilled squid: https://www.bbcgoodfood.com/recipes/collection/squid-recipes"
+      "note": "Baseado em técnicas clássicas · ref. grilled squid: https://www.bbcgoodfood.com/recipes/collection/squid-recipes",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -3976,7 +4167,8 @@ window.MARE_SEED = {
         "Estufa com feijão.",
         "Arroz."
       ],
-      "note": "Baseado em técnicas clássicas · ref. feijoada light: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. feijoada light: https://www.pingodoce.pt/receitas/",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -3998,7 +4190,8 @@ window.MARE_SEED = {
         "Molho rápido de tomate e salgados.",
         "Envolve massa."
       ],
-      "note": "Baseado em técnicas clássicas · ref. puttanesca: https://www.seriouseats.com/pasta-puttanesca-recipe"
+      "note": "Baseado em técnicas clássicas · ref. puttanesca: https://www.seriouseats.com/pasta-puttanesca-recipe",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -4019,7 +4212,8 @@ window.MARE_SEED = {
         "Temperamento.",
         "Assa coberto depois descoberto até caramelizar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. BBQ ribs style: https://www.bbcgoodfood.com/recipes/collection/ribs-recipes"
+      "note": "Baseado em técnicas clássicas · ref. BBQ ribs style: https://www.bbcgoodfood.com/recipes/collection/ribs-recipes",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -4041,7 +4235,8 @@ window.MARE_SEED = {
         "Salteia legumes.",
         "Molho soja."
       ],
-      "note": "Baseado em técnicas clássicas · ref. tofu stir-fry: https://www.bbcgoodfood.com/recipes/collection/tofu-recipes"
+      "note": "Baseado em técnicas clássicas · ref. tofu stir-fry: https://www.bbcgoodfood.com/recipes/collection/tofu-recipes",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -4063,7 +4258,8 @@ window.MARE_SEED = {
         "Junta couve fina.",
         "Chouriço a acompanhar."
       ],
-      "note": "Baseado em técnicas clássicas · ref. caldo verde: https://www.pingodoce.pt/receitas/"
+      "note": "Baseado em técnicas clássicas · ref. caldo verde: https://www.pingodoce.pt/receitas/",
+      "servings": 3
     },
     {
       "section": "jantar",
@@ -4085,7 +4281,8 @@ window.MARE_SEED = {
         "Molho tomate e vegetais.",
         "Estufa até tenro."
       ],
-      "note": "Baseado em técnicas clássicas · ref. chicken cacciatore: https://www.bbcgoodfood.com/recipes/chicken-cacciatore"
+      "note": "Baseado em técnicas clássicas · ref. chicken cacciatore: https://www.bbcgoodfood.com/recipes/chicken-cacciatore",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -4107,7 +4304,8 @@ window.MARE_SEED = {
         "Noodles e molho.",
         "Cebolinho."
       ],
-      "note": "Baseado em técnicas clássicas · ref. Asian beef noodles: https://www.bbcgoodfood.com/recipes/collection/noodle-recipes"
+      "note": "Baseado em técnicas clássicas · ref. Asian beef noodles: https://www.bbcgoodfood.com/recipes/collection/noodle-recipes",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -4129,7 +4327,8 @@ window.MARE_SEED = {
         "Polvo por cima com alho e azeite.",
         "Forno quente."
       ],
-      "note": "Baseado em técnicas clássicas · ref. polvo lagareiro: https://www.teleculinaria.pt/"
+      "note": "Baseado em técnicas clássicas · ref. polvo lagareiro: https://www.teleculinaria.pt/",
+      "servings": 3
     },
     {
       "section": "jantar",
@@ -4151,7 +4350,8 @@ window.MARE_SEED = {
         "Coze até macios.",
         "Ovo ou queijo por cima."
       ],
-      "note": "Baseado em técnicas clássicas · ref. ratatouille: https://www.bbcgoodfood.com/recipes/ratatouille"
+      "note": "Baseado em técnicas clássicas · ref. ratatouille: https://www.bbcgoodfood.com/recipes/ratatouille",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4180,7 +4380,8 @@ window.MARE_SEED = {
         "Deixe a massa esfriar antes de estender para facilitar o manuseio e evitar que os biscoitos se espalhem demais durante o cozimento.",
         "Mergulhe os alfajores no chocolate derretido e deixe-os repousar sobre uma gradinha para um deleite extra decadente."
       ],
-      "note": "TheMealDB · Sobremesa · Argentina · https://www.themealdb.com/meal/53138 · https://www.munchery.com/blog/the-ten-iconic-dishes-of-argentina-and-how-to-cook-them-at-home/"
+      "note": "TheMealDB · Sobremesa · Argentina · https://www.themealdb.com/meal/53138 · https://www.munchery.com/blog/the-ten-iconic-dishes-of-argentina-and-how-to-cook-them-at-home/",
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -4206,7 +4407,8 @@ window.MARE_SEED = {
         "Pegue o primeiro rolo de massa e estique-o até atingir mais de um metro de comprimento. Em seguida, enrole em espiral, deixando 1cm entre cada volta da espiral para que a massa possa expandir. Achate um pouco e transfira para uma assadeira forrada com papel manteiga. Repita com a massa restante. Deixe crescer em local aquecido por pelo menos 12 horas, ou idealmente 24 horas.",
         "Aqueça o forno a 200C/180C ventilador/gás 6. Coloque as ensaimadas no terço superior do forno e reduza imediatamente a temperatura para 180C/160C ventilador/gás 4. Asse por 18 minutos até dourar. Deixe esfriar sobre uma gradinha. Para rechear a sua ensaimada com chantilly, corte e abra, espalhe sobre o creme e feche. Polvilhe com uma quantidade generosa de açúcar de confeiteiro, se desejar, e corte em pedaços para servir."
       ],
-      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53149 · https://www.bbcgoodfood.com/recipes/ensaimada"
+      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53149 · https://www.bbcgoodfood.com/recipes/ensaimada",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4239,7 +4441,8 @@ window.MARE_SEED = {
         "Adicione o açúcar e a água a uma panela e deixe ferver. Deixe ferver por 10 minutos, mexendo de vez em quando. Retire do fogo.",
         "Corte o Shendetlie em quadrados em formato de diamante e regue com a calda quente. Use calda suficiente para cobrir o bolo e mais 1 cm de transbordamento, por cima. Isso vai penetrar no bolo enquanto você o deixa esfriar por pelo menos 1 hora antes de servir."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53409 · https://www.myalbanianfood.com/recipe/albanian-shendetlie/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53409 · https://www.myalbanianfood.com/recipe/albanian-shendetlie/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4279,7 +4482,8 @@ window.MARE_SEED = {
         "Pincele delicadamente a massa com ovo batido.",
         "Asse por cerca de 45 minutos. A parte superior do bolo deve ficar dourada enquanto o recheio de amêndoa permanece macio."
       ],
-      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53131 · https://scandinaviancookbook.com/fyrstekake-norwegian-prince-cake/"
+      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53131 · https://scandinaviancookbook.com/fyrstekake-norwegian-prince-cake/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4299,7 +4503,8 @@ window.MARE_SEED = {
         "Adicione o açúcar restante em uma superfície plana, como um prato ou assadeira. Passe as bolinhas de tamarindo no açúcar granulado até ficarem bem revestidas.",
         "Você pode comer as bolinhas de tamarindo imediatamente ou deixá-las endurecer por algumas horas ou durante a noite. Permitir que endureçam lhes dará uma textura mais firme e uma cobertura de açúcar mais cristalizada. Aproveitar."
       ],
-      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53360 · https://www.myforkinglife.com/tamarind-balls/#recipe"
+      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53360 · https://www.myforkinglife.com/tamarind-balls/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4329,7 +4534,8 @@ window.MARE_SEED = {
         "Em seguida, adicione o açúcar e o creme de coco. Mexa os ingredientes delicadamente por 3 minutos para incorporar os sabores.",
         "Adicione sal a gosto."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53425 · https://cookingwithlane.com/laos-banana-tapioca-pudding-nam-van-mak-kuay/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53425 · https://cookingwithlane.com/laos-banana-tapioca-pudding-nam-van-mak-kuay/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4354,7 +4560,8 @@ window.MARE_SEED = {
         "Pegue pedaços de pasta de caju e forme pequenas bolas. Passe as bolinhas no açúcar de confeiteiro e transfira para a assadeira. Coloque uma amêndoa no centro de cada ghribia.",
         "Asse até que os biscoitos estejam levemente dourados, cerca de 20 minutos. Fique de olho neles, eles queimam rapidamente."
       ],
-      "note": "TheMealDB · Sobremesa · Tunisino · https://www.themealdb.com/meal/52976 · http://allrecipes.co.uk/recipe/40152/cashew-ghoriba-biscuits.aspx"
+      "note": "TheMealDB · Sobremesa · Tunisino · https://www.themealdb.com/meal/52976 · http://allrecipes.co.uk/recipe/40152/cashew-ghoriba-biscuits.aspx",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4385,7 +4592,8 @@ window.MARE_SEED = {
         "Divida a massa em duas partes iguais; enrole cada pedaço em um retângulo de cerca de 30 x 20 centímetros. Misture os ingredientes do recheio e divida pela massa, espalhando sobre cada pedaço. Enrole os retângulos o mais firmemente possível para obter duas salsichas de 30 centímetros. Coloque-os lado a lado, tocando-se, em uma assadeira untada. Cubra e deixe crescer por cerca de 40 minutos. Aqueça o forno a 200ºC (425ºF). Asse por 30-35 minutos até crescer bem e dourar. O pão deve soar oco quando a base é batida.",
         "Retire do forno e pincele a superfície do pão quente com leite. Peneire com uma generosa cobertura de açúcar de confeiteiro."
       ],
-      "note": "TheMealDB · Sobremesa · Croata · https://www.themealdb.com/meal/53062 · https://www.visit-croatia.co.uk/croatian-cuisine/croatian-recipes/"
+      "note": "TheMealDB · Sobremesa · Croata · https://www.themealdb.com/meal/53062 · https://www.visit-croatia.co.uk/croatian-cuisine/croatian-recipes/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4411,7 +4619,8 @@ window.MARE_SEED = {
         "Descasque, corte em quartos e retire o caroço das maçãs, corte em rodelas de 2 mm de espessura e arrume-as por cima da massa. Polvilhe com o açúcar restante e leve ao forno por 20-25 minutos até que a massa esteja cozida e dourada e as maçãs amolecidas. Retire e deixe esfriar um pouco. Aqueça 3 colheres de sopa de geleia de vinho tinto em uma panela pequena em fogo baixo com 1 colher de chá de água para deixá-la um pouco mais líquida e pincele por cima das tortas.",
         "Coloque o crème fraîche em uma tigela, peneire o açúcar de confeiteiro e o cardamomo e misture. Coloque com cuidado as tortas quentes em pratos de servir e sirva com o crème fraîche de cardamomo."
       ],
-      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52910 · https://www.bbcgoodfood.com/recipes/chinon-apple-tarts"
+      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52910 · https://www.bbcgoodfood.com/recipes/chinon-apple-tarts",
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -4437,7 +4646,8 @@ window.MARE_SEED = {
         "Mexa continuamente e mantenha o fogo baixo para evitar que o leite queime e grude no fundo da panela.",
         "Uma gota de extrato de baunilha adicionada no final do cozimento realça o sabor."
       ],
-      "note": "TheMealDB · Sobremesa · Argentina · https://www.themealdb.com/meal/53137 · https://www.munchery.com/blog/the-ten-iconic-dishes-of-argentina-and-how-to-cook-them-at-home/"
+      "note": "TheMealDB · Sobremesa · Argentina · https://www.themealdb.com/meal/53137 · https://www.munchery.com/blog/the-ten-iconic-dishes-of-argentina-and-how-to-cook-them-at-home/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4471,7 +4681,8 @@ window.MARE_SEED = {
         "Leve uma panela com água salgada para ferver.",
         "Coloque os bolinhos aos poucos e cozinhe até que flutuem na superfície (cerca de 2-3 minutos)."
       ],
-      "note": "TheMealDB · Sobremesa · Eslováquia · https://www.themealdb.com/meal/53187 · https://www.slovakia-foods.co.uk/blog/post/sullance-s-makom-recipe-how-to-make-authentic-slovak-sweet-poppy-seed-rolls.html"
+      "note": "TheMealDB · Sobremesa · Eslováquia · https://www.themealdb.com/meal/53187 · https://www.slovakia-foods.co.uk/blog/post/sullance-s-makom-recipe-how-to-make-authentic-slovak-sweet-poppy-seed-rolls.html",
+      "servings": 6
     },
     {
       "section": "lanches",
@@ -4495,7 +4706,8 @@ window.MARE_SEED = {
         "Bata delicadamente os ovos e o açúcar até que o açúcar se dissolva. Bata lentamente 1 xícara de leite quente, aos poucos, até incorporar. Misture a mistura de ovos de volta ao leite quente, despeje o pisco e misture até incorporar bem.",
         "Despeje o creme por uma peneira de malha fina em uma caçarola de cerâmica de 2 litros para remover as raspas de limão e a canela. Asse em forno pré-aquecido até firmar e dourar por cima, cerca de 30 minutos. Refrigere antes de servir."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53519 · https://www.allrecipes.com/recipe/134327/leche-asada/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53519 · https://www.allrecipes.com/recipe/134327/leche-asada/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4522,7 +4734,8 @@ window.MARE_SEED = {
         "Despeje o leite lentamente nos ingredientes secos enquanto mexe. Não misture demais! Assim que estiver homogêneo, você despeja na fôrma. Polvilhe o açúcar pérola por cima e leve ao forno por cerca de 1 hora.",
         "Verifique após cerca de 50 minutos como está o progresso do bolo. Se sair um testador de bolo, limpe o bolo que ele cozinhou. Se não, deixe cozinhar mais um pouco."
       ],
-      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53387 · https://insimoneskitchen.com/dutch-breakfast-cake/#recipe"
+      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53387 · https://insimoneskitchen.com/dutch-breakfast-cake/#recipe",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -4552,7 +4765,8 @@ window.MARE_SEED = {
         "Entretanto, prepare o nougatine e a compota de acordo com a receita, caso ainda não o tenha feito.",
         "Deixe o bolo esfriar completamente antes de cortá-lo. Se, como eu, você usou uma forma de mola de 20 cm, corte o bolo em três camadas."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53395 · https://www.inlaurasbakery.com/slagroomtaart-dutch-cream-cake/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53395 · https://www.inlaurasbakery.com/slagroomtaart-dutch-cream-cake/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4586,7 +4800,8 @@ window.MARE_SEED = {
         "Assim que os churros estiverem crocantes e dourados, retire-os do óleo com uma escumadeira e escorra na bandeja forrada com papel de cozinha. Continue cozinhando o resto da massa aos poucos, polvilhando os churros cozidos com um pouco de açúcar canela. Depois de cozinhar todos os churros, misture com o açúcar canela restante e sirva com a calda de chocolate, para mergulhar.",
         "Para ver um vídeo de como preparar churros, dê uma olhada na nossa receita de sanduíche de sorvete de churros."
       ],
-      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53153 · https://www.bbcgoodfood.com/recipes/churros-chocolate-dipping-sauce"
+      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53153 · https://www.bbcgoodfood.com/recipes/churros-chocolate-dipping-sauce",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -4611,7 +4826,8 @@ window.MARE_SEED = {
         "Amasse a ricota e bata bem com as gemas, junte a farinha, o açúcar, a canela, a casca de limão ralada e o rum e misture bem. Você pode fazer isso em um processador de alimentos. Bata as claras em neve até ficarem firmes, envolva e despeje em uma forma de bolo de 25cm untada com manteiga e enfarinhada. Leve ao forno a 180ºC/160ºC ventilador/gás 4 por cerca de 40 minutos, ou até ficar firme.",
         "Sirva quente ou frio polvilhado com açúcar de confeiteiro."
       ],
-      "note": "TheMealDB · Sobremesa · Italiano · https://www.themealdb.com/meal/52961 · https://thehappyfoodie.co.uk/recipes/ricotta-cake-budino-di-ricotta"
+      "note": "TheMealDB · Sobremesa · Italiano · https://www.themealdb.com/meal/52961 · https://thehappyfoodie.co.uk/recipes/ricotta-cake-budino-di-ricotta",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4648,7 +4864,8 @@ window.MARE_SEED = {
         "Asse no forno pré-aquecido até que os chifres de gazela estejam levemente dourados e assados, cerca de 20 minutos. Eles não devem ficar muito escuros. Deixe esfriar um pouco, cerca de 3 minutos.",
         "Aqueça o mel em uma panela pequena em fogo baixo-médio. Retire do fogo e misture 1 colher de sopa de água de flor de laranjeira. Mergulhe os chifres de gazela no mel e coloque-os num prato de servir. Polvilhe com pistache esmagado."
       ],
-      "note": "TheMealDB · Dessert · Algerian · https://www.themealdb.com/meal/53291 · https://www.allrecipes.com/recipe/262056/cornes-de-gazelle-gazelle-horns/"
+      "note": "TheMealDB · Dessert · Algerian · https://www.themealdb.com/meal/53291 · https://www.allrecipes.com/recipe/262056/cornes-de-gazelle-gazelle-horns/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4685,7 +4902,8 @@ window.MARE_SEED = {
         "Abaixe a temperatura do forno para 160C/140 C ventilador/Gas Mark 3 e cozinhe por mais 60–80 minutos. Verifique o bolo após 50 minutos inserindo um espeto de madeira ou metal no bolo. Quando estiver pronto, deverá ter apenas algumas migalhas. Verifique a cada 10 minutos - é importante não cozinhar demais o bolo para que o centro fique um pouco macio.",
         "Depois de cozido, retire o bolo brevemente do forno, coloque o leite e o açúcar numa panela pequena e aqueça suavemente até que o açúcar se dissolva. Pincele por cima do bolo e leve-o novamente ao forno por 2-3 minutos. Retire e deixe o bolo esfriar na forma. Quando estiver bem frio retire da forma e embrulhe em papel alumínio e guarde por pelo menos 2 dias antes de cortar."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52899 · https://www.bbcgoodfood.com/recipes/2155640/dundee-cake"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52899 · https://www.bbcgoodfood.com/recipes/2155640/dundee-cake",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4718,7 +4936,8 @@ window.MARE_SEED = {
         "Para fazer os bolos, estenda a massa até ficar um pouco mais grossa que uma moeda de £ 1 e corte 8 rodelas com cerca de 12 cm de diâmetro. Role novamente o corte, se necessário. Coloque uma boa colher de sopa cheia da mistura no meio de cada rodela, pincele as bordas das rodelas com água, junte a massa em volta do recheio e aperte bem (foto 3). Vire-os de forma que a parte superior lisa fique para cima e faça um círculo liso. Achate cada rodela com um rolo até formar uma forma oval até que a fruta comece a aparecer e coloque-a em uma assadeira. Corte 2 pequenos cortes em cada bolo Eccles, pincele generosamente com clara de ovo e polvilhe com açúcar (foto 4).",
         "Aqueça o forno a 220C/200C ventilador/gás 8. Asse os bolos Eccles por 15-20 minutos até ficarem dourados e pegajosos. Deixe esfriar sobre uma gradinha e saboreie ainda quente ou frio com uma xícara de chá. Se preferir, os bolos Eccles também ficam muito bem servidos com uma fatia de queijo britânico duro e picante, como Lancashire ou cheddar."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52888 · https://www.bbcgoodfood.com/recipes/786659/eccles-cakes"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52888 · https://www.bbcgoodfood.com/recipes/786659/eccles-cakes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4746,7 +4965,8 @@ window.MARE_SEED = {
         "Para a garoa, aqueça o leite, o cacau e o açúcar em uma panela em fogo baixo. Mexa até que o açúcar se dissolva (cerca de 5 minutos), criando uma garoa espessa e brilhante.",
         "Retire o bolo da forma e nivele o topo com uma faca serrilhada, depois vire para que o fundo vire o topo. Fure tudo com uma faca ou palito e coloque sobre uma gradinha com uma bandeja ou tigela grande por baixo. Despeje a garoa sobre o bolo aos poucos até que seja totalmente absorvido. Você pode reaproveitar qualquer garoa presa na bandeja ou tigela. A maior parte da garoa deve ser absorvida."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53485 · https://www.bbcgoodfood.com/recipes/brazilian-carrot-cake"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53485 · https://www.bbcgoodfood.com/recipes/brazilian-carrot-cake",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4772,7 +4992,8 @@ window.MARE_SEED = {
         "Leve ao forno durante 30 minutos, depois retire e coloque por cima o disco de massa folhada congelada – descongela rapidamente. Dobre as bordas para dentro do prato e, com uma faca, faça alguns furos na massa para permitir a saída do vapor. Asse por mais 40-45 minutos até que a massa fique dourada e crocante.",
         "Deixe esfriar até a temperatura ambiente por 1 hora antes de passar uma faca na borda do prato e invertê-lo em um prato grande, profundo o suficiente para conter os sucos. Sirva com crème fraîche ou sorvete de baunilha."
       ],
-      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52909 · https://www.bbcgoodfood.com/recipes/tarte-tatin"
+      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52909 · https://www.bbcgoodfood.com/recipes/tarte-tatin",
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -4806,7 +5027,8 @@ window.MARE_SEED = {
         "Pincele com a manteiga derretida restante. Asse por 20-25 minutos até dourar uniformemente, virando a bandeja na metade do tempo. Ainda quente, despeje imediatamente 5-6 conchas da calda. Você deverá ouvir a calda chiar ao atingir o baklava quente. Reserve para esfriar e absorver.",
         "Derreta o chocolate amargo em uma tigela refratária colocada sobre uma panela com água fervente, garantindo que a tigela não toque na água, ou no micro-ondas em pequenas rajadas. Regue sobre o baklava resfriado e polvilhe com o pistache moído."
       ],
-      "note": "TheMealDB · Dessert · Turkish · https://www.themealdb.com/meal/53279 · https://www.bbcgoodfood.com/recipes/baklava-with-spiced-nuts-ricotta-chocolate"
+      "note": "TheMealDB · Dessert · Turkish · https://www.themealdb.com/meal/53279 · https://www.bbcgoodfood.com/recipes/baklava-with-spiced-nuts-ricotta-chocolate",
+      "servings": 6
     },
     {
       "section": "lanches",
@@ -4840,7 +5062,8 @@ window.MARE_SEED = {
         "Para fazer a manteiga de conhaque, bata a manteiga com as raspas de laranja e o açúcar de confeiteiro. Aos poucos, acrescente o conhaque ou o conhaque e o gengibre picado. Coloque em uma tigela pequena, cubra bem com um garfo e leve à geladeira para endurecer. A manteiga pode ser guardada por uma semana na geladeira ou pode ser congelada por até seis semanas.",
         "No dia de Natal, ferva ou leve ao forno no vapor por 1 hora. Desembrulhe e desenforme. Para acender, aqueça 3-4 colheres de sopa de conhaque em uma panela pequena, despeje sobre o pudim e leve ao fogo."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52988 · https://www.bbcgoodfood.com/recipes/classic-christmas-pudding"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52988 · https://www.bbcgoodfood.com/recipes/classic-christmas-pudding",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4869,7 +5092,8 @@ window.MARE_SEED = {
         "Quando as peras esfriarem um pouco, arrume-as na assadeira, com o lado cortado para cima, em formato floral, com as peras na borda voltadas para dentro. Coloque o pau de canela por cima, no centro, com as vagens de cardamomo espalhadas.",
         "Pendure a massa sobre as peras e, em seguida, coloque as bordas nas laterais da assadeira e sob as frutas (consulte o guia de Gordon). Fure a massa algumas vezes e leve ao forno por 15 minutos. Se muito suco borbulhar na lateral da panela, despeje-o nesta fase (consulte o guia). Reduza o forno para 180C/ventilador 160C/gás 4 e leve ao forno por mais 15 minutos até que a massa esteja dourada. Deixe a torta repousar por 10 minutos e depois inverta-a cuidadosamente sobre uma travessa."
       ],
-      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52916 · https://www.bbcgoodfood.com/recipes/4778/pear-tarte-tatin"
+      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52916 · https://www.bbcgoodfood.com/recipes/4778/pear-tarte-tatin",
+      "servings": 6
     },
     {
       "section": "lanches",
@@ -4894,7 +5118,8 @@ window.MARE_SEED = {
         "Prepare o pudim: Mergulhe o pedaço inteiro de pão no suco por alguns segundos, apenas para cobrir. Empurre isso para o fundo da bacia. Agora mergulhe as peças retangulares instáveis, uma de cada vez, e pressione nas laterais da bacia para que se encaixem perfeitamente, colocando alternadamente as pontas largas e estreitas para cima. Se você não conseguir encaixar o último pedaço de pão, não importa, apenas corte em um triângulo, mergulhe no suco e encaixe. Agora coloque a fruta amolecida com uma colher, adicionando os morangos aqui e ali à medida que avança.",
         "Deixe os sabores se misturarem e depois sirva: Mergulhe os triângulos de pão no suco e coloque por cima – corte a saliência com uma tesoura. Guarde o suco que sobrou para mais tarde. Levante a película aderente e feche-a frouxamente. Coloque uma placa lateral em cima e coloque latas para baixo. Refrigere por 6 horas ou durante a noite. Para servir, abra a película aderente, coloque um prato de cabeça para baixo e vire. sirva com sobras de suco, frutas extras e creme."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52889 · https://www.bbcgoodfood.com/recipes/4516/summer-pudding"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52889 · https://www.bbcgoodfood.com/recipes/4516/summer-pudding",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4931,7 +5156,8 @@ window.MARE_SEED = {
         "Asse o mazariner por 20 a 25 minutos, até dourar. Deixe esfriar sobre uma gradinha.",
         "Misture o açúcar de confeiteiro e o líquido até obter uma cobertura para barrar. Espalhe a cobertura por cima do mazariner e se desejar decore com granulado ou o que quiser."
       ],
-      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53132 · https://scandinaviancookbook.com/mazariner-scandinavian-almond-tartlets/"
+      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53132 · https://scandinaviancookbook.com/mazariner-scandinavian-almond-tartlets/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4959,7 +5185,8 @@ window.MARE_SEED = {
         "Bata o mascarpone até ficar homogêneo e depois acrescente o creme. Espalhe a mistura por cima das laranjas.",
         "Bata levemente as natas e regue com o creme. Polvilhe com as amêndoas lascadas e o chocolate ralado. Você pode fazer isso com um dia de antecedência, se quiser, e leve à geladeira até a hora de servir."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52989 · https://www.bbcgoodfood.com/recipes/1826685/christmas-pudding-trifle"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52989 · https://www.bbcgoodfood.com/recipes/1826685/christmas-pudding-trifle",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -4991,7 +5218,8 @@ window.MARE_SEED = {
         "Retire da calda e ainda quente polvilhe com nozes moídas, para que grudem no Baghlaw.",
         "Deixe esfriar. Depois, divirta-se com seus amigos e familiares!"
       ],
-      "note": "TheMealDB · Sobremesa · https://www.themealdb.com/meal/53396 · https://www.afghanaid.org.uk/baghlaw-e-khanagi-recipe"
+      "note": "TheMealDB · Sobremesa · https://www.themealdb.com/meal/53396 · https://www.afghanaid.org.uk/baghlaw-e-khanagi-recipe",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5018,7 +5246,8 @@ window.MARE_SEED = {
         "Adicione óleo a uma frigideira de 25 centímetros em fogo médio-alto. Quando o óleo estiver quente, coloque a massa de bolinho de banana no óleo às colheradas. Quando um lado estiver dourado e aparecerem bolhas na parte superior, vire o bolinho e cozinhe até que o outro lado também esteja dourado.",
         "Retire os bolinhos e escorra em papel toalha. Aproveitar"
       ],
-      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53351 · https://www.myforkinglife.com/banana-fritters/#recipe"
+      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53351 · https://www.myforkinglife.com/banana-fritters/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5059,7 +5288,8 @@ window.MARE_SEED = {
         "1 colher de sopa de alho picado",
         "1 lata média de 16floz/500ml de tomates inteiros, escorridos e fatiados"
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53454 · https://www.totallybarbados.com/articles/barbados-recipes/breadfruit-butter-sauce-recipe/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53454 · https://www.totallybarbados.com/articles/barbados-recipes/breadfruit-butter-sauce-recipe/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5089,7 +5319,8 @@ window.MARE_SEED = {
         "Despeje a mistura em uma forma de pão ou em um recipiente próprio para freezer. Alise a parte superior e cubra com filme plástico ou tampa hermética. Congele por pelo menos 6 horas ou até ficar firme.",
         "Deixe o sorvete descansar em temperatura ambiente por 5 a 10 minutos antes de retirá-lo para obter a melhor textura."
       ],
-      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53347 · https://www.myforkinglife.com/rum-raisin-ice-cream/#recipe"
+      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53347 · https://www.myforkinglife.com/rum-raisin-ice-cream/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5118,7 +5349,8 @@ window.MARE_SEED = {
         "Divida o creme entre seis ramequins de 150ml ou pequenos pratos de terracota e deixe esfriar por 1 hora em temperatura ambiente até endurecer levemente. Refrigere durante a noite.",
         "Pouco antes de servir, polvilhe 1 colher de sopa de açúcar refinado por cima de cada ramekin e caramelize usando um maçarico de cozinha. Alternativamente, coloque os ramequins sob uma grelha quente até que o açúcar doure e comece a borbulhar. Sirva imediatamente."
       ],
-      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53148 · https://www.bbcgoodfood.com/recipes/crema-catalana"
+      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53148 · https://www.bbcgoodfood.com/recipes/crema-catalana",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5152,7 +5384,8 @@ window.MARE_SEED = {
         "Retire o bolo do forno e deixe esfriar na forma por alguns minutos. Em seguida, retire com cuidado o bolo da forma e deixe esfriar completamente sobre uma gradinha.",
         "Polvilhe o bolo de maçã resfriado com açúcar de confeiteiro"
       ],
-      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53380 · https://insimoneskitchen.com/dutch-apple-cake/#recipe"
+      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53380 · https://insimoneskitchen.com/dutch-apple-cake/#recipe",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5192,7 +5425,8 @@ window.MARE_SEED = {
         "Enquanto isso, para a cobertura, aqueça o leite e o açúcar em uma panela até ferver. Reduza o fogo e cozinhe por 2-3 minutos.",
         "Retire os pães do forno e pincele com a cobertura e deixe esfriar sobre uma gradinha."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52898 · https://www.bbc.co.uk/food/recipes/chelsea_buns_95015"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52898 · https://www.bbc.co.uk/food/recipes/chelsea_buns_95015",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5235,7 +5469,8 @@ window.MARE_SEED = {
         "Recheio de creme",
         "Bata o creme em picos firmes. Incorpore cuidadosamente o creme de baunilha."
       ],
-      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53128 · https://scandinaviancookbook.com/kvaefjord-cake-verdens-beste-worlds-best-cake/"
+      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53128 · https://scandinaviancookbook.com/kvaefjord-cake-verdens-beste-worlds-best-cake/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5266,7 +5501,8 @@ window.MARE_SEED = {
         "Trabalhando rapidamente, encha os ramequins, limpe as bordas e passe o polegar pelas bordas. Abaixe o forno para 200C/ventilador 180C/gás 6, coloque os ramequins na assadeira e leve ao forno por 8-10 minutos até crescerem com uma leve oscilação. Não abra a porta do forno muito cedo, pois isso pode desabar.",
         "Quando os suflês estiverem prontos, polvilhe com açúcar de confeiteiro, faça um pequeno furo na parte superior e despeje um pouco da calda de chocolate quente. Recoloque as tampas e sirva imediatamente."
       ],
-      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52905 · https://www.bbcgoodfood.com/recipes/5816/hot-chocolate-souffls-with-chocolate-cream-sauce"
+      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52905 · https://www.bbcgoodfood.com/recipes/5816/hot-chocolate-souffls-with-chocolate-cream-sauce",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5299,7 +5535,8 @@ window.MARE_SEED = {
         "Para fazer o molho, coloque todos os ingredientes em uma panela e leve ao fogo baixo até que o açúcar se dissolva e a manteiga derreta. Deixe ferver, mexendo por um minuto.",
         "Para servir, despeje metade do molho sobre o pudim na assadeira. Sirva com o creme ou sorvete."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52883 · https://www.bbc.co.uk/food/recipes/marys_sticky_toffee_41970"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52883 · https://www.bbc.co.uk/food/recipes/marys_sticky_toffee_41970",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5328,7 +5565,8 @@ window.MARE_SEED = {
         "Retire e escorra.",
         "Passe no açúcar canela ainda quente e sirva."
       ],
-      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52929 · http://www.geniuskitchen.com/recipe/drop-doughnuts-133877"
+      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52929 · http://www.geniuskitchen.com/recipe/drop-doughnuts-133877",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5352,7 +5590,8 @@ window.MARE_SEED = {
         "Derreta o chocolate ao leite no micro-ondas ou em uma panela com água fervente.",
         "Espalhe o chocolate derretido sobre a mistura de arroz krispie e deixe repousar em local fresco. Depois de definido, corte em quadrados e sirva!"
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52966 · http://www.donalskehan.com/recipes/chocolate-caramel-rice-crispy-treats/"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52966 · http://www.donalskehan.com/recipes/chocolate-caramel-rice-crispy-treats/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5383,7 +5622,8 @@ window.MARE_SEED = {
         "Coloque as fatias em uma assadeira forrada com papel manteiga. Asse os biscoitos em forno pré-aquecido a 180°C (356°F) por 14 a 16 minutos.",
         "Deixe os biscoitos de canela assados ​​esfriarem completamente antes de comê-los ou embrulhá-los."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53462 · https://junedarville.com/cinnamon-roll-cookies.html"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53462 · https://junedarville.com/cinnamon-roll-cookies.html",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5410,7 +5650,8 @@ window.MARE_SEED = {
         "Retire a panela do fogo e despeje em uma tigela grande e rasa. Deixe esfriar em temperatura ambiente e leve à geladeira por cerca de 1 a 2 horas.",
         "Por fim, polvilhe o seu Firni com amêndoas fatiadas e pistache e sirva!"
       ],
-      "note": "TheMealDB · Sobremesa · https://www.themealdb.com/meal/53399 · https://www.afghanaid.org.uk/firni-recipe"
+      "note": "TheMealDB · Sobremesa · https://www.themealdb.com/meal/53399 · https://www.afghanaid.org.uk/firni-recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5445,7 +5686,8 @@ window.MARE_SEED = {
         "Retire os pudins do forno. Deixe nas formas por alguns minutos e depois solte-as bem das laterais das formas com uma pequena espátula antes de desenformá-las. Você pode servi-los agora com o molho regado, mas eles ficarão ainda mais pegajosos se deixados por um ou dois dias cobertos com o molho. Para fazer isso, despeje cerca de metade do molho em uma ou duas travessas refratárias. Coloque os pudins virados sobre o molho e despeje o restante do molho sobre eles. Cubra com uma folha solta de papel alumínio para que o molho não manche (não é necessário esfriar).",
         "Quando estiver pronto para servir, aqueça o forno a 180C/ventilador 160C/gás 4. Aqueça os pudins, ainda cobertos, por 15-20 minutos ou até o molho borbulhar. Sirva sozinhos ou com creme ou creme."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52793 · https://www.youtube.com/watch?v=Wytv3bjqJII"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52793 · https://www.youtube.com/watch?v=Wytv3bjqJII",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5476,7 +5718,8 @@ window.MARE_SEED = {
         "Retire o chocolate e o papel manteiga da panela. Retire com cuidado todo o papel manteiga do doce.",
         "Corte o fudge em pedaços pequenos e sirva."
       ],
-      "note": "TheMealDB · Sobremesa · Estados Unidos · https://www.themealdb.com/meal/52787"
+      "note": "TheMealDB · Sobremesa · Estados Unidos · https://www.themealdb.com/meal/52787",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5507,7 +5750,8 @@ window.MARE_SEED = {
         "Quando a massa estiver firme, retire-a da água fervente e deixe esfriar um pouco antes de retirá-la do saco de pudim.",
         "Fatie o pudim como um bolo e sirva com o molho quente de sua escolha: molho de manteiga de rum, melaço aquecido ou molho Melaço Coady (1 xícara (250 mL) de melaço, 1/4 xícara (60 mL) de manteiga, 1/4 xícara (60 mL) água) é comum em Terra Nova."
       ],
-      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53342 · https://canadianfoodfocus.org/recipes/classic-canadian-dish-figgy-duff/"
+      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53342 · https://canadianfoodfocus.org/recipes/classic-canadian-dish-figgy-duff/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5532,7 +5776,8 @@ window.MARE_SEED = {
         "Junte a baunilha e misture vigorosamente novamente. Despeje a mistura em um prato untado com manteiga. Refrigere por pelo menos 2 horas.",
         "Unte as mãos com manteiga e retire um pouco da massa para fazer bolinhas de 2,5cm. Coloque as coberturas em tigelas pequenas e enrole as bolas de uma das decorações. Coloque em forminhas de papel ou em tabuleiro forrado com papel manteiga antiaderente."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53475 · https://www.bbcgoodfood.com/recipes/brazilian-chocolate-truffles-brigadeiro"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53475 · https://www.bbcgoodfood.com/recipes/brazilian-chocolate-truffles-brigadeiro",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5562,7 +5807,8 @@ window.MARE_SEED = {
         "Aumente o forno para 220C/200C ventilador/gás 7. Passe a abóbora resfriada por uma peneira e coloque-a em uma tigela grande. Em uma tigela separada, misture o açúcar, o sal, a noz-moscada e metade da canela. Misture os ovos batidos, a manteiga derretida e o leite, depois acrescente ao purê de abóbora e misture bem. Despeje na forma de torta e cozinhe por 10 minutos, depois reduza a temperatura para 180C/160C ventilador/gás 4. Continue a assar por 35-40 minutos até que o recheio esteja firme.",
         "Deixe esfriar e retire a torta da forma. Misture a canela restante com o açúcar de confeiteiro e polvilhe a torta. Sirva gelado."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52857 · https://www.bbcgoodfood.com/recipes/1742633/pumpkin-pie"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52857 · https://www.bbcgoodfood.com/recipes/1742633/pumpkin-pie",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5592,7 +5838,8 @@ window.MARE_SEED = {
         "Isso dá cerca de 3 lotes de 20 biscoitos cada.",
         "Contagem total de cerca de 60 cookies."
       ],
-      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53024 · https://www.food.com/recipe/rogaliki-polish-croissant-cookies-with-jam-filling-200668"
+      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53024 · https://www.food.com/recipe/rogaliki-polish-croissant-cookies-with-jam-filling-200668",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5616,7 +5863,8 @@ window.MARE_SEED = {
         "Adicione a aveia e mexa bem até revestir uniformemente. Misture as sobras do pudim de Natal e despeje na forma preparada. Use uma colher para alisar a superfície e leve ao forno por 40 minutos até as bordas começarem a dourar. Ainda quente na forma, corte em 12 quadrados. Deixe esfriar completamente antes de cortar as partituras.",
         "Mantém-se por 5 dias em uma lata hermética ou congele por até 1 mês."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52788"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52788",
+      "servings": 6
     },
     {
       "section": "lanches",
@@ -5647,7 +5895,8 @@ window.MARE_SEED = {
         "Pincele o topo com o ovo batido restante. Decore com amêndoas e cubra com outra camada de ovo batido.",
         "Asse as espéculas recheadas por 40 minutos a 180°C/350℉ (forno convencional) ou até ficarem prontas."
       ],
-      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53381 · https://www.inlaurasbakery.com/gevulde-speculaas-dutch-almond-paste-filled-spiced-cookies/"
+      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53381 · https://www.inlaurasbakery.com/gevulde-speculaas-dutch-almond-paste-filled-spiced-cookies/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5678,7 +5927,8 @@ window.MARE_SEED = {
         "Enquanto isso, pese a manteiga, a calda e os açúcares em uma panela e adicione 1/4 colher de chá de sal. Aqueça até a manteiga derreter e o açúcar dissolver, mexendo até ficar homogêneo. Retire do fogo e deixe esfriar por 10 minutos. Reduza o forno para 160C/140C ventilador/gás 3.",
         "Bata os ovos em uma tigela. Adicione a mistura de xarope, baunilha e nozes e misture até incorporar bem. Despeje metade da mistura na forma de torta, espalhe metade das gotas de chocolate e cubra com o restante do recheio e das gotas de chocolate. Asse na prateleira do meio por 50-55 minutos até firmar. Retire do forno e deixe esfriar, depois leve à geladeira por pelo menos 2 horas antes de servir."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52856 · https://www.bbcgoodfood.com/recipes/choc-chip-pecan-pie"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52856 · https://www.bbcgoodfood.com/recipes/choc-chip-pecan-pie",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5717,7 +5967,8 @@ window.MARE_SEED = {
         "Quando o purê estiver completamente frio, ajuste a doçura a gosto adicionando mais açúcar se necessário. Despeje na tigela com o chantilly e o iogurte e mexa apenas uma ou duas vezes até incorporar levemente.",
         "Coloque o tolo de amora em pratos de vidro individuais largos - ou em uma tigela grande e única. Deve parecer bastante marmorizado, por isso não mexa demais. Espalhe algumas folhinhas de hortelã por cima e decore com as amoras reservadas. Polvilhe com um pouco de açúcar se quiser e sirva com os biscoitos de avelã."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52891 · https://www.bbc.co.uk/food/recipes/blackberry_fool_with_11859"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52891 · https://www.bbc.co.uk/food/recipes/blackberry_fool_with_11859",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5742,7 +5993,8 @@ window.MARE_SEED = {
         "Antes de começar, mexa a massa e retire-a com duas colheres ou com uma colher de sorvete. Deixe cair no óleo com cuidado. É mais fácil fazer isso se você mergulhar as colheres ou colheres no óleo antes de mergulhar na massa. Assim ele deslizará facilmente das colheres. Não sobrecarregue a fritadeira para evitar que o óleo esfrie muito rapidamente e tudo grude. Quando um lado fica dourado, ele geralmente vira para o outro lado automaticamente. Se não, ajude junto com dois garfos.",
         "Retire as bolinhas quando estiverem douradas e deixe escorrer sobre um pedaço de papel de cozinha."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53393 · https://insimoneskitchen.com/dutch-doughnuts/#recipe"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53393 · https://insimoneskitchen.com/dutch-doughnuts/#recipe",
+      "servings": 6
     },
     {
       "section": "lanches",
@@ -5782,7 +6034,8 @@ window.MARE_SEED = {
         "Polvilhe amido de milho na superfície do rolo para evitar que grude. Abra cada porção de massa bem fina, 1 a 2 milímetros (1/16 polegada). Corte a massa enrolada em círculos de cerca de 10 centímetros (4 polegadas) de diâmetro cada. Limpe levemente a superfície de cada círculo com amido de milho e coloque em uma forma de torta, com o lado do amido de milho voltado para baixo para evitar que grude. Pressione suavemente a massa nas laterais e no fundo da forma e corte o excesso de massa ao redor da borda. Preencha três quartos de cada forma com o recheio de amêndoa.",
         "Asse na prateleira de cima a 350 graus F (175 graus C) por 20 a 25 minutos ou até que a superfície da torta esteja dourada e a massa firme. Retire as tortas das formas assim que saírem do forno. Mergulhe cada torta na calda de açúcar ainda quente. Cole um pinhão no meio de cada torta para decorar. Coloque sobre uma gradinha para escorrer."
       ],
-      "note": "TheMealDB · Dessert · Algerian · https://www.themealdb.com/meal/53285 · https://www.allrecipes.com/recipe/69501/dziriat-algerian-almond-tarts/"
+      "note": "TheMealDB · Dessert · Algerian · https://www.themealdb.com/meal/53285 · https://www.allrecipes.com/recipe/69501/dziriat-algerian-almond-tarts/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5810,7 +6063,8 @@ window.MARE_SEED = {
         "Misture ou amasse o iogurte e o mascarpone e, em seguida, acrescente os ovos, um de cada vez. Junte as raspas de limão e laranja e, em seguida, acrescente a maior parte do mel, reservando cerca de 3 colheres de sopa. Espalhe sobre a base do biscoito, cubra com papel alumínio e cozinhe por 1 hora. Retire o papel alumínio e cozinhe por mais 15 minutos até dourar levemente e a parte superior ficar firme com apenas uma leve oscilação no meio. Deixe esfriar. Pode ser guardado na geladeira por até 2 dias.",
         "Para servir, polvilhe com amêndoas, regue com o mel restante e distribua frutas frescas para acompanhar."
       ],
-      "note": "TheMealDB · Dessert · Greek · https://www.themealdb.com/meal/53007 · https://www.bbcgoodfood.com/recipes/honey-yogurt-cheesecake"
+      "note": "TheMealDB · Dessert · Greek · https://www.themealdb.com/meal/53007 · https://www.bbcgoodfood.com/recipes/honey-yogurt-cheesecake",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5840,7 +6094,8 @@ window.MARE_SEED = {
         "Retire o chocolate e o papel manteiga da panela. Retire com cuidado todo o papel manteiga do doce.",
         "Corte o fudge em pedaços pequenos e sirva."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52786 · http://tiphero.com/rocky-road-fudge/"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52786 · http://tiphero.com/rocky-road-fudge/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5871,7 +6126,8 @@ window.MARE_SEED = {
         "Retire do forno e deixe esfriar por 15 minutos. Remova as laterais da lata. Uma maneira fácil de fazer isso é colocar a lata sobre uma lata de feijão e empurrar suavemente as bordas da lata.",
         "Transfira a torta, com a base de lata colocada, para um prato de servir. Sirva quente com creme, creme fraiche ou sorvete."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52768"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52768",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5902,7 +6158,8 @@ window.MARE_SEED = {
         "Espalhe a mistura restante de leite de coco por cima do bolo.",
         "Coloque o bolo em cima do fogão para esfriar completamente."
       ],
-      "note": "TheMealDB · Sobremesa · https://www.themealdb.com/meal/53508 · https://www.ourcayman.ky/en-us/about/more-about-cayman/recipes"
+      "note": "TheMealDB · Sobremesa · https://www.themealdb.com/meal/53508 · https://www.ourcayman.ky/en-us/about/more-about-cayman/recipes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5933,7 +6190,8 @@ window.MARE_SEED = {
         "Para a camada intermediária, faça a cobertura de creme; misture a manteiga, o creme de leite e o creme em pó até obter um creme claro e fofo e, em seguida, adicione gradualmente o açúcar de confeiteiro até incorporar totalmente. Espalhe sobre a camada inferior e leve à geladeira por pelo menos 10 minutos até que o creme não esteja mais macio.",
         "Derreta o chocolate e a manteiga no micro-ondas, espalhe sobre as barras geladas e leve à geladeira. Deixe até o chocolate endurecer completamente (cerca de 2 horas). Retire a mistura da forma e corte em quadrados para servir."
       ],
-      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52924 · https://www.bbcgoodfood.com/recipes/nanaimo-bars"
+      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52924 · https://www.bbcgoodfood.com/recipes/nanaimo-bars",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -5962,7 +6220,8 @@ window.MARE_SEED = {
         "Coloque uma pequena noz de manteiga em uma frigideira grande antiaderente e aqueça em fogo médio-baixo até derreter e formar espuma. Agora crie 3 ou 4 panquecas, cada uma feita com 2 colheres de sopa de massa. Cozinhe por 2-3 minutos, depois vire e cozinhe por mais um minuto até ficar cozido. Repita com qualquer massa restante. Aqueça o forno na configuração mais baixa e mantenha as panquecas aquecidas até que sejam necessárias.",
         "Sirva com suas coberturas de panqueca favoritas ou faça uma compota simples fervendo frutas congeladas com 1 colher de sopa de geléia de groselha até borbulhar e ficar xaroposo (cerca de 5-10 minutos). Em uma tigela pequena misture o restante da geléia e o iogurte. Empilhe as panquecas cozidas com o iogurte e despeje a compota de frutas vermelhas por cima."
       ],
-      "note": "TheMealDB · Dessert · Ukrainian · https://www.themealdb.com/meal/53316 · https://www.bbcgoodfood.com/recipes/beetroot-pancakes"
+      "note": "TheMealDB · Dessert · Ukrainian · https://www.themealdb.com/meal/53316 · https://www.bbcgoodfood.com/recipes/beetroot-pancakes",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5994,7 +6253,8 @@ window.MARE_SEED = {
         "Assim que os ingredientes líquidos esfriarem, acrescente os ovos. Despeje sobre os ingredientes secos, mexendo até formar uma massa lisa – tome cuidado para não misturar demais, pois isso pode deixar o bolo seco. Despeje na forma preparada e leve ao forno por 50-55 minutos ou até crescer e um palito inserido no meio do bolo sair limpo. Deixe o bolo esfriar na forma por 20 minutos antes de desenformá-lo sobre uma gradinha para esfriar completamente.",
         "Depois de esfriar, use uma faca serrilhada grande para cortar o bolo em 3 camadas. Espalhe a geléia nas 2 camadas inferiores do bolo, remonte o bolo e reserve enquanto faz a cobertura. Coloque o creme de leite, o chocolate e o mel em uma panela média e leve ao fogo baixo-médio até o chocolate derreter e obter uma mistura lisa e fluida. Coloque o bolo sobre uma gradinha sobre uma assadeira forrada de pergaminho e despeje sobre a cobertura, cobrindo todo o bolo. Use uma fatia de peixe para transferir cuidadosamente o bolo para um prato de servir e deixar a cobertura endurecer. Para decorar, polvilhe com um pouco de pó de ouro comestível, se quiser. Uniced, esse bolo dura até 5 dias. Depois de gelado, saboreie em até 3 dias – basta guardar na geladeira, mas retire antes de servir e coma em temperatura ambiente."
       ],
-      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53292 · https://www.bbcgoodfood.com/recipes/piernik-polish-gingerbread"
+      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53292 · https://www.bbcgoodfood.com/recipes/piernik-polish-gingerbread",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6019,7 +6279,8 @@ window.MARE_SEED = {
         "Aqueça o forno a 180C/160C ventilador/gás 4. Forre uma forma de assadeira de 20 x 30cm com papel manteiga. Numa panela coloque o chocolate, a manteiga e o açúcar e derreta delicadamente, mexendo de vez em quando com uma colher de pau. Retire do fogo.",
         "Misture os ovos, um por um, à mistura de chocolate derretido. Peneire a farinha e o cacau e misture. Junte metade das framboesas, raspe na bandeja e espalhe sobre as framboesas restantes. Asse na prateleira do meio por 30 minutos ou, se preferir uma textura mais firme, por mais 5 minutos. Deixe esfriar antes de cortar em quadrados. Armazene em um recipiente hermético por até 3 dias."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52860 · https://www.bbcgoodfood.com/recipes/2121648/bestever-chocolate-raspberry-brownies"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52860 · https://www.bbcgoodfood.com/recipes/2121648/bestever-chocolate-raspberry-brownies",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6044,7 +6305,8 @@ window.MARE_SEED = {
         "Faça um buraco no meio dos ingredientes secos e despeje a mistura de manteiga e calda dourada. Mexa delicadamente para incorporar os ingredientes secos.",
         "Coloque colheres de sobremesa da mistura em assadeiras untadas com manteiga, com cerca de 2,5 cm de distância entre elas para permitir espaço para espalhar. Asse em lotes por 8-10 minutos até dourar. Transfira para uma gradinha para esfriar."
       ],
-      "note": "TheMealDB · Dessert · Australian · https://www.themealdb.com/meal/53111 · https://www.bbcgoodfood.com/recipes/anzac-biscuits"
+      "note": "TheMealDB · Dessert · Australian · https://www.themealdb.com/meal/53111 · https://www.bbcgoodfood.com/recipes/anzac-biscuits",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6069,7 +6331,8 @@ window.MARE_SEED = {
         "Coloque a manteiga e o açúcar em uma tigela e bata com uma colher de pau até obter um creme claro e fofo. Aos poucos, acrescente os ovos, acrescentando um pouco de farinha se a mistura começar a coalhar. Junte a farinha restante com o chocolate derretido e resfriado e o leite. Misture até ficar homogêneo.",
         "Espalhe a mistura na forma de bolo e leve ao forno por 50-55 minutos ou até ficar firme no centro e um palito sair limpo. Deixe esfriar por 10 minutos, depois desenforme e deixe esfriar completamente."
       ],
-      "note": "TheMealDB · Sobremesa · França · https://www.themealdb.com/meal/52776 · http://www.goodtoknow.co.uk/recipes/536028/chocolate-gateau"
+      "note": "TheMealDB · Sobremesa · França · https://www.themealdb.com/meal/52776 · http://www.goodtoknow.co.uk/recipes/536028/chocolate-gateau",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -6105,7 +6368,8 @@ window.MARE_SEED = {
         "Despeje o molho delicadamente sobre o bolo.",
         "Asse a 325°f (160°c) por cerca de 35 minutos ou até que o bolo fique marrom claro e quando o palito inserido saia limpo."
       ],
-      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52932 · http://www.geniuskitchen.com/recipe/pouding-chomeur-poor-mans-pudding-with-maple-syrup-sauce-218797"
+      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52932 · http://www.geniuskitchen.com/recipe/pouding-chomeur-poor-mans-pudding-with-maple-syrup-sauce-218797",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6139,7 +6403,8 @@ window.MARE_SEED = {
         "Em uma tigela grande, misture a batata-doce ralada, o açúcar mascavo claro, a farinha de trigo, o extrato de baunilha, a pimenta da Jamaica, a canela, a noz-moscada, o gengibre e o sal. Junte 1 ½ xícara de leite de coco até formar uma massa. Junte as passas que foram misturadas com a farinha.",
         "Despeje a massa na assadeira preparada e alise a superfície. Asse descoberto por 1 hora e 30 minutos, até que esteja quase firme, mas ainda ligeiramente macio no centro"
       ],
-      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53344 · https://www.myforkinglife.com/jamaican-sweet-potato-pudding/#recipe"
+      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53344 · https://www.myforkinglife.com/jamaican-sweet-potato-pudding/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6162,7 +6427,8 @@ window.MARE_SEED = {
         "Coloque as framboesas em uma panela e leve ao fogo médio-baixo junto com o açúcar e o suco de limão. Cozinhe por 5-6 minutos até que as frutas estejam completamente quebradas. Passe a mistura por uma peneira colocada sobre uma tigela, descartando as sementes. Junte as folhas de gelatina até dissolver (se não dissolverem, despeje a mistura em uma panela limpa e aqueça suavemente até dissolver). Deixe esfriar por 15 minutos.",
         "Bata o creme até obter picos suaves com um batedor elétrico e, em seguida, envolva delicadamente na mistura de framboesa. Coloque em ramequins ou formas e leve à geladeira durante a noite ou por pelo menos 6 horas. Sirva com framboesas espalhadas por cima."
       ],
-      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53303 · https://www.bbcgoodfood.com/recipes/raspberry-mousse"
+      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53303 · https://www.bbcgoodfood.com/recipes/raspberry-mousse",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6187,7 +6453,8 @@ window.MARE_SEED = {
         "Bata as amêndoas em um processador de alimentos até que a maioria esteja bem picada e depois despeje em uma tigela grande. Pique os figos grosseiramente e bata até obter uma pasta lisa e pegajosa. Raspe as amêndoas e depois, com as mãos, misture bem com os frutos secos, o conhaque, o mel e o cravo.",
         "Divida a mistura em 6 e faça bolinhas. Coloque as sementes de gergelim em uma bandeja e role as bolas até cobri-las. Cubra a bandeja com um pano de prato limpo e deixe as bolas de figo secar por uma semana antes de embalar. Conserva-se em local fresco por 2 meses."
       ],
-      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53163 · https://www.bbcgoodfood.com/recipes/spanish-fig-almond-balls"
+      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53163 · https://www.bbcgoodfood.com/recipes/spanish-fig-almond-balls",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6218,7 +6485,8 @@ window.MARE_SEED = {
         "Corte em pedaços pequenos quando esfriar completamente!",
         "Armazenamento: Guarde em um recipiente hermético fora da geladeira por cerca de 2 a 3 dias ou na geladeira por 5 dias. Congele por até três meses."
       ],
-      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53385 · https://insimoneskitchen.com/dutch-butter-cake-with-dulce-de-leche/"
+      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53385 · https://insimoneskitchen.com/dutch-butter-cake-with-dulce-de-leche/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6251,7 +6519,8 @@ window.MARE_SEED = {
         "Combine o creme de leite reservado com a embalagem de 142ml, o açúcar e o suco de limão para a cobertura. Espalhe sobre o cheesecake até as bordas. Cubra frouxamente com papel alumínio e leve à geladeira por pelo menos 8 horas ou durante a noite.",
         "Passe uma faca de lâmina redonda nas laterais da lata para soltar as bordas presas. Destrave a lateral, deslize o cheesecake do fundo da forma para um prato e, em seguida, deslize o papel manteiga por baixo."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52858 · https://www.bbcgoodfood.com/recipes/2869/new-york-cheesecake"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52858 · https://www.bbcgoodfood.com/recipes/2869/new-york-cheesecake",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6286,7 +6555,8 @@ window.MARE_SEED = {
         "Asse até o merengue dourar, cerca de 10 minutos, observando com atenção.",
         "Deixe na geladeira e coma algumas horas depois de assar. Esta torta é melhor comida no mesmo dia, pois o merengue vai amolecer e liquefazer."
       ],
-      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53341 · https://canadianfoodfocus.org/recipes/classic-canadian-dish-flapper-pie/"
+      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53341 · https://canadianfoodfocus.org/recipes/classic-canadian-dish-flapper-pie/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6309,7 +6579,8 @@ window.MARE_SEED = {
         "Bata as natas até formar picos firmes e, em seguida, junte o puré de morango e o merengue triturado. Junte os morangos picados e o cordial de gengibre, se for usar.",
         "Coloque quantidades iguais da mistura em quatro taças de vinho frias. Sirva decorado com os restantes morangos e um raminho de hortelã."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52791"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52791",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6348,7 +6619,8 @@ window.MARE_SEED = {
         "Despeje a mistura na forma de pão preparada e leve ao forno pré-aquecido por 50-60 minutos ou até que um palito saia limpo.",
         "Deixe esfriar por 5 minutos na panela e depois leve para uma gradinha para terminar de esfriar. Sirva com fatias de queijo cheddar."
       ],
-      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53348 · https://www.myforkinglife.com/easter-spice-bread-jamaican-style/#recipe"
+      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53348 · https://www.myforkinglife.com/easter-spice-bread-jamaican-style/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6374,7 +6646,8 @@ window.MARE_SEED = {
         "passo 1\n\nColoque o mascarpone, o iogurte, o açúcar e a água de flor de laranjeira em uma tigela grande e bata até engrossar.",
         "Dobre os ingredientes restantes, divida a mistura entre 2 copos ou tigelas de sobremesa e decore com mais hortelã, se desejar."
       ],
-      "note": "TheMealDB · Dessert · Turkish · https://www.themealdb.com/meal/53276 · https://www.bbcgoodfood.com/recipes/apricot-turkish-delight-mess"
+      "note": "TheMealDB · Dessert · Turkish · https://www.themealdb.com/meal/53276 · https://www.bbcgoodfood.com/recipes/apricot-turkish-delight-mess",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6407,7 +6680,8 @@ window.MARE_SEED = {
         "Pré-aqueça o forno a 180C/355F/Gás 4.",
         "Coloque o prato no forno e leve ao forno por 30-40 minutos ou até que o creme endureça e a parte superior fique dourada."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52792 · https://cooking.nytimes.com/recipes/1018529-coq-au-vin"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52792 · https://cooking.nytimes.com/recipes/1018529-coq-au-vin",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6440,7 +6714,8 @@ window.MARE_SEED = {
         "Lave a borda da massa na forma com ovo e comece a fazer o padrão de treliça sobre a mistura, deixando as tiras penduradas na borda da forma.",
         "Assim que a treliça estiver no lugar, use a borda da lata para cortar as tiras pressionando com as mãos, criando um acabamento perfeito."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52892 · https://www.bbc.co.uk/food/recipes/mary_berrys_treacle_tart_28524"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52892 · https://www.bbc.co.uk/food/recipes/mary_berrys_treacle_tart_28524",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6465,7 +6740,8 @@ window.MARE_SEED = {
         "Despeje água na assadeira até três quartos da altura dos ramequins para que funcione como banho-maria ou banho-maria para o quindim. Asse por 30-35 minutos até que o topo fique dourado. Retire os ramequins da água e deixe esfriar por 5 minutos.",
         "Deixe na geladeira por 4 horas e depois passe uma faca na borda. Coloque um prato por cima e desenforme os quindims para servir."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53477 · https://www.bbcgoodfood.com/recipes/coconut-quindim"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53477 · https://www.bbcgoodfood.com/recipes/coconut-quindim",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6500,7 +6776,8 @@ window.MARE_SEED = {
         "Divida o coco entre três tigelas rasas (isso evita que ele fique coberto com muito chocolate enquanto você mergulha).",
         "Mergulhe cada lamington na cobertura até cobri-lo completamente. Enrole o coco e coloque sobre uma gradinha. Repita com as esponjas restantes. Refrigere por no mínimo 1 hora."
       ],
-      "note": "TheMealDB · Dessert · Australian · https://www.themealdb.com/meal/53104 · https://www.bbcgoodfood.com/recipes/lamingtons"
+      "note": "TheMealDB · Dessert · Australian · https://www.themealdb.com/meal/53104 · https://www.bbcgoodfood.com/recipes/lamingtons",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6526,7 +6803,8 @@ window.MARE_SEED = {
         "Aqueça o leite com 45 gramas de açúcar e a vagem de baunilha cortada e raspada. O leite não precisa ferver, só precisa ser aquecido. Retire a vagem de baunilha depois de alguns minutos. Enquanto isso mexa delicadamente as gemas e os ovos, tentando não incorporar ar. Despeje a mistura de leite na mistura de ovo e mexa novamente com muito cuidado. Despeje em recipientes de flan preparados e coloque-os em sua caçarola ou recipiente. Ferva a água e despeje-a na caçarola grande. Certifique-se de não tocar na mistura de pudim. Coloque na grelha do meio do forno e deixe assar por cerca de 35-40 minutos. Um palito inserido deve sair limpo.",
         "Deixe esfriar dentro do recipiente por uma hora antes de transferir para a geladeira. Refrigere durante a noite. No dia seguinte, solte suavemente a borda e vire de cabeça para baixo em um prato. Sirva com um pouco de doce de leite ao lado."
       ],
-      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53322 · https://jennyisbaking.com/2019/12/20/uruguayan-flan-and-merry-christmas/"
+      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53322 · https://jennyisbaking.com/2019/12/20/uruguayan-flan-and-merry-christmas/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6565,7 +6843,8 @@ window.MARE_SEED = {
         "Fazendo creme",
         "Aqueça o leite e as sementes de baunilha em uma panela separada até ferver. Aos poucos, despeje o leite quente sobre os ovos e a farinha de milho e cozinhe em fogo baixo, mexendo sempre."
       ],
-      "note": "TheMealDB · Dessert · Portuguese · https://www.themealdb.com/meal/53046 · https://www.olivemagazine.com/recipes/baking-and-desserts/portuguese-custard-tarts/"
+      "note": "TheMealDB · Dessert · Portuguese · https://www.themealdb.com/meal/53046 · https://www.olivemagazine.com/recipes/baking-and-desserts/portuguese-custard-tarts/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6593,7 +6872,8 @@ window.MARE_SEED = {
         "Retire do forno e deixe esfriar na forma por 10 minutos, depois desenforme sobre uma gradinha e deixe esfriar completamente.",
         "Para servir decore o bolo com a casca cristalizada."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52900 · https://www.bbc.co.uk/food/recipes/madeiracake_73878"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52900 · https://www.bbc.co.uk/food/recipes/madeiracake_73878",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6624,7 +6904,8 @@ window.MARE_SEED = {
         "Despeje o creme de leite e os flocos de sal e continue batendo por alguns minutos até ficar bem espesso e parecido com uma mousse (eu misturo em velocidade média, nível 6/10) – Agora isso pode levar até 5 minutos dependendo da sua batedeira, mas você realmente tem que insistir – ela vai se segurar completamente quando terminar de misturar (como um merengue faz!) Se você não misturar o suficiente, não vai ficar bem o suficiente, mas não fique impaciente e bata bem rápido porque isso vai fazer dividir! Espalhe sobre a base de biscoito e deixe descansar na geladeira durante a noite.",
         "Retire o Cheesecake da forma com cuidado e decore o cheesecake – salpiquei um pouco do caramelo que sobrou, depois um pouco de pipoca caramelada e mais pretzels!"
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52833 · http://www.janespatisserie.com/2015/11/09/no-bake-salted-caramel-cheesecake/"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52833 · http://www.janespatisserie.com/2015/11/09/no-bake-salted-caramel-cheesecake/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6656,7 +6937,8 @@ window.MARE_SEED = {
         "Numa panela derreta a manteiga, retire do fogo e junte o açúcar. Adicione amêndoas moídas, ovo e extrato de amêndoa. Despeje na forma de pudim e polvilhe sobre as amêndoas em flocos.",
         "Asse por cerca de 35 minutos. Se as amêndoas parecerem dourar muito rapidamente, cubra a torta com papel alumínio para evitar que queimem."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52767"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52767",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6692,7 +6974,8 @@ window.MARE_SEED = {
         "Se preferir um visual mais limpo e organizado, você pode aparar as peças salientes e franzir as bordas com um garfo. Pincele o topo da torta com a lavagem dos ovos. Polvilhe com as colheres de açúcar restantes. Coloque a torta na assadeira preparada e leve ao forno por cerca de 90 a 100 minutos, até dourar e borbulhar. Retire a torta do forno e coloque-a sobre uma gradinha para esfriar.",
         "Sirva a torta quente ou em temperatura ambiente com chantilly ou sorvete. Rende 6 porções. Conserva-se bem se for coberto com plástico e refrigerado por até 4 dias."
       ],
-      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53337 · https://canadianfoodfocus.org/canadian-food-stories/classic-canadian-recipes-saskatoon-pie/#recipe"
+      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53337 · https://canadianfoodfocus.org/canadian-food-stories/classic-canadian-recipes-saskatoon-pie/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6726,7 +7009,8 @@ window.MARE_SEED = {
         "Coloque os biscoitos em assadeiras forradas com papel manteiga e leve ao forno por 10-12 minutos. Retire do forno e deixe esfriar por pelo menos 10 minutos.",
         "Depois de esfriar os sanduíches de biscoitos, espalhe pelo menos duas colheres de chá de sua geléia favorita entre os dois biscoitos. Repita e saboreie com uma xícara de chá."
       ],
-      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53339 · https://canadianfoodfocus.org/recipes/jam-jam-cookies/#recipe"
+      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53339 · https://canadianfoodfocus.org/recipes/jam-jam-cookies/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6757,7 +7041,8 @@ window.MARE_SEED = {
         "E pronto, garotas de Arnhem com um toque Almeerse",
         "Voila, Arnhem Girls com um toque de Almere."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53392 · https://insimoneskitchen.com/making-your-own-arnhemse-meisjes/#recipe"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53392 · https://insimoneskitchen.com/making-your-own-arnhemse-meisjes/#recipe",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6791,7 +7076,8 @@ window.MARE_SEED = {
         "Misture o xerez (a mistura ficará coalhada) e, em seguida, adicione a casca, as cerejas, as passas, as cerejas, as nozes, as raspas de limão, as especiarias, a água de rosas e a baunilha. Bata bem para misturar e acrescente o fermento.",
         "Coloque a mistura na forma e alise a superfície, fazendo um leve mergulho no centro. Asse por 30 minutos, depois abaixe a temperatura para 150C/ventilador 130C/gás 2 e asse por mais 2-2¼ horas, até que um palito inserido no meio saia limpo. Deixe esfriar na forma, retire da forma e retire o papel de forro. Quando estiver completamente frio, embrulhe bem em filme plástico e papel alumínio para guardar até a hora de decorar. O bolo vai durar vários meses."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52990 · https://www.bbcgoodfood.com/recipes/angela-nilsens-christmas-cake"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52990 · https://www.bbcgoodfood.com/recipes/angela-nilsens-christmas-cake",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6818,7 +7104,8 @@ window.MARE_SEED = {
         "Bata os ovos e o açúcar restante na batedeira por pelo menos cinco minutos até ficar bem fofo. Junte metade da mistura de farinha, depois a laranja e a baunilha e, em seguida, acrescente o restante da farinha. Misture bem, mas não por muito tempo.",
         "Despeje a mistura para bolo na forma preparada e alise. Asse em forno pré-aquecido por 20 minutos. Reduza a temperatura do forno para 160 C / Gás 2 e leve ao forno novamente por 30 minutos. Asse até que o bolo fique dourado e um palito saia limpo. Deixe esfriar sobre uma gradinha."
       ],
-      "note": "TheMealDB · Sobremesa · Tunisino · https://www.themealdb.com/meal/52970 · http://allrecipes.co.uk/recipe/16067/tunisian-orange-cake.aspx"
+      "note": "TheMealDB · Sobremesa · Tunisino · https://www.themealdb.com/meal/52970 · http://allrecipes.co.uk/recipe/16067/tunisian-orange-cake.aspx",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6850,7 +7137,8 @@ window.MARE_SEED = {
         "Enquanto isso, faça o arroz doce colocando numa panela o arroz com o açúcar, o leite e o extrato de baunilha. Adicione o cardamomo, o anis estrelado e a canela. Deixe ferver e cozinhe, mexendo sempre. Retire os temperos. Em uma tigela pequena, misture o bicarbonato de sódio com suco de limão/vinagre de maçã. Mexa bem até que o bicarbonato de sódio se dissolva e depois misture ao arroz doce.",
         "Abra a massa sobre uma superfície enfarinhada (é bem pegajosa, mas não se estresse, vai ficar bem) e forre com ela o fundo e as bordas de uma forma untada. Espalhe o arroz doce no fundo e leve ao forno por cerca de 25 a 30 minutos."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53391 · https://insimoneskitchen.com/traditional-vegan-dutch-rice-tart-rijstevlaai/#recipe"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53391 · https://insimoneskitchen.com/traditional-vegan-dutch-rice-tart-rijstevlaai/#recipe",
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -6882,7 +7170,8 @@ window.MARE_SEED = {
         "Em seguida, use o molde mamoul para dar esse formato.",
         "Em forno pré-aquecido a 180 graus, coloque por 20 minutos até dourar por baixo e dourar um pouquinho por cima."
       ],
-      "note": "TheMealDB · Dessert · Saudi Arabian · https://www.themealdb.com/meal/53221 · https://cookpad.com/eng/recipes/16901544?ref=search&search_term=saudi+arabia"
+      "note": "TheMealDB · Dessert · Saudi Arabian · https://www.themealdb.com/meal/53221 · https://cookpad.com/eng/recipes/16901544?ref=search&search_term=saudi+arabia",
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -6910,7 +7199,8 @@ window.MARE_SEED = {
         "Coloque na forma preparada e nivele o topo. Espalhe os pedaços de nozes. Asse por 1 hora e pressione levemente a parte superior – ficará firme se cozido. Caso contrário, leve ao forno por mais 10 minutos.",
         "Deixe esfriar por 15 minutos e retire da forma usando o papel. Quando estiver frio, regue com o mel restante. Corte em fatias grossas."
       ],
-      "note": "TheMealDB · Dessert · Turkish · https://www.themealdb.com/meal/53271 · https://www.bbcgoodfood.com/recipes/walnut-date-honey-cake"
+      "note": "TheMealDB · Dessert · Turkish · https://www.themealdb.com/meal/53271 · https://www.bbcgoodfood.com/recipes/walnut-date-honey-cake",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -6944,7 +7234,8 @@ window.MARE_SEED = {
         "Frite cada donut por cerca de um minuto de cada lado, virando na metade. Escorra na grelha preparada ou em papel toalha.",
         "Quando os donuts esfriarem um pouco, polvilhe com açúcar de confeiteiro."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53474 · https://kosherworldkitchen.com/magwinya-doughnuts-from-botswana/#recipe"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53474 · https://kosherworldkitchen.com/magwinya-doughnuts-from-botswana/#recipe",
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -6968,7 +7259,8 @@ window.MARE_SEED = {
         "Asse por 8 a 10 minutos ou até que o fundo dos biscoitos fique dourado.",
         "Retire da assadeira e deixe esfriar."
       ],
-      "note": "TheMealDB · Sobremesa · Estados Unidos · https://www.themealdb.com/meal/52958 · https://tasty.co/recipe/3-ingredient-peanut-butter-cookies"
+      "note": "TheMealDB · Sobremesa · Estados Unidos · https://www.themealdb.com/meal/52958 · https://tasty.co/recipe/3-ingredient-peanut-butter-cookies",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7001,7 +7293,8 @@ window.MARE_SEED = {
         "Para o merengue bata a clara de ovo até formar picos moles, acrescente uma pitada de sal e continue batendo em fogo alto enquanto adiciona o açúcar. Bata por pelo menos mais três minutos até ficar brilhante e brilhante. Coloque pequenas estrelas ou outras formas com o merengue em uma assadeira forrada com papel manteiga. Seque por cerca de 45 minutos a 100 graus Celsius no forno. Mantenha em recipiente hermético até uso posterior.",
         "Para o recheio bata o creme de leite, o extrato de baunilha e o açúcar até formar picos firmes, corte os pêssegos em rodelas finas. Corte o bolo em quatro camadas, isso é muito mais fácil de fazer quando as camadas do bolo estão frias. Pincele a camada do bolo com um pouco do suco de pêssego restante, passe uma fina camada de chantilly nas bordas, coloque as rodelas de pêssego no meio da primeira camada do bolo, na segunda camada espalhe apenas o doce de leite. Repita a camada com suco de pêssego escovado, chantilly e pêssegos para a terceira e última camada. Certifique-se de reservar fatias de pêssego suficientes para o topo. Espalhe uma fina camada de chantilly nas laterais do bolo e coloque algumas rosas nas bordas, se desejar. Aqueça o suco de pêssego e misture o amido de milho com um pouco de água até não ver grumos. Quando o suco estiver quente, adicione o amido de milho e mexa até a cobertura engrossar. Despeje sobre os pêssegos da camada superior do bolo. Esmague o merengue e dê tapinhas nas laterais. Sirva imediatamente."
       ],
-      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53323 · https://jennyisbaking.com/2018/08/31/uruguays-version-of-a-peach-layer-cake-postre-chaja/#recipe"
+      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53323 · https://jennyisbaking.com/2018/08/31/uruguays-version-of-a-peach-layer-cake-postre-chaja/#recipe",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -7030,7 +7323,8 @@ window.MARE_SEED = {
         "Coloque colheres da mistura do tamanho de bolas de golfe na assadeira preparada. Deixe espaço entre eles, pois eles ficarão achatados e se espalharão para dobrar de tamanho durante o cozimento.",
         "Asse por 15-20 minutos, até dourar. Retire do forno, deixe esfriar por alguns minutos e depois vire sobre uma gradinha para esfriar."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52901 · https://www.bbc.co.uk/food/recipes/rock_cakes_03094"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52901 · https://www.bbc.co.uk/food/recipes/rock_cakes_03094",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7059,7 +7353,8 @@ window.MARE_SEED = {
         "Reduza o fogo para médio baixo. Adicione o leite restante e o leite condensado. Mexa com uma colher de pau. Cozinhe por 1 hora e 15 minutos ou até que o arroz doce engrosse e atinja a consistência desejada.",
         "Mexa bem e retire do fogo e deixe esfriar em temperatura ambiente. A consistência deve ser bem cremosa. Leve à geladeira por pelo menos 1 hora ou durante a noite."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53522 · https://www.mycolombianrecipes.com/arroz-con-leche-rice-pudding/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53522 · https://www.mycolombianrecipes.com/arroz-con-leche-rice-pudding/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7083,7 +7378,8 @@ window.MARE_SEED = {
         "Preencha a mistura na forma de muffin.",
         "Asse por 45 minutos até ficar totalmente cozido."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53424 · https://cookingwithlane.com/laos-plantain-coconut-bake/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53424 · https://cookingwithlane.com/laos-plantain-coconut-bake/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7112,7 +7408,8 @@ window.MARE_SEED = {
         "Coloque uma panela a vapor sobre uma panela grande com água fervente, coloque o pudim na panela a vapor, tampe e cozinhe no vapor por 1 hora e meia. Encha a panela com água de vez em quando.",
         "Retire do vaporizador e deixe esfriar um pouco antes de desembrulhar. Sirva fatiado com creme."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52886 · https://www.bbcgoodfood.com/recipes/2686661/spotted-dick"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52886 · https://www.bbcgoodfood.com/recipes/2686661/spotted-dick",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -7140,7 +7437,8 @@ window.MARE_SEED = {
         "Adicione manteiga, creme de milho, amendoim triturado e açúcar na panqueca. Dobre a panqueca ao meio assim que a superfície inferior estiver dourada.",
         "Corte em fatias e coma melhor quando estiver quente."
       ],
-      "note": "TheMealDB · Dessert · Malaysian · https://www.themealdb.com/meal/53049 · https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ"
+      "note": "TheMealDB · Dessert · Malaysian · https://www.themealdb.com/meal/53049 · https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7163,7 +7461,8 @@ window.MARE_SEED = {
         "Asse as bananas no forno a 275°F por 10 minutos.",
         "Sirva com sorvete favorito."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53441 · https://www.visitaruba.com/aruba-recipes/banana-den-forno/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53441 · https://www.visitaruba.com/aruba-recipes/banana-den-forno/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7191,7 +7490,8 @@ window.MARE_SEED = {
         "Transfira para um prato. Cozinhe a massa restante até acabar.",
         "Sirva quente, com recheio de sua preferência."
       ],
-      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53022 · https://www.tasteatlas.com/nalesniki/recipe"
+      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53022 · https://www.tasteatlas.com/nalesniki/recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7215,7 +7515,8 @@ window.MARE_SEED = {
         "Bata as gemas e o açúcar até ficar claro. misture o creme de chocolate. Coe em uma jarra e despeje em ramequins. Coloque em uma assadeira funda e despeje água fervente até a metade das laterais. Asse por 15-20 minutos até firmar com o centro instável. Leve à geladeira por pelo menos 4 horas.",
         "Para servir, polvilhe um pouco de açúcar por cima dos brûlées e caramelize com um maçarico ou brevemente na grelha quente. Deixe o caramelo endurecer e sirva em seguida."
       ],
-      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52917 · https://www.bbcgoodfood.com/recipes/2540/white-chocolate-crme-brle"
+      "note": "TheMealDB · Dessert · France · https://www.themealdb.com/meal/52917 · https://www.bbcgoodfood.com/recipes/2540/white-chocolate-crme-brle",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7236,7 +7537,8 @@ window.MARE_SEED = {
         "Leve o leite, o açúcar e o extrato de baunilha para ferver em uma panela em fogo alto. Reduza o fogo para médio-baixo, continue cozinhando e mexendo continuamente até que o leite engrosse e fique com uma cor caramelo, cerca de 1 hora ou mais.",
         "Junte o bicarbonato de sódio. Continue cozinhando até que o leite caramelizado atinja a consistência de pudim. Despeje o manjar em uma tigela e deixe esfriar completamente na geladeira."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53515 · https://www.allrecipes.com/recipe/145412/manjar-dulce-de-leche-from-scratch/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53515 · https://www.allrecipes.com/recipe/145412/manjar-dulce-de-leche-from-scratch/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7275,7 +7577,8 @@ window.MARE_SEED = {
         "Misture a geléia com as amêndoas moídas e coloque em um saco de confeitar ou seringa de geléia. Divida a massa em 16 pedaços e molde-os em donuts. Cubra e deixe crescer por 30 minutos.",
         "Encha uma panela funda ou uma fritadeira com um terço de óleo ou banha derretida e aqueça até 180°C – se você não tiver um termômetro, coloque um pequeno pedaço de pão. O óleo estará pronto quando dourar em cerca de 30 segundos. Adicione os donuts e frite, virando-os uma vez por cerca de 1-2 minutos de cada lado (deve se formar um anel fino e mais leve no meio). Após retirar, escorra o excesso de gordura dos donuts em papel de cozinha."
       ],
-      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53298 · https://www.bbcgoodfood.com/recipes/polish-doughnuts"
+      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53298 · https://www.bbcgoodfood.com/recipes/polish-doughnuts",
+      "servings": 6
     },
     {
       "section": "lanches",
@@ -7315,7 +7618,8 @@ window.MARE_SEED = {
         "Vista em corte transversal do Bolo de Chocolate Pistache Kunafa.",
         "Desfrute com uma nova iguaria doce esta época festiva com família e amigos."
       ],
-      "note": "TheMealDB · Dessert · Saudi Arabian · https://www.themealdb.com/meal/53224 · https://cookpad.com/eng/recipes/25116037?ref=search&search_term=saudi+arabia"
+      "note": "TheMealDB · Dessert · Saudi Arabian · https://www.themealdb.com/meal/53224 · https://cookpad.com/eng/recipes/25116037?ref=search&search_term=saudi+arabia",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7338,7 +7642,8 @@ window.MARE_SEED = {
         "Despeje a mistura em um recipiente próprio para freezer (como uma forma de pão). Coloque filme plástico em cima do sorvete para evitar queimaduras de congelamento. Cubra o recipiente e congele por pelo menos 6 horas ou até ficar sólido.",
         "Depois de congelado, deixe o sorvete descansar em temperatura ambiente por alguns minutos para amolecer um pouco antes de colher e servir."
       ],
-      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53346 · https://www.myforkinglife.com/grape-nut-ice-cream-recipe/#recipe"
+      "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53346 · https://www.myforkinglife.com/grape-nut-ice-cream-recipe/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7372,7 +7677,8 @@ window.MARE_SEED = {
         "Adicione a mistura de maçã e divida bem na forma. Abra o restante da massa e corte em tiras. Coloque-o por cima da torta em um padrão em forma de diamante. Pincele os traços e as laterais com a outra gema e leve ao forno pré-aquecido.",
         "Asse a torta de maçã por cerca de 1 hora ou até dourar e estar cozida. Deixe esfriar na forma e certifique-se de que as laterais estejam soltas antes de abrir a forma."
       ],
-      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53386 · https://insimoneskitchen.com/the-best-ever-apple-pie-recipe/#recipe"
+      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53386 · https://insimoneskitchen.com/the-best-ever-apple-pie-recipe/#recipe",
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -7405,7 +7711,8 @@ window.MARE_SEED = {
         "Derreta o chocolate branco e meio amargo separadamente com 1 colher de sopa de óleo vegetal cada.",
         "Mergulhe os biscoitos até a metade no chocolate. Deixe-o definir. Mantenha em um recipiente hermético ou embrulhado em sacos de celofane por até 2 semanas em temperatura ambiente ou refrigerado."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53493 · https://cookinglsl.com/bulgarian-honey-cookies-medenki-recipe/#wprm-recipe-container-32773"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53493 · https://cookinglsl.com/bulgarian-honey-cookies-medenki-recipe/#wprm-recipe-container-32773",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7435,7 +7742,8 @@ window.MARE_SEED = {
         "Para fazer a cobertura, coloque o chocolate, a manteiga e 4 colheres de sopa de água em uma panela e leve ao fogo brando até derreter. Deixe esfriar um pouco e acrescente o açúcar de confeiteiro.",
         "Retire o bolo da forma e retire o papel. Corte em 16 quadrados. Mergulhe os quadrados na cobertura e depois passe no coco. Deixe assentar na grade de resfriamento."
       ],
-      "note": "TheMealDB · Dessert · Australian · https://www.themealdb.com/meal/53101 · https://www.bbcgoodfood.com/recipes/isaacs-chocolate-coconut-squares"
+      "note": "TheMealDB · Dessert · Australian · https://www.themealdb.com/meal/53101 · https://www.bbcgoodfood.com/recipes/isaacs-chocolate-coconut-squares",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -7458,7 +7766,8 @@ window.MARE_SEED = {
         "Em uma tigela, misture a farinha, o leite de coco, o açúcar de palma e os ovos e o sal.",
         "Pincele uma máquina de waffle com óleo, despeje a massa e cozinhe em fogo aberto até dourar e ficar crocante."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53420 · https://www.phnomenon.com/index.php/cambodian-food/category/recipes/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53420 · https://www.phnomenon.com/index.php/cambodian-food/category/recipes/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7485,7 +7794,8 @@ window.MARE_SEED = {
         "Divida a massa pelas formas, uma colher grande é perfeita para esse trabalho. Polvilhe um punhado de mirtilos sobre cada bolo e leve ao forno por 15-20 minutos até ficar firme ao toque e dourar.",
         "Deixe esfriar nas formas por 5 minutos, depois desenforme e deixe esfriar sobre uma gradinha. Para servir polvilhe levemente com açúcar de confeiteiro."
       ],
-      "note": "TheMealDB · Dessert · Australian · https://www.themealdb.com/meal/53100 · https://www.bbcgoodfood.com/recipes/blueberry-lemon-friands"
+      "note": "TheMealDB · Dessert · Australian · https://www.themealdb.com/meal/53100 · https://www.bbcgoodfood.com/recipes/blueberry-lemon-friands",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7511,7 +7821,8 @@ window.MARE_SEED = {
         "Coloque a massa sobre uma superfície enfarinhada, bata rapidamente para alisar e abra até formar um quadrado de aproximadamente 25 x 25 cm. Espalhe a geléia por toda parte, deixando um espaço em uma das bordas e enrole a partir da borda oposta. Aperte a borda sem geléia na massa onde ela se encontra e aperte as pontas também. Levante com cuidado sobre o papel untado, junte com o lado voltado para baixo (você pode achar uma assadeira plana útil para isso), levante frouxamente o papel e o papel alumínio ao redor dele e, em seguida, amasse ao longo das bordas e pontas para selar. O rechonchudo vai estufar um pouco durante o cozimento, então não o embrulhe bem. Levante o pacote diretamente na grade acima da forma e cozinhe por 1 hora.",
         "Deixe o pudim descansar por 5 minutos antes de desembrulhar, depois abra com cuidado o papel alumínio e o papel e corte em fatias grossas para servir."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52890 · https://www.bbcgoodfood.com/recipes/13354/jam-rolypoly"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52890 · https://www.bbcgoodfood.com/recipes/13354/jam-rolypoly",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -7545,7 +7856,8 @@ window.MARE_SEED = {
         "Deixe a mistura esfriar até a temperatura ambiente e adicione a manteiga. Você pode usar uma batedeira para fazer um creme de ovo fofo.",
         "Espere o bolo esfriar completamente antes de retirar da forma e cobrir."
       ],
-      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53130 · https://scandinaviancookbook.com/suksessterte-success-cake/"
+      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53130 · https://scandinaviancookbook.com/suksessterte-success-cake/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -7576,7 +7888,8 @@ window.MARE_SEED = {
         "Coloque a mistura na forma de bolo e leve ao forno por 1 hora e 15 minutos ou até que um palito inserido no meio saia limpo. Retire o bolo do forno e deixe esfriar por 10 minutos, depois retire com cuidado o bolo da forma e deixe esfriar completamente sobre uma gradinha.",
         "Enquanto isso, para a cobertura, bata o cream cheese, o açúcar refinado e a manteiga em uma tigela até ficar cremoso. Espalhe a cobertura por cima do bolo com uma espátula."
       ],
-      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52897 · https://www.bbc.co.uk/food/recipes/classic_carrot_cake_08513"
+      "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52897 · https://www.bbc.co.uk/food/recipes/classic_carrot_cake_08513",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -7617,7 +7930,8 @@ window.MARE_SEED = {
         "Levante cuidadosamente o maçapão e alise o bolo com as mãos, mas deixe uma pequena dobra de maçapão na borda inferior antes de colá-lo no primeiro lado. Apare o lado oposto para combinar com o tamanho da dobra e, em seguida, prenda as bordas usando os dedos e o polegar (ou, mais simplesmente, pressione com as pontas do garfo). Se quiser, marque as 10 fatias com a ponta de um garfo.",
         "Monte o segundo Battenberg e guarde em caixa hermética ou bem embrulhado em filme plástico por até 3 dias. Pode ser congelado por até um mês."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52894 · https://www.bbcgoodfood.com/recipes/1120657/battenberg-cake"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52894 · https://www.bbcgoodfood.com/recipes/1120657/battenberg-cake",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -7647,7 +7961,8 @@ window.MARE_SEED = {
         "Para a cobertura de chocolate, aqueça as natas em fogo baixo, retire do fogo, despeje o chocolate picado e mexa até derreter e ficar brilhante.",
         "Corte o pão de ló de chocolate resfriado e o merengue em duas camadas. Coloque o merengue de nozes por cima da camada inferior da esponja e polvilhe com algumas das nozes reservadas. Adicione outra camada de merengue e depois a camada superior de pão de ló de chocolate e cubra com cobertura de chocolate. Decore com nozes. Coloque o bolo pronto na geladeira por 1-2 horas antes de servir."
       ],
-      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53295 · https://www.bbcgoodfood.com/recipes/polish-chocolate-cake"
+      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53295 · https://www.bbcgoodfood.com/recipes/polish-chocolate-cake",
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -7678,7 +7993,8 @@ window.MARE_SEED = {
         "Coloque as empanadas preparadas na assadeira e pincele com ovo batido. Asse por cerca de 20-25min.",
         "Perto do final do tempo de cozimento, derreta a manteiga restante e misture o açúcar e a canela em uma tigela pequena. Depois de retirar as empanadas, pincele imediatamente com a manteiga e polvilhe com a mistura de açúcar. As empanadas podem ser saboreadas ainda quentes ou frias. Se comer quente, tome cuidado para não se queimar com o recheio quente!"
       ],
-      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53324 · https://jennyisbaking.com/2020/05/01/chocolate-empanadas-with-dulce-de-leche/"
+      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53324 · https://jennyisbaking.com/2020/05/01/chocolate-empanadas-with-dulce-de-leche/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7705,7 +8021,8 @@ window.MARE_SEED = {
         "Entretanto, para a compota, descasque, retire o caroço e corte as maçãs em cubos de 2cm. Coloque a manteiga e o açúcar em uma panela média e derreta em fogo médio. Cozinhe por 3 minutos até que a mistura vire um caramelo claro. Junte as maçãs e cozinhe por 3 minutos. Adicione as amoras e a canela e cozinhe por mais 3 minutos. Cubra, retire do fogo e deixe por 2-3 minutos para continuar cozinhando no calor da panela.",
         "Para servir, coloque a fruta quente em uma travessa refratária para gratinar, cubra com a mistura crumble e reaqueça no forno por 5-10 minutos. Sirva com sorvete de baunilha."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52893 · https://www.bbcgoodfood.com/recipes/778642/apple-and-blackberry-crumble"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52893 · https://www.bbcgoodfood.com/recipes/778642/apple-and-blackberry-crumble",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -7730,7 +8047,8 @@ window.MARE_SEED = {
         "Coloque uma frigideira média ou frigideira em fogo médio e limpe-a cuidadosamente com papel de cozinha untado com óleo. Quando estiver bem quente, cozinhe as panquecas por 1 minuto de cada lado até dourar, mantendo-as aquecidas em forno baixo durante o cozimento.",
         "Sirva com rodelas de limão e açúcar ou seu recheio preferido. Depois de frias, você pode colocar as panquecas em camadas entre papel manteiga, embrulhar em filme plástico e congelar por até 2 meses."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52854 · https://www.bbcgoodfood.com/recipes/2907669/easy-pancakes"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52854 · https://www.bbcgoodfood.com/recipes/2907669/easy-pancakes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7761,7 +8079,8 @@ window.MARE_SEED = {
         "Para os churros, coloque a farinha, o cacau, o fermento e uma pitada grande de sal em uma tigela. Adicione o extrato de baunilha e a manteiga derretida e, em seguida, despeje cuidadosamente 250-300ml de água fervente e bata até obter uma massa lisa e bem espessa. Deixe esfriar por alguns minutos e depois coloque a mistura em um saco de confeitar com bico estrela médio.",
         "Coloque o óleo de girassol em uma fritadeira seguindo as instruções do fabricante, ou em uma frigideira pesada, garantindo que não esteja mais do que um terço cheio. Aqueça a 170°C ou até que um cubo de pão fique marrom em 30 segundos. Passe pedaços de massa de 12 a 15 cm no óleo, cortando a ponta de cada um com uma tesoura à medida que avança. Pipe quatro ou cinco de cada vez e cozinhe por cerca de 4 minutos, ou até dourar e ficar crocante, virando-os com uma pinça ou uma escumadeira enquanto cozinham. Retire do óleo e coloque sobre uma gradinha. Repita com o restante da massa. Deixe esfriar se for reaquecer mais tarde, caso contrário passe os churros no açúcar canela e sirva imediatamente com a calda de chocolate quente e o sorvete. Para reaquecer os churros, coloque em uma bandeja e leve ao forno por 5-8 minutos, depois passe na cobertura de açúcar. Enquanto isso, aqueça o molho em uma panela e sirva junto para mergulhar."
       ],
-      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53170 · https://www.bbcgoodfood.com/recipes/chocolate-churros-with-chocolate-salted-caramel-sauce"
+      "note": "TheMealDB · Dessert · Spanish · https://www.themealdb.com/meal/53170 · https://www.bbcgoodfood.com/recipes/chocolate-churros-with-chocolate-salted-caramel-sauce",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -7785,7 +8104,8 @@ window.MARE_SEED = {
         "Em uma tigela, amasse a banana com um garfo até formar um purê grosso. Junte os ovos, o fermento e a baunilha.",
         "Aqueça uma frigideira grande antiaderente ou panqueca em fogo médio e pincele com metade do óleo. Usando metade da massa, coloque duas panquecas na panela, cozinhe por 1-2 minutos de cada lado e coloque em um prato. Repita o processo com o restante do óleo e da massa. Cubra as panquecas com nozes e framboesas."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52855 · https://www.bbcgoodfood.com/recipes/banana-pancakes"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52855 · https://www.bbcgoodfood.com/recipes/banana-pancakes",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7822,7 +8142,8 @@ window.MARE_SEED = {
         "Asse os Bolus Zeeland por cerca de 8 minutos até ficarem prontos. Tenha cuidado – se você assar por muito tempo, eles ficarão secos e você vai querer algo pegajoso 😉.",
         "Deixe esfriar fora do forno por 1 minuto, depois vire e deixe esfriar mais (sobre uma gradinha, se necessário). Aproveitar!"
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53394 · https://ineveskitchen.com/zeeuwse-bolussen/#wp-recipe-maker-single-recipe"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53394 · https://ineveskitchen.com/zeeuwse-bolussen/#wp-recipe-maker-single-recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7849,7 +8170,8 @@ window.MARE_SEED = {
         "Encha copinhos ou copinhos com a mousse, polvilhe com o cacau em pó ou nibs e sirva.",
         "Dica Se você não tiver uma banana congelada em mãos, pode usar uma normal e esfriar a mousse antes de servir como sobremesa refrescante."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52853 · http://www.hemsleyandhemsley.com/recipe/chocolate-avocado-mousse/"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52853 · http://www.hemsleyandhemsley.com/recipe/chocolate-avocado-mousse/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7881,7 +8203,8 @@ window.MARE_SEED = {
         "Aqueça o óleo vegetal na fritadeira a 350°. Deslize os donuts em óleo quente com uma espátula larga. Vire os donuts à medida que eles sobem à superfície. Frite até dourar, cerca de 1 minuto de cada lado. Retire com cuidado do óleo (não pique a superfície); ralo. Mergulhe os donuts na cobertura cremosa colocada na gradinha.",
         "Aqueça a manteiga até derreter. Retire do fogo. Junte o açúcar de confeiteiro e a baunilha até ficar homogêneo. Junte a água, 1 colher de sopa de cada vez, até obter a consistência desejada."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/53015 · https://www.mythirtyspot.com/krispy-kreme-copycat-recipe-for/"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/53015 · https://www.mythirtyspot.com/krispy-kreme-copycat-recipe-for/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7910,7 +8233,8 @@ window.MARE_SEED = {
         "Espalhe metade da mistura de aveia no fundo da assadeira preparada, pressionando para fazer um fundo plano e igual posteriormente. Adicione a mistura de tâmaras sobre a crosta e espalhe uniformemente. Camada com a mistura de aveia restante e pressione para achatar a camada superior.",
         "Asse no centro do forno até o topo ficar dourado, 30 a 35 minutos. Deixe esfriar completamente na assadeira antes de cortar e servir. Os quadrados de tâmaras conservam-se bem, cobertos na geladeira por até uma semana e congelados por 2 a 3 meses."
       ],
-      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53338 · https://canadianfoodfocus.org/recipes/classic-canadian-dishes-date-squares/"
+      "note": "TheMealDB · Sobremesa · Canadense · https://www.themealdb.com/meal/53338 · https://canadianfoodfocus.org/recipes/classic-canadian-dishes-date-squares/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -7951,7 +8275,8 @@ window.MARE_SEED = {
         "Cubra com um pano de prato limpo e deixe levedar novamente por 30–45 minutos ou até crescer.",
         "Pré-aqueça o forno a 200C/180C Ventilador/Gás 6."
       ],
-      "note": "TheMealDB · Sobremesa · Noruega · https://www.themealdb.com/meal/53116 · https://www.bbc.co.uk/food/recipes/cinnamon_buns_10634"
+      "note": "TheMealDB · Sobremesa · Noruega · https://www.themealdb.com/meal/53116 · https://www.bbc.co.uk/food/recipes/cinnamon_buns_10634",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -7980,7 +8305,8 @@ window.MARE_SEED = {
         "Coloque as bolas de massa em uma assadeira untada / forrada com 5 cm de distância entre elas - você precisará dividir as bolas em duas porções, cozinhando uma por vez.",
         "Pincele a bolinha com ovo batido e leve ao forno a 180 graus por 20 minutos. O Kurabie terá uma cor dourada clara e ligeiramente mole no meio. Coloque em uma gradinha para esfriar."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53414 · https://www.myalbanianfood.com/recipe/albanian-kurabie/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53414 · https://www.myalbanianfood.com/recipe/albanian-kurabie/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8011,7 +8337,8 @@ window.MARE_SEED = {
         "Quando as bordas ficarem firmes, use uma agulha de tricô ou um espeto de madeira para girar o æbleskiver cerca de 1/4. Continue girando até obter esferas redondas de panqueca. Eles devem ficar dourados.",
         "Retire o æbleskiver da frigideira e sirva com açúcar de confeiteiro e geléia."
       ],
-      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53120 · https://scandinaviancookbook.com/aebleskiver-danish-pancake-balls/"
+      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53120 · https://scandinaviancookbook.com/aebleskiver-danish-pancake-balls/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8051,7 +8378,8 @@ window.MARE_SEED = {
         "Retire a torta do forno e coloque sobre uma gradinha para esfriar por várias horas. Sirva em temperatura ambiente com chantilly ou sorvete de baunilha. As sobras podem ser guardadas na geladeira por cerca de 3 dias. Reaqueça antes de servir. Esta torta pode ser congelada.",
         "Faz uma torta de 23 cm (9 polegadas)."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/53005 · https://www.joyofbaking.com/StrawberryRhubarbPie.html"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/53005 · https://www.joyofbaking.com/StrawberryRhubarbPie.html",
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -8076,7 +8404,8 @@ window.MARE_SEED = {
         "Numa tigela coloque o açúcar mascavo e a manteiga e bata na batedeira até ficar cremoso e bem misturado, sem grumos. Junte os ovos, um de cada vez, incorporando o primeiro ovo antes de adicionar o próximo. Adicione o extrato de baunilha e o sal; bata a farinha, aos poucos, e depois o leite, formando uma massa cremosa. Despeje a massa na forma de torta preparada.",
         "Asse no forno pré-aquecido por 35 minutos; retire a torta e cubra a borda com papel alumínio para evitar queimaduras. Volte ao forno e leve ao forno até que o meio endureça e a parte superior forme uma camada crocante, cerca de mais 15 minutos. Deixe a torta esfriar até a temperatura ambiente e leve à geladeira por pelo menos 1 hora antes de servir."
       ],
-      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52931 · http://allrecipes.com/recipe/213595/miraculous-canadian-sugar-pie/"
+      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52931 · http://allrecipes.com/recipe/213595/miraculous-canadian-sugar-pie/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8108,7 +8437,8 @@ window.MARE_SEED = {
         "Quando o leite começar a ferver, acrescente o leite condensado, o açúcar e o sal. Mexa bem com uma colher de pau. Adicione a mistura de leite e amido de milho e continue mexendo sempre.",
         "Adicione o extrato de baunilha. Reduza o fogo e continue mexendo até a Natilla engrossar, cerca de 10 a 20 minutos. Adicione a manteiga, mexa e retire do fogo. Descarte os paus de canela. Coloque em uma travessa ou em copinhos individuais de creme. Polvilhe canela em pó por cima e deixe esfriar em temperatura ambiente por pelo menos 2 horas. Leve à geladeira até a hora de servir."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53524 · https://www.mycolombianrecipes.com/natilla-colombiana-colombian-style-pudding/#recipe"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53524 · https://www.mycolombianrecipes.com/natilla-colombiana-colombian-style-pudding/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8135,7 +8465,8 @@ window.MARE_SEED = {
         "Coloque metade da noz em cada figo e regue com a calda.",
         "Sirva quente ou frio."
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53406 · https://www.myalbanianfood.com/recipe/arra-te-mbushura-me-fik-walnut-stuffed-figs/"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53406 · https://www.myalbanianfood.com/recipe/arra-te-mbushura-me-fik-walnut-stuffed-figs/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8164,7 +8495,8 @@ window.MARE_SEED = {
         "Use uma escumadeira para retirar a massa e coloque-a sobre um pano de prato com a borda franzida voltada para baixo enquanto continua fritando a massa. Isso ajuda a manter a forma dos bolos",
         "Desfrute quente, recém saído da frigideira. Depois de esfriar, coloque em um recipiente hermético durante a noite e na geladeira por até uma semana. Reaqueça em forno quente por alguns minutos para refrescar ou em tawa ou frigideira em fogo bem baixo, virando algumas vezes"
       ],
-      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53452 · https://www.greatbritishchefs.com/recipes/handesh-recipe"
+      "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53452 · https://www.greatbritishchefs.com/recipes/handesh-recipe",
+      "servings": 5
     },
     {
       "section": "lanches",
@@ -8194,7 +8526,8 @@ window.MARE_SEED = {
         "Ainda quente, molde o krumkake com um rolo de madeira ou sobre uma xícara (se for usar uma xícara, deixe-os um pouco mais grossos). Os krumkaker endurecem rapidamente, então você pode simplesmente deixá-los assentar no rolo/copo até que o próximo krumkake esteja pronto para ser moldado.",
         "Depois de esfriar completamente, guarde o krumkaker em uma lata de metal ou vidro forrada com papel toalha no fundo. Você também pode congelá-los!"
       ],
-      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53129 · https://scandinaviancookbook.com/norwegian-krumkake/"
+      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53129 · https://scandinaviancookbook.com/norwegian-krumkake/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8223,7 +8556,8 @@ window.MARE_SEED = {
         "Bata 1 ovo pequeno e pincele o topo das tortas. Asse por 20 minutos até dourar. Deixe esfriar na forma por 5 minutos e depois retire para uma gradinha.",
         "Para servir polvilhe levemente com açúcar de confeiteiro."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52991 · https://www.bbcgoodfood.com/recipes/2174/unbelievably-easy-mince-pies"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52991 · https://www.bbcgoodfood.com/recipes/2174/unbelievably-easy-mince-pies",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8247,7 +8581,8 @@ window.MARE_SEED = {
         "Pouco antes de servir, em uma tigela grande, misture 1 xícara de creme de leite frio e 1/4 xícara de açúcar de confeiteiro e bata na batedeira até formar picos firmes. Usando uma espátula, misture 1/4 xícara de creme de leite até ficar bem misturado.",
         "Para servir, mexa os morangos e divida em 6 taças ou tigelas. Você pode colocar um pouco de xarope sobre as frutas, se quiser. Você também pode usar esta calda para embeber um bolo. Coloque o creme sobre os morangos, dividindo uniformemente. Você também pode usar uma colher de sorvete com gatilho para obter uma bela camada arredondada de creme. Sirva imediatamente ou leve à geladeira e saboreie em até 2 horas após a montagem."
       ],
-      "note": "TheMealDB · Dessert · Russian · https://www.themealdb.com/meal/53082 · https://natashaskitchen.com/strawberries-romanoff-recipe/"
+      "note": "TheMealDB · Dessert · Russian · https://www.themealdb.com/meal/53082 · https://natashaskitchen.com/strawberries-romanoff-recipe/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8278,7 +8613,8 @@ window.MARE_SEED = {
         "Para descongelar, deixe na geladeira durante a noite.",
         "Para servir, retire cuidadosamente da forma. Bata as natas com o açúcar até manter a forma, depois espalhe por cima do cheesecake e polvilhe com o quebradiço de amendoim."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52861 · https://www.bbcgoodfood.com/recipes/1759649/peanut-butter-cheesecake"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52861 · https://www.bbcgoodfood.com/recipes/1759649/peanut-butter-cheesecake",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8304,7 +8640,8 @@ window.MARE_SEED = {
         "Bata os ovos em uma tigela grande e misture com o restante dos ingredientes, exceto as nozes. Coloque esta mistura em uma panela e mexa continuamente por 3-4 minutos até que a manteiga derreta e a mistura borbulhe e comece a engrossar. Deve ser grosso o suficiente para cobrir as costas de uma colher de pau. Não cozinhe demais e mexa sempre, pois a mistura pode queimar facilmente. Retire do fogo e misture as nozes.",
         "Coloque o recheio nas cascas da torta não assadas para que fique nivelado com a massa. Asse por 15-18 minutos até firmar e dourar. Deixe esfriar na forma por alguns minutos antes de colocá-la sobre uma gradinha. Sirva quente ou frio."
       ],
-      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52923 · https://www.bbcgoodfood.com/recipes/1837/canadian-butter-tarts"
+      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52923 · https://www.bbcgoodfood.com/recipes/1837/canadian-butter-tarts",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8343,7 +8680,8 @@ window.MARE_SEED = {
         "Despeje uniformemente a calda sobre o kunafa assim que sair do forno.",
         "Seu kunafa está pronto para servir."
       ],
-      "note": "TheMealDB · Dessert · Saudi Arabian · https://www.themealdb.com/meal/53216 · https://cookpad.com/eng/recipes/24934496?ref=search&search_term=saudi+arabia"
+      "note": "TheMealDB · Dessert · Saudi Arabian · https://www.themealdb.com/meal/53216 · https://cookpad.com/eng/recipes/24934496?ref=search&search_term=saudi+arabia",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8370,7 +8708,8 @@ window.MARE_SEED = {
         "Derreta delicadamente a calda, o melaço, o açúcar e a manteiga em uma panela grande até que o açúcar se dissolva. Retire do fogo. Misture a aveia, a farinha e o gengibre e junte à mistura de calda, seguida do ovo e do leite.",
         "Despeje a mistura na forma e leve ao forno por 50 minutos - 1 hora até que o bolo fique firme e um pouco crocante por cima. Deixe esfriar na forma, embrulhe em mais pergaminho e papel alumínio e guarde por 3-5 dias antes de comer, se puder – ficará mais macio e pegajoso quanto mais tempo você deixar, até 2 semanas."
       ],
-      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52902 · https://www.bbcgoodfood.com/recipes/1940684/parkin"
+      "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52902 · https://www.bbcgoodfood.com/recipes/1940684/parkin",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8400,7 +8739,8 @@ window.MARE_SEED = {
         "Adicione o leite aos ingredientes secos e misture até obter uma massa macia. Desenforme sobre uma superfície levemente enfarinhada e sove brevemente. Abra em um formato retangular de aproximadamente 16 x 24 cm. Pincele com manteiga derretida e polvilhe uniformemente com açúcar picante. Enrole de um lado comprido e corte em 12 fatias. Disponha na parte superior do prato, deixando o centro descoberto.",
         "Asse por 20-25 minutos, até a cobertura ficar crocante e dourada. Sirva quente."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52862 · https://www.bbcgoodfood.com/recipes/1553651/peach-and-blueberry-grunt"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52862 · https://www.bbcgoodfood.com/recipes/1553651/peach-and-blueberry-grunt",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -8431,7 +8771,8 @@ window.MARE_SEED = {
         "Divida a massa ao meio, coloque uma de volta na geladeira e estenda a outra bem grossa sobre uma superfície levemente enfarinhada. Corte os biscoitos com o fundo de um copo ou com um cortador de biscoitos de cerca de 6 cm de diâmetro. Repita com toda a massa.",
         "Asse por cerca de 8 a 10 minutos, os biscoitos ficarão bem claros. Deixe esfriar antes de rechear metade com cada uma colher de chá de doce de leite. Coloque a outra metade dos biscoitos por cima e enrole as laterais de cada biscoito nos flocos de coco (ajuda se o doce de leite for pressionado nas laterais do biscoito). Aproveitar."
       ],
-      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53321 · https://jennyisbaking.com/2019/05/17/classic-alfajores-from-uruguay/#recipe"
+      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53321 · https://jennyisbaking.com/2019/05/17/classic-alfajores-from-uruguay/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8465,7 +8806,8 @@ window.MARE_SEED = {
         "Em uma panela grande e funda, aqueça o óleo a 350 graus. Delicadamente, coloque a massa de castor em óleo quente e cozinhe por 30 a 45 segundos de cada lado até dourar.",
         "Escorra em papel toalha e decore como desejar. Misture o açúcar canela, o açúcar branco com um pouco de limão ou uma camada generosa de Nutella e um punhado de amêndoas torradas. Aproveitar!"
       ],
-      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52928 · https://www.tastemade.com/videos/beavertails"
+      "note": "TheMealDB · Dessert · Canadian · https://www.themealdb.com/meal/52928 · https://www.tastemade.com/videos/beavertails",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8501,7 +8843,8 @@ window.MARE_SEED = {
         "Despeje o creme de pandan na camada de arroz glutinoso, dê uma batidinha (para ver se há bolhas de ar) e continue cozinhando no vapor por 30 minutos.",
         "Remova o kuih seri muka do vaporizador e deixe esfriar completamente antes de cortar em retângulos ou diamantes."
       ],
-      "note": "TheMealDB · Sobremesa · Malaio · https://www.themealdb.com/meal/53054 · https://makan.ch/recipe/kuih-seri-muka/"
+      "note": "TheMealDB · Sobremesa · Malaio · https://www.themealdb.com/meal/53054 · https://makan.ch/recipe/kuih-seri-muka/",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8527,7 +8870,8 @@ window.MARE_SEED = {
         "Coloque as gemas em uma tigela grande e bata por um minuto com batedores elétricos. Adicione o leite condensado e bata por 3 minutos, depois adicione as raspas e o suco e bata novamente por 3 minutos. Despeje o recheio na base resfriada e leve ao forno por 15 minutos. Deixe esfriar e leve à geladeira por pelo menos 3 horas ou durante a noite, se desejar.",
         "Quando estiver pronto para servir, retire com cuidado a torta da forma e coloque-a em um prato de servir. Para decorar, misture delicadamente o creme de leite e o açúcar de confeiteiro. Coloque o creme por cima da torta e finalize com raspas de limão extras."
       ],
-      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52859 · https://www.bbcgoodfood.com/recipes/2155644/key-lime-pie"
+      "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52859 · https://www.bbcgoodfood.com/recipes/2155644/key-lime-pie",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8554,7 +8898,8 @@ window.MARE_SEED = {
         "Adicione lentamente a clara de ovo restante à massa e amasse até poder enrolá-la em salsichas compridas, da espessura do seu dedo indicador. Preencha as formas com as salsichas de massa, apertando as pontas para fazer anéis.",
         "Coloque as formas em uma assadeira e leve ao forno por cerca de 10 a 12 minutos, até que a parte superior fique dourada."
       ],
-      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53127 · https://scandinaviancookbook.com/classic-norwegian-kransekake-recipe/"
+      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53127 · https://scandinaviancookbook.com/classic-norwegian-kransekake-recipe/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8585,7 +8930,8 @@ window.MARE_SEED = {
         "Enquanto isso, peneire o açúcar de confeiteiro em uma tigela e acrescente o mascarpone, o creme de leite e a pasta de pistache. Bata até incorporar bem e reserve na geladeira por 20-30 minutos para engrossar e ficar com consistência de colher.",
         "Corte o bolo resfriado ao meio horizontalmente com uma faca serrilhada, formando duas camadas. Coloque a camada inferior em um prato ou suporte para bolo e espalhe sobre uma colher generosa de creme de pistache. Cubra com um punhado generoso de framboesas para cobrir o bolo. Cubra com a outra metade da esponja e cubra a parte superior e as laterais do bolo com o creme restante. Espalhe por cima a última framboesa, o restante pistache e as raspas de limão para servir. Manterá refrigerado em recipiente hermético por dois dias."
       ],
-      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53293 · https://www.bbcgoodfood.com/recipes/pistachio-cake"
+      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53293 · https://www.bbcgoodfood.com/recipes/pistachio-cake",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8619,7 +8965,8 @@ window.MARE_SEED = {
         "Misture a massa manualmente ou na batedeira com gancho para massa, adicionando aos poucos o restante da farinha. Você pode precisar de um pouco mais ou menos de farinha para formar uma massa que não fique muito pegajosa para amassar. Quando a massa formar uma bela bola, acrescente a manteiga amolecida e continue amassando a massa por cerca de dez minutos.",
         "Abra a massa em um cilindro e corte em seis partes iguais. Enrole cada pedaço em um pão redondo e coloque-os em uma forma de muffin/bolo untada. Cubra e deixe crescer até dobrar de tamanho (cerca de uma hora)."
       ],
-      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53119 · https://scandinaviancookbook.com/skoleboller-school-buns-from-lille-betong/"
+      "note": "TheMealDB · Dessert · Norway · https://www.themealdb.com/meal/53119 · https://scandinaviancookbook.com/skoleboller-school-buns-from-lille-betong/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8653,7 +9000,8 @@ window.MARE_SEED = {
         "Coloque o waffle quente sobre uma tábua e corte horizontalmente com uma faca afiada. O stroopwafel está muito quente, então use uma luva de forno para mantê-lo no lugar.",
         "Pegue meio waffle e espalhe o stroop (quente!) sobre ele. Coloque a outra metade por cima, pressionando suavemente se necessário, e coloque o waffle sobre uma gradinha para esfriar. Repita para todas as bolas."
       ],
-      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53382 · https://www.inlaurasbakery.com/dutch-stroopwafels-recipe/"
+      "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53382 · https://www.inlaurasbakery.com/dutch-stroopwafels-recipe/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8686,7 +9034,8 @@ window.MARE_SEED = {
         "Para o recheio procure dois biscoitos do mesmo tamanho e coloque cerca de uma colher de chá de doce de leite no de baixo antes de ensanduichá-los.",
         "Pique o chocolate meio amargo e derreta com a manteiga e as raspas de laranja em fogo baixo. Mergulhe cada biscoito recheado no chocolate e deixe esfriar em papel manteiga antes de servir."
       ],
-      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53320 · https://jennyisbaking.com/2018/07/02/alfajores-the-best-cookies-from-uruguay/#recipe"
+      "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53320 · https://jennyisbaking.com/2018/07/02/alfajores-the-best-cookies-from-uruguay/#recipe",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8711,7 +9060,8 @@ window.MARE_SEED = {
         "Misture 1/3 das claras na mistura de maracujá resfriada até incorporar. Usando uma espátula, misture delicadamente as claras restantes até incorporar. Divida a mousse uniformemente entre as xícaras de vidro transparente; cobrir. Leve a mousse à geladeira até ficar bem gelada, pelo menos 2 horas.",
         "Sirva gelado. Decore com hortelã, se desejar."
       ],
-      "note": "TheMealDB · Sobremesa · Venezuela · https://www.themealdb.com/meal/53333 · https://goya.es/en/recipes/passion-fruit-mousse"
+      "note": "TheMealDB · Sobremesa · Venezuela · https://www.themealdb.com/meal/53333 · https://goya.es/en/recipes/passion-fruit-mousse",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -8738,7 +9088,8 @@ window.MARE_SEED = {
         "Despeje 1 colher de sopa de massa leve em cada forma. Misture a massa restante com a mistura de cacau mexida e preencha as formas com uma colher de sopa.",
         "Asse os mini bolos Bundt no forno pré-aquecido por 15-18 minutos, dependendo do tamanho das formas. Após 15 minutos de cozimento, use um palito para fazer o teste com um palito e, se necessário, leve ao forno por mais 3 minutos. Deixe os mini bolos esfriarem completamente na forma. Em seguida, retire com cuidado do molde. Polvilhe com um pouco de açúcar de confeiteiro e sirva. Desfrute de sua refeição!"
       ],
-      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53304 · https://www.bbcgoodfood.com/recipes/mini-bundt-cakes"
+      "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53304 · https://www.bbcgoodfood.com/recipes/mini-bundt-cakes",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -8764,7 +9115,8 @@ window.MARE_SEED = {
         "Junte o restante da farinha e acrescente aos poucos o leite, mexendo sempre para não empelotar. Deixe o mingau continuar cozinhando em fogo baixo por 5 minutos e depois adicione sal.",
         "Sirva com açúcar, canela e a gordura do mingau. Se estiver usando creme de leite com baixo teor de gordura, você pode cobrir o rømmegrøt com um pouco de manteiga."
       ],
-      "note": "TheMealDB · Breakfast · Norway · https://www.themealdb.com/meal/53118 · https://scandinaviancookbook.com/rommegrot-norwegian-sour-cream-porridge/"
+      "note": "TheMealDB · Breakfast · Norway · https://www.themealdb.com/meal/53118 · https://scandinaviancookbook.com/rommegrot-norwegian-sour-cream-porridge/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -8795,7 +9147,8 @@ window.MARE_SEED = {
         "Depois de escorrida a mistura de vegetais, coloque-a novamente na panela e amasse vigorosamente com um espremedor de batatas ou um batedor grosso.",
         "Adicione sal e pimenta. Ajuste o tempero a gosto."
       ],
-      "note": "TheMealDB · Café da manhã · https://www.themealdb.com/meal/53430 · https://www.atastefortravel.ca/24626-antigua-chop-up/#recipe"
+      "note": "TheMealDB · Café da manhã · https://www.themealdb.com/meal/53430 · https://www.atastefortravel.ca/24626-antigua-chop-up/#recipe",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -8826,7 +9179,8 @@ window.MARE_SEED = {
         "Para os ovos estrelados, quebre o ovo direto na frigideira com o pão frito e deixe por 30 segundos. Adicione uma boa noz de manteiga e salpique levemente o ovo com a manteiga quando derreter. Cozinhe no estágio de sua preferência, tempere e retire delicadamente com uma rodela de peixe.",
         "Depois que todos os ingredientes estiverem cozidos, sirva em pratos quentes e saboreie imediatamente com uma boa dose de ketchup de tomate ou molho marrom."
       ],
-      "note": "TheMealDB · Café da manhã · Britânico · https://www.themealdb.com/meal/52895 · https://www.bbc.co.uk/food/recipes/stressfreefullenglis_67721"
+      "note": "TheMealDB · Café da manhã · Britânico · https://www.themealdb.com/meal/52895 · https://www.bbc.co.uk/food/recipes/stressfreefullenglis_67721",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8855,7 +9209,8 @@ window.MARE_SEED = {
         "Aqueça o poffertjespan e coloque um pouco de manteiga em cada buraco. Encha até a metade com massa e leve ao forno primeiro um lado até ver a parte superior secar um pouco. Vire os poffertjes com um garfo pequeno e leve ao forno do outro lado até ficarem cozidos e dourados.",
         "Sirva os poffertjes com manteiga e açúcar de confeiteiro"
       ],
-      "note": "TheMealDB · Breakfast · Netherlands · https://www.themealdb.com/meal/53379 · https://insimoneskitchen.com/old-dutch-poffertjes/#recipe"
+      "note": "TheMealDB · Breakfast · Netherlands · https://www.themealdb.com/meal/53379 · https://insimoneskitchen.com/old-dutch-poffertjes/#recipe",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -8882,7 +9237,8 @@ window.MARE_SEED = {
         "Aqueça 1½ colher de sopa de azeite em uma frigideira grande e cozinhe o pão por cerca de 3 minutos de cada lado até dourar e ficar crocante nas bordas. Mantenha as fatias aquecidas em forno baixo enquanto cozinha o resto.",
         "Divida as torrijas entre os pratos e polvilhe com o açúcar de confeiteiro. Sirva com crème fraîche ou iogurte grego como acompanhamento."
       ],
-      "note": "TheMealDB · Breakfast · Spanish · https://www.themealdb.com/meal/53165 · https://www.bbcgoodfood.com/recipes/torrijas-sherry"
+      "note": "TheMealDB · Breakfast · Spanish · https://www.themealdb.com/meal/53165 · https://www.bbcgoodfood.com/recipes/torrijas-sherry",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -8918,7 +9274,8 @@ window.MARE_SEED = {
         "Descubra o arroz e retire as folhas de louro, o pau de canela e as vagens de cardamomo se desejar. Com cuidado, acrescente o peixe e os ovos picados, tampe novamente e leve ao fogo por 2 a 3 minutos ou até que o peixe esteja bem aquecido.",
         "Misture delicadamente quase todas as 3 colheres de sopa de salsa fresca picada e tempere com um pouco de sal e pimenta-do-reino a gosto. Sirva polvilhado com o restante da salsa e guarnecido com 1 limão cortado em rodelas."
       ],
-      "note": "TheMealDB · Breakfast · India · https://www.themealdb.com/meal/52964 · https://www.bbcgoodfood.com/recipes/2256/smoked-haddock-kedgeree"
+      "note": "TheMealDB · Breakfast · India · https://www.themealdb.com/meal/52964 · https://www.bbcgoodfood.com/recipes/2256/smoked-haddock-kedgeree",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8946,7 +9303,8 @@ window.MARE_SEED = {
         "Cozinhe em fogo baixo por 15-20 minutos, mexendo ocasionalmente. Quando faltarem cerca de 5 minutos, acrescente o extrato de baunilha, a canela, a noz-moscada e as especiarias. Retire do fogo e adoce com leite condensado.",
         "Sirva e aproveite."
       ],
-      "note": "TheMealDB · Breakfast · Jamaican · https://www.themealdb.com/meal/53363 · https://www.myforkinglife.com/jamaican-cornmeal-porridge/#recipe"
+      "note": "TheMealDB · Breakfast · Jamaican · https://www.themealdb.com/meal/53363 · https://www.myforkinglife.com/jamaican-cornmeal-porridge/#recipe",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -8965,7 +9323,8 @@ window.MARE_SEED = {
       "steps": [
         "Faça e aproveite"
       ],
-      "note": "TheMealDB · Café da manhã · Índia · https://www.themealdb.com/meal/53076"
+      "note": "TheMealDB · Café da manhã · Índia · https://www.themealdb.com/meal/53076",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -8997,7 +9356,8 @@ window.MARE_SEED = {
         "Para os ovos estrelados, quebre o ovo direto na frigideira com o pão frito e deixe por 30 segundos. Adicione uma boa noz de manteiga e salpique levemente o ovo com a manteiga quando derreter. Cozinhe no estágio de sua preferência, tempere e retire delicadamente com uma rodela de peixe.",
         "Depois que todos os ingredientes estiverem cozidos, sirva em pratos quentes e saboreie imediatamente com uma boa dose de ketchup de tomate ou molho marrom."
       ],
-      "note": "TheMealDB · Café da manhã · Britânico · https://www.themealdb.com/meal/52896 · https://www.bbc.co.uk/food/recipes/stressfreefullenglis_67721"
+      "note": "TheMealDB · Café da manhã · Britânico · https://www.themealdb.com/meal/52896 · https://www.bbc.co.uk/food/recipes/stressfreefullenglis_67721",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -9027,7 +9387,8 @@ window.MARE_SEED = {
         "Aqueça 1 xícara de azeite em uma frigideira grande em fogo médio-alto até brilhar. Enquanto isso, bata 4 ovos em uma tigela média.",
         "Trabalhando com uma fatia de cada vez, mergulhe o pão na mistura de ovos para cobrir. Deixe escorrer o excesso e coloque na panela. Repita com quantas fatias forem necessárias até que a panela esteja cheia com uma única camada. Frite até dourar no fundo, cerca de 4 minutos. Vire as fatias e frite até o segundo lado até dourar, mais 3 a 4 minutos. Transfira para um prato ou assadeira forrado com papel toalha. Repita mergulhando e fritando o pão restante. Regue com mel para servir."
       ],
-      "note": "TheMealDB · Breakfast · https://www.themealdb.com/meal/53415 · https://www.thekitchn.com/torrijas-recipe-23214033#post-recipe-286240303"
+      "note": "TheMealDB · Breakfast · https://www.themealdb.com/meal/53415 · https://www.thekitchn.com/torrijas-recipe-23214033#post-recipe-286240303",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -9062,7 +9423,8 @@ window.MARE_SEED = {
         "Repita a etapa 4 até que toda a mistura tenha sido usada e certifique-se de que cada lacuna do triângulo seja preenchida com massa de farinha em cada camada - isso levará cerca de 2 horas. Após cada duas camadas, use uma camada apenas para preencher quaisquer espaços (grandes lacunas entre as estrelas da massa) que possam ter começado a aparecer.",
         "Assim que a Flija estiver pronta sirva imediatamente com mel ou iogurte."
       ],
-      "note": "TheMealDB · Breakfast · https://www.themealdb.com/meal/53413 · https://www.myalbanianfood.com/recipe/albanian-flija-pancake/"
+      "note": "TheMealDB · Breakfast · https://www.themealdb.com/meal/53413 · https://www.myalbanianfood.com/recipe/albanian-flija-pancake/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -9091,7 +9453,8 @@ window.MARE_SEED = {
         "Repita com os quadrados de massa restantes e coloque-os na assadeira coberta com pergaminho.",
         "Asse por 15-20 minutos ou até a massa ficar dourada e estufada."
       ],
-      "note": "TheMealDB · Café da manhã · Estados Unidos · https://www.themealdb.com/meal/52957"
+      "note": "TheMealDB · Café da manhã · Estados Unidos · https://www.themealdb.com/meal/52957",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -9116,7 +9479,8 @@ window.MARE_SEED = {
         "Adicione os ovos e misture bem por 2 minutos e tampe para cozinhar por 5-6 minutos até que o topo solidifique. Por último, espalhe o queijo líquido e deixe tapar por um minuto.",
         "Servi o meu estilo mediterrâneo com batatas fritas, favas egípcias, salame e azeitonas turcas, fatias de queijo e queijo feta grego."
       ],
-      "note": "TheMealDB · Breakfast · Saudi Arabian · https://www.themealdb.com/meal/53225 · https://cookpad.com/eng/recipes/24629321?ref=search&search_term=saudi+arabia"
+      "note": "TheMealDB · Breakfast · Saudi Arabian · https://www.themealdb.com/meal/53225 · https://cookpad.com/eng/recipes/24629321?ref=search&search_term=saudi+arabia",
+      "servings": 3
     },
     {
       "section": "lanches",
@@ -9146,7 +9510,8 @@ window.MARE_SEED = {
         "Quando começar a borbulhar na superfície vire com uma espátula. Cozinhe em fogo médio-baixo para que não queimem.",
         "Por fim, adicione o caramelo e os morangos."
       ],
-      "note": "TheMealDB · Café da manhã · Venezuela · https://www.themealdb.com/meal/53331 · https://goya.es/en/recipes/oatmeal-pancakes"
+      "note": "TheMealDB · Café da manhã · Venezuela · https://www.themealdb.com/meal/53331 · https://goya.es/en/recipes/oatmeal-pancakes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -9173,7 +9538,8 @@ window.MARE_SEED = {
         "Para escalfar os ovos, leve uma panela grande com água para ferver e acrescente o vinagre. Abaixe o fogo para que a água ferva suavemente. Mexa a água para formar um leve redemoinho e, em seguida, coloque os ovos um por um. Cozinhe cada um por cerca de 4 minutos e retire com uma escumadeira.",
         "Torre levemente e passe manteiga nos muffins e, em seguida, coloque algumas fatias de salmão em cada metade. Cubra cada um com um ovo, regue com um pouco de molho holandês e decore com cebolinhas picadas."
       ],
-      "note": "TheMealDB · Breakfast · United States · https://www.themealdb.com/meal/52962 · https://www.bbcgoodfood.com/recipes/73606/eggs-benedict-with-smoked-salmon-and-chives"
+      "note": "TheMealDB · Breakfast · United States · https://www.themealdb.com/meal/52962 · https://www.bbcgoodfood.com/recipes/73606/eggs-benedict-with-smoked-salmon-and-chives",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -9195,7 +9561,8 @@ window.MARE_SEED = {
         "Cozinhe por aproximadamente 15 minutos ou até que os grãos tenham a consistência desejada.",
         "Deixe esfriar e sirva"
       ],
-      "note": "TheMealDB · Café da manhã · https://www.themealdb.com/meal/53450 · https://www.bahamas.gov.bs/native-dishes"
+      "note": "TheMealDB · Café da manhã · https://www.themealdb.com/meal/53450 · https://www.bahamas.gov.bs/native-dishes",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -9229,7 +9596,8 @@ window.MARE_SEED = {
         "Pouco antes de servir, regue com o xarope de bordo e misture. Deixe cozinhar mais um minuto, dando às batatas um efeito caramelizado.",
         "Sirva em uma tigela quente com um ovo estrelado!"
       ],
-      "note": "TheMealDB · Breakfast · Canadian · https://www.themealdb.com/meal/52965 · http://www.vodkaandbiscuits.com/2014/03/06/bangin-breakfast-potatoes/"
+      "note": "TheMealDB · Breakfast · Canadian · https://www.themealdb.com/meal/52965 · http://www.vodkaandbiscuits.com/2014/03/06/bangin-breakfast-potatoes/",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -9260,7 +9628,8 @@ window.MARE_SEED = {
         "Aqueça o óleo em uma panela adequada e mergulhe delicadamente os pedaços de mandazi para cozinhar até dourar do primeiro lado e depois vire para cozinhar do segundo lado.",
         "Sirva-os quentes ou frios"
       ],
-      "note": "TheMealDB · Breakfast · Kenyan · https://www.themealdb.com/meal/52967 · http://chef-raphael.com/home-made-mandazi-recipe/#more-106"
+      "note": "TheMealDB · Breakfast · Kenyan · https://www.themealdb.com/meal/52967 · http://chef-raphael.com/home-made-mandazi-recipe/#more-106",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -9281,7 +9650,8 @@ window.MARE_SEED = {
         "Continue cozinhando em fogo baixo, mexendo sempre com uma colher de pau resistente, até que o ugali comece a se soltar das laterais da panela, grude e ganhe aroma de milho torrado. Desenforme imediatamente em um prato de servir. Se desejar, usando uma colher ou espátula, molde rapidamente em um disco grosso ou redondo.",
         "O ugali continuará firme à medida que esfria e será grosso o suficiente para ser cortado com uma faca (semelhante à polenta firme)."
       ],
-      "note": "TheMealDB · Breakfast · Kenyan · https://www.themealdb.com/meal/53114 · https://tasteoftheplace.com/ugali-kenyan-cornmeal/"
+      "note": "TheMealDB · Breakfast · Kenyan · https://www.themealdb.com/meal/53114 · https://tasteoftheplace.com/ugali-kenyan-cornmeal/",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9307,7 +9677,8 @@ window.MARE_SEED = {
         "Coloque o açúcar em uma panela grande e rasa, junto com um pouco de água. Aqueça delicadamente, girando a panela, até que o açúcar se dissolva. Aumente o fogo e borbulhe a calda até ficar com uma cor âmbar escura. Adicione o molho de peixe, a maior parte da pimenta e o gengibre e salpique 1 colher de sopa de água para diluir. Ferva novamente até ficar xaroposo e, em seguida, adicione os filés de peixe, com a pele voltada para baixo, e o bok choi, com o lado cortado voltado para baixo.",
         "Cubra a panela com uma tampa e cozinhe por 4-5 minutos até que o peixe esteja cozido e o bok choi murche. Desligue o lume, esprema o limão e espalhe com a restante malagueta, o gengibre e os raminhos de coentros. Sirva com arroz."
       ],
-      "note": "TheMealDB · Seafood · Vietnamese · https://www.themealdb.com/meal/53228 · https://www.bbcgoodfood.com/recipes/vietnamese-caramel-trout"
+      "note": "TheMealDB · Seafood · Vietnamese · https://www.themealdb.com/meal/53228 · https://www.bbcgoodfood.com/recipes/vietnamese-caramel-trout",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -9335,7 +9706,8 @@ window.MARE_SEED = {
         "Aqueça 2 colheres de sopa de óleo de girassol e frite a noz grande de gengibre descascado, cortado em palitos de fósforo, 3 dentes de alho em fatias finas e 3 pimentões vermelhos picados finamente por cerca de 2 minutos até dourar.",
         "Retire do fogo e acrescente o cacho de cebolinhas picadas. Salpique o peixe com 1 colher de sopa de molho de soja e regue com o conteúdo da panela."
       ],
-      "note": "TheMealDB · Seafood · Vietnamese · https://www.themealdb.com/meal/53247 · https://www.bbcgoodfood.com/recipes/sea-bass-sizzled-ginger-chilli-spring-onions"
+      "note": "TheMealDB · Seafood · Vietnamese · https://www.themealdb.com/meal/53247 · https://www.bbcgoodfood.com/recipes/sea-bass-sizzled-ginger-chilli-spring-onions",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -9364,7 +9736,8 @@ window.MARE_SEED = {
         "Adicione a cebola amarela, a cebolinha verde, o pimentão e o alho na frigideira e mexa. Cozinhe por cerca de 2 minutos ou até a cebola amolecer. Adicione o peixe salgado à frigideira e mexa. Cozinhe por cerca de um minuto.",
         "Em seguida, adicione callaloo, tomate roma, tomilho e pimenta-do-reino. Mexa bem e cozinhe até aquecer, cerca de 2 minutos."
       ],
-      "note": "TheMealDB · Side · Jamaican · https://www.themealdb.com/meal/53361 · https://www.myforkinglife.com/callaloo-and-saltfish/#recipe"
+      "note": "TheMealDB · Side · Jamaican · https://www.themealdb.com/meal/53361 · https://www.myforkinglife.com/callaloo-and-saltfish/#recipe",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -9406,7 +9779,8 @@ window.MARE_SEED = {
         "Verifique o cozimento:",
         "Descubra e verifique a textura do repolho. Se necessário, aumente o fogo para médio-alto e cozinhe por mais 5–7 minutos para evaporar o excesso de líquido e terminar o cozimento."
       ],
-      "note": "TheMealDB · Beef · https://www.themealdb.com/meal/53488 · https://cookinglsl.com/ground-beef-cabbage-recipe/#wprm-recipe-container-59951"
+      "note": "TheMealDB · Beef · https://www.themealdb.com/meal/53488 · https://cookinglsl.com/ground-beef-cabbage-recipe/#wprm-recipe-container-59951",
+      "servings": 2
     },
     {
       "section": "manha",
@@ -9434,7 +9808,8 @@ window.MARE_SEED = {
         "Quando estiver quase cozido, polvilhe com o chouriço e a batata, a salsa e o queijo.",
         "Dobre a omelete na panela e cozinhe por mais 1 minuto para derreter o queijo."
       ],
-      "note": "TheMealDB · Pork · Spanish · https://www.themealdb.com/meal/53159 · https://www.bbcgoodfood.com/recipes/chorizo-potato-cheese-omelette"
+      "note": "TheMealDB · Pork · Spanish · https://www.themealdb.com/meal/53159 · https://www.bbcgoodfood.com/recipes/chorizo-potato-cheese-omelette",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -9458,7 +9833,8 @@ window.MARE_SEED = {
         "Aqueça o forno a 200C/ventilador 180C/gás 6. Coloque o macarrão em uma tigela e despeje água fervente o suficiente para cobri-lo. Deixe por 2 minutos, até ficarem dobráveis, mas não muito moles, depois escorra bem. Volte para a tigela com as cebolinhas, o petit pois, o sal e a pimenta e um terço da manteiga. Misture bem até a manteiga derreter.",
         "Empilhe o macarrão e os vegetais em dois quadrados grandes de papel manteiga e coloque o salmão por cima. Corte a manteiga restante e arrume-a por cima do salmão. Coloque as pontas do papel sobre o peixe, dobre-as para selar e prenda as pontas do papel por baixo para que não haja lacunas. Coloque os pacotes em uma assadeira e leve ao forno por 15-20 minutos. Transfira para pratos e sirva sem demora."
       ],
-      "note": "TheMealDB · Seafood · Vietnamese · https://www.themealdb.com/meal/53248 · https://www.bbcgoodfood.com/recipes/salmon-noodle-wraps"
+      "note": "TheMealDB · Seafood · Vietnamese · https://www.themealdb.com/meal/53248 · https://www.bbcgoodfood.com/recipes/salmon-noodle-wraps",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -9495,7 +9871,8 @@ window.MARE_SEED = {
         "Adicione o pimentão, a batata frita e a cenoura. Cubra a panela. Continue cozinhando por 5 a 7 minutos.",
         "Tempere com sal e pimenta preta moída. Servir."
       ],
-      "note": "TheMealDB · Beef · Filipino · https://www.themealdb.com/meal/53070 · https://www.kawalingpinoy.com/beef-caldereta/"
+      "note": "TheMealDB · Beef · Filipino · https://www.themealdb.com/meal/53070 · https://www.kawalingpinoy.com/beef-caldereta/",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -9535,7 +9912,8 @@ window.MARE_SEED = {
         "Adicione o alecrim, o tomilho e a sálvia, tentando manter as ervas por cima.",
         "Assim, você pode remover facilmente os talos das ervas depois de cozidos."
       ],
-      "note": "TheMealDB · Carne · Croata · https://www.themealdb.com/meal/53056 · https://flawlessfood.co.uk/croatian-lamb-peka/"
+      "note": "TheMealDB · Carne · Croata · https://www.themealdb.com/meal/53056 · https://flawlessfood.co.uk/croatian-lamb-peka/",
+      "servings": 6
     },
     {
       "section": "jantar",
@@ -9568,7 +9946,8 @@ window.MARE_SEED = {
         "Corte hachuras no topo da massa, cerca de quatro em cada direção. Pincele com a gema batida (misturei a minha com um pouco de água para facilitar o trabalho) e polvilhe com sementes de papoula.",
         "Hachuras, ovos lavados e sementes de papoula dão a este pão uma aparência distinta."
       ],
-      "note": "TheMealDB · Side · https://www.themealdb.com/meal/53448 · https://travelbystove.blogspot.com/2012/01/recipes-from-azerbaijani.html"
+      "note": "TheMealDB · Side · https://www.themealdb.com/meal/53448 · https://travelbystove.blogspot.com/2012/01/recipes-from-azerbaijani.html",
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -9604,7 +9983,8 @@ window.MARE_SEED = {
         "Leve uma panela grande com água e sal para ferver e coloque cuidadosamente o pierogi. Ferva-os por 2 minutos ou até que flutuem até o topo.",
         "Escorra e sirva com uma noz de manteiga e um pouco de creme de leite. Finalize polvilhando as chalotas crocantes por cima para servir."
       ],
-      "note": "TheMealDB · Vegetarian · Polish · https://www.themealdb.com/meal/53296 · https://www.bbcgoodfood.com/recipes/pierogi"
+      "note": "TheMealDB · Vegetarian · Polish · https://www.themealdb.com/meal/53296 · https://www.bbcgoodfood.com/recipes/pierogi",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9628,7 +10008,8 @@ window.MARE_SEED = {
         "Cobre com rodelas de banana.",
         "Opcional: mais um fio de Nutella por cima."
       ],
-      "note": "Clássico caseiro comfort food (Nutella)."
+      "note": "Clássico caseiro comfort food (Nutella).",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9653,7 +10034,8 @@ window.MARE_SEED = {
         "Espalha Nutella, dobra ou enrola.",
         "Serve morno."
       ],
-      "note": "Crepe conforto · Nutella."
+      "note": "Crepe conforto · Nutella.",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9677,7 +10059,8 @@ window.MARE_SEED = {
         "Faz bolinhas e leva ao frio 30–60 min.",
         "Opcional: banha em chocolate derretido e arrefece de novo."
       ],
-      "note": "Trufa de bolacha estilo Oreo balls."
+      "note": "Trufa de bolacha estilo Oreo balls.",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9696,7 +10079,8 @@ window.MARE_SEED = {
         "Espalha Nutella generosa entre duas fatias.",
         "Opcional: tosta na frigideira tipo grilled cheese doce."
       ],
-      "note": "Conforto mínimo."
+      "note": "Conforto mínimo.",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9716,7 +10100,8 @@ window.MARE_SEED = {
         "Rega ou mergulha em Nutella.",
         "Come com colher."
       ],
-      "note": "Snack rápido."
+      "note": "Snack rápido.",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9738,7 +10123,8 @@ window.MARE_SEED = {
         "Tapa 1–2 min até amolecer.",
         "Fecha com outra bolacha e pressiona."
       ],
-      "note": "S'mores internos."
+      "note": "S'mores internos.",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9764,7 +10150,8 @@ window.MARE_SEED = {
         "Micro-ondas 60–90 segundos até subir.",
         "Deixa arrefecer 1 minuto (queima!)."
       ],
-      "note": "Bolo de caneca conforto."
+      "note": "Bolo de caneca conforto.",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9784,7 +10171,8 @@ window.MARE_SEED = {
         "Envolve a Nutella.",
         "Congela 3–4 h, mexendo 1× a meio se puderes."
       ],
-      "note": "Nice cream / gelado rápido de Nutella."
+      "note": "Nice cream / gelado rápido de Nutella.",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9807,7 +10195,8 @@ window.MARE_SEED = {
         "Forno 180 °C 5–8 min até dourar.",
         "Corta em fatias."
       ],
-      "note": "Pizza de sobremesa."
+      "note": "Pizza de sobremesa.",
+      "servings": 1
     },
     {
       "section": "lanches",
@@ -9828,7 +10217,8 @@ window.MARE_SEED = {
         "Polvilha açúcar.",
         "Empilha se quiseres."
       ],
-      "note": "Clássico de merenda portuguesa."
+      "note": "Clássico de merenda portuguesa.",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -9851,7 +10241,8 @@ window.MARE_SEED = {
         "Entre camadas espalha Nutella.",
         "Fruta por cima se quiseres."
       ],
-      "note": "Conforto do café da manhã."
+      "note": "Conforto do café da manhã.",
+      "servings": 1
     },
     {
       "section": "manha",
@@ -9874,7 +10265,8 @@ window.MARE_SEED = {
         "Passa no ovo batido com leite.",
         "Frita em manteiga dos dois lados."
       ],
-      "note": "Rabanada recheada com Nutella."
+      "note": "Rabanada recheada com Nutella.",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -9900,7 +10292,8 @@ window.MARE_SEED = {
         "Derrete o queijo no molho.",
         "Mistura a massa. Mais queijo em cima se quiseres."
       ],
-      "note": "Mac & cheese comfort clássico."
+      "note": "Mac & cheese comfort clássico.",
+      "servings": 3
     },
     {
       "section": "jantar",
@@ -9923,7 +10316,8 @@ window.MARE_SEED = {
         "Aquece o pão.",
         "Monta com molhos e extras."
       ],
-      "note": "Conforto de cachorro-quente."
+      "note": "Conforto de cachorro-quente.",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -9943,7 +10337,8 @@ window.MARE_SEED = {
         "Forno/airfryer conforme embalagem dos nuggets e batatas.",
         "Serve bem quente com molhos."
       ],
-      "note": "Clássico infantil/conforto."
+      "note": "Clássico infantil/conforto.",
+      "servings": 1
     },
     {
       "section": "praia",
@@ -9962,7 +10357,8 @@ window.MARE_SEED = {
         "Monta em casa.",
         "Embrulha. Não precisa de frio."
       ],
-      "note": "Picnic doce."
+      "note": "Picnic doce.",
+      "servings": 2
     },
     {
       "section": "praia",
@@ -9983,7 +10379,8 @@ window.MARE_SEED = {
         "Morangos em fatias.",
         "Enrolha e corta."
       ],
-      "note": "Envoltório doce."
+      "note": "Envoltório doce.",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -10017,7 +10414,8 @@ window.MARE_SEED = {
         "Adicione os tomates e cozinhe, mexendo ocasionalmente, por 3 minutos até que comecem a amolecer. Escorra bem o macarrão e os pedaços de açúcar e misture-os à mistura de camarão. Rasgue as folhas de manjericão, mexa e tempere com sal e pimenta.",
         "Sirva com folhas de salada regadas com molho de limão e pão crocante quente."
       ],
-      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52839"
+      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52839",
+      "servings": 4
     },
     {
       "section": "jantar",
@@ -10044,7 +10442,8 @@ window.MARE_SEED = {
         "Deixe o molho engrossar um pouco e depois acrescente o macarrão e mexa até ficar coberto com o molho.",
         "Decore com salsa e está pronto."
       ],
-      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/53064"
+      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/53064",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10071,7 +10470,8 @@ window.MARE_SEED = {
         "Coloque o macarrão em outra panela com 2 colheres de chá de sal, despeje um pouco de água fervente e cozinhe seguindo as instruções da embalagem (geralmente 3-4 minutos). Quando cozido, coloque um pouco da água do cozimento em uma jarra ou caneca resistente ao calor e escorra o macarrão, mas não muito bem.",
         "Adicione o macarrão à panela com a mistura de creme de leite, polvilhe sobre o queijo e misture tudo delicadamente em fogo baixo com uma espátula de borracha. Quando combinados, salpique 3 colheres de sopa da água do cozimento. A princípio a massa ficará molhada e desleixada: continue mexendo até que a água seja absorvida e o molho fique brilhante. Verifique o tempero antes de transferir para tigelas aquecidas. Polvilhe com um pouco de cebolinha ou salsa e sirva imediatamente."
       ],
-      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52835"
+      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52835",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10116,7 +10516,8 @@ window.MARE_SEED = {
         "Espalhe 3/4 colher de chá de manteiga de alho em um lado de cada fatia de pão. Coloque metade das fatias, com a manteiga voltada para baixo, sobre uma tábua limpa. Cubra cada um com uma fatia de Cheddar e, em seguida, 1 pedaço de macarrão com queijo. (Transfira da assadeira passando a mão ou uma espátula sob cada pedaço de macarrão com queijo e virando-o sobre um sanduíche.) Coloque 1 fatia de Jack em cima de cada um. Finalize com as fatias de pão restantes, com a manteiga voltada para cima.",
         "Usando uma espátula larga, coloque quantos sanduíches couberem na assadeira, sem amontoá-la. Cubra e cozinhe até que o fundo esteja bem dourado, cerca de 4 minutos. Vire e cozinhe até que os segundos lados estejam dourados, o queijo derreta e o macarrão com queijo esteja bem aquecido, cerca de mais 4 minutos."
       ],
-      "note": "TheMealDB · Massa · Estados Unidos · https://www.themealdb.com/meal/52829"
+      "note": "TheMealDB · Massa · Estados Unidos · https://www.themealdb.com/meal/52829",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10145,7 +10546,8 @@ window.MARE_SEED = {
         "Fatos nutricionais",
         "1 sanduíche: 445 calorias, 24g de gordura (12g de gordura saturada), 66mg de colesterol, 1.094mg de sódio, 35g de carboidrato (3g de açúcares, 2g de fibra), 21g de proteína."
       ],
-      "note": "TheMealDB · Massa · Estados Unidos · https://www.themealdb.com/meal/52987"
+      "note": "TheMealDB · Massa · Estados Unidos · https://www.themealdb.com/meal/52987",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10181,7 +10583,8 @@ window.MARE_SEED = {
         "Aqueça o forno a 200C/180C ventilador/gás 6. Para montar a lasanha, coloque um pouco do molho ragu no fundo da assadeira ou caçarola, espalhando o molho por toda a base. Coloque 2 folhas de lasanha por cima do molho, sobrepostas para caber, e repita com mais molho e outra camada de macarrão. Repita com mais 2 camadas de molho e macarrão, finalizando com uma camada de macarrão.",
         "Coloque o crème fraîche em uma tigela e misture com 2 colheres de sopa de água para soltá-lo e fazer um molho homogêneo. Despeje por cima do macarrão e cubra com a mussarela. Polvilhe o parmesão por cima e leve ao forno por 25–30 minutos até dourar e borbulhar. Sirva polvilhado com manjericão, se quiser."
       ],
-      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52844"
+      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52844",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10216,7 +10619,8 @@ window.MARE_SEED = {
         "Bata o ovo até ficar cremoso e acrescente o leite, a cebola em pó, a pimenta branca, o sal, o molho de pimenta e a mostarda. Despeje com o macarrão e misture.",
         "Coloque em uma caçarola refratária untada. Cubra com manteiga, um pouco de queijo ralado e pão ralado fino. Asse no centro do forno por cerca de 30-45 minutos, dependendo da profundidade do prato."
       ],
-      "note": "TheMealDB · Massa · https://www.themealdb.com/meal/53461"
+      "note": "TheMealDB · Massa · https://www.themealdb.com/meal/53461",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -10244,7 +10648,8 @@ window.MARE_SEED = {
         "Adicione o macarrão a uma panela grande com água suficiente para cobrir (aproximadamente 4 xícaras). Adicione sal e deixe ferver até ficar macio (aproximadamente 25 a 30 minutos). Enquanto isso, bata os ovos e o açúcar e adicione a baunilha e a noz-moscada. Misture bem e reserve. Em uma panela média separada, aqueça o leite evaporado mais 1 xícara de água e manteiga até quase ferver. Retire do fogo e adicione à mistura de açúcar. Escorra o macarrão cozido. Adicione o macarrão e as passas à mistura de leite e mexa bem. (Esta mistura terá um pouco de líquido, mas formará um belo pudim com textura de creme depois de assado.)",
         "Unte uma assadeira grande com manteiga ou margarina, acrescente a mistura de macarrão e polvilhe com mais noz-moscada. Asse a 350° F por 1 hora ou até dourar. (O pudim deve estar firme o suficiente para ser cortado, mas úmido e não seco)."
       ],
-      "note": "TheMealDB · Massa · https://www.themealdb.com/meal/53504"
+      "note": "TheMealDB · Massa · https://www.themealdb.com/meal/53504",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10271,7 +10676,8 @@ window.MARE_SEED = {
         "Cozinhe o macarrão seguindo as instruções da embalagem. Numa frigideira antiaderente aqueça o azeite e refogue a cebola, o alho e a pimenta malagueta durante 3-4 minutos para amolecerem. Junte o purê de tomate e cozinhe por 1 min, depois acrescente as sardinhas com o molho. Cozinhe, partindo o peixe com uma colher de pau, depois acrescente as azeitonas e continue cozinhando por mais alguns minutos.",
         "Escorra o macarrão e coloque na panela com 2-3 colheres de sopa da água do cozimento. Misture tudo bem, divida em pratos e sirva polvilhado com parmesão."
       ],
-      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52837"
+      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52837",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10305,7 +10711,8 @@ window.MARE_SEED = {
         "Adicione água extra para cozinhar o macarrão para mantê-lo picante (várias colheres de sopa devem bastar). Você não quer que fique molhado, apenas úmido. Tempere com um pouco de sal, se necessário.",
         "Use um garfo de ponta longa para torcer a massa no prato ou tigela. Sirva imediatamente com um pouco do queijo restante e uma ralada de pimenta preta. Se o prato ficar um pouco seco antes de servir, salpique um pouco mais de água quente para o macarrão e o sabor brilhante será revivido."
       ],
-      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52982"
+      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52982",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10330,7 +10737,8 @@ window.MARE_SEED = {
         "Leve uma panela grande com água levemente salgada para ferver. Adicione o espaguete e cozinhe por 8 a 10 minutos ou até ficar al dente; escorra e junte o molho de tomate, a pasta de tomate, a canela, o azeite, o sal e a pimenta. Transfira para o prato preparado.",
         "Asse em forno pré-aquecido por 1 hora ou até que o topo fique crocante."
       ],
-      "note": "TheMealDB · Massa · Síria · https://www.themealdb.com/meal/53093"
+      "note": "TheMealDB · Massa · Síria · https://www.themealdb.com/meal/53093",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10364,7 +10772,8 @@ window.MARE_SEED = {
         "Retire com cuidado as coxas de pato do molho e coloque-as num prato – ficarão bem macias, por isso tente não perder nada da carne. Retire e descarte a gordura, depois desfie a carne com 2 garfos e descarte os ossos. Adicione a carne de volta ao molho com o leite e cozinhe, destampada, por mais 10-15 minutos enquanto cozinha o macarrão.",
         "Cozinhe o macarrão seguindo as instruções da embalagem, escorra, reservando um copo de água do macarrão, e adicione o macarrão ao ragu. Mexa para cobrir toda a massa com o molho e cozinhe por mais 1 minuto, adicionando um pouco do líquido do cozimento se parecer seco. Sirva com parmesão ralado, se quiser."
       ],
-      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52838"
+      "note": "TheMealDB · Massa · Italiana · https://www.themealdb.com/meal/52838",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10396,7 +10805,8 @@ window.MARE_SEED = {
         "Enquanto o frango cozinha, torre os pães na frigideira seca por 30 segundos. Transfira-os para um prato. Se você estiver usando uma fritadeira, coloque os pães na fritadeira por 1-2 minutos até que estejam quentes. Aumente a temperatura da fritadeira para 200C. Adicione o halloumi ao cesto da fritadeira e cozinhe por 10 minutos, virando na metade, até dourar. Misture o repolho com a maionese e o suco de limão restante.",
         "Coloque o homus (ou molho de sua escolha) nos pães torrados e cubra com a rúcula, o frango com pimenta, o halloumi e os pimentões. Regue com um pouco mais de molho de pimenta, regue com o repolho, tempere com pimenta-do-reino e cubra com as tampas dos pães. Sirva com o repolho extra como acompanhamento ou uma salada verde."
       ],
-      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/53085"
+      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/53085",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10432,7 +10842,8 @@ window.MARE_SEED = {
         "Retire o frango da marinada. Coloque a marinada em uma assadeira untada (ou forrada com alumínio). Coloque o frango por cima do molho (certifique-se de que o frango cubra o molho e que o molho não fique exposto ou queimará) e espalhe o restante da marinada sobre o frango. Asse por 35-45 minutos ou até que a temperatura interna da parte mais grossa do frango seja de pelo menos 175 F.",
         "Deixe o frango descansar por 5 minutos. Pincele o frango com um pouco de óleo. Sirva o frango com o molho sobre o arroz cozido no vapor (ou arroz de coco)."
       ],
-      "note": "TheMealDB · Frango · Malaio · https://www.themealdb.com/meal/53050"
+      "note": "TheMealDB · Frango · Malaio · https://www.themealdb.com/meal/53050",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10471,7 +10882,8 @@ window.MARE_SEED = {
         "Tampe a panela e cozinhe o ensopado por 20 minutos até que as batatas estejam macias. Adicione a gema de ovo e 2 colheres de sopa de creme quente da panela em uma xícara. Bata e coloque de volta na panela para engrossar o molho.",
         "Misture todos os ingredientes e depois abaixe o fogo bem baixo. Verifique o tempero e acrescente mais pimenta ou sal a gosto. Retire o alecrim e as folhas de louro. Divida o guisado em pratos fundos e regue com o molho de natas restante. Sirva quente."
       ],
-      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53466"
+      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53466",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10501,7 +10913,8 @@ window.MARE_SEED = {
         "Aqueça o azeite em uma frigideira grande em fogo médio-alto. Cozinhe e mexa a cebola no óleo quente até ficar translúcida, cerca de 5 minutos. Adicione a pasta de gengibre e alho e continue cozinhando por mais 5 minutos. Reduza o fogo para médio; misture os tomates na mistura e cozinhe até que os tomates fiquem carnudos, 5 a 10 minutos. Tempere com pimenta caiena, curry em pó, garam masala, açafrão e cominho; cozinhe e mexa por mais 5 minutos.",
         "Adicione o frango e as batatas à mistura da frigideira; cozinhe, mexendo ocasionalmente, até que as batatas estejam macias e o frango não fique mais rosado no centro, cerca de 20 minutos. Polvilhe o coentro sobre a mistura e continue cozinhando por mais 10 minutos. Sirva quente."
       ],
-      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53453"
+      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53453",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10536,7 +10949,8 @@ window.MARE_SEED = {
         "Escorra o excesso de óleo e coloque o frango de volta na panela. Despeje a marinada sobre o frango e acrescente as cenouras. Mexa e cozinhe em fogo médio por 10 minutos.",
         "Misture a farinha e o leite de coco e acrescente ao refogado, mexendo sempre. Abaixe o fogo ao mínimo e cozinhe por mais 20 minutos ou até ficar macio."
       ],
-      "note": "TheMealDB · Frango · Jamaicano · https://www.themealdb.com/meal/52940"
+      "note": "TheMealDB · Frango · Jamaicano · https://www.themealdb.com/meal/52940",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10575,7 +10989,8 @@ window.MARE_SEED = {
         "Frite cada costeleta por 2 minutos de cada lado ou até dourar e estar cozido.",
         "Seque em papel e sirva em pãezinhos torrados com rodelas de picles."
       ],
-      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/53016"
+      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/53016",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -10607,7 +11022,8 @@ window.MARE_SEED = {
         "Volte a colocar os pedaços de frango no prato juntamente com o tomilho, o vinho branco e o caldo. Deixe ferver o líquido, cubra o prato com uma tampa bem justa e abaixe o fogo. Cozinhe por 30 minutos.",
         "Adicione o arroz e misture tudo. Tampe, leve ao fogo baixo e cozinhe por mais 15 minutos ou até que o arroz esteja cozido e tenha absorvido a maior parte do líquido do cozimento. Retire do fogo e deixe o prato descansar por 10 minutos para absorver o líquido restante. Tempere a gosto e polvilhe com salsa para servir."
       ],
-      "note": "TheMealDB · Frango · Espanhol · https://www.themealdb.com/meal/53161"
+      "note": "TheMealDB · Frango · Espanhol · https://www.themealdb.com/meal/53161",
+      "servings": 5
     },
     {
       "section": "jantar",
@@ -10639,7 +11055,8 @@ window.MARE_SEED = {
         "Com cuidado, coloque as batatas por cima do recheio da panela quente, sobrepondo-as levemente, quase como o topo de uma torta.",
         "Pincele as batatas com um pouco de manteiga derretida e leve ao forno por cerca de 35 minutos. A panela quente estará pronta quando as batatas estiverem cozidas e douradas."
       ],
-      "note": "TheMealDB · Frango · Britânico · https://www.themealdb.com/meal/52846"
+      "note": "TheMealDB · Frango · Britânico · https://www.themealdb.com/meal/52846",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10686,7 +11103,8 @@ window.MARE_SEED = {
         "Adicione os vegetais (sem o alho) e os flocos de pimenta vermelha à panela e mexa para cobrir com o azeite e a manteiga (abstenha-se de temperar com sal até que os vegetais estejam dourados).",
         "Cozinhe, mexendo sempre, até os vegetais ficarem macios, cerca de 5 minutos."
       ],
-      "note": "TheMealDB · Frango · Italiano · https://www.themealdb.com/meal/52796"
+      "note": "TheMealDB · Frango · Italiano · https://www.themealdb.com/meal/52796",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10727,7 +11145,8 @@ window.MARE_SEED = {
         "Agora descasque as batatas e corte-as em pedaços pequenos.",
         "Após 25 minutos de fervura, adicione 1/2 litro de água e as batatas à piscina."
       ],
-      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53459"
+      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53459",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10766,7 +11185,8 @@ window.MARE_SEED = {
         "Adicione o chouriço, o tomate seco e o alho e cozinhe por 2-3 minutos. Adicione o arroz, mexendo para garantir que fique bem revestido com óleo. Junte a pasta de tomate, a páprica, o louro e o tomilho picado. Despeje o caldo e o vinho. Quando o líquido começar a borbulhar, abaixe o fogo para ferver suavemente. Pressione o arroz no líquido, se ainda não estiver submerso, e coloque o frango por cima. Adicione as rodelas de limão e as azeitonas ao redor do frango.",
         "Cubra e leve ao forno por 50 minutos. O arroz deve estar cozido, mas ainda com alguma mordida, e o frango deve ter sucos que escorra claro quando furado na parte mais grossa com uma faca. Caso contrário, cozinhe por mais 5 minutos e verifique novamente."
       ],
-      "note": "TheMealDB · Frango · França · https://www.themealdb.com/meal/52934"
+      "note": "TheMealDB · Frango · França · https://www.themealdb.com/meal/52934",
+      "servings": 4
     },
     {
       "section": "jantar",
@@ -10803,7 +11223,8 @@ window.MARE_SEED = {
         "Sirva o mingau de arroz em uma tigela",
         "Opcional: adicione coentros por cima do mingau de arroz."
       ],
-      "note": "TheMealDB · Frango · Chinês · https://www.themealdb.com/meal/52956"
+      "note": "TheMealDB · Frango · Chinês · https://www.themealdb.com/meal/52956",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10831,7 +11252,8 @@ window.MARE_SEED = {
         "Aqueça o azeite em uma frigideira grande e cozinhe a cebola por 1-2 minutos até ficar macia. Adicione o frango e frite por 7 a 10 minutos até que esteja cozido e as cebolas dourem. Rale o gengibre, misture a harissa para cobrir tudo e cozinhe por mais 1 minuto.",
         "Adicione os damascos, o grão de bico e o cuscuz, regue com o caldo e mexa uma vez. Cubra com uma tampa ou cubra bem a panela com papel alumínio e deixe por cerca de 5 minutos até que o cuscuz absorva todo o caldo e fique macio. Amasse o cuscuz com um garfo e espalhe sobre os coentros para servir. Sirva com harissa extra, se quiser."
       ],
-      "note": "TheMealDB · Frango · Marroquino · https://www.themealdb.com/meal/52850"
+      "note": "TheMealDB · Frango · Marroquino · https://www.themealdb.com/meal/52850",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -10857,7 +11279,8 @@ window.MARE_SEED = {
         "Asse por 20 a 30 minutos descoberto, até que a espuma e o queijo derretam e comecem a dourar por cima.",
         "Sirva quente."
       ],
-      "note": "TheMealDB · Frango · Mexicana · https://www.themealdb.com/meal/52765"
+      "note": "TheMealDB · Frango · Mexicana · https://www.themealdb.com/meal/52765",
+      "servings": 6
     },
     {
       "section": "jantar",
@@ -10889,7 +11312,8 @@ window.MARE_SEED = {
         "Cozinhe em fogo baixo por 20 minutos. Adicione seus queijos e misture bem.",
         "Cubra com pimentões assados ​​e salsa."
       ],
-      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/52818"
+      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/52818",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10931,7 +11355,8 @@ window.MARE_SEED = {
         "Cozinhe os legumes:",
         "Misture 1 colher de sopa de óleo na wok em fogo médio-alto. Adicione as cebolas picadas e cozinhe por 1 minuto, até começarem a amolecer. Misture o alho picado e o gengibre e cozinhe até ficar perfumado, cerca de 30 segundos. Adicione as cenouras em cubos e cozinhe por 2 minutos, mexendo sempre. Adicione 1/2 colher de chá de sal e as ervilhas e mexa para incorporar."
       ],
-      "note": "TheMealDB · Frango · Chinês · https://www.themealdb.com/meal/53367"
+      "note": "TheMealDB · Frango · Chinês · https://www.themealdb.com/meal/53367",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -10974,7 +11399,8 @@ window.MARE_SEED = {
         "Cubra a torta com a tampa de massa e pressione firmemente as bordas para selar. Corte o excesso de massa.",
         "Faça um pequeno furo no centro da torta com a ponta de uma faca. Pincele o topo da torta com ovo batido. Asse na assadeira pré-aquecida no centro do forno por 35-40 minutos ou até que a torta esteja totalmente dourada e o recheio bem quente."
       ],
-      "note": "TheMealDB · Frango · Britânico · https://www.themealdb.com/meal/52875"
+      "note": "TheMealDB · Frango · Britânico · https://www.themealdb.com/meal/52875",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11015,7 +11441,8 @@ window.MARE_SEED = {
         "Por fim adicione o creme de leite e dê uma mistura final para combinar tudo bem.",
         "Polvilhe o kasuri methi restante e o garam masala e sirva o frango handi quente com naan ou rotis. Aproveitar!"
       ],
-      "note": "TheMealDB · Frango · Índia · https://www.themealdb.com/meal/52795"
+      "note": "TheMealDB · Frango · Índia · https://www.themealdb.com/meal/52795",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11047,7 +11474,8 @@ window.MARE_SEED = {
         "Adicione o caldo de galinha, o suco de laranja e cozinhe por cerca de 2 minutos raspando o fundo da panela com uma colher de pau. Adicione o açúcar mascavo e tampe a panela. Reduza o fogo para médio e cozinhe por cerca de 45 minutos ou até que o frango esteja cozido.",
         "Espalhe o molho sobre o frango e sirva com arroz branco. Decore com coentro fresco."
       ],
-      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53531"
+      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53531",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11076,7 +11504,8 @@ window.MARE_SEED = {
         "Adicione um punhado de frango à fécula de batata e misture para cobrir cada pedaço uniformemente.",
         "Frite o karaage aos poucos até que a parte externa fique marrom média e o frango esteja cozido. Transfira o frango frito para uma gradinha forrada com papel toalha. Se quiser que o karaage fique crocante por mais tempo, você pode fritar o frango uma segunda vez, até que fique com uma cor mais escura depois de esfriar uma vez. Sirva com rodelas de limão."
       ],
-      "note": "TheMealDB · Frango · Japonês · https://www.themealdb.com/meal/52831"
+      "note": "TheMealDB · Frango · Japonês · https://www.themealdb.com/meal/52831",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11109,7 +11538,8 @@ window.MARE_SEED = {
         "Adicione xerez ou conhaque.",
         "Coloque em um prato e cubra com manteiga derretida"
       ],
-      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53455"
+      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53455",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11149,7 +11579,8 @@ window.MARE_SEED = {
         "(Opcional) Para um autêntico aroma de fumaça: aqueça um pequeno carvão até ficar vermelho, coloque-o em um pequeno copo de papel alumínio no centro da panela, adicione uma colher de chá de manteiga/óleo no carvão e cubra imediatamente para reter a fumaça por 5–10 minutos. Remova o carvão.",
         "Decore com cebola frita, coentros picados e sirva com chutney ou raita."
       ],
-      "note": "TheMealDB · Frango · Índia · https://www.themealdb.com/meal/53358"
+      "note": "TheMealDB · Frango · Índia · https://www.themealdb.com/meal/53358",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11174,7 +11605,8 @@ window.MARE_SEED = {
         "Aqueça o azeite numa caçarola grande e refratária e frite os cogumelos até começarem a amolecer. Adicione as coxas de frango e cozinhe um pouco de cada lado para colorir um pouco.",
         "Despeje a passata, esmigalhe o caldo e junte as azeitonas. Tempere com pimenta preta – não precisa de sal. Tampe e cozinhe por 40 minutos até que o frango esteja macio. Polvilhe com salsa e sirva com macarrão e salada, ou purê e vegetais verdes, se desejar."
       ],
-      "note": "TheMealDB · Frango · França · https://www.themealdb.com/meal/52920"
+      "note": "TheMealDB · Frango · França · https://www.themealdb.com/meal/52920",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11211,7 +11643,8 @@ window.MARE_SEED = {
         "Pré-aqueça o forno a 180C/160C Ventilador/Gás 4.",
         "Coloque o recheio em um refratário de 20x30cm e cubra com o purê de batata. Rale sobre o Gruyère. Asse por 30–35 minutos, até ficar bem quente e a batata ficar dourada."
       ],
-      "note": "TheMealDB · Frango · França · https://www.themealdb.com/meal/52879"
+      "note": "TheMealDB · Frango · França · https://www.themealdb.com/meal/52879",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11241,7 +11674,8 @@ window.MARE_SEED = {
         "Enquanto isso, misture a manteiga, a pimenta e o alho até formar uma pasta. Misture os filés de frango em 2 colheres de chá de azeite com um pouco de tempero. Coloque em uma frigideira quente e cozinhe por 3-4 minutos de cada lado ou até ficar cozido. Transfira para um prato, salpique com a manteiga picante e deixe derreter.",
         "Em seguida, coloque os tomates, as azeitonas, a cebola, o queijo feta e a hortelã em uma tigela. Misture a quinoa cozida. Misture o restante azeite, o sumo e as raspas de limão e tempere bem. Sirva com os filés de frango por cima, regados com o suco amanteigado de frango."
       ],
-      "note": "TheMealDB · Frango · Grego · https://www.themealdb.com/meal/53011"
+      "note": "TheMealDB · Frango · Grego · https://www.themealdb.com/meal/53011",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11277,7 +11711,8 @@ window.MARE_SEED = {
         "Enquanto o frango cozinha, coloque o iogurte grego em uma tigela. Combine o alho, a hortelã picada e a salsa, esprema cerca de limão e cominho. Combine e adicione sal a gosto. Em uma tigela pequena, misture 1 colher de chá de alho em pó, páprica, cominho, cebola em pó, orégano, salsa seca, pimenta caiena (opcional), misture e reserve para as batatas fritas.",
         "Tempere as batatas fritas imediatamente depois de cozidas e adicione sal a gosto. Assim que o frango estiver pronto, sirva imediatamente, espalhando o pão achatado, espalhando o molho uniformemente sobre o pão, acrescente alface, cebola, tomate, batata frita, frango, queijo feta e mais molho por cima. Sirva imediatamente."
       ],
-      "note": "TheMealDB · Frango · Arábia Saudita · https://www.themealdb.com/meal/53218"
+      "note": "TheMealDB · Frango · Arábia Saudita · https://www.themealdb.com/meal/53218",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11301,7 +11736,8 @@ window.MARE_SEED = {
         "Usando uma tesoura de cozinha afiada, corte cada asa na junta em dois pedaços. Misture o alho, as raspas e o suco de limão, o cominho e o azeite com bastante tempero, coloque em um prato com as asas de frango e misture bem. Cubra e leve à geladeira para marinar por pelo menos 1 hora ou durante a noite, se tiver tempo.",
         "Aqueça o forno a 200C/180C com ventilador/gás 6 ou aqueça uma churrasqueira ao ar livre. Asse as asas de frango em uma assadeira por 45-50 minutos até ficarem crocantes, ou asse por 20 minutos, regando com mel nos 10 minutos finais de cada método. Sirva em uma travessa com bastante guardanapos de papel. Encha pequenas tigelas com azeitonas, pistache ou amêndoas, tâmaras e pimentas em conserva e pães achatados para servir junto com os pratos abaixo."
       ],
-      "note": "TheMealDB · Frango · Turco · https://www.themealdb.com/meal/53261"
+      "note": "TheMealDB · Frango · Turco · https://www.themealdb.com/meal/53261",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11331,7 +11767,8 @@ window.MARE_SEED = {
         "Coloque os pedaços de coxa de frango de volta na panela, acrescente o caldo, o tomilho e as passas, tampe e cozinhe delicadamente em fogo baixo por 20 minutos. Adicione a carne do peito e o suco que sobrou no prato. Cozinhe por mais 10 minutos até que esteja cozido e o molho na panela reduza.",
         "Enquanto o frango cozinha, aqueça o forno a 200C/180C ventilador/gás 6. Espalhe os pinhões sobre uma assadeira e asse por 10 minutos até dourar e tostar. Depois que o frango estiver cozido, tempere a gosto, polvilhe com pinhões e salsa e sirva com arroz."
       ],
-      "note": "TheMealDB · Frango · Espanhol · https://www.themealdb.com/meal/53186"
+      "note": "TheMealDB · Frango · Espanhol · https://www.themealdb.com/meal/53186",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11379,7 +11816,8 @@ window.MARE_SEED = {
         "Assim que o frango estiver pronto, despeje o óleo quente e limpe a panela. Adicione uma colher de sopa fresca de óleo junto com o alho picado e a cebola. Cozinhe por um minuto e adicione o molho. Cozinhe o molho até começar a engrossar.",
         "Assim que o molho estiver borbulhando levemente, adicione o frango frito e misture bem. O molho deve continuar a engrossar e grudar no frango. Deixe ferver por mais um ou dois minutos. Sirva o frango com laranja sobre arroz branco cozido, guarnecido com sementes de gergelim e cebolinha fresca."
       ],
-      "note": "TheMealDB · Frango · Chinês · https://www.themealdb.com/meal/53365"
+      "note": "TheMealDB · Frango · Chinês · https://www.themealdb.com/meal/53365",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11419,7 +11857,8 @@ window.MARE_SEED = {
         "Pouco antes de servir, aqueça o óleo para os cogumelos em uma frigideira grande antiaderente. Adicione os cogumelos e frite em fogo alto por alguns minutos até dourar. Retire e mantenha aquecido.",
         "Retire o frango, a cebolinha e o bacon da frigideira e transfira para uma travessa aquecida. Retire o bouquet garni. Para fazer o espessante, misture a farinha, o azeite e a manteiga em uma tigela pequena com as costas de uma colher de chá. Leve a mistura de vinho para ferver suavemente e, em seguida, coloque gradualmente pequenos pedaços do espessante, batendo cada pedaço com um batedor de arame. Cozinhe por 1-2 minutos. Espalhe os cogumelos sobre o frango e regue com o molho de vinho. Decore com salsa picada."
       ],
-      "note": "TheMealDB · Frango · França · https://www.themealdb.com/meal/52832"
+      "note": "TheMealDB · Frango · França · https://www.themealdb.com/meal/52832",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11452,7 +11891,8 @@ window.MARE_SEED = {
         "Mexa bem e coloque novamente os pedaços de frango na panela. Tampe a panela e cozinhe em fogo médio por cerca de 45 minutos ou até que o frango esteja cozido. A temperatura final das coxas de frango deve ser de 170˚F.",
         "Sirva quente sobre arroz branco e decore com salsa picada."
       ],
-      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53530"
+      "note": "TheMealDB · Frango · https://www.themealdb.com/meal/53530",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11494,7 +11934,8 @@ window.MARE_SEED = {
         "Retire do forno e cubra todos os tacos com os tomates de uva fatiados, o jalapeño e o coentro.",
         "Finalize com um fiozinho de guacamole e creme de leite."
       ],
-      "note": "TheMealDB · Frango · Mexicana · https://www.themealdb.com/meal/52830"
+      "note": "TheMealDB · Frango · Mexicana · https://www.themealdb.com/meal/52830",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11526,7 +11967,8 @@ window.MARE_SEED = {
         "Assistir após o anúncio (0,04):",
         "3 ideias econômicas para ovos"
       ],
-      "note": "TheMealDB · Frango · Espanhol · https://www.themealdb.com/meal/53143"
+      "note": "TheMealDB · Frango · Espanhol · https://www.themealdb.com/meal/53143",
+      "servings": 5
     },
     {
       "section": "jantar",
@@ -11559,7 +12001,8 @@ window.MARE_SEED = {
         "Seque o frango com papel toalha; tempere tudo com sal e pimenta. Aqueça um fiozinho de azeite na panela usada para a cebola em fogo médio-alto. Adicione o frango e cozinhe até dourar e ficar cozido, 5-6 minutos de cada lado. Nos últimos 1-2 minutos de cozimento, cubra com cebola caramelizada e queijo. Tampe a panela até o queijo derreter. (Se a sua panela não tiver tampa, cubra com uma assadeira!)",
         "Aqueça a panela com batatas escorridas em fogo baixo; amasse com creme de leite, 2 colheres de sopa de manteiga (4 colheres de sopa para 4 porções), sal, pimenta e um pouco de água (ou leite, para riqueza extra) até ficar homogêneo. Divida o frango, as cenouras assadas e o purê de batata entre os pratos."
       ],
-      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/52996"
+      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/52996",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11607,7 +12050,8 @@ window.MARE_SEED = {
         "Adicione o molho à wok e depois o brócolis e espere até ferver.",
         "Para engrossar o molho, misture 2 colheres de sopa de amido de milho e 4 colheres de sopa de água em uma tigela e adicione lentamente ao refogado até obter a espessura certa."
       ],
-      "note": "TheMealDB · Frango · Chinês · https://www.themealdb.com/meal/52951"
+      "note": "TheMealDB · Frango · Chinês · https://www.themealdb.com/meal/52951",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -11640,7 +12084,8 @@ window.MARE_SEED = {
         "Aqueça a panela usada para frango em fogo médio-alto. Adicione um fiozinho de azeite e o restante do alho; cozinhe até ficar perfumado, 30 segundos. Junte o vinagre, o mel, o caldo concentrado e 1/4 xícara de água (1/3 xícara para 4 porções). Cozinhe até ficar espesso e brilhante, 2-3 minutos. Retire do fogo e misture 1 colher de sopa de manteiga (2 colheres de sopa para 4). Tempere com sal e pimenta.",
         "Retorne o frango à panela e vire para cobrir com cobertura. Divida o frango, os brócolis e as batatas entre os pratos. Coloque a cobertura restante sobre o frango e sirva."
       ],
-      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/52993"
+      "note": "TheMealDB · Frango · Estados Unidos · https://www.themealdb.com/meal/52993",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -11679,7 +12124,8 @@ window.MARE_SEED = {
         "Quando faltarem cerca de 15 minutos, junte a batata e continue cozinhando coberto.",
         "Assim que o frango estiver cozido e as batatas amolecidas, retire do fogo. Sal e pimenta a gosto."
       ],
-      "note": "TheMealDB · Frango · Jamaicano · https://www.themealdb.com/meal/53345"
+      "note": "TheMealDB · Frango · Jamaicano · https://www.themealdb.com/meal/53345",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11721,7 +12167,8 @@ window.MARE_SEED = {
         "Enquanto o frango cozinha, prepare o arroz e as ervilhas. Lave o arroz em bastante água fria e coloque-o em uma panela grande com todos os ingredientes restantes, exceto o feijão. Tempere com sal, adicione 300ml de água fria e leve ao fogo alto. Assim que o arroz começar a ferver, abaixe para fogo médio, tampe e cozinhe por 10 minutos.",
         "Adicione o feijão ao arroz e cubra com uma tampa. Deixe fora do fogo por 5 minutos até que todo o líquido seja absorvido. Esprema o limão assado sobre o frango e sirva com o arroz e as ervilhas e um pouco de molho picante se gostar bem picante."
       ],
-      "note": "TheMealDB · Frango · Jamaicano · https://www.themealdb.com/meal/52937"
+      "note": "TheMealDB · Frango · Jamaicano · https://www.themealdb.com/meal/52937",
+      "servings": 6
     },
     {
       "section": "jantar",
@@ -11753,7 +12200,8 @@ window.MARE_SEED = {
         "Depois de tudo pronto, adicione o arroz, as passas e os temperos aos vegetais e adicione 2 xícaras e meia de água para o arroz cozinhar.",
         "Assim que o arroz estiver pronto coloque tudo no forno."
       ],
-      "note": "TheMealDB · Frango · Arábia Saudita · https://www.themealdb.com/meal/53220"
+      "note": "TheMealDB · Frango · Arábia Saudita · https://www.themealdb.com/meal/53220",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11792,7 +12240,8 @@ window.MARE_SEED = {
         "Aqueça o óleo em uma frigideira grande em fogo médio-alto. Coloque o frango em óleo quente e cozinhe até dourar, cerca de 3 ou 4 minutos de cada lado. Depois de cozido, coloque sobre papel de cozinha para absorver o excesso de óleo.",
         "Despeje o molho de curry sobre o frango, sirva com arroz branco e divirta-se!"
       ],
-      "note": "TheMealDB · Frango · Japonês · https://www.themealdb.com/meal/52820"
+      "note": "TheMealDB · Frango · Japonês · https://www.themealdb.com/meal/52820",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -11820,7 +12269,8 @@ window.MARE_SEED = {
         "Reduza o fogo para médio e misture o restante da cebola picada em gotas na frigideira. Tempere com sal e pimenta. Cozinhe, mexendo sempre, até a cebola amolecer e ficar translúcida, cerca de 5 minutos. Junte o alho restante e cozinhe por 30 segundos. Junte os tomates Roma, a salsa seca e o ras el hanout. Despeje água. Cozinhe até que os tomates estejam macios, cerca de 5 minutos.",
         "Despeje o molho de tomate sobre as almôndegas para servir."
       ],
-      "note": "TheMealDB · Carne bovina · Argelina · https://www.themealdb.com/meal/53281"
+      "note": "TheMealDB · Carne bovina · Argelina · https://www.themealdb.com/meal/53281",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11848,7 +12298,8 @@ window.MARE_SEED = {
         "Com a ajuda de uma faca, abra-o pela borda até o meio, criando um espaço para recheá-lo com a banana madura, o feijão, a carne e o tomate picado.",
         "Sirva com um pouco de pico de gallo ou molho de guacamole."
       ],
-      "note": "TheMealDB · Carne bovina · Venezuela · https://www.themealdb.com/meal/53334"
+      "note": "TheMealDB · Carne bovina · Venezuela · https://www.themealdb.com/meal/53334",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11883,7 +12334,8 @@ window.MARE_SEED = {
         "Cozinhar: Cozinhe as arepas em uma frigideira ou frigideira em fogo médio por 2–3 minutos de cada lado até dourar. Você pode assá-los por alguns minutos se preferir mais crocantes.",
         "Recheio: Corte as arepas de um lado, recheie com a carne desfiada quente e cubra com queijo ralado."
       ],
-      "note": "TheMealDB · Carne bovina · Venezuela · https://www.themealdb.com/meal/53329"
+      "note": "TheMealDB · Carne bovina · Venezuela · https://www.themealdb.com/meal/53329",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11913,7 +12365,8 @@ window.MARE_SEED = {
         "Sugestões de Servir:",
         "Sirva com molho chimichurri, salada de tomate fresco e pão crocante. Combine com um vinho Malbec robusto para complementar os sabores ricos da carne."
       ],
-      "note": "TheMealDB · Carne bovina · Argentina · https://www.themealdb.com/meal/53133"
+      "note": "TheMealDB · Carne bovina · Argentina · https://www.themealdb.com/meal/53133",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11938,7 +12391,8 @@ window.MARE_SEED = {
         "Torre os naans: Aqueça uma frigideira ou churrasqueira. Grelhe os naans dos dois lados até ficarem levemente tostados e reserve. Adicione os hambúrgueres à grelha ou churrasqueira e cozinhe por 2-3 minutos, depois vire e cozinhe do outro lado por mais 2-3 minutos.",
         "Monte o prato: Coloque meio naan torrado em cada prato e coloque uma pilha de rúcula em cada um. Cubra com um hambúrguer, depois algumas fatias de beterraba e um bocado de creme de leite. Polvilhe com sal e pimenta preta moída na hora e sirva imediatamente com uma grande salada verde e batatas fritas. Uma taça de vinho tinto também não faria mal."
       ],
-      "note": "TheMealDB · Carne bovina · Australiana · https://www.themealdb.com/meal/53099"
+      "note": "TheMealDB · Carne bovina · Australiana · https://www.themealdb.com/meal/53099",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -11978,7 +12432,8 @@ window.MARE_SEED = {
         "Agora adicione o pau de canela, o cravo, o manjericão e o tomilho e uma pitada de sal e açúcar a gosto.",
         "Agora cozinhe até que a carne esteja macia. O sabor deste prato sai em poucos dias e por isso fica mais saboroso cada vez que você o reaquece; certifique-se de sempre reaquecer a panela inteira até o ponto de ebulição."
       ],
-      "note": "TheMealDB · Carne · https://www.themealdb.com/meal/53457"
+      "note": "TheMealDB · Carne · https://www.themealdb.com/meal/53457",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12020,7 +12475,8 @@ window.MARE_SEED = {
         "Deixe a carne fritar por 1 minuto. Vire as fatias de carne, coloque o alho na frigideira e frite por mais 30 segundos a 1 minuto até não ficar mais rosado.",
         "Adicione o molho, o amido de milho e o brócolis:"
       ],
-      "note": "TheMealDB · Carne · Chinesa · https://www.themealdb.com/meal/53366"
+      "note": "TheMealDB · Carne · Chinesa · https://www.themealdb.com/meal/53366",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12063,7 +12519,8 @@ window.MARE_SEED = {
         "Para o feijão verde, leve uma panela com água e sal para ferver, adicione o feijão e cozinhe por 4-5 minutos ou até ficar macio.",
         "Escorra e misture com a manteiga e tempere com pimenta-do-reino."
       ],
-      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52874"
+      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52874",
+      "servings": 6
     },
     {
       "section": "jantar",
@@ -12102,7 +12559,8 @@ window.MARE_SEED = {
         "Abra o resto da massa até cerca de 2 cm maior do que o prato que você está usando. Forre o prato com a massa e coloque o recheio, colocando também as ostras. Pincele a borda da massa com ovo batido.",
         "Abra a massa restante até ficar um pouco maior que o seu prato e levante suavemente sobre o recheio, pressionando as bordas firmemente para selar e, em seguida, corte com uma faca afiada. Pincele com ovo batido para glacear. Coloque a forma em uma assadeira e leve ao forno por 25-30 minutos ou até que a massa fique dourada e o recheio borbulhe."
       ],
-      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52878"
+      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52878",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12140,7 +12598,8 @@ window.MARE_SEED = {
         "Despeje o molho do ensopado de carne. Deixe ferver. Adicione a carne. Cozinhe por 2 minutos.",
         "Adicione a manteiga e deixe derreter. Continue cozinhando até que o molho reduza à metade."
       ],
-      "note": "TheMealDB · Carne · Filipino · https://www.themealdb.com/meal/53071"
+      "note": "TheMealDB · Carne · Filipino · https://www.themealdb.com/meal/53071",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12170,7 +12629,8 @@ window.MARE_SEED = {
         "Aqueça um fiozinho de azeite em uma panela grande em fogo médio-alto. Adicione a cebola e cozinhe, mexendo, até ficar macia, 4-5 minutos. Adicione a carne, o alho restante e 2 colheres de chá de açúcar (4 colheres de chá para 4 porções). Cozinhe, partindo a carne em pedaços, até que a carne esteja dourada e cozida, 4-5 minutos. Junte o molho de soja. Desligue o fogo; prove e tempere com sal e pimenta.",
         "Arroz fofo com garfo; misture as raspas de limão e 1 colher de sopa de manteiga. Divida o arroz entre tigelas. Disponha a carne, a cenoura ralada e o pepino em conserva por cima. Cubra com um pouco de suco de limão. Regue com maionese sriracha."
       ],
-      "note": "TheMealDB · Carne · Vietnamita · https://www.themealdb.com/meal/52997"
+      "note": "TheMealDB · Carne · Vietnamita · https://www.themealdb.com/meal/52997",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12207,7 +12667,8 @@ window.MARE_SEED = {
         "Para fazer o purê de aipo, descasque o aipo e corte em cubos. Aqueça o azeite numa frigideira grande. Adicione o aipo-rábano e frite por 5 minutos até dourar. Tempere bem com sal e pimenta. Junte as vagens de alecrim, tomilho, louro e cardamomo e despeje 200ml de água, o suficiente para quase cobrir o aipo-rábano. Abaixe o fogo, tampe parcialmente a panela e deixe ferver por 25-30 minutos.",
         "Após 25-30 minutos, o aipo-rábano deve estar macio e a maior parte da água terá evaporado. Escorra a água restante e remova os raminhos de ervas, o louro e as vagens de cardamomo. Amasse levemente com um espremedor de batatas, finalize com um fio de azeite e tempere a gosto. Coloque o bife bourguignon em tigelas e coloque uma colher grande de purê de aipo-rábano por cima. Decore com uma das folhas de louro, se quiser."
       ],
-      "note": "TheMealDB · Carne bovina · França · https://www.themealdb.com/meal/52904"
+      "note": "TheMealDB · Carne bovina · França · https://www.themealdb.com/meal/52904",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12246,7 +12707,8 @@ window.MARE_SEED = {
         "Tampe a panela, coloque-a no forno a 300°F e cozinhe por 3 horas. Vire o peito com cuidado a cada hora para que cozinhe por igual.",
         "5 Adicione as cenouras e continue cozinhando: Após 3 horas, adicione as cenouras. Tampe a panela e cozinhe por mais 1 hora ou até que as cenouras estejam cozidas e o peito esteja macio e desmanchando."
       ],
-      "note": "TheMealDB · Carne bovina · Estados Unidos · https://www.themealdb.com/meal/52812"
+      "note": "TheMealDB · Carne bovina · Estados Unidos · https://www.themealdb.com/meal/52812",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -12292,7 +12754,8 @@ window.MARE_SEED = {
         "Depois de duas horas, retire a tampa do guisado e coloque as bolinhas por cima do guisado. Cubra, volte ao forno e cozinhe por mais 20 minutos ou até os bolinhos incharem e ficarem macios. (Se preferir seus bolinhos com cobertura dourada, deixe a tampa aberta ao retornar ao forno.)",
         "Para servir, coloque uma colher de purê de batata em cada um dos quatro pratos e cubra com o ensopado e os bolinhos. Polvilhe com salsa picada."
       ],
-      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52873"
+      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52873",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12330,7 +12793,8 @@ window.MARE_SEED = {
         "Corte a massa ao meio e abra metade finamente sobre uma superfície enfarinhada. Corte círculos com cerca de 12-15 cm de diâmetro. O meu tem diâmetro de 12,5 cm. Coloque cerca de 2 a 4 colheres de chá de recheio em um círculo, coloque um pouco de água nas bordas e dobre a outra metade para obter meias-luas. Certifique-se de selar as bordas com um garfo. Repita até não sobrar massa e recheio.",
         "Enquanto isso, pré-aqueça o forno a 200 graus Celsius. Pincele as empanadas com ovo batido e leve ao forno cerca de 8 empanadas em uma assadeira forrada com papel manteiga por cerca de 25 minutos ou até dourar. Sirva quente com molho chimichurri."
       ],
-      "note": "TheMealDB · Carne bovina · Uruguaia · https://www.themealdb.com/meal/53317"
+      "note": "TheMealDB · Carne bovina · Uruguaia · https://www.themealdb.com/meal/53317",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12374,7 +12838,8 @@ window.MARE_SEED = {
         "Para fazer o molho, adicione o molho de ostra, 1 pitada de pimenta branca, 1 colher de chá de óleo de gergelim, açúcar e 1 colher de chá de molho de soja.",
         "Em seguida, adicione a carne à wok e frite"
       ],
-      "note": "TheMealDB · Carne · Chinesa · https://www.themealdb.com/meal/52952"
+      "note": "TheMealDB · Carne · Chinesa · https://www.themealdb.com/meal/52952",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12412,7 +12877,8 @@ window.MARE_SEED = {
         "Em um prato de servir, arrume uma cama de alface, depois coloque os tomates e depois as cebolas. Coloque a carne cozida sobre os legumes e coloque os ovos fritos por cima. Sirva com molho de pimenta Kampot e arroz perfumado cozido no vapor.",
         "Selado quente e rápido, Lok Lak está no seu melhor quando a carne permanece macia e suculenta, com um molho ousado e brilhante para cortar a riqueza."
       ],
-      "note": "TheMealDB · Carne · https://www.themealdb.com/meal/53421"
+      "note": "TheMealDB · Carne · https://www.themealdb.com/meal/53421",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12452,7 +12918,8 @@ window.MARE_SEED = {
         "Opcional: Para sabor defumado, coloque um pequeno carvão quente sobre papel alumínio na panela, adicione 1 colher de chá de manteiga/óleo e cubra imediatamente por 5 minutos. Retire o carvão antes de servir.",
         "Arroz fofo e sirva mandi de carne com salada ou chutney."
       ],
-      "note": "TheMealDB · Carne bovina · Índia · https://www.themealdb.com/meal/53359"
+      "note": "TheMealDB · Carne bovina · Índia · https://www.themealdb.com/meal/53359",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12486,7 +12953,8 @@ window.MARE_SEED = {
         "Transfira para um prato de servir. Sirva com arroz de açafrão.",
         "Compartilhe e divirta-se!"
       ],
-      "note": "TheMealDB · Carne · Filipino · https://www.themealdb.com/meal/53068"
+      "note": "TheMealDB · Carne · Filipino · https://www.themealdb.com/meal/53068",
+      "servings": 1
     },
     {
       "section": "jantar",
@@ -12522,7 +12990,8 @@ window.MARE_SEED = {
         "Entretanto, corte a gordura do bife e embrulhe-a em película aderente, depois coloque-a no congelador durante 15 minutos – isto tornará o seu bife muito fácil de fatiar! Corte em fatias finas, cubra novamente com filme plástico e coloque na geladeira.",
         "Prove o caldo de carne e use o açúcar de palma, o molho de peixe e a soja para temperar. Cozinhe o macarrão de acordo com as instruções da embalagem e divida-o em duas tigelas, cobrindo cada uma com a carne fatiada. Leve o caldo para ferver e despeje nas tigelas (o fogo vai cozinhar a carne). Cubra cada um com cebolinhas, rodelas de pimenta e ervas. Sirva com as rodelas de limão para espremer."
       ],
-      "note": "TheMealDB · Carne · Vietnamita · https://www.themealdb.com/meal/53238"
+      "note": "TheMealDB · Carne · Vietnamita · https://www.themealdb.com/meal/53238",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12555,7 +13024,8 @@ window.MARE_SEED = {
         "Retorne a carne dourada para a panela e adicione o caldo de carne, o purê de abóbora, o molho inglês, o sal e a pimenta. Mexa bem e deixe ferver. Assim que o líquido ferver, reduza o fogo para médio-baixo e cozinhe por 3 horas, mexendo ocasionalmente.",
         "Adicione as batatas, as cenouras e os raminhos de tomilho à panela e aumente o fogo para médio. Cozinhe por mais 30 minutos. Sal a gosto e sirva."
       ],
-      "note": "TheMealDB · Carne · https://www.themealdb.com/meal/53469"
+      "note": "TheMealDB · Carne · https://www.themealdb.com/meal/53469",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12586,7 +13056,8 @@ window.MARE_SEED = {
         "Aqueça o azeite em uma panela, adicione a pasta de especiarias, a canela, o cravo, o anis estrelado e o cardamomo e frite até ficar aromático. Adicione a carne e o capim-limão amassado e mexa por 1 minuto. Adicione o leite de coco, o suco de tamarindo, a água e cozinhe em fogo médio, mexendo sempre até a carne estar quase cozida. Adicione as folhas de limão kaffir, o kerisik (coco torrado), o açúcar ou o açúcar de palma, mexendo para misturar bem com a carne.",
         "Abaixe o fogo, tampe a tampa e cozinhe por 1 a 1 1/2 horas ou até que a carne esteja bem macia e o molho seque. Adicione mais sal e açúcar a gosto. Sirva imediatamente com arroz cozido no vapor e guarde um pouco para durante a noite."
       ],
-      "note": "TheMealDB · Carne bovina · Malaia · https://www.themealdb.com/meal/53053"
+      "note": "TheMealDB · Carne bovina · Malaia · https://www.themealdb.com/meal/53053",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12615,7 +13086,8 @@ window.MARE_SEED = {
         "Numa frigideira antiaderente aqueça o azeite, junte a cebola às rodelas e cozinhe em lume médio até amolecer completamente, cerca de 15 minutos, acrescentando um pouco de água se começarem a grudar. Esmague o alho e cozinhe por mais 2-3 minutos, depois adicione a manteiga. Assim que a manteiga espumar um pouco, adicione os cogumelos e cozinhe por cerca de 5 minutos até ficarem completamente macios. Tempere tudo bem e coloque em um prato.",
         "Coloque a farinha em uma tigela com uma pitada grande de sal e pimenta e, em seguida, misture o bife na farinha temperada. Adicione os pedaços de bife à frigideira, salpicando um pouco de óleo se a frigideira parecer particularmente seca, e frite por 3-4 minutos, até ficar bem colorido. Coloque as cebolas e os cogumelos de volta na panela. Bata o crème fraîche, a mostarda e o caldo de carne e despeje na panela. Cozinhe em fogo médio por cerca de 5 minutos. Polvilhe com salsa e sirva com pappardelle ou arroz."
       ],
-      "note": "TheMealDB · Carne · Russo · https://www.themealdb.com/meal/52834"
+      "note": "TheMealDB · Carne · Russo · https://www.themealdb.com/meal/52834",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12645,7 +13117,8 @@ window.MARE_SEED = {
         "Para fazer a massa, coloque 140g de farinha simples em uma tigela e bata quatro ovos até ficar homogêneo. Aos poucos, adicione 200ml de leite e continue batendo até que a mistura fique completamente sem grumos. Tempere com sal e pimenta. Despeje a massa em uma jarra e retire as formas quentes do forno. Despeje a massa com cuidado e uniformemente nos buracos. Coloque as formas de volta no forno e deixe descansar por 20-25 minutos até que os pudins inchem e dourem. Sirva imediatamente.",
         "Coloque em um prato e adicione o molho conforme desejado."
       ],
-      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52824"
+      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52824",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12675,7 +13148,8 @@ window.MARE_SEED = {
         "Aqueça o forno a 200C, 400F, gás 6.",
         "Marque levemente a massa em intervalos de 1 cm e cubra novamente com gema de ovo batida. Asse por 20 minutos, depois abaixe o forno para 180C, 350F, gás 4 e cozinhe por mais 15 minutos. Deixe descansar por 10-15 minutos antes de fatiar e servir com acompanhamentos de sua preferência. A carne ainda deve estar rosada no centro quando você a servir."
       ],
-      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52803"
+      "note": "TheMealDB · Carne bovina · Britânica · https://www.themealdb.com/meal/52803",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12723,7 +13197,8 @@ window.MARE_SEED = {
         "Adicione as cebolas fatiadas e cozinhe até ficarem macias e levemente caramelizadas.",
         "Polvilhe o açúcar mascavo e deixe derreter na cebola."
       ],
-      "note": "TheMealDB · Carne · https://www.themealdb.com/meal/53463"
+      "note": "TheMealDB · Carne · https://www.themealdb.com/meal/53463",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12758,7 +13233,8 @@ window.MARE_SEED = {
         "Para montar os hambúrgueres, espalhe um pouco do molho Big Mac na base inferior. Cubra com um pouco de cebola picada, alface picada, uma fatia de queijo, hambúrguer de carne e algumas fatias de picles. Cubra com a camada do pão do meio e espalhe mais molho Big Mac, cebola, alface, picles, hambúrguer de carne e finalize com mais molho. Cubra com a tampa do hambúrguer para servir.",
         "Depois de esperar meia hora para que a comida assente, vá correr."
       ],
-      "note": "TheMealDB · Carne bovina · Estados Unidos · https://www.themealdb.com/meal/53013"
+      "note": "TheMealDB · Carne bovina · Estados Unidos · https://www.themealdb.com/meal/53013",
+      "servings": 2
     },
     {
       "section": "jantar",
@@ -12793,7 +13269,8 @@ window.MARE_SEED = {
         "Corte os cogumelos demolhados em tiras e guarde a água de molho. Aqueça a banha e frite as linguiças e o bacon, depois retire, deixando a gordura na frigideira. Frite a cebola na mesma frigideira por 5-8 minutos até dourar levemente.",
         "Adicione os cogumelos e o seu líquido juntamente com toda a carne cozida, cebola e ameixas secas, tampe e cozinhe por 20 minutos. Adicione os temperos, o vinho tinto e o purê de tomate e leve para ferver, tampe e cozinhe por 1 hora. Tempere bem e deixe esfriar. Manter-se-á coberto e refrigerado por até dois dias. O sabor do Bigos melhora em alguns dias. Deixe esfriar primeiro. Reaqueça até ficar bem quente antes de servir."
       ],
-      "note": "TheMealDB · Carne · Polonês · https://www.themealdb.com/meal/53300"
+      "note": "TheMealDB · Carne · Polonês · https://www.themealdb.com/meal/53300",
+      "servings": 2
     }
   ],
   "shoppingLists": [
