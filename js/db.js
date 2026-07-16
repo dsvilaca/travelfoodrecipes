@@ -936,14 +936,13 @@
       lists = null;
     }
 
-    // Contas novas: seed completo. Contas quase vazias: acrescenta só títulos em falta.
+    // Acrescenta receitas seed cujos títulos ainda não existem na conta
     if (seed.recipes?.length) {
       const have = new Set(recipes.map((r) => (r.section + "::" + r.title).toLowerCase()));
       const missing = seed.recipes.filter(
         (r) => !have.has((r.section + "::" + r.title).toLowerCase())
       );
-      const shouldSeed = !recipes.length || (recipes.length < 8 && missing.length);
-      if (shouldSeed && missing.length) {
+      if (missing.length) {
         if (isLocalMode()) {
           const db = readLocalDb();
           const now = new Date().toISOString();
@@ -981,7 +980,11 @@
             is_favorite: false,
             sort_order: recipes.length + i,
           }));
-          await rest("recipes", { method: "POST", body: recipeRows, timeoutMs: 30000 });
+          // Inserir em lotes para não rebentar o payload
+          for (let i = 0; i < recipeRows.length; i += 25) {
+            const chunk = recipeRows.slice(i, i + 25);
+            await rest("recipes", { method: "POST", body: chunk, timeoutMs: 30000 });
+          }
         }
         changed = true;
       }

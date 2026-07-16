@@ -482,7 +482,7 @@
       try {
         const seeded = await MareDB.seedIfEmpty();
         await refreshData();
-        if (seeded) toast("Receitas iniciais carregadas");
+        if (seeded) toast("Receitas e listas atualizadas");
       } catch (err) {
         console.error(err);
         toast("Não foi possível carregar os dados. Puxa para atualizar.");
