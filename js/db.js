@@ -114,13 +114,24 @@
   }
 
   function siteRedirectTo() {
+    const cfg = getConfig();
+    if (cfg.siteUrl) {
+      try {
+        const u = new URL(cfg.siteUrl);
+        return u.toString().replace(/\/?$/, "/");
+      } catch (_) { /* fall through */ }
+    }
     try {
       const u = new URL(global.location.href);
       u.hash = "";
       u.search = "";
+      // Nunca devolver localhost para emails de reset
+      if (/localhost|127\.0\.0\.1/i.test(u.hostname)) {
+        return "https://dsvilaca.github.io/travelfoodrecipes/";
+      }
       return u.origin + u.pathname.replace(/\/?$/, "/");
     } catch (_) {
-      return undefined;
+      return "https://dsvilaca.github.io/travelfoodrecipes/";
     }
   }
 
