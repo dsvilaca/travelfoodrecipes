@@ -1,5 +1,5 @@
-/* Maré service worker — cache da UI para uso offline */
-const CACHE = "mare-v3";
+/* Travel Food Recipes — cache da UI para uso offline */
+const CACHE = "tfr-v1";
 const ASSETS = [
   "./",
   "./index.html",

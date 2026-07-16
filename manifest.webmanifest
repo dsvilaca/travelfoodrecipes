@@ -1,6 +1,6 @@
 {
-  "name": "Maré — Comidas de férias",
-  "short_name": "Maré",
+  "name": "Travel Food Recipes",
+  "short_name": "Travel Food",
   "description": "Receitas e lista de compras de férias, com Supabase.",
   "start_url": "./index.html",
   "scope": "./",
