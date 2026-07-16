@@ -1,0 +1,9 @@
+# Segredos / config local (podes versionar config.example.js)
+# Se preferires NÃO publicar a anon key, descomenta a linha seguinte:
+# js/config.js
+
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*

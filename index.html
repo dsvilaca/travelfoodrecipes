@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a4a52" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Maré" />
+  <title>Maré</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon-192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- AUTH -->
+  <section id="authScreen" class="auth" hidden>
+    <div class="auth-card">
+      <p class="brand">Mar<span>é</span></p>
+      <h1>Entra na tua conta</h1>
+      <p class="auth-sub">Receitas e lista ficam no Supabase — acessíveis em qualquer sítio.</p>
+      <p id="authHint" class="auth-hint" hidden></p>
+      <form id="authForm">
+        <input type="hidden" id="authMode" value="login" />
+        <label>Email<input id="authEmail" type="email" autocomplete="username" required /></label>
+        <label>Password<input id="authPassword" type="password" autocomplete="current-password" required minlength="6" /></label>
+        <button type="submit" class="btn primary" id="authSubmit">Entrar</button>
+      </form>
+      <button type="button" class="link-btn" id="authToggle">Criar conta nova</button>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <div class="phone" id="appShell" hidden>
+    <header class="app-header">
+      <div class="brand">Mar<span>é</span></div>
+      <div class="header-actions">
+        <button class="hdr-btn" id="btnAddRecipe" type="button">+ Receita</button>
+        <button class="hdr-btn icon-only" id="statusBtn" type="button" aria-label="Estado">
+          <span class="status-dot" id="statusDot"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="screens">
+      <section class="screen active" data-screen="manha">
+        <div class="screen-intro"></div>
+        <div class="list"></div>
+      </section>
+      <section class="screen" data-screen="praia">
+        <div class="screen-intro"></div>
+        <div class="list"></div>
+      </section>
+      <section class="screen" data-screen="lanches">
+        <div class="screen-intro"></div>
+        <div class="list"></div>
+      </section>
+      <section class="screen" data-screen="jantar">
+        <div class="screen-intro jantar"></div>
+        <div class="list"></div>
+      </section>
+
+      <section class="screen" data-screen="favoritos">
+        <div class="screen-intro">
+          <p class="label">Guardado</p>
+          <h1>Favoritos</h1>
+          <p>Receitas marcadas com ★ — sync no Supabase.</p>
+          <span class="count-pill" id="favCountPill">0 favoritos</span>
+        </div>
+        <div class="list" id="favList"></div>
+      </section>
+
+      <section class="screen" data-screen="compras">
+        <div class="screen-intro">
+          <p class="label">Compras</p>
+          <h1>Lista do super</h1>
+          <p>Adiciona, marca e apaga. Tudo na cloud.</p>
+          <button type="button" class="count-pill as-btn" id="btnAddShop">+ item</button>
+        </div>
+        <div id="shopContainer"></div>
+        <div class="tip-box">
+          <strong>Ritmo do dia</strong>
+          Manhã → praia → lanche soft → jantar. Alterna atum, frango, ovo e salmão.
+        </div>
+      </section>
+
+      <section class="screen" data-screen="conta">
+        <div class="screen-intro">
+          <p class="label">Conta</p>
+          <h1>Definições</h1>
+          <p>Sessão Supabase neste telemóvel.</p>
+        </div>
+        <div class="shop-block">
+          <h2>Sessão</h2>
+          <p class="acct-email" id="userEmail">—</p>
+          <button type="button" class="btn primary" id="btnLogout">Terminar sessão</button>
+          <button type="button" class="btn ghost" id="btnSeed" style="margin-top:10px">Recarregar seed (se vazio)</button>
+        </div>
+        <div class="tip-box">
+          <strong>No iPhone</strong>
+          Safari → Partilhar → Adicionar ao Ecrã Principal. No Cursor, abre o repo GitHub para alterar a app na cloud.
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <nav class="tabbar" aria-label="Navegação">
+      <button class="tab active" data-go="manha" type="button"><span class="ico">☀</span><span class="lbl">Manhã</span></button>
+      <button class="tab" data-go="praia" type="button"><span class="ico">〰</span><span class="lbl">Praia</span></button>
+      <button class="tab" data-go="lanches" type="button"><span class="ico">◦</span><span class="lbl">Lanches</span></button>
+      <button class="tab" data-go="jantar" type="button"><span class="ico">♨</span><span class="lbl">Jantar</span></button>
+      <button class="tab" data-go="favoritos" type="button"><span class="ico">★</span><span class="lbl">Fav</span></button>
+      <button class="tab" data-go="compras" type="button"><span class="ico">☰</span><span class="lbl">Lista</span></button>
+      <button class="tab" data-go="conta" type="button"><span class="ico">◎</span><span class="lbl">Conta</span></button>
+    </nav>
+  </div>
+
+  <!-- MODAL RECEITA -->
+  <div class="modal" id="recipeModal" hidden>
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <h2 id="recipeModalTitle">Nova receita</h2>
+        <button type="button" class="hdr-btn icon-only" id="recipeModalClose">✕</button>
+      </div>
+      <form id="recipeForm" class="modal-form">
+        <input type="hidden" id="fId" />
+        <label>Secção
+          <select id="fSection">
+            <option value="manha">Manhã</option>
+            <option value="praia">Praia</option>
+            <option value="lanches">Lanches</option>
+            <option value="jantar">Jantar</option>
+          </select>
+        </label>
+        <label>Título<input id="fTitle" required maxlength="120" /></label>
+        <label>Subtítulo<input id="fSubtitle" maxlength="120" /></label>
+        <label>Proteína (nota)<input id="fProtein" placeholder="~25 g proteína" maxlength="60" /></label>
+        <label>Tags (vírgulas)<input id="fTags" placeholder="fria, 10 min" /></label>
+        <label>Ingredientes (1 por linha)<textarea id="fIngredients" rows="5"></textarea></label>
+        <label>Passos (1 por linha)<textarea id="fSteps" rows="5"></textarea></label>
+        <label>Nota<input id="fNote" maxlength="240" /></label>
+        <button type="submit" class="btn primary">Guardar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL SHOP -->
+  <div class="modal" id="shopModal" hidden>
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <h2>Novo item</h2>
+        <button type="button" class="hdr-btn icon-only" id="shopModalClose">✕</button>
+      </div>
+      <form id="shopForm" class="modal-form">
+        <label>Nome<input id="sLabel" required maxlength="120" /></label>
+        <label>Categoria
+          <select id="sCategory">
+            <option value="proteina">Proteína</option>
+            <option value="bases">Bases</option>
+            <option value="frescos">Frescos &amp; extras</option>
+          </select>
+        </label>
+        <button type="submit" class="btn primary">Adicionar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/seed-data.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
