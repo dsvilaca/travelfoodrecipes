@@ -30,6 +30,8 @@
 html, body {
   height: 100%;
   width: 100%;
+  min-height: 100%;
+  min-height: 100dvh;
   overflow: hidden;
   font-family: var(--font-body);
   color: var(--ink);
@@ -41,9 +43,15 @@ html, body {
 button, summary, input, select, textarea { font: inherit; color: inherit; }
 
 .app-frame {
-  height: 100%;
+  position: fixed;
+  inset: 0;
   width: 100%;
-  position: relative;
+  height: 100%;
+  height: 100dvh;
+  max-width: none;
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--bg);
 }
 
 .phone {
@@ -56,29 +64,26 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  body {
-    display: grid;
-    place-items: center;
-    background:
-      radial-gradient(ellipse at 15% 10%, rgba(42, 107, 116, 0.22), transparent 45%),
-      radial-gradient(ellipse at 90% 85%, rgba(232, 163, 58, 0.18), transparent 40%),
-      #e7eeec;
-    padding: 24px;
+/* Em ecrãs largos, o conteúdo fica legível sem “caixa de telemóvel” */
+@media (min-width: 900px) {
+  .screens .screen {
+    max-width: 720px;
+    margin-inline: auto;
   }
 
-  .app-frame {
-    width: min(430px, 100%);
-    height: min(860px, 100%);
-    border-radius: 28px;
-    overflow: hidden;
-    box-shadow: 0 24px 60px rgba(20, 40, 44, 0.18);
-    border: 1px solid rgba(20, 40, 44, 0.08);
-    background: var(--bg);
+  .app-header,
+  .tabbar {
+    padding-left: max(12px, calc((100% - 720px) / 2));
+    padding-right: max(12px, calc((100% - 720px) / 2));
   }
 
-  .auth, .phone {
-    border-radius: 0;
+  .tabbar {
+    grid-template-columns: repeat(7, minmax(72px, 1fr));
+    justify-content: center;
+  }
+
+  .tab .lbl {
+    font-size: 0.72rem;
   }
 }
 
