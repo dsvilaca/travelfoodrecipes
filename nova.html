@@ -57,7 +57,7 @@
     <h1>Travel Food Recipes</h1>
     <p id="msg">A limpar a versão antiga deste telemóvel…</p>
     <button class="btn" id="btn" type="button">Abrir app nova</button>
-    <a class="secondary" href="./index.html?v=7">Se não abrir, toca aqui</a>
+    <a class="secondary" href="./index.html?v=8">Se não abrir, toca aqui</a>
   </div>
   <script>
     async function limpar() {
@@ -77,7 +77,7 @@
     async function abrir() {
       document.getElementById("msg").textContent = "A abrir a versão nova…";
       await limpar();
-      location.href = "./index.html?v=7&t=" + Date.now();
+      location.href = "./index.html?v=8&t=" + Date.now();
     }
 
     document.getElementById("btn").addEventListener("click", abrir);

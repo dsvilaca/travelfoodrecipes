@@ -21,7 +21,7 @@
   function getClient() {
     if (client) return client;
     if (clientFailed || !hasSupabaseLib()) {
-      throw new Error("Biblioteca Supabase indisponível.");
+      throw new Error("Recarrega a página e tenta outra vez.");
     }
     const cfg = getConfig();
     try {
@@ -88,31 +88,29 @@
     };
   }
 
+  function authErrorCode(err) {
+    return err?.code || err?.error_code || "";
+  }
+
   function mapAuthError(err) {
-    const code = err?.code || err?.error_code || "";
-    const msg = String(err?.message || err?.msg || err || "Erro de autenticação");
-    if (code === "over_email_send_rate_limit" || /rate limit|Timeout/i.test(msg)) {
-      return new Error(
-        "Supabase bloqueou emails (rate limit). Espera ~1 hora OU no dashboard: Authentication → Rate Limits. Também desliga Confirm email."
-      );
+    const code = authErrorCode(err);
+    const msg = String(err?.message || err?.msg || err || "");
+    if (code === "over_email_send_rate_limit" || /rate limit/i.test(msg)) {
+      return new Error("Demasiadas tentativas. Espera um pouco e tenta outra vez.");
     }
     if (code === "email_not_confirmed" || /not confirmed/i.test(msg)) {
-      return new Error(
-        "Email não confirmado. No Supabase: Authentication → Providers → Email → desliga «Confirm email»."
-      );
+      return new Error("Confirma o email ou recupera a password.");
     }
     if (code === "invalid_credentials" || /invalid login/i.test(msg)) {
-      return new Error(
-        "Login inválido. Se acabaste de criar conta: desliga Confirm email no Supabase, apaga o utilizador em Authentication → Users, e cria de novo."
-      );
+      return new Error("Email ou password incorretos.");
     }
     if (code === "user_already_exists" || /already registered|already exists/i.test(msg)) {
-      return new Error("Conta já existe — muda para Entrar, ou apaga o user no Supabase e cria de novo.");
+      return new Error("Este email já tem conta. Toca em Entrar ou recupera a password.");
     }
-    if (code === "email_provider_disabled") {
-      return new Error("Email provider desativado no Supabase.");
+    if (/Timeout/i.test(msg)) {
+      return new Error("Ligação lenta. Tenta outra vez.");
     }
-    return new Error(msg);
+    return new Error("Não foi possível entrar. Tenta outra vez.");
   }
 
   function siteRedirectTo() {
@@ -233,7 +231,7 @@
         options: { emailRedirectTo: siteRedirectTo() },
       }),
       10000,
-      "Timeout no registo Supabase"
+      "Timeout no registo"
     );
     if (error) throw error;
     if (data?.session) {
@@ -243,15 +241,12 @@
       writeLocalDb(db);
       return data;
     }
-    // Conta criada sem sessão = confirm email obrigatório
-    throw new Error(
-      "Conta criada no Supabase mas sem sessão: «Confirm email» está ligado. Desliga em Authentication → Providers → Email → Confirm email, apaga o user em Users se preciso, e volta a Criar conta."
-    );
+    throw new Error("Não foi possível criar a conta. Tenta Entrar ou recuperar a password.");
   }
 
   async function signIn(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
-    if (!hasSupabaseLib()) throw new Error("Supabase JS não carregou. Recarrega a página.");
+    if (!hasSupabaseLib()) throw new Error("Recarrega a página e tenta outra vez.");
     try {
       return await cloudSignIn(normalized, password);
     } catch (err) {
@@ -261,16 +256,36 @@
 
   async function signUp(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
-    if (!hasSupabaseLib()) throw new Error("Supabase JS não carregou. Recarrega a página.");
+    if (!hasSupabaseLib()) throw new Error("Recarrega a página e tenta outra vez.");
     try {
-      // Se já existir, tenta login direto
-      try {
-        return await cloudSignIn(normalized, password);
-      } catch (_) { /* cria nova */ }
       return await cloudSignUp(normalized, password);
     } catch (err) {
+      const code = authErrorCode(err);
+      const msg = String(err?.message || err?.msg || "");
+      if (code === "user_already_exists" || /already registered|already exists/i.test(msg)) {
+        try {
+          return await cloudSignIn(normalized, password);
+        } catch (_) {
+          throw new Error("Este email já tem conta. Toca em Entrar ou recupera a password.");
+        }
+      }
       throw mapAuthError(err);
     }
+  }
+
+  async function recoverPassword(email) {
+    const normalized = String(email || "").trim().toLowerCase();
+    if (!normalized) throw new Error("Escreve o teu email.");
+    if (!hasSupabaseLib()) throw new Error("Recarrega a página e tenta outra vez.");
+    const { error } = await withTimeout(
+      getClient().auth.resetPasswordForEmail(normalized, {
+        redirectTo: siteRedirectTo(),
+      }),
+      10000,
+      "Timeout"
+    );
+    if (error) throw mapAuthError(error);
+    return true;
   }
 
   function signUpLocal(email, password, extra = {}) {
@@ -615,6 +630,7 @@
     signUp,
     signInLocal,
     signUpLocal,
+    recoverPassword,
     signOut,
     isLocalMode,
     probeStatus,

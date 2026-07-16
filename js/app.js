@@ -328,46 +328,23 @@
 
   function updateAccountMeta() {
     const emailEl = $("#userEmail");
-    const modeEl = $("#authModeLabel");
     if (emailEl) emailEl.textContent = state.user?.email || "";
-    if (modeEl) {
-      modeEl.textContent = MareDB.isLocalMode()
-        ? "Modo local (NÃO está na base de dados)"
-        : "Ligado ao Supabase (base de dados)";
-    }
   }
 
-  async function afterLogin(session, notice) {
+  async function afterLogin(session) {
     state.user = session.user;
     showAuth(false);
     go("manha");
     updateAccountMeta();
-    toast(notice || "Sessão iniciada");
     try {
       const seeded = await MareDB.seedIfEmpty();
-      if (seeded) toast("Receitas iniciais carregadas na BD");
+      if (seeded) toast("Receitas iniciais carregadas");
       await refreshData();
     } catch (err) {
       console.error(err);
-      toast(err.message || "Erro a carregar dados da BD");
-      authMessage(err.message || "Erro a carregar dados da BD");
+      toast("Não foi possível carregar os dados. Tenta outra vez.");
     }
     updateAccountMeta();
-  }
-
-  async function refreshDbStatus() {
-    const el = $("#dbStatus");
-    if (!el || !globalThis.MareDB?.probeStatus) return;
-    el.textContent = "A verificar Supabase…";
-    el.className = "db-status";
-    try {
-      const status = await MareDB.probeStatus();
-      el.textContent = status.message;
-      el.className = "db-status " + (status.ok ? "ok" : "warn");
-    } catch (err) {
-      el.textContent = err.message || "Erro no diagnóstico";
-      el.className = "db-status warn";
-    }
   }
 
   async function handleAuthSubmit(e) {
@@ -375,36 +352,31 @@
     if (state.authBusy) return;
     const email = ($("#authEmail")?.value || "").trim();
     const password = $("#authPassword")?.value || "";
-    const mode = $("#authMode")?.value || "signup";
+    const mode = $("#authMode")?.value || "login";
     if (!email || password.length < 6) {
       authMessage("Escreve o email e uma password com pelo menos 6 caracteres.");
       $("#authPassword")?.focus();
       return;
     }
     if (!globalThis.MareDB) {
-      authMessage("Erro a carregar a app. Abre nova.html outra vez.");
+      authMessage("Recarrega a página e tenta outra vez.");
       return;
     }
     const submit = $("#authSubmit");
     const prevLabel = submit.textContent;
     state.authBusy = true;
     submit.disabled = true;
-    submit.textContent = "A ligar à BD…";
-    authMessage("A autenticar no Supabase (máx. 10s)…");
+    submit.textContent = "A entrar…";
+    $("#authHint").hidden = true;
     try {
       const data = mode === "signup"
         ? await MareDB.signUp(email, password)
         : await MareDB.signIn(email, password);
-      if (!data?.session) throw new Error("Não foi possível obter sessão da BD.");
-      authMessage("Sessão OK — a carregar dados…");
-      await afterLogin(
-        data.session,
-        MareDB.isLocalMode() ? "Entraste em modo local (sem BD)" : "Ligado à base de dados"
-      );
+      if (!data?.session) throw new Error("Não foi possível entrar.");
+      await afterLogin(data.session);
     } catch (err) {
       console.error(err);
-      authMessage(err.message || "Erro de autenticação");
-      refreshDbStatus();
+      authMessage(err.message || "Não foi possível entrar.");
     } finally {
       state.authBusy = false;
       submit.disabled = false;
@@ -422,7 +394,6 @@
       handleAuthSubmit(e);
     });
 
-    // type=button evita quirks de submit no iOS; o clique trata do login
     submit.setAttribute("type", "button");
     submit.addEventListener("click", (e) => {
       e.preventDefault();
@@ -432,14 +403,31 @@
     $("#authToggle")?.addEventListener("click", () => {
       const mode = $("#authMode");
       if (!mode) return;
+      $("#authHint").hidden = true;
       if (mode.value === "login") {
         mode.value = "signup";
         $("#authSubmit").textContent = "Criar conta";
         $("#authToggle").textContent = "Já tens conta? Entrar";
+        $("#authPassword").setAttribute("autocomplete", "new-password");
       } else {
         mode.value = "login";
         $("#authSubmit").textContent = "Entrar";
         $("#authToggle").textContent = "Criar conta nova";
+        $("#authPassword").setAttribute("autocomplete", "current-password");
+      }
+    });
+
+    $("#authForgot")?.addEventListener("click", async () => {
+      const email = ($("#authEmail")?.value || "").trim();
+      if (!email) {
+        authMessage("Escreve o teu email primeiro.");
+        return;
+      }
+      try {
+        await MareDB.recoverPassword(email);
+        authMessage("Se o email existir, enviámos um link para redefineires a password.");
+      } catch (err) {
+        authMessage(err.message || "Não foi possível enviar o email.");
       }
     });
   }
@@ -457,16 +445,6 @@
       state.user = null;
       showAuth(true);
       toast("Sessão terminada");
-    });
-    $("#btnSeed")?.addEventListener("click", async () => {
-      if (!confirm("Isto só adiciona dados se a conta estiver vazia. Continuar?")) return;
-      try {
-        const seeded = await MareDB.seedIfEmpty();
-        await refreshData();
-        toast(seeded ? "Seed feito" : "Já tinhas dados — nada alterado");
-      } catch (err) {
-        toast(err.message || "Erro no seed");
-      }
     });
 
     document.addEventListener("click", (e) => {
@@ -504,22 +482,33 @@
         return;
       }
 
-      refreshDbStatus();
-
       const session = await MareDB.getSession();
       if (session && !MareDB.isLocalMode()) {
-        await afterLogin(session, "Sessão Supabase restaurada");
+        await afterLogin(session);
       } else {
         showAuth(true);
       }
 
       try {
-        MareDB.getClient().auth.onAuthStateChange((_event, session) => {
+        MareDB.getClient().auth.onAuthStateChange(async (event, session) => {
           if (MareDB.isLocalMode()) return;
+          if (event === "PASSWORD_RECOVERY" && session) {
+            const nova = prompt("Nova password (mín. 6 caracteres):");
+            if (nova && nova.length >= 6) {
+              try {
+                const { error } = await MareDB.getClient().auth.updateUser({ password: nova });
+                if (error) throw error;
+                toast("Password atualizada");
+                await afterLogin(session);
+              } catch (err) {
+                authMessage("Não foi possível atualizar a password.");
+              }
+            }
+            return;
+          }
           if (!session && state.user && !state.authBusy) {
             state.user = null;
             showAuth(true);
-            refreshDbStatus();
           }
         });
       } catch (_) { /* ignore */ }
