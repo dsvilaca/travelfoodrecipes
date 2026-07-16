@@ -85,3 +85,8 @@ create policy "shopping_update_own" on public.shopping_items
   for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
 create policy "shopping_delete_own" on public.shopping_items
   for delete using (auth.uid() = user_id);
+
+-- Permissões da API (além do RLS)
+grant usage on schema public to anon, authenticated;
+grant select, insert, update, delete on public.recipes to authenticated;
+grant select, insert, update, delete on public.shopping_items to authenticated;

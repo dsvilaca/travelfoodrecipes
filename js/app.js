@@ -160,16 +160,18 @@
     Object.keys(SECTIONS).forEach(renderSection);
     renderFavorites();
     renderShopping();
-    $("#userEmail").textContent = state.user?.email || "";
+    updateAccountMeta();
   }
 
   function openRecipeModal(recipe) {
     const modal = $("#recipeModal");
     $("#recipeModalTitle").textContent = recipe?.id ? "Editar receita" : "Nova receita";
     $("#fId").value = recipe?.id || "";
-    $("#fSection").value = recipe?.section || state.screen === "favoritos" || state.screen === "compras" || state.screen === "conta"
-      ? "praia"
-      : (SECTIONS[state.screen] ? state.screen : "praia");
+    let section = recipe?.section;
+    if (!section) {
+      section = SECTIONS[state.screen] ? state.screen : "praia";
+    }
+    $("#fSection").value = section;
     $("#fTitle").value = recipe?.title || "";
     $("#fSubtitle").value = recipe?.subtitle || "";
     $("#fProtein").value = recipe?.protein_note || "";
@@ -312,18 +314,33 @@
     }
   }
 
-  async function afterLogin(session) {
+  function updateAccountMeta() {
+    const emailEl = $("#userEmail");
+    const modeEl = $("#authModeLabel");
+    if (emailEl) emailEl.textContent = state.user?.email || "";
+    if (modeEl) {
+      modeEl.textContent = MareDB.isLocalMode()
+        ? "Modo neste telemóvel (dados neste dispositivo)"
+        : "Modo cloud (Supabase)";
+    }
+  }
+
+  async function afterLogin(session, notice) {
     state.user = session.user;
     showAuth(false);
-    toast("A preparar dados…");
+    updateAccountMeta();
+    toast(notice || "A preparar dados…");
     try {
       const seeded = await MareDB.seedIfEmpty();
       if (seeded) toast("Receitas iniciais carregadas");
     } catch (err) {
       console.error(err);
-      toast("Erro no seed: corre o schema.sql no Supabase");
+      toast(MareDB.isLocalMode()
+        ? (err.message || "Erro ao carregar dados iniciais")
+        : "Erro no seed: corre o schema.sql no Supabase");
     }
     await refreshData();
+    updateAccountMeta();
     go("manha");
   }
 
@@ -334,22 +351,31 @@
       const password = $("#authPassword").value;
       const mode = $("#authMode").value;
       if (!email || password.length < 6) return toast("Email + password (mín. 6)");
+      const submit = $("#authSubmit");
+      submit.disabled = true;
       try {
         if (mode === "signup") {
           const data = await MareDB.signUp(email, password);
           if (!data.session) {
-            toast("Conta criada — confirma o email se pedido, ou faz login");
+            toast("Conta criada — confirma o email se pedido, ou usa «Neste telemóvel»");
             $("#authMode").value = "login";
             $("#authSubmit").textContent = "Entrar";
             return;
           }
-          await afterLogin(data.session);
+          await afterLogin(data.session, data.notice || (data.local ? "Conta pronta neste telemóvel" : null));
         } else {
           const data = await MareDB.signIn(email, password);
-          await afterLogin(data.session);
+          await afterLogin(data.session, data.local ? "Sessão local neste telemóvel" : null);
         }
       } catch (err) {
         toast(err.message || "Erro de autenticação");
+        const hint = $("#authHint");
+        if (hint) {
+          hint.textContent = err.message || "Erro de autenticação";
+          hint.hidden = false;
+        }
+      } finally {
+        submit.disabled = false;
       }
     });
 
@@ -363,6 +389,18 @@
         mode.value = "login";
         $("#authSubmit").textContent = "Entrar";
         $("#authToggle").textContent = "Criar conta nova";
+      }
+    });
+
+    $("#authLocalBtn")?.addEventListener("click", async () => {
+      const email = $("#authEmail").value.trim();
+      const password = $("#authPassword").value;
+      if (!email || password.length < 6) return toast("Email + password (mín. 6)");
+      try {
+        const data = await MareDB.signInLocal(email, password);
+        await afterLogin(data.session, "Modo neste telemóvel — podes adicionar e apagar à vontade");
+      } catch (err) {
+        toast(err.message || "Erro");
       }
     });
   }
@@ -438,6 +476,7 @@
     }
 
     MareDB.getClient().auth.onAuthStateChange((_event, session) => {
+      if (MareDB.isLocalMode()) return;
       if (!session) {
         state.user = null;
         showAuth(true);

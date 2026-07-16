@@ -23,15 +23,16 @@
     <div class="auth-card">
       <p class="brand">Mar<span>é</span></p>
       <h1>Entra na tua conta</h1>
-      <p class="auth-sub">Receitas e lista ficam no Supabase — acessíveis em qualquer sítio.</p>
+      <p class="auth-sub">Cria conta com email + password. Se o Supabase pedir confirmação de email, usa «Neste telemóvel» para começar já.</p>
       <p id="authHint" class="auth-hint" hidden></p>
       <form id="authForm">
-        <input type="hidden" id="authMode" value="login" />
+        <input type="hidden" id="authMode" value="signup" />
         <label>Email<input id="authEmail" type="email" autocomplete="username" required /></label>
-        <label>Password<input id="authPassword" type="password" autocomplete="current-password" required minlength="6" /></label>
-        <button type="submit" class="btn primary" id="authSubmit">Entrar</button>
+        <label>Password<input id="authPassword" type="password" autocomplete="new-password" required minlength="6" /></label>
+        <button type="submit" class="btn primary" id="authSubmit">Criar conta</button>
       </form>
-      <button type="button" class="link-btn" id="authToggle">Criar conta nova</button>
+      <button type="button" class="btn ghost" id="authLocalBtn">Neste telemóvel (sem email)</button>
+      <button type="button" class="link-btn" id="authToggle">Já tens conta? Entrar</button>
     </div>
   </section>
 
@@ -80,7 +81,7 @@
           <p class="label">Compras</p>
           <h1>Lista do super</h1>
           <p>Adiciona, marca e apaga. Tudo na cloud.</p>
-          <button type="button" class="count-pill as-btn" id="btnAddShop">+ item</button>
+          <button type="button" class="count-pill as-btn" id="btnAddShop">+ Adicionar item</button>
         </div>
         <div id="shopContainer"></div>
         <div class="tip-box">
@@ -98,6 +99,7 @@
         <div class="shop-block">
           <h2>Sessão</h2>
           <p class="acct-email" id="userEmail">—</p>
+          <p class="acct-mode" id="authModeLabel">—</p>
           <button type="button" class="btn primary" id="btnLogout">Terminar sessão</button>
           <button type="button" class="btn ghost" id="btnSeed" style="margin-top:10px">Recarregar seed (se vazio)</button>
         </div>
