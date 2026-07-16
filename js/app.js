@@ -493,16 +493,23 @@
         MareDB.getClient().auth.onAuthStateChange(async (event, session) => {
           if (MareDB.isLocalMode()) return;
           if (event === "PASSWORD_RECOVERY" && session) {
-            const nova = prompt("Nova password (mín. 6 caracteres):");
-            if (nova && nova.length >= 6) {
-              try {
-                const { error } = await MareDB.getClient().auth.updateUser({ password: nova });
-                if (error) throw error;
-                toast("Password atualizada");
-                await afterLogin(session);
-              } catch (err) {
-                authMessage("Não foi possível atualizar a password.");
+            showAuth(true);
+            let nova = "";
+            while (!nova || nova.length < 6) {
+              nova = prompt("Escolhe a nova password (mín. 6 caracteres):") || "";
+              if (!nova) {
+                authMessage("Password não atualizada. Pede outro email em Recuperar password.");
+                return;
               }
+              if (nova.length < 6) authMessage("A password precisa de pelo menos 6 caracteres.");
+            }
+            try {
+              const { error } = await MareDB.getClient().auth.updateUser({ password: nova });
+              if (error) throw error;
+              toast("Password atualizada");
+              await afterLogin(session);
+            } catch (err) {
+              authMessage("Não foi possível atualizar a password. Tenta outra vez.");
             }
             return;
           }

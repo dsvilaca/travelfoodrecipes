@@ -21,7 +21,10 @@ Não precisas de “ligar” GitHub ao Supabase. A app no Pages fala diretamente
    - chave **`anon` `public`** (começa por `eyJ...`)
 3. Cola a anon key em [`js/config.js`](js/config.js)
 4. (Recomendado para uso pessoal) **Authentication → Providers → Email** → desliga **Confirm email**
-5. **Não uses** a password da base de dados no frontend
+5. **Authentication → URL Configuration**:
+   - **Site URL:** `https://dsvilaca.github.io/travelfoodrecipes/`
+   - **Redirect URLs:** adiciona `https://dsvilaca.github.io/travelfoodrecipes/**`
+6. **Não uses** a password da base de dados no frontend
 
 ### 2) GitHub + Pages
 

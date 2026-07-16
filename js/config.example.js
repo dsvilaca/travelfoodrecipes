@@ -5,4 +5,6 @@ window.MARE_CONFIG = {
   // Publishable key (sb_publishable_...) ou anon JWT (eyJ...)
   // NUNCA uses a secret key (sb_secret_...) nem a password da base de dados
   supabaseAnonKey: "sb_publishable_...",
+  // URL pública da app (GitHub Pages, etc.) — também mete isto no Supabase → Authentication → URL Configuration
+  siteUrl: "https://TEU_USER.github.io/TEU_REPO/",
 };
