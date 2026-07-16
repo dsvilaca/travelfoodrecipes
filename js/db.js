@@ -190,14 +190,53 @@
     }
   }
 
+  const DIET_ALLOWED = new Set([
+    // estilo
+    "vegetarian", "vegan", "pescatarian", "no_pork", "no_beef", "no_alcohol",
+    // alergénios EU (+ aliases antigos)
+    "gluten", "crustaceans", "eggs", "fish", "peanuts", "soy", "milk",
+    "tree_nuts", "celery", "mustard", "sesame", "sulphites", "lupin", "molluscs",
+    "gluten_free", "lactose_free", "nut_free", "shellfish_free",
+  ]);
+
   function normalizeDiet(diet) {
-    const allowed = new Set([
-      "vegetarian", "vegan", "gluten_free", "lactose_free",
-      "nut_free", "shellfish_free", "no_pork",
-    ]);
-    return (Array.isArray(diet) ? diet : [])
+    const raw = (Array.isArray(diet) ? diet : [])
       .map((d) => String(d || "").trim())
-      .filter((d) => allowed.has(d));
+      .filter((d) => DIET_ALLOWED.has(d));
+    const out = new Set();
+    for (const id of raw) {
+      if (id === "gluten_free") out.add("gluten");
+      else if (id === "lactose_free") out.add("milk");
+      else if (id === "nut_free") {
+        out.add("tree_nuts");
+        out.add("peanuts");
+      } else if (id === "shellfish_free") {
+        out.add("crustaceans");
+        out.add("molluscs");
+      } else {
+        out.add(id);
+      }
+    }
+    return [...out];
+  }
+
+  function normalizeExcludeFoods(list) {
+    const seen = new Set();
+    const out = [];
+    for (const raw of Array.isArray(list) ? list : []) {
+      const t = String(raw || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+      if (t.length < 2 || t.length > 40 || seen.has(t)) continue;
+      seen.add(t);
+      out.push(t);
+      if (out.length >= 40) break;
+    }
+    return out;
   }
 
   function writeLocalDb(db) {
@@ -1108,25 +1147,45 @@
 
   async function getPreferences() {
     const session = await getSession();
-    if (!session?.user?.id) return { diet: [] };
+    if (!session?.user?.id) return { diet: [], exclude_foods: [] };
+    const cached = cacheGet("preferences", { diet: [], exclude_foods: [] });
 
     if (isLocalMode()) {
       const db = readLocalDb();
       const row = db.preferences?.[session.user.id];
-      return { diet: normalizeDiet(row?.diet) };
+      return {
+        diet: normalizeDiet(row?.diet),
+        exclude_foods: normalizeExcludeFoods(row?.exclude_foods ?? cached.exclude_foods),
+      };
     }
 
     try {
-      const data = await rest(
-        "user_preferences?select=diet,updated_at&user_id=eq."
-          + encodeURIComponent(session.user.id)
-      );
+      let data;
+      try {
+        data = await rest(
+          "user_preferences?select=diet,exclude_foods,updated_at&user_id=eq."
+            + encodeURIComponent(session.user.id)
+        );
+      } catch (_) {
+        data = await rest(
+          "user_preferences?select=diet,updated_at&user_id=eq."
+            + encodeURIComponent(session.user.id)
+        );
+      }
       const row = Array.isArray(data) ? data[0] : null;
-      const prefs = { diet: normalizeDiet(row?.diet) };
+      const prefs = {
+        diet: normalizeDiet(row?.diet),
+        exclude_foods: normalizeExcludeFoods(
+          row?.exclude_foods != null ? row.exclude_foods : cached.exclude_foods
+        ),
+      };
       cacheSet("preferences", prefs);
       return prefs;
     } catch (_) {
-      return cacheGet("preferences", { diet: [] });
+      return {
+        diet: normalizeDiet(cached.diet),
+        exclude_foods: normalizeExcludeFoods(cached.exclude_foods),
+      };
     }
   }
 
@@ -1134,13 +1193,15 @@
     const session = await getSession();
     if (!session?.user?.id) throw new Error("Sem sessão");
     const diet = normalizeDiet(prefs?.diet);
-    const payload = { diet };
+    const exclude_foods = normalizeExcludeFoods(prefs?.exclude_foods);
+    const payload = { diet, exclude_foods };
 
     if (isLocalMode()) {
       const db = readLocalDb();
       db.preferences = db.preferences || {};
       db.preferences[session.user.id] = {
         diet,
+        exclude_foods,
         updated_at: new Date().toISOString(),
       };
       writeLocalDb(db);
@@ -1148,18 +1209,32 @@
       return payload;
     }
 
-    const body = {
+    const baseBody = {
       user_id: session.user.id,
       diet,
       updated_at: new Date().toISOString(),
     };
-    const data = await rest("user_preferences", {
-      method: "POST",
-      body,
-      prefer: "resolution=merge-duplicates,return=representation",
-    });
+    let data;
+    try {
+      data = await rest("user_preferences", {
+        method: "POST",
+        body: { ...baseBody, exclude_foods },
+        prefer: "resolution=merge-duplicates,return=representation",
+      });
+    } catch (_) {
+      data = await rest("user_preferences", {
+        method: "POST",
+        body: baseBody,
+        prefer: "resolution=merge-duplicates,return=representation",
+      });
+    }
     const row = Array.isArray(data) ? data[0] : data;
-    const saved = { diet: normalizeDiet(row?.diet ?? diet) };
+    const saved = {
+      diet: normalizeDiet(row?.diet ?? diet),
+      exclude_foods: normalizeExcludeFoods(
+        row?.exclude_foods != null ? row.exclude_foods : exclude_foods
+      ),
+    };
     cacheSet("preferences", saved);
     return saved;
   }

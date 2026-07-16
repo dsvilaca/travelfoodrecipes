@@ -119,6 +119,7 @@ create policy "shopping_delete_own" on public.shopping_items
 create table if not exists public.user_preferences (
   user_id uuid primary key references auth.users (id) on delete cascade,
   diet text[] not null default '{}',
+  exclude_foods text[] not null default '{}',
   updated_at timestamptz not null default now()
 );
 
