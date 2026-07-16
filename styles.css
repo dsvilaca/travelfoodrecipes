@@ -280,7 +280,8 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 .recipe {
   background: var(--sheet);
   border-radius: var(--radius);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(20, 40, 44, 0.06);
+  box-shadow: 0 4px 14px rgba(20, 40, 44, 0.04);
   overflow: hidden;
 }
 
