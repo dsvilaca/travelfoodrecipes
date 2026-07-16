@@ -10,17 +10,17 @@
   <meta name="apple-mobile-web-app-title" content="Travel Food Recipes" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Travel Food Recipes</title>
-  <link rel="manifest" href="manifest.webmanifest?v=5" />
-  <link rel="icon" href="icon-192.png?v=5" sizes="192x192" />
-  <link rel="apple-touch-icon" href="icon-192.png?v=5" />
+  <link rel="manifest" href="manifest.webmanifest?v=6" />
+  <link rel="icon" href="icon-192.png?v=6" sizes="192x192" />
+  <link rel="apple-touch-icon" href="icon-192.png?v=6" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
   <script>
     /* Limpa service workers / caches antigos para as atualizações aparecerem */
     (function () {
-      var APP_BUILD = "5";
+      var APP_BUILD = "6";
       try {
         if (localStorage.getItem("tfr-build") !== APP_BUILD) {
           localStorage.setItem("tfr-build", APP_BUILD);
@@ -44,31 +44,33 @@
   <section id="authScreen" class="auth" hidden>
     <div class="auth-card">
       <div class="brand brand-auth">
-        <img class="brand-mark" src="icon-192.png?v=5" width="56" height="56" alt="" />
+        <img class="brand-mark" src="icon-192.png?v=6" width="56" height="56" alt="" />
         <div class="brand-text">
           <span class="brand-title">Travel Food</span>
           <span class="brand-sub">Recipes</span>
         </div>
       </div>
-      <p class="build-pill" id="buildPill">Versão 5</p>
+      <p class="build-pill" id="buildPill">Versão 6</p>
       <h1>Entra na tua conta</h1>
-      <p class="auth-sub">Email + password (mín. 6 caracteres). Funciona já neste telemóvel — mesmo se o Supabase estiver com limite de emails.</p>
+      <p class="auth-sub">Escreve uma password com pelo menos 6 caracteres e toca em Criar conta.</p>
       <p id="authHint" class="auth-hint" hidden></p>
-      <form id="authForm">
+      <form id="authForm" action="javascript:void(0)" novalidate>
         <input type="hidden" id="authMode" value="signup" />
-        <label>Email<input id="authEmail" type="email" autocomplete="username" required value="vilaca97@hotmail.com" /></label>
-        <label>Password<input id="authPassword" type="password" autocomplete="new-password" required minlength="6" placeholder="mínimo 6 caracteres" /></label>
-        <button type="submit" class="btn primary" id="authSubmit">Criar conta</button>
+        <label>Email<input id="authEmail" type="email" autocomplete="username" value="vilaca97@hotmail.com" /></label>
+        <label>Password<input id="authPassword" type="password" autocomplete="new-password" placeholder="mínimo 6 caracteres" /></label>
+        <button type="button" class="btn primary" id="authSubmit">Criar conta</button>
       </form>
       <button type="button" class="link-btn" id="authToggle">Já tens conta? Entrar</button>
     </div>
   </section>
 
+  <div class="toast" id="toast" role="status" hidden></div>
+
   <!-- APP -->
   <div class="phone" id="appShell" hidden>
     <header class="app-header">
       <div class="brand brand-header">
-        <img class="brand-mark" src="icon-192.png?v=5" width="32" height="32" alt="" />
+        <img class="brand-mark" src="icon-192.png?v=6" width="32" height="32" alt="" />
         <div class="brand-text">
           <span class="brand-title">Travel Food</span>
           <span class="brand-sub">Recipes</span>
@@ -144,8 +146,6 @@
       </section>
     </div>
 
-    <div class="toast" id="toast" role="status"></div>
-
     <nav class="tabbar" aria-label="Navegação">
       <button class="tab active" data-go="manha" type="button"><span class="ico">☀</span><span class="lbl">Manhã</span></button>
       <button class="tab" data-go="praia" type="button"><span class="ico">〰</span><span class="lbl">Praia</span></button>
@@ -208,9 +208,9 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/config.js?v=5"></script>
-  <script src="js/seed-data.js?v=5"></script>
-  <script src="js/db.js?v=5"></script>
-  <script src="js/app.js?v=5"></script>
+  <script src="js/config.js?v=6"></script>
+  <script src="js/seed-data.js?v=6"></script>
+  <script src="js/db.js?v=6"></script>
+  <script src="js/app.js?v=6"></script>
 </body>
 </html>
