@@ -134,10 +134,37 @@
     return (arr || []).join("\n");
   }
 
+  const MORE_SCREENS = new Set(["lanches", "favoritos", "compras", "conta"]);
+
+  function closeMoreSheet() {
+    const sheet = $("#moreSheet");
+    const btn = $("#btnMoreMenu");
+    if (sheet) sheet.hidden = true;
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  }
+
+  function openMoreSheet() {
+    const sheet = $("#moreSheet");
+    const btn = $("#btnMoreMenu");
+    if (sheet) sheet.hidden = false;
+    if (btn) btn.setAttribute("aria-expanded", "true");
+    $$(".more-item").forEach((item) => {
+      item.classList.toggle("active", item.dataset.go === state.screen);
+    });
+  }
+
+  function toggleMoreSheet() {
+    const sheet = $("#moreSheet");
+    if (!sheet || sheet.hidden) openMoreSheet();
+    else closeMoreSheet();
+  }
+
   function go(name) {
     state.screen = name;
     $$(".screen").forEach((s) => s.classList.toggle("active", s.dataset.screen === name));
-    $$(".tab").forEach((t) => t.classList.toggle("active", t.dataset.go === name));
+    $$(".tab[data-go]").forEach((t) => t.classList.toggle("active", t.dataset.go === name));
+    $("#btnMoreMenu")?.classList.toggle("active", MORE_SCREENS.has(name));
+    closeMoreSheet();
     const active = $(".screen.active");
     if (active) active.scrollTop = 0;
     if (name === "favoritos") renderFavorites();
@@ -1367,8 +1394,23 @@
   }
 
   function wireUi() {
-    $$(".tab").forEach((tab) => tab.addEventListener("click", () => go(tab.dataset.go)));
+    $$(".tab[data-go]").forEach((tab) => tab.addEventListener("click", () => go(tab.dataset.go)));
+    $("#btnTabAdd")?.addEventListener("click", () => {
+      closeMoreSheet();
+      openRecipeModal(null);
+    });
     $("#btnAddRecipe")?.addEventListener("click", () => openRecipeModal(null));
+    $("#btnMoreMenu")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleMoreSheet();
+    });
+    $("#moreSheetBackdrop")?.addEventListener("click", closeMoreSheet);
+    $$(".more-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        const dest = item.dataset.go;
+        if (dest) go(dest);
+      });
+    });
     $("#btnSearch")?.addEventListener("click", () => go("pesquisa"));
     $("#btnAddShop")?.addEventListener("click", openShopModal);
     $("#btnAddList")?.addEventListener("click", openListModal);
