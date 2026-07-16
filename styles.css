@@ -1165,8 +1165,20 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   line-height: 1.35;
 }
 
+.recipe-serve {
+  display: inline-flex;
+  margin-top: 5px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--sea);
+  background: rgba(42, 111, 121, 0.12);
+  border: 1px solid rgba(42, 111, 121, 0.14);
+}
+
 .recipe-macros {
-  margin-top: 3px;
+  margin-top: 4px;
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--sea);
@@ -1210,8 +1222,9 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .servings-ref-value {
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 
