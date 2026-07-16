@@ -169,7 +169,7 @@
       .trim();
   }
 
-  /** Normaliza texto de quantidade preservando frações 1/2. */
+  /** Normaliza texto de quantidade preservando frações 1/2 e decimais 7.5 / 7,5. */
   function normalizeQty(str) {
     return String(str || "")
       .toLowerCase()
@@ -180,7 +180,8 @@
       .replace(/¾/g, " 3/4 ")
       .replace(/⅓/g, " 1/3 ")
       .replace(/⅔/g, " 2/3 ")
-      .replace(/[^a-z0-9\s\/]/g, " ")
+      // preservar . e , (decimais) — senão "7.5 g" vira "7 5 g" e explode as macros
+      .replace(/[^a-z0-9\s\/.,]/g, " ")
       .replace(/\s+/g, " ")
       .trim();
   }
@@ -300,7 +301,7 @@
         .replace(/^(sopa|cha)\s+(de\s+)?/, "")
         .replace(/^colher(?:es)?\s+de\s+(?:cha|sopa)\s+(?:de\s+)?/, "")
         .replace(/^(ovos?|ovo)\b/, "ovo")
-        .replace(/\b\d+\s*(g|ml)\b/g, " ")
+        .replace(/\b\d+[.,]?\d*\s*(g|ml)\b/g, " ")
         .replace(/\s+/g, " ")
         .trim();
       if (parenUnit === "ml") grams = Number(String(paren[1]).replace(",", ".")) * densityMl(foodText);
@@ -327,7 +328,7 @@
       }
     } else if (/\bcolher(?:es)?\s+de\s+(sopa|cha)\b/.test(text)) {
       m = text.match(/colher(?:es)?\s+de\s+(?:sopa|cha)\s+(?:de\s+)?(.+)$/);
-      if (m) foodText = m[1].replace(/\b\d+\s*(g|ml)\b/g, " ").replace(/\s+/g, " ").trim();
+      if (m) foodText = m[1].replace(/\b\d+[.,]?\d*\s*(g|ml)\b/g, " ").replace(/\s+/g, " ").trim();
     }
 
     // N xícara(s) / chávena(s) de X
@@ -404,7 +405,11 @@
       }
     }
 
-    foodText = cleanFoodText(foodText);
+    foodText = cleanFoodText(foodText)
+      .replace(/\b\d+[.,]?\d*\s*(g|ml|kg|cl|dl|l)\b/g, " ")
+      .replace(/\s+\d+[.,]?\d*\s*$/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
 
     if (!foodText || foodText.length < 2 || SKIP.has(normalize(foodText))) return null;
     if (grams == null || !(grams > 0)) {
