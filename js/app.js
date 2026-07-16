@@ -636,8 +636,10 @@
   }
 
   function recipeCard(r, opts = {}) {
-    const tags = [r.protein_note, ...(r.tags || [])].filter(Boolean)
-      .map((t) => `<span class="tag${t === r.protein_note ? " p" : ""}">${escapeHtml(t)}</span>`)
+    // protein_note é legado e conflita com os macros PortFIR — não mostrar como tag
+    const tags = (r.tags || [])
+      .filter(Boolean)
+      .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
       .join("");
 
     const ingredients = (r.ingredients || []).map((i) => `<li>${escapeHtml(i)}</li>`).join("");
