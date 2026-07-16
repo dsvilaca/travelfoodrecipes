@@ -13,6 +13,8 @@
     shopping: [],
     activeListId: null,
     shoppingReady: true,
+    prefsReady: true,
+    diet: [], // restriction ids
     screen: "manha",
     busy: false,
     authBusy: false,
@@ -36,6 +38,18 @@
   ];
 
   const COOK_METHOD_LABEL = Object.fromEntries(COOK_METHODS.map((m) => [m.id, m.label]));
+
+  const DIET_OPTIONS = [
+    { id: "vegetarian", label: "Vegetariano" },
+    { id: "vegan", label: "Vegan" },
+    { id: "gluten_free", label: "Sem glúten" },
+    { id: "lactose_free", label: "Sem lactose" },
+    { id: "nut_free", label: "Sem frutos secos" },
+    { id: "shellfish_free", label: "Sem marisco" },
+    { id: "no_pork", label: "Sem porco" },
+  ];
+
+  const DIET_LABEL = Object.fromEntries(DIET_OPTIONS.map((d) => [d.id, d.label]));
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -86,6 +100,7 @@
     if (active) active.scrollTop = 0;
     if (name === "favoritos") renderFavorites();
     if (name === "compras") renderShopping();
+    if (name === "conta") renderAccount();
     if (name === "pesquisa") {
       renderSearch();
       setTimeout(() => $("#searchInput")?.focus(), 50);
@@ -116,6 +131,100 @@
     return normalizeText([
       r.title, r.subtitle, r.protein_note, ings, steps, (r.tags || []).join(" "), r.note || "",
     ].join(" "));
+  }
+
+  function recipeContains(blob, patterns) {
+    return patterns.some((re) => re.test(blob));
+  }
+
+  function detectDietFlags(r) {
+    const blob = recipeSearchBlob(r);
+    const tags = normalizeText((r.tags || []).join(" "));
+
+    const plantMilk = /\b(leite de coco|leite de amendoa|leite de aveia|leite de soja|leite vegetal|bebida de aveia|bebida de soja|bebida de amendoa)\b/;
+    const dairyFoods = recipeContains(blob, [
+      /\b(manteiga|queijo|iogurte|natas|cream cheese|mascarpone|ricota|mozzarella|mussarela|parmesao|cheddar|ghee|whey|lactose|leite condensado|leite evaporado|chantilly)\b/,
+      /\b(butter|cheese|yogurt|yoghurt|cream)\b/,
+    ]);
+    const hasCowMilk = /\bleite\b/.test(blob) && !plantMilk.test(blob);
+    const hasDairy = dairyFoods || hasCowMilk;
+
+    const hasEgg = recipeContains(blob, [/\b(ovo|ovos|gemas?|claras?|egg|eggs)\b/]);
+    const hasHoney = recipeContains(blob, [/\b(mel|honey)\b/]);
+
+    const hasPork = recipeContains(blob, [
+      /\b(porco|bacon|fiambre|presunto|chourico|chouriço|pancetta|lardo|entrecosto|secreto|cachaço|salsicha de porco|pork|ham|prosciutto|pepperoni)\b/,
+    ]);
+
+    const hasShellfish = recipeContains(blob, [
+      /\b(camarao|camaroes|gambas?|mexilhao|mexilhoes|ameijoa|ameijoas|lagosta|lavagante|caranguejo|sapateira|marisco|mariscos|polvo|lula|chocos?|ostra|ostras|vieira|shrimp|prawn|mussel|clam|lobster|crab|squid|octopus|shellfish)\b/,
+    ]);
+
+    const hasFish = hasShellfish || recipeContains(blob, [
+      /\b(peixe|salm[aã]o|atum|bacalhau|sardinha|sardinhas|cavala|truta|pescada|dourada|robalo|anchova|anchovas|fish|salmon|tuna|cod|sardine)\b/,
+    ]);
+
+    const hasMeat = hasPork || recipeContains(blob, [
+      /\b(carne|frango|peru|vaca|vitela|borrego|cordeiro|bovina|beef|chicken|turkey|lamb|veal|steak|bife|almondegas|hamburger|burger|chourico|salsicha|linguiça|linguica|bacon)\b/,
+      /\b(carne mo[ií]da|carne picada|peito de frango|coxas? de frango)\b/,
+    ]);
+
+    const hasGluten = recipeContains(blob, [
+      /\b(farinha|trigo|pao|broa|massa|esparguete|espaguete|spaghetti|macarrao|lasanha|ravioli|cuscuz|couscous|seitan|panko|bolo|biscoito|cookie|waffle|pancake|panqueca|torta|tarte|croissant|brioche|pizza|baguete|baguette|molho de soja|soy sauce|cevada|centeio|flour|bread|wheat|pasta|noodle|noodles|granola|burrito|tortilha|tortilla|wrap|tostas?|torrada|crouton|pao rala|breadcrumb)\b/,
+    ]);
+
+    const hasNuts = recipeContains(blob, [
+      /\b(amendoa|amendoas|amendoim|amendoins|noz|nozes|avela|avelas|caju|pistacho|pistache|castanha|castanhas|nutella|peanut|almond|walnut|hazelnut|cashew|pistachio|pecan|macadamia|praline)\b/,
+      /\b(manteiga de amendoim|pasta de amendoim|creme de avela)\b/,
+    ]);
+
+    // tags explícitas atenuam falsos positivos
+    const taggedVegan = /\b(vegan|vegano|vegana)\b/.test(tags);
+    const taggedVeg = taggedVegan || /\bvegetariano\b/.test(tags);
+    const taggedGF = /\b(sem gluten|gluten free|semgluten)\b/.test(tags);
+    const taggedLF = /\b(sem lactose|lactose free|semlactose)\b/.test(tags);
+
+    return {
+      meat: taggedVeg ? false : hasMeat,
+      fish: taggedVeg ? false : hasFish,
+      shellfish: taggedVeg ? false : hasShellfish,
+      pork: taggedVeg ? false : hasPork,
+      dairy: taggedVegan || taggedLF ? false : hasDairy,
+      egg: taggedVegan ? false : hasEgg,
+      honey: taggedVegan ? false : hasHoney,
+      gluten: taggedGF ? false : hasGluten,
+      nuts: hasNuts,
+    };
+  }
+
+  function recipeMatchesDiet(r, dietPrefs) {
+    const prefs = Array.isArray(dietPrefs) ? dietPrefs : state.diet;
+    if (!prefs.length) return true;
+    const f = detectDietFlags(r);
+    for (const id of prefs) {
+      if (id === "vegetarian" && (f.meat || f.fish || f.shellfish)) return false;
+      if (id === "vegan" && (f.meat || f.fish || f.shellfish || f.dairy || f.egg || f.honey)) return false;
+      if (id === "gluten_free" && f.gluten) return false;
+      if (id === "lactose_free" && f.dairy) return false;
+      if (id === "nut_free" && f.nuts) return false;
+      if (id === "shellfish_free" && f.shellfish) return false;
+      if (id === "no_pork" && f.pork) return false;
+    }
+    return true;
+  }
+
+  function visibleRecipes(list) {
+    if (!state.diet.length) return list;
+    return list.filter((r) => recipeMatchesDiet(r, state.diet));
+  }
+
+  function dietFilterNote(total, shown) {
+    if (!state.diet.length) return "";
+    const labels = state.diet.map((id) => DIET_LABEL[id] || id).join(", ");
+    if (shown < total) {
+      return `Perfil: ${labels} · a mostrar ${shown} de ${total}`;
+    }
+    return `Perfil: ${labels}`;
   }
 
   function detectCookMethods(r) {
@@ -200,6 +309,7 @@
       .map((r) => {
         const m = recipeMatchesTerms(r, terms);
         if (!m.ok) return null;
+        if (!recipeMatchesDiet(r, state.diet)) return null;
         const cook = detectCookMethods(r);
         if (methodFilter.length && !methodFilter.some((id) => cook.has(id))) return null;
         const methodScore = methodFilter.length
@@ -245,6 +355,9 @@
     const results = searchRecipes(q, state.searchMethods);
     const terms = state.searchTerms;
     const hasFilter = terms.length || state.searchMethods.length;
+    const dietNote = state.diet.length
+      ? `<p class="diet-filter-note">${escapeHtml("Perfil: " + state.diet.map((id) => DIET_LABEL[id] || id).join(", "))}</p>`
+      : "";
 
     if (countEl) {
       if (!hasFilter) countEl.textContent = "Escreve um alimento ou escolhe um método";
@@ -252,7 +365,7 @@
     }
 
     if (!hasFilter) {
-      listEl.innerHTML = `<div class="empty-fav">Experimenta: <strong>atum</strong>, <strong>ovos</strong> ou <strong>nutella</strong>.<br />Ou filtra por <strong>Forno</strong>, <strong>Fogão</strong>, <strong>Micro-ondas</strong> ou <strong>Sem aquecer</strong>.</div>`;
+      listEl.innerHTML = `${dietNote}<div class="empty-fav">Experimenta: <strong>atum</strong>, <strong>ovos</strong> ou <strong>nutella</strong>.<br />Ou filtra por <strong>Forno</strong>, <strong>Fogão</strong>, <strong>Micro-ondas</strong> ou <strong>Sem aquecer</strong>.</div>`;
       return;
     }
 
@@ -262,11 +375,14 @@
       if (state.searchMethods.length) {
         bits.push(state.searchMethods.map((id) => COOK_METHOD_LABEL[id] || id).join(", "));
       }
-      listEl.innerHTML = `<div class="empty-fav">Nada encontrado com ${escapeHtml(bits.join(" · "))}.<br />Tenta outro alimento ou outro método.</div>`;
+      if (state.diet.length) {
+        bits.push(state.diet.map((id) => DIET_LABEL[id] || id).join(", "));
+      }
+      listEl.innerHTML = `<div class="empty-fav">Nada encontrado com ${escapeHtml(bits.join(" · "))}.<br />Tenta outro alimento, outro método ou ajusta o perfil em Conta.</div>`;
       return;
     }
 
-    listEl.innerHTML = results.map((row, i) => {
+    listEl.innerHTML = dietNote + results.map((row, i) => {
       const sectionLabel = SECTIONS[row.recipe.section]?.label || row.recipe.section;
       const hitLabel = row.hits.length ? ` · tem: ${row.hits.join(", ")}` : "";
       const methodLabel = row.methods.length
@@ -333,23 +449,56 @@
 
   function renderSection(section) {
     const meta = SECTIONS[section];
-    const list = state.recipes.filter((r) => r.section === section);
+    const all = state.recipes.filter((r) => r.section === section);
+    const list = visibleRecipes(all);
     const root = $(`[data-screen="${section}"]`);
+    const note = dietFilterNote(all.length, list.length);
     $(".screen-intro", root).innerHTML = `
       <p class="label">${meta.label}</p>
       <h1>${meta.title}</h1>
       <p>${meta.blurb}</p>
-      <span class="count-pill">${list.length} receita${list.length === 1 ? "" : "s"}</span>`;
+      <span class="count-pill">${list.length} receita${list.length === 1 ? "" : "s"}</span>
+      ${note ? `<p class="diet-filter-note">${escapeHtml(note)}</p>` : ""}`;
     $(".list", root).innerHTML = list.map((r, i) => recipeCard(r, { index: i + 1 })).join("")
-      || `<div class="empty-fav">Sem receitas aqui.<br />Toca em + para adicionar.</div>`;
+      || `<div class="empty-fav">${state.diet.length
+        ? "Nenhuma receita desta secção encaixa no teu perfil.<br />Ajusta as restrições em Conta."
+        : "Sem receitas aqui.<br />Toca em + para adicionar."}</div>`;
   }
 
   function renderFavorites() {
-    const list = state.recipes.filter((r) => r.is_favorite);
+    const all = state.recipes.filter((r) => r.is_favorite);
+    const list = visibleRecipes(all);
+    const note = dietFilterNote(all.length, list.length);
     $("#favCountPill").textContent = list.length + " favorito" + (list.length === 1 ? "" : "s");
+    const noteEl = $("#favDietNote");
+    if (noteEl) noteEl.textContent = note;
     $("#favList").innerHTML = list.length
       ? list.map((r) => recipeCard(r, { subPrefix: SECTIONS[r.section]?.label || r.section })).join("")
-      : `<div class="empty-fav">Ainda sem favoritos.<br />Toca na ☆ numa receita para guardar.</div>`;
+      : `<div class="empty-fav">${state.diet.length && all.length
+        ? "Os teus favoritos não encaixam no perfil atual.<br />Ajusta as restrições em Conta."
+        : "Ainda sem favoritos.<br />Toca na ☆ numa receita para guardar."}</div>`;
+  }
+
+  function renderAccount() {
+    updateAccountMeta();
+    const chips = $("#dietChips");
+    const status = $("#dietStatus");
+    const tip = $("#dietMigrationTip");
+    if (chips) {
+      chips.innerHTML = DIET_OPTIONS.map((d) => {
+        const on = state.diet.includes(d.id);
+        return `<button type="button" class="search-chip method${on ? " active" : ""}" data-diet="${d.id}" aria-pressed="${on ? "true" : "false"}">${escapeHtml(d.label)}</button>`;
+      }).join("");
+    }
+    if (status) {
+      if (!state.diet.length) {
+        status.textContent = "Sem restrições — mostram-se todas as receitas.";
+      } else {
+        status.textContent = "Ativo: " + state.diet.map((id) => DIET_LABEL[id] || id).join(", ")
+          + ". As listas e a pesquisa já filtram por isto.";
+      }
+    }
+    if (tip) tip.hidden = !!state.prefsReady;
   }
 
   function renderShopping() {
@@ -430,18 +579,60 @@
         state.shoppingLists = [];
         state.shopping = [];
       }
+
+      state.prefsReady = await MareDB.preferencesReady();
+      try {
+        const prefs = await MareDB.getPreferences();
+        state.diet = prefs.diet || [];
+      } catch (_) {
+        state.diet = MareDB.cacheGet("preferences", { diet: [] }).diet || [];
+      }
     } catch (err) {
       state.recipes = MareDB.cacheGet("recipes", []);
       state.shoppingLists = MareDB.cacheGet("shoppingLists", []);
       state.shopping = MareDB.cacheGet("shopping", []);
+      state.diet = MareDB.cacheGet("preferences", { diet: [] }).diet || [];
       toast("Offline — a mostrar cache local");
       console.warn(err);
     }
     Object.keys(SECTIONS).forEach(renderSection);
     renderFavorites();
     renderShopping();
+    renderAccount();
     if (state.screen === "pesquisa") renderSearch();
     updateAccountMeta();
+  }
+
+  async function toggleDiet(id) {
+    if (!id) return;
+    const wasOn = state.diet.includes(id);
+    if (wasOn) {
+      state.diet = state.diet.filter((d) => d !== id);
+      if (id === "vegetarian") {
+        state.diet = state.diet.filter((d) => d !== "vegan");
+      }
+    } else {
+      state.diet = state.diet.concat(id);
+      if (id === "vegan" && !state.diet.includes("vegetarian")) {
+        state.diet = state.diet.concat("vegetarian");
+      }
+    }
+
+    renderAccount();
+    Object.keys(SECTIONS).forEach(renderSection);
+    renderFavorites();
+    if (state.screen === "pesquisa") renderSearch();
+
+    try {
+      await MareDB.savePreferences({ diet: state.diet });
+      state.prefsReady = await MareDB.preferencesReady();
+      renderAccount();
+    } catch (err) {
+      MareDB.cacheSet("preferences", { diet: state.diet });
+      state.prefsReady = await MareDB.preferencesReady().catch(() => false);
+      renderAccount();
+      console.warn(err);
+    }
   }
 
   function openRecipeModal(recipe) {
@@ -953,6 +1144,11 @@
       else state.searchMethods.push(id);
       renderSearch();
     });
+    $("#dietChips")?.addEventListener("click", (e) => {
+      const chip = e.target.closest("[data-diet]");
+      if (!chip) return;
+      toggleDiet(chip.dataset.diet);
+    });
     document.addEventListener("click", (e) => {
       if (e.target.closest("#searchList")) handleListClick(e);
     });
@@ -965,6 +1161,8 @@
     $("#btnLogout")?.addEventListener("click", async () => {
       try { await MareDB.signOut(); } catch (_) { /* ignore */ }
       state.user = null;
+      state.diet = [];
+      state.prefsReady = true;
       showAuth(true);
       toast("Sessão terminada");
     });

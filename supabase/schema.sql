@@ -115,6 +115,34 @@ create policy "shopping_update_own" on public.shopping_items
 create policy "shopping_delete_own" on public.shopping_items
   for delete using (auth.uid() = user_id);
 
+-- Preferências alimentares (perfil / restrições)
+create table if not exists public.user_preferences (
+  user_id uuid primary key references auth.users (id) on delete cascade,
+  diet text[] not null default '{}',
+  updated_at timestamptz not null default now()
+);
+
+drop trigger if exists user_preferences_set_updated_at on public.user_preferences;
+create trigger user_preferences_set_updated_at
+  before update on public.user_preferences
+  for each row execute function public.set_updated_at();
+
+alter table public.user_preferences enable row level security;
+
+drop policy if exists "prefs_select_own" on public.user_preferences;
+drop policy if exists "prefs_insert_own" on public.user_preferences;
+drop policy if exists "prefs_update_own" on public.user_preferences;
+drop policy if exists "prefs_delete_own" on public.user_preferences;
+
+create policy "prefs_select_own" on public.user_preferences
+  for select using (auth.uid() = user_id);
+create policy "prefs_insert_own" on public.user_preferences
+  for insert with check (auth.uid() = user_id);
+create policy "prefs_update_own" on public.user_preferences
+  for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create policy "prefs_delete_own" on public.user_preferences
+  for delete using (auth.uid() = user_id);
+
 alter table public.recipes alter column user_id set default auth.uid();
 alter table public.shopping_lists alter column user_id set default auth.uid();
 alter table public.shopping_items alter column user_id set default auth.uid();
@@ -123,3 +151,4 @@ grant usage on schema public to anon, authenticated;
 grant select, insert, update, delete on public.recipes to authenticated;
 grant select, insert, update, delete on public.shopping_lists to authenticated;
 grant select, insert, update, delete on public.shopping_items to authenticated;
+grant select, insert, update, delete on public.user_preferences to authenticated;

@@ -160,7 +160,14 @@
     try {
       const raw = localStorage.getItem(LOCAL_DB_KEY);
       if (!raw) {
-        return { users: [], sessionEmail: null, recipes: [], shoppingLists: [], shopping: [] };
+        return {
+          users: [],
+          sessionEmail: null,
+          recipes: [],
+          shoppingLists: [],
+          shopping: [],
+          preferences: {},
+        };
       }
       const db = JSON.parse(raw);
       return {
@@ -169,10 +176,28 @@
         recipes: db.recipes || [],
         shoppingLists: db.shoppingLists || [],
         shopping: db.shopping || [],
+        preferences: db.preferences || {},
       };
     } catch (_) {
-      return { users: [], sessionEmail: null, recipes: [], shoppingLists: [], shopping: [] };
+      return {
+        users: [],
+        sessionEmail: null,
+        recipes: [],
+        shoppingLists: [],
+        shopping: [],
+        preferences: {},
+      };
     }
+  }
+
+  function normalizeDiet(diet) {
+    const allowed = new Set([
+      "vegetarian", "vegan", "gluten_free", "lactose_free",
+      "nut_free", "shellfish_free", "no_pork",
+    ]);
+    return (Array.isArray(diet) ? diet : [])
+      .map((d) => String(d || "").trim())
+      .filter((d) => allowed.has(d));
   }
 
   function writeLocalDb(db) {
@@ -1071,6 +1096,74 @@
     }
   }
 
+  async function preferencesReady() {
+    if (isLocalMode()) return true;
+    try {
+      await rest("user_preferences?select=user_id&limit=1");
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  async function getPreferences() {
+    const session = await getSession();
+    if (!session?.user?.id) return { diet: [] };
+
+    if (isLocalMode()) {
+      const db = readLocalDb();
+      const row = db.preferences?.[session.user.id];
+      return { diet: normalizeDiet(row?.diet) };
+    }
+
+    try {
+      const data = await rest(
+        "user_preferences?select=diet,updated_at&user_id=eq."
+          + encodeURIComponent(session.user.id)
+      );
+      const row = Array.isArray(data) ? data[0] : null;
+      const prefs = { diet: normalizeDiet(row?.diet) };
+      cacheSet("preferences", prefs);
+      return prefs;
+    } catch (_) {
+      return cacheGet("preferences", { diet: [] });
+    }
+  }
+
+  async function savePreferences(prefs) {
+    const session = await getSession();
+    if (!session?.user?.id) throw new Error("Sem sessão");
+    const diet = normalizeDiet(prefs?.diet);
+    const payload = { diet };
+
+    if (isLocalMode()) {
+      const db = readLocalDb();
+      db.preferences = db.preferences || {};
+      db.preferences[session.user.id] = {
+        diet,
+        updated_at: new Date().toISOString(),
+      };
+      writeLocalDb(db);
+      cacheSet("preferences", payload);
+      return payload;
+    }
+
+    const body = {
+      user_id: session.user.id,
+      diet,
+      updated_at: new Date().toISOString(),
+    };
+    const data = await rest("user_preferences", {
+      method: "POST",
+      body,
+      prefer: "resolution=merge-duplicates,return=representation",
+    });
+    const row = Array.isArray(data) ? data[0] : data;
+    const saved = { diet: normalizeDiet(row?.diet ?? diet) };
+    cacheSet("preferences", saved);
+    return saved;
+  }
+
   function cacheSet(key, value) {
     try {
       localStorage.setItem("mare-cache-" + key, JSON.stringify(value));
@@ -1115,6 +1208,9 @@
     updateShoppingItem,
     deleteShoppingItem,
     shoppingListsReady,
+    preferencesReady,
+    getPreferences,
+    savePreferences,
     seedIfEmpty,
     cacheSet,
     cacheGet,
