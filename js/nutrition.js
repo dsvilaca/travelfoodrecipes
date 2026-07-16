@@ -599,7 +599,7 @@
     return Math.round(Number(n) || 0);
   }
 
-  function formatBlock(est) {
+  function formatBlock(est, opts = {}) {
     if (!est?.ok) {
       return `<div class="nutrition">
         <h3>Nutrição</h3>
@@ -607,15 +607,37 @@
         <p class="nutrition-source">Fonte de referência: <a href="https://portfir.insa.min-saude.pt/" target="_blank" rel="noopener">TCA INSA / PortFIR</a></p>
       </div>`;
     }
-    return `<div class="nutrition">
-      <h3>Nutrição <span class="nutrition-tag">estimativa</span></h3>
-      <div class="nutrition-grid">
-        <div><strong>${round1(est.kcal)}</strong><span>kcal</span></div>
-        <div><strong>${round1(est.protein)} g</strong><span>Proteína</span></div>
-        <div><strong>${round1(est.carbs)} g</strong><span>Hidratos</span></div>
-        <div><strong>${round1(est.fat)} g</strong><span>Lípidos</span></div>
+
+    const baseServings = Math.max(1, Math.min(12, Math.round(Number(opts.servings) || 1)));
+    const viewServings = Math.max(1, Math.min(12, Math.round(Number(opts.viewServings) || baseServings)));
+    const perKcal = est.kcal / viewServings;
+    const perProtein = est.protein / viewServings;
+    const perCarbs = est.carbs / viewServings;
+    const perFat = est.fat / viewServings;
+    const picks = [1, 2, 4].includes(baseServings) ? [1, 2, 4] : [1, 2, baseServings, 4].sort((a, b) => a - b);
+    const pickBtns = picks.map((n) => (
+      `<button type="button" class="servings-btn${n === viewServings ? " active" : ""}" data-servings-view="${n}" aria-pressed="${n === viewServings ? "true" : "false"}">${n}</button>`
+    )).join("");
+    const pessoaLabel = baseServings === 1 ? "1 pessoa" : `${baseServings} pessoas`;
+
+    return `<div class="nutrition" data-nutrition-totals
+        data-kcal="${est.kcal}" data-protein="${est.protein}" data-carbs="${est.carbs}" data-fat="${est.fat}"
+        data-servings-base="${baseServings}" data-servings-view="${viewServings}" data-coverage="${est.coverage}">
+      <div class="servings-row">
+        <div class="servings-ref">
+          <span class="servings-ref-label">Porção</span>
+          <span class="servings-ref-value">Receita para ${escape(pessoaLabel)}</span>
+        </div>
+        <div class="servings-picker" role="group" aria-label="Ver macros por número de porções">${pickBtns}</div>
       </div>
-      <p class="nutrition-note">Valores para a receita completa · ${est.coverage}% dos ingredientes mapeados</p>
+      <h3>Nutrição <span class="nutrition-tag">por porção</span></h3>
+      <div class="nutrition-grid">
+        <div><strong data-n="kcal">${round1(perKcal)}</strong><span>kcal</span></div>
+        <div><strong data-n="protein">${round1(perProtein)} g</strong><span>Proteína</span></div>
+        <div><strong data-n="carbs">${round1(perCarbs)} g</strong><span>Hidratos</span></div>
+        <div><strong data-n="fat">${round1(perFat)} g</strong><span>Lípidos</span></div>
+      </div>
+      <p class="nutrition-note" data-n="note">Receita completa: ${round1(est.kcal)} kcal · P ${round1(est.protein)}g · HC ${round1(est.carbs)}g · L ${round1(est.fat)}g · ${est.coverage}% mapeado</p>
       <p class="nutrition-source">Fonte: ${escape(est.source)} · <a href="${escape(est.url)}" target="_blank" rel="noopener">PortFIR</a></p>
     </div>`;
   }
