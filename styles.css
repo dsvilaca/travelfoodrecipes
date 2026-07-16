@@ -182,19 +182,6 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   place-items: center;
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #7dcea0;
-  box-shadow: 0 0 0 2px rgba(125, 206, 160, 0.25);
-}
-
-.status-dot.off {
-  background: #e8a33a;
-  box-shadow: 0 0 0 2px rgba(232, 163, 58, 0.25);
-}
-
 .screens {
   flex: 1;
   position: relative;
@@ -772,8 +759,8 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 1.45rem;
-  font-weight: 600;
+  font-size: 1.55rem;
+  font-weight: 500;
   line-height: 1;
   color: #fff;
   background: linear-gradient(160deg, var(--sea-mid), var(--sea));
