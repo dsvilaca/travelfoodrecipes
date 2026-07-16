@@ -16,7 +16,14 @@
     screen: "manha",
     busy: false,
     authBusy: false,
+    searchQuery: "",
+    searchTerms: [],
   };
+
+  const SEARCH_SUGGESTIONS = [
+    "ovos", "atum", "frango", "nutella", "queijo", "banana",
+    "massa", "bacon", "salmão", "chocolate", "batata", "iogurte",
+  ];
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -67,7 +74,121 @@
     if (active) active.scrollTop = 0;
     if (name === "favoritos") renderFavorites();
     if (name === "compras") renderShopping();
+    if (name === "pesquisa") {
+      renderSearch();
+      setTimeout(() => $("#searchInput")?.focus(), 50);
+    }
     if (SECTIONS[name]) renderSection(name);
+  }
+
+  function normalizeText(str) {
+    return String(str || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function parseSearchTerms(query) {
+    return String(query || "")
+      .split(/[,;]+|\s+e\s+|\s+/i)
+      .map((t) => normalizeText(t))
+      .filter((t) => t.length >= 2);
+  }
+
+  function recipeSearchBlob(r) {
+    const ings = (r.ingredients || []).join(" ");
+    return normalizeText([r.title, r.subtitle, r.protein_note, ings, (r.tags || []).join(" ")].join(" "));
+  }
+
+  function recipeMatchesTerms(r, terms) {
+    if (!terms.length) return { ok: false, score: 0, hits: [] };
+    const ingsNorm = (r.ingredients || []).map((i) => normalizeText(i));
+    const titleNorm = normalizeText(r.title + " " + (r.subtitle || ""));
+    const blob = recipeSearchBlob(r);
+    const hits = [];
+    let score = 0;
+    for (const term of terms) {
+      const inIng = ingsNorm.some((i) => i.includes(term));
+      const inTitle = titleNorm.includes(term);
+      if (!inIng && !inTitle && !blob.includes(term)) {
+        return { ok: false, score: 0, hits: [] };
+      }
+      if (inIng) {
+        hits.push(term);
+        score += 3;
+      } else if (inTitle) {
+        hits.push(term);
+        score += 2;
+      } else {
+        hits.push(term);
+        score += 1;
+      }
+    }
+    return { ok: true, score, hits };
+  }
+
+  function searchRecipes(query) {
+    const terms = parseSearchTerms(query);
+    state.searchTerms = terms;
+    if (!terms.length) return [];
+    return state.recipes
+      .map((r) => {
+        const m = recipeMatchesTerms(r, terms);
+        return m.ok ? { recipe: r, score: m.score, hits: m.hits } : null;
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score || a.recipe.title.localeCompare(b.recipe.title, "pt"));
+  }
+
+  function renderSearch() {
+    const input = $("#searchInput");
+    const listEl = $("#searchList");
+    const countEl = $("#searchCountPill");
+    const hintsEl = $("#searchHints");
+    if (!listEl) return;
+
+    if (input && input.value !== state.searchQuery) {
+      // keep typed value
+    } else if (input && state.searchQuery && !input.value) {
+      input.value = state.searchQuery;
+    }
+
+    if (hintsEl) {
+      hintsEl.innerHTML = SEARCH_SUGGESTIONS.map((s) =>
+        `<button type="button" class="search-chip" data-search-chip="${escapeHtml(s)}">${escapeHtml(s)}</button>`
+      ).join("");
+    }
+
+    const q = state.searchQuery || input?.value || "";
+    const results = searchRecipes(q);
+    const terms = state.searchTerms;
+
+    if (countEl) {
+      if (!terms.length) countEl.textContent = "Escreve um alimento";
+      else countEl.textContent = results.length + " receita" + (results.length === 1 ? "" : "s");
+    }
+
+    if (!terms.length) {
+      listEl.innerHTML = `<div class="empty-fav">Experimenta: <strong>atum</strong>, <strong>ovos</strong> ou <strong>nutella</strong>.<br />Podes juntar vários: atum, ovo</div>`;
+      return;
+    }
+
+    if (!results.length) {
+      listEl.innerHTML = `<div class="empty-fav">Nada encontrado com “${escapeHtml(terms.join(", "))}”.<br />Tenta outro alimento ou só uma palavra.</div>`;
+      return;
+    }
+
+    listEl.innerHTML = results.map((row, i) => {
+      const sectionLabel = SECTIONS[row.recipe.section]?.label || row.recipe.section;
+      const hitLabel = row.hits.length ? ` · tem: ${row.hits.join(", ")}` : "";
+      return recipeCard(row.recipe, {
+        index: i + 1,
+        subPrefix: sectionLabel + hitLabel,
+      });
+    }).join("");
   }
 
   function showAuth(show) {
@@ -231,6 +352,7 @@
     Object.keys(SECTIONS).forEach(renderSection);
     renderFavorites();
     renderShopping();
+    if (state.screen === "pesquisa") renderSearch();
     updateAccountMeta();
   }
 
@@ -700,8 +822,42 @@
   function wireUi() {
     $$(".tab").forEach((tab) => tab.addEventListener("click", () => go(tab.dataset.go)));
     $("#btnAddRecipe")?.addEventListener("click", () => openRecipeModal(null));
+    $("#btnSearch")?.addEventListener("click", () => go("pesquisa"));
     $("#btnAddShop")?.addEventListener("click", openShopModal);
     $("#btnAddList")?.addEventListener("click", openListModal);
+
+    let searchTimer = null;
+    const runSearch = () => {
+      state.searchQuery = $("#searchInput")?.value || "";
+      renderSearch();
+    };
+    $("#searchInput")?.addEventListener("input", () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(runSearch, 160);
+    });
+    $("#searchInput")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        clearTimeout(searchTimer);
+        runSearch();
+      }
+    });
+    $("#searchHints")?.addEventListener("click", (e) => {
+      const chip = e.target.closest("[data-search-chip]");
+      if (!chip) return;
+      const term = chip.dataset.searchChip;
+      const input = $("#searchInput");
+      if (!input) return;
+      const cur = (input.value || "").trim();
+      const next = cur ? (cur.replace(/[,;\s]+$/, "") + ", " + term) : term;
+      input.value = next;
+      state.searchQuery = next;
+      renderSearch();
+      input.focus();
+    });
+    document.addEventListener("click", (e) => {
+      if (e.target.closest("#searchList")) handleListClick(e);
+    });
     $("#recipeForm")?.addEventListener("submit", onRecipeSubmit);
     $("#shopForm")?.addEventListener("submit", onShopSubmit);
     $("#listForm")?.addEventListener("submit", onListSubmit);
