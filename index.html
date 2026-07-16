@@ -8,19 +8,19 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Travel Food Recipes" />
+  <meta name="description" content="Receitas e lista de compras de férias — acessível no telemóvel e no computador." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Travel Food Recipes</title>
-  <link rel="manifest" href="manifest.webmanifest?v=10" />
-  <link rel="icon" href="icon-192.png?v=10" sizes="192x192" />
-  <link rel="apple-touch-icon" href="icon-192.png?v=10" />
+  <link rel="manifest" href="manifest.webmanifest?v=11" />
+  <link rel="icon" href="icon-192.png?v=11" sizes="192x192" />
+  <link rel="apple-touch-icon" href="icon-192.png?v=11" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=11" />
   <script>
-    /* Limpa service workers / caches antigos para as atualizações aparecerem */
     (function () {
-      var APP_BUILD = "10";
+      var APP_BUILD = "11";
       try {
         if (localStorage.getItem("tfr-build") !== APP_BUILD) {
           localStorage.setItem("tfr-build", APP_BUILD);
@@ -40,115 +40,120 @@
   </script>
 </head>
 <body>
-  <!-- AUTH -->
-  <section id="authScreen" class="auth">
-    <div class="auth-card">
-      <div class="brand brand-auth">
-        <img class="brand-mark" src="icon-192.png?v=10" width="56" height="56" alt="" />
-        <div class="brand-text">
-          <span class="brand-title">Travel Food</span>
-          <span class="brand-sub">Recipes</span>
+  <div class="app-frame">
+    <!-- AUTH -->
+    <section id="authScreen" class="auth">
+      <div class="auth-card">
+        <div class="brand brand-auth">
+          <img class="brand-mark" src="icon-192.png?v=11" width="56" height="56" alt="Travel Food Recipes" />
+          <div class="brand-text">
+            <span class="brand-title">Travel Food</span>
+            <span class="brand-sub">Recipes</span>
+          </div>
         </div>
+        <h1 id="authHeading">Iniciar sessão</h1>
+        <p class="auth-sub" id="authSub">Entra para ver as tuas receitas e lista de compras.</p>
+        <p id="authHint" class="auth-hint" hidden></p>
+        <form id="authForm" novalidate>
+          <label>Email
+            <input id="authEmail" type="email" autocomplete="username" inputmode="email" required placeholder="o.teu@email.com" />
+          </label>
+          <label>Password
+            <input id="authPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="mínimo 6 caracteres" />
+          </label>
+          <button type="submit" class="btn primary" id="authSubmit">Entrar</button>
+        </form>
+        <button type="button" class="btn ghost" id="authAltBtn">Criar conta</button>
+        <button type="button" class="link-btn" id="authForgot">Esqueci a password</button>
       </div>
-      <h1>Entra na tua conta</h1>
-      <p class="auth-sub">Email e password para as tuas receitas e lista de compras.</p>
-      <p id="authHint" class="auth-hint" hidden></p>
-      <form id="authForm" action="#" method="post" onsubmit="return window.TFR ? window.TFR.login(event) : false;">
-        <input type="hidden" id="authMode" value="login" />
-        <label>Email<input id="authEmail" type="email" autocomplete="username" value="vilaca97@hotmail.com" inputmode="email" /></label>
-        <label>Password<input id="authPassword" type="password" autocomplete="current-password" placeholder="mínimo 6 caracteres" /></label>
-        <button type="button" class="btn primary" id="authSubmit" onclick="return window.TFR ? window.TFR.login(event) : false;">Entrar</button>
-      </form>
-      <button type="button" class="link-btn" id="authToggle" onclick="window.TFR && window.TFR.toggle()">Criar conta nova</button>
-      <button type="button" class="link-btn" id="authForgot" onclick="window.TFR && window.TFR.forgot()">Recuperar password</button>
+    </section>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+
+    <!-- APP -->
+    <div class="phone" id="appShell" hidden>
+      <header class="app-header">
+        <div class="brand brand-header">
+          <img class="brand-mark" src="icon-192.png?v=11" width="32" height="32" alt="" />
+          <div class="brand-text">
+            <span class="brand-title">Travel Food</span>
+            <span class="brand-sub">Recipes</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="hdr-btn" id="btnAddRecipe" type="button">+ Receita</button>
+          <button class="hdr-btn icon-only" id="statusBtn" type="button" aria-label="Estado">
+            <span class="status-dot" id="statusDot"></span>
+          </button>
+        </div>
+      </header>
+
+      <div class="screens">
+        <section class="screen active" data-screen="manha">
+          <div class="screen-intro"></div>
+          <div class="list"></div>
+        </section>
+        <section class="screen" data-screen="praia">
+          <div class="screen-intro"></div>
+          <div class="list"></div>
+        </section>
+        <section class="screen" data-screen="lanches">
+          <div class="screen-intro"></div>
+          <div class="list"></div>
+        </section>
+        <section class="screen" data-screen="jantar">
+          <div class="screen-intro jantar"></div>
+          <div class="list"></div>
+        </section>
+
+        <section class="screen" data-screen="favoritos">
+          <div class="screen-intro">
+            <p class="label">Guardado</p>
+            <h1>Favoritos</h1>
+            <p>Receitas marcadas com ★.</p>
+            <span class="count-pill" id="favCountPill">0 favoritos</span>
+          </div>
+          <div class="list" id="favList"></div>
+        </section>
+
+        <section class="screen" data-screen="compras">
+          <div class="screen-intro">
+            <p class="label">Compras</p>
+            <h1>Lista do super</h1>
+            <p>Adiciona, marca e apaga — sincronizado na tua conta.</p>
+            <button type="button" class="count-pill as-btn" id="btnAddShop">+ Adicionar item</button>
+          </div>
+          <div id="shopContainer"></div>
+          <div class="tip-box">
+            <strong>Ritmo do dia</strong>
+            Manhã → praia → lanche soft → jantar. Alterna atum, frango, ovo e salmão.
+          </div>
+        </section>
+
+        <section class="screen" data-screen="conta">
+          <div class="screen-intro">
+            <p class="label">Conta</p>
+            <h1>Definições</h1>
+            <p>A tua sessão nesta app.</p>
+          </div>
+          <div class="shop-block">
+            <h2>Sessão</h2>
+            <p class="acct-email" id="userEmail">—</p>
+            <button type="button" class="btn primary" id="btnLogout">Terminar sessão</button>
+          </div>
+        </section>
+      </div>
+
+      <nav class="tabbar" aria-label="Navegação">
+        <button class="tab active" data-go="manha" type="button"><span class="ico">☀</span><span class="lbl">Manhã</span></button>
+        <button class="tab" data-go="praia" type="button"><span class="ico">〰</span><span class="lbl">Praia</span></button>
+        <button class="tab" data-go="lanches" type="button"><span class="ico">◦</span><span class="lbl">Lanches</span></button>
+        <button class="tab" data-go="jantar" type="button"><span class="ico">♨</span><span class="lbl">Jantar</span></button>
+        <button class="tab" data-go="favoritos" type="button"><span class="ico">★</span><span class="lbl">Fav</span></button>
+        <button class="tab" data-go="compras" type="button"><span class="ico">☰</span><span class="lbl">Lista</span></button>
+        <button class="tab" data-go="conta" type="button"><span class="ico">◎</span><span class="lbl">Conta</span></button>
+      </nav>
     </div>
-  </section>
-
-  <div class="toast" id="toast" role="status" hidden></div>
-
-  <!-- APP -->
-  <div class="phone" id="appShell" hidden>
-    <header class="app-header">
-      <div class="brand brand-header">
-        <img class="brand-mark" src="icon-192.png?v=10" width="32" height="32" alt="" />
-        <div class="brand-text">
-          <span class="brand-title">Travel Food</span>
-          <span class="brand-sub">Recipes</span>
-        </div>
-      </div>
-      <div class="header-actions">
-        <button class="hdr-btn" id="btnAddRecipe" type="button">+ Receita</button>
-        <button class="hdr-btn icon-only" id="statusBtn" type="button" aria-label="Estado">
-          <span class="status-dot" id="statusDot"></span>
-        </button>
-      </div>
-    </header>
-
-    <div class="screens">
-      <section class="screen active" data-screen="manha">
-        <div class="screen-intro"></div>
-        <div class="list"></div>
-      </section>
-      <section class="screen" data-screen="praia">
-        <div class="screen-intro"></div>
-        <div class="list"></div>
-      </section>
-      <section class="screen" data-screen="lanches">
-        <div class="screen-intro"></div>
-        <div class="list"></div>
-      </section>
-      <section class="screen" data-screen="jantar">
-        <div class="screen-intro jantar"></div>
-        <div class="list"></div>
-      </section>
-
-      <section class="screen" data-screen="favoritos">
-        <div class="screen-intro">
-          <p class="label">Guardado</p>
-          <h1>Favoritos</h1>
-          <p>Receitas marcadas com ★.</p>
-          <span class="count-pill" id="favCountPill">0 favoritos</span>
-        </div>
-        <div class="list" id="favList"></div>
-      </section>
-
-      <section class="screen" data-screen="compras">
-        <div class="screen-intro">
-          <p class="label">Compras</p>
-          <h1>Lista do super</h1>
-          <p>Adiciona, marca e apaga. Tudo na cloud.</p>
-          <button type="button" class="count-pill as-btn" id="btnAddShop">+ Adicionar item</button>
-        </div>
-        <div id="shopContainer"></div>
-        <div class="tip-box">
-          <strong>Ritmo do dia</strong>
-          Manhã → praia → lanche soft → jantar. Alterna atum, frango, ovo e salmão.
-        </div>
-      </section>
-
-      <section class="screen" data-screen="conta">
-        <div class="screen-intro">
-          <p class="label">Conta</p>
-          <h1>Definições</h1>
-          <p>A tua conta neste telemóvel.</p>
-        </div>
-        <div class="shop-block">
-          <h2>Sessão</h2>
-          <p class="acct-email" id="userEmail">—</p>
-          <button type="button" class="btn primary" id="btnLogout">Terminar sessão</button>
-        </div>
-      </section>
-    </div>
-
-    <nav class="tabbar" aria-label="Navegação">
-      <button class="tab active" data-go="manha" type="button"><span class="ico">☀</span><span class="lbl">Manhã</span></button>
-      <button class="tab" data-go="praia" type="button"><span class="ico">〰</span><span class="lbl">Praia</span></button>
-      <button class="tab" data-go="lanches" type="button"><span class="ico">◦</span><span class="lbl">Lanches</span></button>
-      <button class="tab" data-go="jantar" type="button"><span class="ico">♨</span><span class="lbl">Jantar</span></button>
-      <button class="tab" data-go="favoritos" type="button"><span class="ico">★</span><span class="lbl">Fav</span></button>
-      <button class="tab" data-go="compras" type="button"><span class="ico">☰</span><span class="lbl">Lista</span></button>
-      <button class="tab" data-go="conta" type="button"><span class="ico">◎</span><span class="lbl">Conta</span></button>
-    </nav>
   </div>
 
   <!-- MODAL RECEITA -->
@@ -201,11 +206,10 @@
     </div>
   </div>
 
-  <script>window.TFR=window.TFR||{login:function(e){if(e&&e.preventDefault)e.preventDefault();return false;},toggle:function(){},forgot:function(){}};</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/config.js?v=10"></script>
-  <script src="js/seed-data.js?v=10"></script>
-  <script src="js/db.js?v=10"></script>
-  <script src="js/app.js?v=10"></script>
+  <script src="js/config.js?v=11"></script>
+  <script src="js/seed-data.js?v=11"></script>
+  <script src="js/db.js?v=11"></script>
+  <script src="js/app.js?v=11"></script>
 </body>
 </html>

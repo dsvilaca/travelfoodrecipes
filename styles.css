@@ -36,6 +36,12 @@ html, body {
 
 button, summary, input, select, textarea { font: inherit; color: inherit; }
 
+.app-frame {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
 .phone {
   height: 100%;
   width: 100%;
@@ -44,6 +50,32 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  body {
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(42, 107, 116, 0.22), transparent 45%),
+      radial-gradient(ellipse at 90% 85%, rgba(232, 163, 58, 0.18), transparent 40%),
+      #e7eeec;
+    padding: 24px;
+  }
+
+  .app-frame {
+    width: min(430px, 100%);
+    height: min(860px, 100%);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(20, 40, 44, 0.18);
+    border: 1px solid rgba(20, 40, 44, 0.08);
+    background: var(--bg);
+  }
+
+  .auth, .phone {
+    border-radius: 0;
+  }
 }
 
 .app-header {
@@ -479,7 +511,7 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .toast {
-  position: fixed;
+  position: absolute;
   left: 14px;
   right: 14px;
   bottom: calc(24px + env(safe-area-inset-bottom, 0px));
@@ -624,8 +656,10 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .btn.primary { background: var(--sea); color: var(--foam); }
-.btn.ghost { background: var(--bg); color: var(--sea); border: 1px solid var(--line); }
+.btn.ghost { background: var(--bg); color: var(--sea); border: 1px solid var(--line); margin-top: 10px; }
 .btn:disabled { opacity: 0.6; cursor: wait; }
+
+.auth-card .btn.ghost { width: 100%; }
 
 .link-btn {
   appearance: none;
