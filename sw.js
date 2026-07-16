@@ -1,5 +1,5 @@
 /* Travel Food Recipes — cache da UI para uso offline */
-const CACHE = "tfr-v1";
+const CACHE = "tfr-v2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -34,6 +34,30 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   // Não cachear API Supabase
   if (url.hostname.includes("supabase.co")) return;
+
+  // Network-first para HTML/JS/CSS — senão as atualizações não aparecem
+  const isAppShell =
+    request.mode === "navigate"
+    || url.pathname.endsWith(".html")
+    || url.pathname.endsWith(".js")
+    || url.pathname.endsWith(".css")
+    || url.pathname.endsWith(".webmanifest")
+    || url.pathname.endsWith("/");
+
+  if (isAppShell) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE).then((cache) => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(request).then((cached) => {

@@ -113,75 +113,68 @@
     return data.session;
   }
 
-  async function signIn(email, password) {
-    const normalized = String(email || "").trim().toLowerCase();
+  async function trySupabaseSignIn(email, password) {
     try {
       const { data, error } = await getClient().auth.signInWithPassword({
-        email: normalized,
+        email,
         password,
       });
-      if (error) throw error;
+      if (error || !data?.session) return null;
       setAuthMode("supabase");
       return data;
-    } catch (err) {
-      // Fallback: conta local neste dispositivo
-      const db = readLocalDb();
-      const local = db.users.find((u) => u.email === normalized);
-      if (local && local.password === password) {
-        db.sessionEmail = normalized;
-        writeLocalDb(db);
-        setAuthMode("local");
-        return { user: localUserFromEmail(normalized), session: { user: localUserFromEmail(normalized) } };
-      }
-      throw mapAuthError(err);
+    } catch (_) {
+      return null;
     }
+  }
+
+  async function trySupabaseSignUp(email, password) {
+    try {
+      const { data, error } = await getClient().auth.signUp({
+        email,
+        password,
+        options: { emailRedirectTo: siteRedirectTo() },
+      });
+      if (error) return null;
+      if (data?.session) {
+        setAuthMode("supabase");
+        return data;
+      }
+      return trySupabaseSignIn(email, password);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  async function signIn(email, password) {
+    const normalized = String(email || "").trim().toLowerCase();
+    const cloud = await trySupabaseSignIn(normalized, password);
+    if (cloud?.session) return cloud;
+
+    // Sempre funciona neste dispositivo (a cloud pode estar com rate limit / confirm email)
+    const db = readLocalDb();
+    const local = db.users.find((u) => u.email === normalized);
+    if (local && local.password !== password) {
+      throw new Error("Password incorreta para esta conta neste telemóvel.");
+    }
+    return signInLocal(normalized, password);
   }
 
   async function signUp(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
-    try {
-      const { data, error } = await getClient().auth.signUp({
-        email: normalized,
-        password,
-        options: {
-          emailRedirectTo: siteRedirectTo(),
-        },
-      });
-      if (error) throw error;
 
-      if (data.session) {
-        setAuthMode("supabase");
-        return data;
-      }
+    // Conta local primeiro — os botões têm de funcionar mesmo com Supabase bloqueado
+    const local = signUpLocal(normalized, password, {
+      notice: "Conta pronta. Podes usar a app já neste telemóvel.",
+    });
 
-      // Conta criada mas a pedir confirmação de email → tenta login
-      try {
-        const signed = await getClient().auth.signInWithPassword({
-          email: normalized,
-          password,
-        });
-        if (!signed.error && signed.data?.session) {
-          setAuthMode("supabase");
-          return signed.data;
-        }
-      } catch (_) { /* continua para local */ }
-
-      // Usa conta local para a app funcionar já (sem esperar email)
-      return signUpLocal(normalized, password, {
-        notice: "Conta cloud criada, mas o Supabase pede confirmação de email. Entrei em modo neste telemóvel para poderes usar a app já. Desliga «Confirm email» no Supabase para sync na cloud.",
-      });
-    } catch (err) {
-      // Rate limit / provider issues → cria local
-      const mapped = mapAuthError(err);
-      if (/rate limit|desativado|confirm/i.test(mapped.message) || err?.status === 429) {
-        return signUpLocal(normalized, password, { notice: mapped.message + " A usar modo neste telemóvel." });
-      }
-      // Já existe no cloud sem sessão? permite local
-      if (/already|existe/i.test(mapped.message)) {
-        return signUpLocal(normalized, password, { notice: mapped.message });
-      }
-      throw mapped;
+    const cloud = await trySupabaseSignUp(normalized, password);
+    if (cloud?.session) {
+      return {
+        ...cloud,
+        notice: "Conta cloud ativa — dados sincronizam no Supabase.",
+      };
     }
+    return local;
   }
 
   function signUpLocal(email, password, extra = {}) {

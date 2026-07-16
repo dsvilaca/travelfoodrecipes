@@ -350,22 +350,22 @@
       const email = $("#authEmail").value.trim();
       const password = $("#authPassword").value;
       const mode = $("#authMode").value;
-      if (!email || password.length < 6) return toast("Email + password (mín. 6)");
+      if (!email || password.length < 6) return toast("Escreve email + password (mín. 6)");
       const submit = $("#authSubmit");
+      const prevLabel = submit.textContent;
       submit.disabled = true;
+      submit.textContent = "A entrar…";
       try {
         if (mode === "signup") {
           const data = await MareDB.signUp(email, password);
           if (!data.session) {
-            toast("Conta criada — confirma o email se pedido, ou usa «Neste telemóvel»");
-            $("#authMode").value = "login";
-            $("#authSubmit").textContent = "Entrar";
-            return;
+            throw new Error("Não foi possível criar sessão. Tenta outra password.");
           }
-          await afterLogin(data.session, data.notice || (data.local ? "Conta pronta neste telemóvel" : null));
+          await afterLogin(data.session, data.notice || "Conta pronta");
         } else {
           const data = await MareDB.signIn(email, password);
-          await afterLogin(data.session, data.local ? "Sessão local neste telemóvel" : null);
+          if (!data.session) throw new Error("Não foi possível entrar.");
+          await afterLogin(data.session, data.notice || (data.local ? "Sessão neste telemóvel" : null));
         }
       } catch (err) {
         toast(err.message || "Erro de autenticação");
@@ -374,8 +374,10 @@
           hint.textContent = err.message || "Erro de autenticação";
           hint.hidden = false;
         }
+        submit.textContent = prevLabel;
       } finally {
         submit.disabled = false;
+        if ($("#appShell").hidden) submit.textContent = prevLabel;
       }
     });
 
@@ -392,17 +394,6 @@
       }
     });
 
-    $("#authLocalBtn")?.addEventListener("click", async () => {
-      const email = $("#authEmail").value.trim();
-      const password = $("#authPassword").value;
-      if (!email || password.length < 6) return toast("Email + password (mín. 6)");
-      try {
-        const data = await MareDB.signInLocal(email, password);
-        await afterLogin(data.session, "Modo neste telemóvel — podes adicionar e apagar à vontade");
-      } catch (err) {
-        toast(err.message || "Erro");
-      }
-    });
   }
 
   function wireUi() {
@@ -485,7 +476,9 @@
   }
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js").catch(() => {});
+    navigator.serviceWorker.register("./sw.js?v=3").then((reg) => {
+      reg.update().catch(() => {});
+    }).catch(() => {});
   }
 
   boot();
