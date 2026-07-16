@@ -74,8 +74,16 @@
   }
 
   function showAuth(show) {
-    $("#authScreen").hidden = !show;
-    $("#appShell").hidden = show;
+    const auth = $("#authScreen");
+    const app = $("#appShell");
+    if (auth) {
+      auth.hidden = !show;
+      auth.setAttribute("aria-hidden", show ? "false" : "true");
+    }
+    if (app) {
+      app.hidden = show;
+      app.setAttribute("aria-hidden", show ? "true" : "false");
+    }
   }
 
   function updateOnline() {
