@@ -642,6 +642,22 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   margin-bottom: 10px;
 }
 
+.search-filter-label {
+  margin: 4px 0 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.search-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 .search-chip {
   appearance: none;
   border: 1px solid var(--line);
@@ -656,6 +672,12 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 
 .search-chip:active {
   background: rgba(42, 107, 116, 0.12);
+}
+
+.search-chip.method.active {
+  background: rgba(42, 107, 116, 0.14);
+  border-color: var(--sea);
+  color: var(--ink);
 }
 
 .tabbar {
