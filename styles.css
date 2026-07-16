@@ -719,8 +719,12 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .tab .lbl {
-  font-size: 0.55rem;
+  font-size: 0.52rem;
   font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  max-width: 100%;
+  padding: 0 1px;
 }
 
 .tab.active { color: var(--sea); }
