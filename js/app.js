@@ -14,13 +14,15 @@
     activeListId: null,
     shoppingReady: true,
     prefsReady: true,
-    diet: [], // restriction ids
+    diet: [], // lifestyle + allergen ids
+    excludeFoods: [], // custom foods to exclude
     screen: "manha",
     busy: false,
     authBusy: false,
     searchQuery: "",
     searchTerms: [],
     searchMethods: [], // forno | fogao | micro | frio | airfryer | grelha
+    excludeDraft: "",
   };
 
   const SEARCH_SUGGESTIONS = [
@@ -39,16 +41,35 @@
 
   const COOK_METHOD_LABEL = Object.fromEntries(COOK_METHODS.map((m) => [m.id, m.label]));
 
-  const DIET_OPTIONS = [
+  // Estilos alimentares
+  const LIFESTYLE_OPTIONS = [
     { id: "vegetarian", label: "Vegetariano" },
     { id: "vegan", label: "Vegan" },
-    { id: "gluten_free", label: "Sem glúten" },
-    { id: "lactose_free", label: "Sem lactose" },
-    { id: "nut_free", label: "Sem frutos secos" },
-    { id: "shellfish_free", label: "Sem marisco" },
+    { id: "pescatarian", label: "Pescatariano" },
     { id: "no_pork", label: "Sem porco" },
+    { id: "no_beef", label: "Sem vaca" },
+    { id: "no_alcohol", label: "Sem álcool" },
   ];
 
+  // 14 alergénios obrigatórios na UE
+  const ALLERGEN_OPTIONS = [
+    { id: "gluten", label: "Glúten" },
+    { id: "crustaceans", label: "Crustáceos" },
+    { id: "eggs", label: "Ovos" },
+    { id: "fish", label: "Peixe" },
+    { id: "peanuts", label: "Amendoim" },
+    { id: "soy", label: "Soja" },
+    { id: "milk", label: "Leite / lactose" },
+    { id: "tree_nuts", label: "Frutos de casca rija" },
+    { id: "celery", label: "Aipo" },
+    { id: "mustard", label: "Mostarda" },
+    { id: "sesame", label: "Sésamo" },
+    { id: "sulphites", label: "Sulfitos" },
+    { id: "lupin", label: "Tremoço / lupino" },
+    { id: "molluscs", label: "Moluscos" },
+  ];
+
+  const DIET_OPTIONS = [...LIFESTYLE_OPTIONS, ...ALLERGEN_OPTIONS];
   const DIET_LABEL = Object.fromEntries(DIET_OPTIONS.map((d) => [d.id, d.label]));
 
   const $ = (sel, root = document) => root.querySelector(sel);
@@ -153,32 +174,72 @@
     const hasHoney = recipeContains(blob, [/\b(mel|honey)\b/]);
 
     const hasPork = recipeContains(blob, [
-      /\b(porco|bacon|fiambre|presunto|chourico|chouriço|pancetta|lardo|entrecosto|secreto|cachaço|salsicha de porco|pork|ham|prosciutto|pepperoni)\b/,
+      /\b(porco|bacon|fiambre|presunto|chourico|pancetta|lardo|entrecosto|secreto|cachaco|salsicha de porco|pork|ham|prosciutto|pepperoni)\b/,
     ]);
 
-    const hasShellfish = recipeContains(blob, [
-      /\b(camarao|camaroes|gambas?|mexilhao|mexilhoes|ameijoa|ameijoas|lagosta|lavagante|caranguejo|sapateira|marisco|mariscos|polvo|lula|chocos?|ostra|ostras|vieira|shrimp|prawn|mussel|clam|lobster|crab|squid|octopus|shellfish)\b/,
+    const hasBeef = recipeContains(blob, [
+      /\b(vaca|vitela|bovina|beef|steak|bife|alcatra|entrecote|carne moida|carne picada)\b/,
     ]);
 
-    const hasFish = hasShellfish || recipeContains(blob, [
-      /\b(peixe|salm[aã]o|atum|bacalhau|sardinha|sardinhas|cavala|truta|pescada|dourada|robalo|anchova|anchovas|fish|salmon|tuna|cod|sardine)\b/,
+    const hasCrustaceans = recipeContains(blob, [
+      /\b(camarao|camaroes|gambas?|lagosta|lavagante|caranguejo|sapateira|shrimp|prawn|lobster|crab|crustace)\b/,
     ]);
 
-    const hasMeat = hasPork || recipeContains(blob, [
-      /\b(carne|frango|peru|vaca|vitela|borrego|cordeiro|bovina|beef|chicken|turkey|lamb|veal|steak|bife|almondegas|hamburger|burger|chourico|salsicha|linguiça|linguica|bacon)\b/,
-      /\b(carne mo[ií]da|carne picada|peito de frango|coxas? de frango)\b/,
+    const hasMolluscs = recipeContains(blob, [
+      /\b(mexilhao|mexilhoes|ameijoa|ameijoas|polvo|lula|chocos?|ostra|ostras|vieira|mussel|clam|squid|octopus|scallop|molusc)\b/,
+    ]);
+
+    const hasShellfish = hasCrustaceans || hasMolluscs || /\b(marisco|mariscos|shellfish)\b/.test(blob);
+
+    const hasFish = recipeContains(blob, [
+      /\b(peixe|salmao|atum|bacalhau|sardinha|sardinhas|cavala|truta|pescada|dourada|robalo|anchova|anchovas|fish|salmon|tuna|cod|sardine)\b/,
+    ]);
+
+    const hasMeat = hasPork || hasBeef || recipeContains(blob, [
+      /\b(carne|frango|peru|borrego|cordeiro|chicken|turkey|lamb|veal|almondegas|hamburger|burger|salsicha|linguica|bacon)\b/,
+      /\b(peito de frango|coxas? de frango)\b/,
     ]);
 
     const hasGluten = recipeContains(blob, [
       /\b(farinha|trigo|pao|broa|massa|esparguete|espaguete|spaghetti|macarrao|lasanha|ravioli|cuscuz|couscous|seitan|panko|bolo|biscoito|cookie|waffle|pancake|panqueca|torta|tarte|croissant|brioche|pizza|baguete|baguette|molho de soja|soy sauce|cevada|centeio|flour|bread|wheat|pasta|noodle|noodles|granola|burrito|tortilha|tortilla|wrap|tostas?|torrada|crouton|pao rala|breadcrumb)\b/,
     ]);
 
-    const hasNuts = recipeContains(blob, [
-      /\b(amendoa|amendoas|amendoim|amendoins|noz|nozes|avela|avelas|caju|pistacho|pistache|castanha|castanhas|nutella|peanut|almond|walnut|hazelnut|cashew|pistachio|pecan|macadamia|praline)\b/,
-      /\b(manteiga de amendoim|pasta de amendoim|creme de avela)\b/,
+    const hasPeanuts = recipeContains(blob, [
+      /\b(amendoim|amendoins|peanut|manteiga de amendoim|pasta de amendoim|nutella)\b/,
     ]);
 
-    // tags explícitas atenuam falsos positivos
+    const hasTreeNuts = recipeContains(blob, [
+      /\b(amendoa|amendoas|noz|nozes|avela|avelas|caju|pistacho|pistache|castanha|castanhas|almond|walnut|hazelnut|cashew|pistachio|pecan|macadamia|praline|creme de avela)\b/,
+    ]);
+
+    const hasSoy = recipeContains(blob, [
+      /\b(soja|tofu|edamame|tempeh|miso|molho de soja|soy|soya|shoyu)\b/,
+    ]);
+
+    const hasCelery = recipeContains(blob, [
+      /\b(aipo|celery|celery salt|sal de aipo)\b/,
+    ]);
+
+    const hasMustard = recipeContains(blob, [
+      /\b(mostarda|mustard|dijon)\b/,
+    ]);
+
+    const hasSesame = recipeContains(blob, [
+      /\b(sesamo|sésamo|gergelim|tahini|tahine|sesame|hummus|homus)\b/,
+    ]);
+
+    const hasSulphites = recipeContains(blob, [
+      /\b(sulfito|sulfitos|sulphite|sulfite|vinho|wine|vinagre de vinho)\b/,
+    ]);
+
+    const hasLupin = recipeContains(blob, [
+      /\b(tremoco|tremocos|lupino|lupine|lupin)\b/,
+    ]);
+
+    const hasAlcohol = recipeContains(blob, [
+      /\b(vinho|wine|cerveja|beer|rum|vodka|whisky|whiskey|conhaque|brandy|porto|madeira|licor|liqueur|sake|vinagre balsamico)\b/,
+    ]);
+
     const taggedVegan = /\b(vegan|vegano|vegana)\b/.test(tags);
     const taggedVeg = taggedVegan || /\bvegetariano\b/.test(tags);
     const taggedGF = /\b(sem gluten|gluten free|semgluten)\b/.test(tags);
@@ -187,13 +248,24 @@
     return {
       meat: taggedVeg ? false : hasMeat,
       fish: taggedVeg ? false : hasFish,
+      crustaceans: taggedVeg ? false : (hasCrustaceans || hasShellfish),
+      molluscs: taggedVeg ? false : (hasMolluscs || hasShellfish),
       shellfish: taggedVeg ? false : hasShellfish,
       pork: taggedVeg ? false : hasPork,
+      beef: taggedVeg ? false : hasBeef,
       dairy: taggedVegan || taggedLF ? false : hasDairy,
       egg: taggedVegan ? false : hasEgg,
       honey: taggedVegan ? false : hasHoney,
       gluten: taggedGF ? false : hasGluten,
-      nuts: hasNuts,
+      peanuts: hasPeanuts,
+      tree_nuts: hasTreeNuts,
+      soy: hasSoy,
+      celery: hasCelery,
+      mustard: hasMustard,
+      sesame: hasSesame,
+      sulphites: hasSulphites,
+      lupin: hasLupin,
+      alcohol: hasAlcohol,
     };
   }
 
@@ -204,27 +276,80 @@
     for (const id of prefs) {
       if (id === "vegetarian" && (f.meat || f.fish || f.shellfish)) return false;
       if (id === "vegan" && (f.meat || f.fish || f.shellfish || f.dairy || f.egg || f.honey)) return false;
-      if (id === "gluten_free" && f.gluten) return false;
-      if (id === "lactose_free" && f.dairy) return false;
-      if (id === "nut_free" && f.nuts) return false;
-      if (id === "shellfish_free" && f.shellfish) return false;
+      if (id === "pescatarian") {
+        // peixe/marisco ok; sem carne terrestre
+        if (f.pork || f.beef) return false;
+        if (f.meat && !f.fish && !f.shellfish) return false;
+      }
       if (id === "no_pork" && f.pork) return false;
+      if (id === "no_beef" && f.beef) return false;
+      if (id === "no_alcohol" && f.alcohol) return false;
+      if (id === "gluten" && f.gluten) return false;
+      if (id === "crustaceans" && f.crustaceans) return false;
+      if (id === "eggs" && f.egg) return false;
+      if (id === "fish" && f.fish) return false;
+      if (id === "peanuts" && f.peanuts) return false;
+      if (id === "soy" && f.soy) return false;
+      if (id === "milk" && f.dairy) return false;
+      if (id === "tree_nuts" && f.tree_nuts) return false;
+      if (id === "celery" && f.celery) return false;
+      if (id === "mustard" && f.mustard) return false;
+      if (id === "sesame" && f.sesame) return false;
+      if (id === "sulphites" && f.sulphites) return false;
+      if (id === "lupin" && f.lupin) return false;
+      if (id === "molluscs" && f.molluscs) return false;
     }
     return true;
   }
 
+  function recipeMatchesExcludes(r, excludes) {
+    const list = Array.isArray(excludes) ? excludes : state.excludeFoods;
+    if (!list.length) return true;
+    const blob = recipeSearchBlob(r);
+    return !list.some((term) => blob.includes(term));
+  }
+
+  function recipeAllowed(r) {
+    return recipeMatchesDiet(r, state.diet) && recipeMatchesExcludes(r, state.excludeFoods);
+  }
+
   function visibleRecipes(list) {
-    if (!state.diet.length) return list;
-    return list.filter((r) => recipeMatchesDiet(r, state.diet));
+    if (!state.diet.length && !state.excludeFoods.length) return list;
+    return list.filter((r) => recipeAllowed(r));
   }
 
   function dietFilterNote(total, shown) {
-    if (!state.diet.length) return "";
-    const labels = state.diet.map((id) => DIET_LABEL[id] || id).join(", ");
-    if (shown < total) {
-      return `Perfil: ${labels} · a mostrar ${shown} de ${total}`;
-    }
+    if (!state.diet.length && !state.excludeFoods.length) return "";
+    const bits = [];
+    if (state.diet.length) bits.push(state.diet.map((id) => DIET_LABEL[id] || id).join(", "));
+    if (state.excludeFoods.length) bits.push("sem " + state.excludeFoods.join(", "));
+    const labels = bits.join(" · ");
+    if (shown < total) return `Perfil: ${labels} · a mostrar ${shown} de ${total}`;
     return `Perfil: ${labels}`;
+  }
+
+  function persistPrefs() {
+    return MareDB.savePreferences({
+      diet: state.diet,
+      exclude_foods: state.excludeFoods,
+    }).then((saved) => {
+      state.diet = saved.diet || state.diet;
+      state.excludeFoods = saved.exclude_foods || state.excludeFoods;
+      return saved;
+    }).catch((err) => {
+      MareDB.cacheSet("preferences", {
+        diet: state.diet,
+        exclude_foods: state.excludeFoods,
+      });
+      throw err;
+    });
+  }
+
+  function refreshFilteredViews() {
+    renderAccount();
+    Object.keys(SECTIONS).forEach(renderSection);
+    renderFavorites();
+    if (state.screen === "pesquisa") renderSearch();
   }
 
   function detectCookMethods(r) {
@@ -309,7 +434,7 @@
       .map((r) => {
         const m = recipeMatchesTerms(r, terms);
         if (!m.ok) return null;
-        if (!recipeMatchesDiet(r, state.diet)) return null;
+        if (!recipeAllowed(r)) return null;
         const cook = detectCookMethods(r);
         if (methodFilter.length && !methodFilter.some((id) => cook.has(id))) return null;
         const methodScore = methodFilter.length
@@ -355,8 +480,30 @@
     const results = searchRecipes(q, state.searchMethods);
     const terms = state.searchTerms;
     const hasFilter = terms.length || state.searchMethods.length;
-    const dietNote = state.diet.length
-      ? `<p class="diet-filter-note">${escapeHtml("Perfil: " + state.diet.map((id) => DIET_LABEL[id] || id).join(", "))}</p>`
+    const allergensEl = $("#searchAllergens");
+    if (allergensEl) {
+      allergensEl.innerHTML = ALLERGEN_OPTIONS.map((d) => {
+        const on = state.diet.includes(d.id);
+        return `<button type="button" class="search-chip method${on ? " active" : ""}" data-diet="${d.id}" aria-pressed="${on ? "true" : "false"}">${escapeHtml(d.label)}</button>`;
+      }).join("");
+    }
+
+    const excludeChipsEl = $("#excludeFoodChips");
+    if (excludeChipsEl) {
+      excludeChipsEl.innerHTML = state.excludeFoods.length
+        ? state.excludeFoods.map((food) =>
+          `<button type="button" class="search-chip method active" data-remove-exclude="${escapeHtml(food)}" aria-label="Remover ${escapeHtml(food)}">${escapeHtml(food)} ✕</button>`
+        ).join("")
+        : `<span class="acct-hint" style="margin:0">Nenhum alimento extra excluído.</span>`;
+    }
+
+    const excludeInput = $("#excludeFoodInput");
+    if (excludeInput && excludeInput.value !== state.excludeDraft) {
+      excludeInput.value = state.excludeDraft || "";
+    }
+
+    const dietNote = (state.diet.length || state.excludeFoods.length)
+      ? `<p class="diet-filter-note">${escapeHtml(dietFilterNote(0, 0).replace(/^Perfil: /, "A excluir: "))}</p>`
       : "";
 
     if (countEl) {
@@ -378,7 +525,10 @@
       if (state.diet.length) {
         bits.push(state.diet.map((id) => DIET_LABEL[id] || id).join(", "));
       }
-      listEl.innerHTML = `<div class="empty-fav">Nada encontrado com ${escapeHtml(bits.join(" · "))}.<br />Tenta outro alimento, outro método ou ajusta o perfil em Conta.</div>`;
+      if (state.excludeFoods.length) {
+        bits.push("sem " + state.excludeFoods.join(", "));
+      }
+      listEl.innerHTML = `<div class="empty-fav">Nada encontrado com ${escapeHtml(bits.join(" · "))}.<br />Tenta outro alimento, outro método ou ajusta as exclusões.</div>`;
       return;
     }
 
@@ -460,8 +610,8 @@
       <span class="count-pill">${list.length} receita${list.length === 1 ? "" : "s"}</span>
       ${note ? `<p class="diet-filter-note">${escapeHtml(note)}</p>` : ""}`;
     $(".list", root).innerHTML = list.map((r, i) => recipeCard(r, { index: i + 1 })).join("")
-      || `<div class="empty-fav">${state.diet.length
-        ? "Nenhuma receita desta secção encaixa no teu perfil.<br />Ajusta as restrições em Conta."
+      || `<div class="empty-fav">${(state.diet.length || state.excludeFoods.length)
+        ? "Nenhuma receita desta secção encaixa no teu perfil.<br />Ajusta as restrições em Conta ou na pesquisa."
         : "Sem receitas aqui.<br />Toca em + para adicionar."}</div>`;
   }
 
@@ -474,28 +624,40 @@
     if (noteEl) noteEl.textContent = note;
     $("#favList").innerHTML = list.length
       ? list.map((r) => recipeCard(r, { subPrefix: SECTIONS[r.section]?.label || r.section })).join("")
-      : `<div class="empty-fav">${state.diet.length && all.length
+      : `<div class="empty-fav">${(state.diet.length || state.excludeFoods.length) && all.length
         ? "Os teus favoritos não encaixam no perfil atual.<br />Ajusta as restrições em Conta."
         : "Ainda sem favoritos.<br />Toca na ☆ numa receita para guardar."}</div>`;
   }
 
+  function dietChipHtml(d) {
+    const on = state.diet.includes(d.id);
+    return `<button type="button" class="search-chip method${on ? " active" : ""}" data-diet="${d.id}" aria-pressed="${on ? "true" : "false"}">${escapeHtml(d.label)}</button>`;
+  }
+
   function renderAccount() {
     updateAccountMeta();
-    const chips = $("#dietChips");
+    const life = $("#dietLifestyleChips");
+    const allerg = $("#dietAllergenChips");
     const status = $("#dietStatus");
     const tip = $("#dietMigrationTip");
-    if (chips) {
-      chips.innerHTML = DIET_OPTIONS.map((d) => {
-        const on = state.diet.includes(d.id);
-        return `<button type="button" class="search-chip method${on ? " active" : ""}" data-diet="${d.id}" aria-pressed="${on ? "true" : "false"}">${escapeHtml(d.label)}</button>`;
-      }).join("");
+    const excludeList = $("#accountExcludeChips");
+    if (life) life.innerHTML = LIFESTYLE_OPTIONS.map(dietChipHtml).join("");
+    if (allerg) allerg.innerHTML = ALLERGEN_OPTIONS.map(dietChipHtml).join("");
+    if (excludeList) {
+      excludeList.innerHTML = state.excludeFoods.length
+        ? state.excludeFoods.map((food) =>
+          `<button type="button" class="search-chip method active" data-remove-exclude="${escapeHtml(food)}">${escapeHtml(food)} ✕</button>`
+        ).join("")
+        : "";
     }
     if (status) {
-      if (!state.diet.length) {
+      if (!state.diet.length && !state.excludeFoods.length) {
         status.textContent = "Sem restrições — mostram-se todas as receitas.";
       } else {
-        status.textContent = "Ativo: " + state.diet.map((id) => DIET_LABEL[id] || id).join(", ")
-          + ". As listas e a pesquisa já filtram por isto.";
+        const bits = [];
+        if (state.diet.length) bits.push(state.diet.map((id) => DIET_LABEL[id] || id).join(", "));
+        if (state.excludeFoods.length) bits.push("excluir: " + state.excludeFoods.join(", "));
+        status.textContent = "Ativo: " + bits.join(" · ") + ". Aplicado em listas e pesquisa.";
       }
     }
     if (tip) tip.hidden = !!state.prefsReady;
@@ -584,14 +746,19 @@
       try {
         const prefs = await MareDB.getPreferences();
         state.diet = prefs.diet || [];
+        state.excludeFoods = prefs.exclude_foods || [];
       } catch (_) {
-        state.diet = MareDB.cacheGet("preferences", { diet: [] }).diet || [];
+        const cached = MareDB.cacheGet("preferences", { diet: [], exclude_foods: [] });
+        state.diet = cached.diet || [];
+        state.excludeFoods = cached.exclude_foods || [];
       }
     } catch (err) {
       state.recipes = MareDB.cacheGet("recipes", []);
       state.shoppingLists = MareDB.cacheGet("shoppingLists", []);
       state.shopping = MareDB.cacheGet("shopping", []);
-      state.diet = MareDB.cacheGet("preferences", { diet: [] }).diet || [];
+      const cached = MareDB.cacheGet("preferences", { diet: [], exclude_foods: [] });
+      state.diet = cached.diet || [];
+      state.excludeFoods = cached.exclude_foods || [];
       toast("Offline — a mostrar cache local");
       console.warn(err);
     }
@@ -608,9 +775,7 @@
     const wasOn = state.diet.includes(id);
     if (wasOn) {
       state.diet = state.diet.filter((d) => d !== id);
-      if (id === "vegetarian") {
-        state.diet = state.diet.filter((d) => d !== "vegan");
-      }
+      if (id === "vegetarian") state.diet = state.diet.filter((d) => d !== "vegan");
     } else {
       state.diet = state.diet.concat(id);
       if (id === "vegan" && !state.diet.includes("vegetarian")) {
@@ -618,19 +783,48 @@
       }
     }
 
-    renderAccount();
-    Object.keys(SECTIONS).forEach(renderSection);
-    renderFavorites();
-    if (state.screen === "pesquisa") renderSearch();
-
+    refreshFilteredViews();
     try {
-      await MareDB.savePreferences({ diet: state.diet });
+      await persistPrefs();
       state.prefsReady = await MareDB.preferencesReady();
       renderAccount();
     } catch (err) {
-      MareDB.cacheSet("preferences", { diet: state.diet });
       state.prefsReady = await MareDB.preferencesReady().catch(() => false);
       renderAccount();
+      console.warn(err);
+    }
+  }
+
+  async function addExcludeFoodsFromText(text) {
+    const terms = parseSearchTerms(text);
+    if (!terms.length) return;
+    const set = new Set(state.excludeFoods);
+    terms.forEach((t) => set.add(t));
+    state.excludeFoods = [...set];
+    state.excludeDraft = "";
+    refreshFilteredViews();
+    try {
+      await persistPrefs();
+      state.prefsReady = await MareDB.preferencesReady();
+      renderAccount();
+      if (state.screen === "pesquisa") renderSearch();
+      toast("Alimentos excluídos atualizados");
+    } catch (err) {
+      state.prefsReady = false;
+      renderAccount();
+      console.warn(err);
+    }
+  }
+
+  async function removeExcludeFood(food) {
+    const key = normalizeText(food);
+    state.excludeFoods = state.excludeFoods.filter((f) => f !== key && normalizeText(f) !== key);
+    refreshFilteredViews();
+    try {
+      await persistPrefs();
+      renderAccount();
+      if (state.screen === "pesquisa") renderSearch();
+    } catch (err) {
       console.warn(err);
     }
   }
@@ -1144,12 +1338,32 @@
       else state.searchMethods.push(id);
       renderSearch();
     });
-    $("#dietChips")?.addEventListener("click", (e) => {
-      const chip = e.target.closest("[data-diet]");
-      if (!chip) return;
-      toggleDiet(chip.dataset.diet);
+    const onExcludeSubmit = () => {
+      const input = $("#excludeFoodInput");
+      const text = input?.value || state.excludeDraft || "";
+      addExcludeFoodsFromText(text);
+    };
+    $("#btnAddExclude")?.addEventListener("click", onExcludeSubmit);
+    $("#excludeFoodInput")?.addEventListener("input", (e) => {
+      state.excludeDraft = e.target.value || "";
+    });
+    $("#excludeFoodInput")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        onExcludeSubmit();
+      }
     });
     document.addEventListener("click", (e) => {
+      const dietChip = e.target.closest("[data-diet]");
+      if (dietChip && e.target.closest("#dietLifestyleChips, #dietAllergenChips, #searchAllergens")) {
+        toggleDiet(dietChip.dataset.diet);
+        return;
+      }
+      const rem = e.target.closest("[data-remove-exclude]");
+      if (rem) {
+        removeExcludeFood(rem.dataset.removeExclude);
+        return;
+      }
       if (e.target.closest("#searchList")) handleListClick(e);
     });
     $("#recipeForm")?.addEventListener("submit", onRecipeSubmit);
@@ -1162,6 +1376,8 @@
       try { await MareDB.signOut(); } catch (_) { /* ignore */ }
       state.user = null;
       state.diet = [];
+      state.excludeFoods = [];
+      state.excludeDraft = "";
       state.prefsReady = true;
       showAuth(true);
       toast("Sessão terminada");

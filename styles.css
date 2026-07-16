@@ -848,6 +848,27 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   display: none;
 }
 
+.diet-subhead {
+  margin-top: 16px;
+}
+
+.exclude-food-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+  margin-bottom: 8px;
+}
+
+.exclude-food-row .exclude-field {
+  flex: 1;
+  margin: 0;
+}
+
+.exclude-food-row .as-btn {
+  align-self: center;
+  white-space: nowrap;
+}
+
 .acct-mode {
   font-size: 0.82rem;
   color: var(--muted);
