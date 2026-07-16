@@ -167,14 +167,8 @@
     $$(".screen").forEach((s) => s.classList.toggle("active", s.dataset.screen === name));
     $$(".tab[data-go]").forEach((t) => t.classList.toggle("active", t.dataset.go === name));
     $("#btnTabSearch")?.classList.toggle("active", name === "pesquisa");
-    if (MENU_SCREENS.has(name)) {
-      $("#btnMoreMenu")?.classList.add("active");
-    } else {
-      $("#btnMoreMenu")?.classList.remove("active");
-    }
+    $("#btnMoreMenu")?.classList.toggle("active", MENU_SCREENS.has(name));
     closeMoreSheet();
-    // re-apply menu highlight after closeMoreSheet clears it
-    if (MENU_SCREENS.has(name)) $("#btnMoreMenu")?.classList.add("active");
     const active = $(".screen.active");
     if (active) active.scrollTop = 0;
     if (name === "favoritos") renderFavorites();

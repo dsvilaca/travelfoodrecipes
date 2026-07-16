@@ -24,13 +24,13 @@
   <meta name="description" content="Receitas e lista de compras de férias — acessível no telemóvel e no computador." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Travel Food Recipes</title>
-  <link rel="manifest" href="./manifest.webmanifest?v=31" />
-  <link rel="icon" href="./icon-192.png?v=31" sizes="192x192" />
-  <link rel="apple-touch-icon" href="./icon-192.png?v=31" />
+  <link rel="manifest" href="./manifest.webmanifest?v=32" />
+  <link rel="icon" href="./icon-192.png?v=32" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./icon-192.png?v=32" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link id="appCss" rel="stylesheet" href="./styles.css?v=31" />
+  <link id="appCss" rel="stylesheet" href="./styles.css?v=32" />
   <style>
     /* Fallback mínimo se o CSS externo falhar (ex.: cache após domínio custom) */
     html, body { margin: 0; height: 100%; font-family: Figtree, system-ui, sans-serif; background: #eef3f2; color: #14282c; }
@@ -62,7 +62,7 @@
           if (probe) return;
           var link = document.getElementById("appCss");
           if (!link) return;
-          var href = "./styles.css?v=31&t=" + Date.now();
+          var href = "./styles.css?v=32&t=" + Date.now();
           link.href = href;
         } catch (e) { /* ignore */ }
       });
@@ -75,7 +75,7 @@
     <section id="authScreen" class="auth">
       <div class="auth-card">
         <div class="brand brand-auth">
-          <img class="brand-mark" src="./icon-192.png?v=31" width="56" height="56" alt="Travel Food Recipes" />
+          <img class="brand-mark" src="./icon-192.png?v=32" width="56" height="56" alt="Travel Food Recipes" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -119,7 +119,7 @@
     <div class="phone" id="appShell" hidden>
       <header class="app-header">
         <div class="brand brand-header">
-          <img class="brand-mark" src="./icon-192.png?v=31" width="32" height="32" alt="" />
+          <img class="brand-mark" src="./icon-192.png?v=32" width="32" height="32" alt="" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -277,16 +277,16 @@
             <span class="ico" aria-hidden="true">◐</span>
             <span class="lbl">Almoço</span>
           </button>
-          <button class="tab tab-fab" id="btnTabAdd" type="button" aria-label="Nova receita">
-            <span class="fab-plus" aria-hidden="true">+</span>
+          <button class="tab tab-fab" id="btnTabSearch" type="button" aria-label="Pesquisar">
+            <span class="fab-plus" aria-hidden="true">⌕</span>
           </button>
           <button class="tab" data-go="jantar" type="button">
             <span class="ico" aria-hidden="true">☾</span>
             <span class="lbl">Jantar</span>
           </button>
-          <button class="tab" id="btnMoreMenu" type="button" aria-expanded="false" aria-controls="moreSheet" aria-haspopup="true">
-            <span class="ico" aria-hidden="true">☰</span>
-            <span class="lbl">Mais</span>
+          <button class="tab" data-go="lanches" type="button">
+            <span class="ico" aria-hidden="true">◦</span>
+            <span class="lbl">Lanches</span>
           </button>
         </div>
       </nav>
@@ -294,11 +294,7 @@
       <div class="more-sheet" id="moreSheet" hidden>
         <button type="button" class="more-sheet-backdrop" id="moreSheetBackdrop" aria-label="Fechar menu"></button>
         <div class="more-sheet-panel" role="menu" aria-label="Mais opções">
-          <p class="more-sheet-title">Mais</p>
-          <button type="button" class="more-item" role="menuitem" data-go="lanches">
-            <span class="more-ico">◦</span>
-            <span>Lanches</span>
-          </button>
+          <p class="more-sheet-title">Menu</p>
           <button type="button" class="more-item" role="menuitem" data-go="favoritos">
             <span class="more-ico">★</span>
             <span>Favoritos</span>
@@ -374,11 +370,11 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./js/config.js?v=31"></script>
-  <script src="./js/seed-data.js?v=31"></script>
-  <script src="./js/tca-data.js?v=31"></script>
-  <script src="./js/nutrition.js?v=31"></script>
-  <script src="./js/db.js?v=31"></script>
-  <script src="./js/app.js?v=31"></script>
+  <script src="./js/config.js?v=32"></script>
+  <script src="./js/seed-data.js?v=32"></script>
+  <script src="./js/tca-data.js?v=32"></script>
+  <script src="./js/nutrition.js?v=32"></script>
+  <script src="./js/db.js?v=32"></script>
+  <script src="./js/app.js?v=32"></script>
 </body>
 </html>
