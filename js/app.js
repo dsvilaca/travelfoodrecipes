@@ -501,7 +501,7 @@
     if (excludeChipsEl) {
       excludeChipsEl.innerHTML = state.excludeFoods.length
         ? state.excludeFoods.map((food) =>
-          `<button type="button" class="search-chip method active" data-remove-exclude="${escapeHtml(food)}" aria-label="Remover ${escapeHtml(food)}">${escapeHtml(food)} ✕</button>`
+          `<button type="button" class="search-chip method active" data-remove-exclude="${escapeHtml(food)}" aria-label="Remover ${escapeHtml(displayLabel(food))}">${escapeHtml(displayLabel(food))} ✕</button>`
         ).join("")
         : `<span class="acct-hint" style="margin:0">Nenhum alimento extra excluído.</span>`;
     }
@@ -521,7 +521,7 @@
     }
 
     if (!hasFilter) {
-      listEl.innerHTML = `${dietNote}<div class="empty-fav">Experimenta: <strong>atum</strong>, <strong>ovos</strong> ou <strong>nutella</strong>.<br />Ou filtra por <strong>Forno</strong>, <strong>Fogão</strong>, <strong>Micro-ondas</strong> ou <strong>Sem aquecer</strong>.</div>`;
+      listEl.innerHTML = `${dietNote}<div class="empty-fav">Experimenta: <strong>Atum</strong>, <strong>Ovos</strong> ou <strong>Nutella</strong>.<br />Ou filtra por <strong>Forno</strong>, <strong>Fogão</strong>, <strong>Micro-ondas</strong> ou <strong>Sem aquecer</strong>.</div>`;
       return;
     }
 
@@ -655,7 +655,7 @@
     if (excludeList) {
       excludeList.innerHTML = state.excludeFoods.length
         ? state.excludeFoods.map((food) =>
-          `<button type="button" class="search-chip method active" data-remove-exclude="${escapeHtml(food)}">${escapeHtml(food)} ✕</button>`
+          `<button type="button" class="search-chip method active" data-remove-exclude="${escapeHtml(food)}">${escapeHtml(displayLabel(food))} ✕</button>`
         ).join("")
         : "";
     }
