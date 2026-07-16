@@ -350,31 +350,53 @@
     }, 0);
   }
 
-  async function handleAuthSubmit(e) {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
+  let authMode = "login"; // login | signup
+
+  function setAuthModeUi(mode) {
+    authMode = mode === "signup" ? "signup" : "login";
+    const heading = $("#authHeading");
+    const sub = $("#authSub");
+    const submit = $("#authSubmit");
+    const alt = $("#authAltBtn");
+    const pass = $("#authPassword");
+    if ($("#authHint")) $("#authHint").hidden = true;
+    if (authMode === "signup") {
+      if (heading) heading.textContent = "Criar conta";
+      if (sub) sub.textContent = "Cria a tua conta para guardar receitas e a lista de compras.";
+      if (submit) submit.textContent = "Criar conta";
+      if (alt) alt.textContent = "Já tenho conta — Entrar";
+      if (pass) pass.setAttribute("autocomplete", "new-password");
+    } else {
+      if (heading) heading.textContent = "Iniciar sessão";
+      if (sub) sub.textContent = "Entra para ver as tuas receitas e lista de compras.";
+      if (submit) submit.textContent = "Entrar";
+      if (alt) alt.textContent = "Criar conta";
+      if (pass) pass.setAttribute("autocomplete", "current-password");
     }
-    if (state.authBusy) return false;
+  }
+
+  async function runAuth(mode) {
+    if (state.authBusy) return;
     const email = ($("#authEmail")?.value || "").trim();
     const password = $("#authPassword")?.value || "";
-    const mode = $("#authMode")?.value || "login";
     if (!email || password.length < 6) {
-      authMessage("Escreve o email e uma password com pelo menos 6 caracteres.");
+      authMessage("Escreve um email válido e uma password com pelo menos 6 caracteres.");
       $("#authPassword")?.focus();
-      return false;
+      return;
     }
     if (!globalThis.MareDB) {
-      authMessage("Recarrega a página e tenta outra vez.");
-      return false;
+      authMessage("A app ainda está a carregar. Espera um segundo e tenta outra vez.");
+      return;
     }
     const submit = $("#authSubmit");
+    const alt = $("#authAltBtn");
     const prevLabel = submit ? submit.textContent : "Entrar";
     state.authBusy = true;
     if (submit) {
       submit.disabled = true;
-      submit.textContent = "A entrar…";
+      submit.textContent = mode === "signup" ? "A criar…" : "A entrar…";
     }
+    if (alt) alt.disabled = true;
     if ($("#authHint")) $("#authHint").hidden = true;
     try {
       const data = mode === "signup"
@@ -392,18 +414,26 @@
         submit.disabled = false;
         submit.textContent = prevLabel;
       }
+      if (alt) alt.disabled = false;
     }
-    return false;
   }
 
-  async function initAuthForm() {
+  function initAuthForm() {
     const form = $("#authForm");
-    const submit = $("#authSubmit");
+    setAuthModeUi("login");
 
-    // API global — o HTML chama isto no onclick (fiável no iPhone)
-    globalThis.TFR = globalThis.TFR || {};
-    globalThis.TFR.login = handleAuthSubmit;
-    globalThis.TFR.forgot = async function () {
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      runAuth(authMode);
+    });
+
+    $("#authAltBtn")?.addEventListener("click", () => {
+      if (authMode === "login") setAuthModeUi("signup");
+      else setAuthModeUi("login");
+    });
+
+    $("#authForgot")?.addEventListener("click", async () => {
       const email = ($("#authEmail")?.value || "").trim();
       if (!email) {
         authMessage("Escreve o teu email primeiro.");
@@ -415,30 +445,7 @@
       } catch (err) {
         authMessage(err.message || "Não foi possível enviar o email.");
       }
-    };
-    globalThis.TFR.toggle = function () {
-      const mode = $("#authMode");
-      if (!mode) return;
-      if ($("#authHint")) $("#authHint").hidden = true;
-      if (mode.value === "login") {
-        mode.value = "signup";
-        if (submit) submit.textContent = "Criar conta";
-        if ($("#authToggle")) $("#authToggle").textContent = "Já tens conta? Entrar";
-      } else {
-        mode.value = "login";
-        if (submit) submit.textContent = "Entrar";
-        if ($("#authToggle")) $("#authToggle").textContent = "Criar conta nova";
-      }
-    };
-
-    if (form) {
-      form.addEventListener("submit", handleAuthSubmit);
-    }
-    if (submit) {
-      submit.addEventListener("click", handleAuthSubmit);
-    }
-    $("#authToggle")?.addEventListener("click", globalThis.TFR.toggle);
-    $("#authForgot")?.addEventListener("click", globalThis.TFR.forgot);
+    });
   }
 
   function wireUi() {
@@ -487,7 +494,7 @@
       showAuth(true);
 
       if (!globalThis.MareDB) {
-        authMessage("Erro a carregar. Abre https://dsvilaca.github.io/travelfoodrecipes/nova.html");
+        authMessage("A app ainda está a carregar. Recarrega a página.");
         return;
       }
 

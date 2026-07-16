@@ -3,26 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#1a4a52" />
-  <title>A atualizar Travel Food Recipes…</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      font-family: system-ui, sans-serif;
-      background: #eef3f2;
-      color: #14282c;
-      padding: 24px;
-      text-align: center;
-    }
-    p { max-width: 280px; line-height: 1.45; }
-    strong { color: #1a4a52; }
-  </style>
-</head>
-<body>
-  <p><strong>A limpar a versão antiga…</strong><br />Abro a app atualizada a seguir.</p>
+  <title>Travel Food Recipes</title>
   <script>
     (async function () {
       try {
@@ -34,9 +15,13 @@
           const keys = await caches.keys();
           await Promise.all(keys.map(function (k) { return caches.delete(k); }));
         }
+        try { localStorage.removeItem("tfr-build"); } catch (e) {}
       } catch (e) { /* ignore */ }
-      location.replace("./index.html?fresh=10&t=" + Date.now());
+      location.replace("./index.html?v=11&t=" + Date.now());
     })();
   </script>
+</head>
+<body>
+  <p>A abrir a app…</p>
 </body>
 </html>
