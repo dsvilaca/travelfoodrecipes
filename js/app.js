@@ -650,44 +650,70 @@
     return Math.round(Number(n) || 0);
   }
 
+  function serveLabel(servings) {
+    const n = Math.max(1, Math.round(Number(servings) || 1));
+    return n === 1 ? "1 pessoa" : `${n} pessoas`;
+  }
+
   function macrosLineHtml(est, servings) {
     if (!est?.ok) return "";
     const s = Math.max(1, servings || 1);
     const r1 = roundMacro;
-    return `<div class="recipe-macros" data-macros-line>${r1(est.kcal / s)} kcal · P ${r1(est.protein / s)}g · HC ${r1(est.carbs / s)}g · L ${r1(est.fat / s)}g <span class="macros-per">/ porção</span></div>`;
+    return `<div class="recipe-macros" data-macros-line>${r1(est.kcal / s)} kcal · P ${r1(est.protein / s)}g · HC ${r1(est.carbs / s)}g · L ${r1(est.fat / s)}g <span class="macros-per">/ pessoa</span></div>`;
   }
 
-  function updateRecipeServingsView(card, view) {
+  function applyServingsToCard(card, servings) {
     const nut = card?.querySelector?.("[data-nutrition-totals]");
     if (!nut) return;
-    const servings = Math.max(1, Math.min(12, Math.round(Number(view) || 1)));
+    const n = Math.max(1, Math.min(12, Math.round(Number(servings) || 1)));
     const kcal = Number(nut.dataset.kcal) || 0;
     const protein = Number(nut.dataset.protein) || 0;
     const carbs = Number(nut.dataset.carbs) || 0;
     const fat = Number(nut.dataset.fat) || 0;
-    const coverage = nut.dataset.coverage || "0";
-    nut.dataset.servingsView = String(servings);
+    const label = serveLabel(n);
+    nut.dataset.servings = String(n);
     const set = (key, text) => {
       const el = nut.querySelector(`[data-n="${key}"]`);
       if (el) el.textContent = text;
     };
-    set("kcal", String(roundMacro(kcal / servings)));
-    set("protein", `${roundMacro(protein / servings)} g`);
-    set("carbs", `${roundMacro(carbs / servings)} g`);
-    set("fat", `${roundMacro(fat / servings)} g`);
-    set(
-      "note",
-      `Receita completa: ${roundMacro(kcal)} kcal · P ${roundMacro(protein)}g · HC ${roundMacro(carbs)}g · L ${roundMacro(fat)}g · ${coverage}% mapeado`
-    );
-    nut.querySelectorAll("[data-servings-view]").forEach((btn) => {
-      const on = Number(btn.dataset.servingsView) === servings;
+    set("serve-label", label);
+    set("kcal", String(roundMacro(kcal / n)));
+    set("protein", `${roundMacro(protein / n)} g`);
+    set("carbs", `${roundMacro(carbs / n)} g`);
+    set("fat", `${roundMacro(fat / n)} g`);
+    set("note", `Total da receita (${label}): ${roundMacro(kcal)} kcal · P ${roundMacro(protein)}g · HC ${roundMacro(carbs)}g · L ${roundMacro(fat)}g`);
+    nut.querySelectorAll("[data-set-servings]").forEach((btn) => {
+      const on = Number(btn.dataset.setServings) === n;
       btn.classList.toggle("active", on);
       btn.setAttribute("aria-pressed", on ? "true" : "false");
     });
+    const badge = card.querySelector("[data-servings-badge]");
+    if (badge) badge.textContent = `Para ${label}`;
     const line = card.querySelector("[data-macros-line]");
     if (line) {
-      line.innerHTML = `${roundMacro(kcal / servings)} kcal · P ${roundMacro(protein / servings)}g · HC ${roundMacro(carbs / servings)}g · L ${roundMacro(fat / servings)}g <span class="macros-per">/ porção</span>`;
+      line.innerHTML = `${roundMacro(kcal / n)} kcal · P ${roundMacro(protein / n)}g · HC ${roundMacro(carbs / n)}g · L ${roundMacro(fat / n)}g <span class="macros-per">/ pessoa</span>`;
     }
+  }
+
+  async function setRecipeServings(recipe, servings) {
+    const n = Math.max(1, Math.min(12, Math.round(Number(servings) || 1)));
+    if (recipeServings(recipe) === n) return;
+    const payload = {
+      id: recipe.id,
+      section: recipe.section,
+      title: recipe.title,
+      subtitle: recipe.subtitle || "",
+      protein_note: recipe.protein_note || "",
+      servings: n,
+      tags: recipe.tags || [],
+      ingredients: recipe.ingredients || [],
+      steps: recipe.steps || [],
+      note: recipe.note || "",
+      is_favorite: !!recipe.is_favorite,
+      sort_order: recipe.sort_order,
+    };
+    await MareDB.upsertRecipe(payload);
+    recipe.servings = n;
   }
 
   function recipeCard(r, opts = {}) {
@@ -704,9 +730,9 @@
     const servings = recipeServings(r);
     const macrosLine = macrosLineHtml(est, servings);
     const nutritionBlock = window.MareNutrition?.formatBlock
-      ? window.MareNutrition.formatBlock(est || { ok: false, coverage: 0 }, { servings, viewServings: servings })
+      ? window.MareNutrition.formatBlock(est || { ok: false, coverage: 0 }, { servings })
       : "";
-    const serveLabel = servings === 1 ? "1 pessoa" : `${servings} pessoas`;
+    const label = serveLabel(servings);
 
     return `
       <details class="recipe" data-id="${r.id}">
@@ -714,7 +740,8 @@
           <div class="num">${String(opts.index ?? "").padStart(2, "0") || "★"}</div>
           <div>
             <div class="recipe-title">${escapeHtml(r.title)}</div>
-            <div class="recipe-sub">${escapeHtml(opts.subPrefix ? opts.subPrefix + " · " : "")}${escapeHtml(r.subtitle || "")} · Serve ${escapeHtml(serveLabel)}</div>
+            <div class="recipe-sub">${escapeHtml(opts.subPrefix ? opts.subPrefix + " · " : "")}${escapeHtml(r.subtitle || "")}</div>
+            <div class="recipe-serve" data-servings-badge>Para ${escapeHtml(label)}</div>
             ${macrosLine}
           </div>
           <button type="button" class="star-btn${r.is_favorite ? " on" : ""}" data-act="fav" aria-label="Favorito">${r.is_favorite ? "★" : "☆"}</button>
@@ -1133,7 +1160,7 @@
   }
 
   async function handleListClick(e) {
-    const servingsBtn = e.target.closest("[data-servings-view]");
+    const servingsBtn = e.target.closest("[data-set-servings]");
     const favBtn = e.target.closest("[data-act='fav']");
     const editBtn = e.target.closest("[data-act='edit']");
     const delBtn = e.target.closest("[data-act='del']");
@@ -1146,7 +1173,15 @@
     if (servingsBtn) {
       e.preventDefault();
       e.stopPropagation();
-      updateRecipeServingsView(recipeEl, servingsBtn.dataset.servingsView);
+      const n = Number(servingsBtn.dataset.setServings);
+      applyServingsToCard(recipeEl, n);
+      try {
+        await setRecipeServings(recipe, n);
+        toast(`Receita marcada para ${serveLabel(n)}`);
+      } catch (err) {
+        toast(err.message || "Não foi possível guardar as porções");
+        applyServingsToCard(recipeEl, recipeServings(recipe));
+      }
       return;
     }
 
