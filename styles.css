@@ -624,8 +624,6 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 .btn.ghost { background: var(--bg); color: var(--sea); border: 1px solid var(--line); }
 .btn:disabled { opacity: 0.6; cursor: wait; }
 
-#authLocalBtn { margin-top: 10px; }
-
 .link-btn {
   appearance: none;
   border: 0;
