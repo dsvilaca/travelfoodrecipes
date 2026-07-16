@@ -1,4 +1,4 @@
-/* Estimativas nutricionais com base na TCA INSA / PortFIR */
+/* Estimativas nutricionais (macros) com base na TCA INSA / PortFIR */
 (function (global) {
   const SKIP = new Set([
     "sal", "pimenta", "pimenta preta", "pimenta branca", "sal e pimenta",
@@ -7,7 +7,7 @@
     "1 pitada de sal e pimenta",
   ]);
 
-  // Preferências de correspondência → nomes da TCA (normalizados)
+  // Preferências → nomes TCA normalizados (sem acentos/pontuação)
   const PREFER = {
     ovo: "ovo de galinha inteiro cru",
     ovos: "ovo de galinha inteiro cru",
@@ -19,6 +19,10 @@
     manteiga: "manteiga sem sal",
     "manteiga sem sal": "manteiga sem sal",
     azeite: "azeite 4 marcas",
+    "oleo": "oleo alimentar",
+    "oleo vegetal": "oleo alimentar",
+    "oleo alimentar": "oleo alimentar",
+    "oleo de girassol": "oleo de girassol",
     leite: "leite meio gordo uht",
     "leite meio gordo": "leite meio gordo uht",
     farinha: "farinha de trigo tipo 65",
@@ -28,9 +32,12 @@
     acucar: "acucar branco",
     "acucar refinado": "acucar branco",
     "acucar mascavo": "acucar amarelo",
+    "acucar de confeiteiro": "acucar branco",
+    "acucar em po": "acucar branco",
     frango: "frango peito sem pele cru",
     "peito de frango": "frango peito sem pele cru",
-    "coxas de frango": "frango coxa com pele crua",
+    "coxas de frango": "frango perna sem pele crua",
+    "coxa de frango": "frango perna sem pele crua",
     atum: "atum conserva em oleo",
     "atum escorrido": "atum conserva em oleo",
     "atum em conserva": "atum conserva em oleo",
@@ -42,8 +49,10 @@
     pao: "pao de trigo",
     "pao de forma": "pao de trigo",
     banana: "banana",
+    bananas: "banana",
     mel: "mel",
     alho: "alho cru",
+    "alho em po": "alho em po",
     cebola: "cebola crua",
     tomate: "tomate cru",
     arroz: "arroz agulha cru",
@@ -54,11 +63,27 @@
     amendoim: "amendoim miolo",
     "pasta amendoim": "amendoim miolo",
     "manteiga de amendoim": "amendoim miolo",
+    amendoa: "amendoa miolo com pele",
+    amendoas: "amendoa miolo com pele",
+    noz: "noz miolo",
+    nozes: "noz miolo",
+    morango: "morango",
+    morangos: "morango",
+    framboesa: "framboesa",
+    framboesas: "framboesa",
+    amora: "amora",
+    amoras: "amora",
+    cenoura: "cenoura crua",
+    cenouras: "cenoura crua",
     bacon: "bacon",
     fiambre: "fiambre perna",
     natas: "nata pasteurizada 33 gordura",
     nata: "nata pasteurizada 33 gordura",
-    creme: "nata pasteurizada 33 gordura",
+    "creme duplo": "nata pasteurizada 33 gordura",
+    "creme de leite": "nata pasteurizada 33 gordura",
+    "creme fraiche": "nata pasteurizada 33 gordura",
+    "creme de coco": "leite de coco enlatado",
+    "leite de coco": "leite de coco enlatado",
     "iogurte grego": "iogurte grego natural",
     iogurte: "iogurte meio gordo natural",
     chocolate: "chocolate de leite tablete",
@@ -66,32 +91,40 @@
     nutela: "creme para barrar de cacau e avelas",
     cacau: "cacau em po",
     canela: "canela moida",
+    "canela em po": "canela moida",
+    "canela moida": "canela moida",
+    "fermento em po": "fermento em po",
+    fermento: "fermento em po",
     limao: "limao",
     "sumo de limao": "limao",
+    "suco de limao": "limao",
     massa: "massa com ovo crua",
     esparguete: "esparguete cru",
     batata: "batata crua",
+    batatas: "batata crua",
     azeitonas: "azeitona",
     azeitona: "azeitona",
-    "carne picada": "carne de vaca picada crua",
-    "carne bovina": "carne de vaca picada crua",
+    "carne picada": "vaca hamburguer cru",
+    "carne bovina": "vaca hamburguer cru",
+    "carne de vaca": "vaca hamburguer cru",
     salmao: "salmao cru",
-    "iogurte grego": "iogurte grego natural",
     abacate: "abacate hass",
-    maionese: "maionese",
-    mostarda: "mostarda",
+    maionese: "maionese caseira com ovo e azeite",
+    mostarda: "condimento de mostarda",
     alface: "alface",
     cogumelos: "cogumelos generico",
-    salsa: "salsa",
+    salsa: "salsa fresca",
     "queijo fresco": "queijo fresco meio gordo",
-    queijo: "queijo flamengo 1 4 gordo",
+    queijo: "queijo flamengo",
     mozzarella: "queijo mozzarella fresco",
     mussarela: "queijo mozzarella fresco",
     parmesao: "queijo parmesao",
     cheddar: "queijo cheddar",
-    ricota: "requeijao",
+    ricota: "requeijao de vaca",
+    requeijao: "requeijao de vaca",
     wrap: "pao de trigo",
     tortilha: "pao de trigo",
+    tortilhas: "pao de trigo",
   };
 
   const UNIT_G = {
@@ -100,6 +133,7 @@
     grama: 1,
     gramas: 1,
     kg: 1000,
+    // ml/cl/dl/l convertidos via densityMl()
     ml: 1,
     cl: 10,
     dl: 100,
@@ -114,15 +148,39 @@
     libras: 454,
   };
 
+  const STOP_TOKENS = new Set([
+    "de", "do", "da", "dos", "das", "com", "sem", "para", "e", "ou",
+    "em", "ao", "a", "o", "as", "os", "um", "uma", "tipo",
+    "colher", "colheres", "sopa", "cha", "xicara", "xicaras", "chavena", "chavenas",
+    "fatia", "fatias", "dente", "dentes", "unidade", "unidades", "lata", "latas",
+  ]);
+
   let index = null;
   let foodsNorm = null;
 
+  /** Normaliza nomes de alimentos (sem barras — usado no índice TCA). */
   function normalize(str) {
     return String(str || "")
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  /** Normaliza texto de quantidade preservando frações 1/2. */
+  function normalizeQty(str) {
+    return String(str || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/½/g, " 1/2 ")
+      .replace(/¼/g, " 1/4 ")
+      .replace(/¾/g, " 3/4 ")
+      .replace(/⅓/g, " 1/3 ")
+      .replace(/⅔/g, " 2/3 ")
+      .replace(/[^a-z0-9\s\/]/g, " ")
       .replace(/\s+/g, " ")
       .trim();
   }
@@ -154,39 +212,82 @@
     if (/^\d+\s+\d+\/\d+$/.test(s)) {
       const [w, frac] = s.split(/\s+/);
       const [a, b] = frac.split("/").map(Number);
+      if (!b) return null;
       return Number(w) + a / b;
     }
     if (/^\d+\/\d+$/.test(s)) {
       const [a, b] = s.split("/").map(Number);
+      if (!b) return null;
       return a / b;
     }
     const n = Number(s);
     return Number.isFinite(n) ? n : null;
   }
 
+  /** Densidade aproximada g/ml para converter volume → massa. */
+  function densityMl(foodText) {
+    const t = foodText || "";
+    if (/\b(azeite|oleo|óleo|oil)\b/.test(t)) return 0.91;
+    if (/\b(mel|xarope|maple|agave)\b/.test(t)) return 1.4;
+    if (/\b(nata|natas|creme|chantilly)\b/.test(t)) return 1.0;
+    if (/\b(leite|iogurte|agua|vinagre|sumo|suco|vinho|cerveja)\b/.test(t)) return 1.03;
+    return 1.0;
+  }
+
+  function volumeToGrams(qty, unit, foodText) {
+    const ml = qty * (UNIT_G[unit] || 1);
+    if (unit === "g" || unit === "gr" || unit === "grama" || unit === "gramas" || unit === "kg"
+      || unit === "oz" || unit === "lb" || unit === "libra" || unit === "libras"
+      || unit === "tsp" || unit === "tbsp") {
+      return qty * (UNIT_G[unit] || 1);
+    }
+    // ml, cl, dl, l — aplicar densidade
+    if (unit === "ml" || unit === "cl" || unit === "dl" || unit === "l" || unit === "litro" || unit === "litros") {
+      return ml * densityMl(foodText);
+    }
+    return ml;
+  }
+
+  function cleanFoodText(text) {
+    return String(text || "")
+      .replace(/^(de|do|da|dos|das)\s+/, "")
+      // não remover "picad*" — faz parte de nomes como "carne picada"
+      .replace(/\b(ralad[oa]s?|frescos?|grandes?|medios?|pequenos?|derretid[oa]|sem sal|com sal|escorrid[oa]s?)\b/g, " ")
+      .replace(/\b(colher(?:es)?|xicaras?|chavenas?|cups?|fatias?|dentes?|unidades?)\b/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   function parseIngredient(line) {
     const raw = String(line || "").trim();
     if (!raw) return null;
 
-    // Prioridade: peso/volume entre parênteses no texto original
-    // (o normalize remove parênteses)
     let grams = null;
     let parenFood = null;
+    let parenUnit = null;
     const paren = raw.match(/\((\d+[.,]?\d*)\s*(g|ml)\)/i);
     if (paren) {
-      grams = Number(String(paren[1]).replace(",", "."));
-      parenFood = normalize(raw.replace(/\([^)]*\)/g, " "));
+      const pq = Number(String(paren[1]).replace(",", "."));
+      parenUnit = paren[2].toLowerCase();
+      parenFood = normalizeQty(raw.replace(/\([^)]*\)/g, " "));
+      // gramas do parênteses — densidade se ml
+      grams = parenUnit === "ml" ? pq * densityMl(parenFood) : pq;
     }
 
-    let text = normalize(raw);
-    if (!text || SKIP.has(text)) return null;
+    let text = normalizeQty(raw);
+    if (!text || SKIP.has(normalize(text))) return null;
 
-    // sal / pimenta / pitadas — irrelevantes para kcal
     if (/\bpitada\b/.test(text)) return null;
     if (/^(sal|pimenta)\b/.test(text) && text.length < 28) return null;
     if (/\b(a gosto|qb|q b|para provar)\b/.test(text)) {
       text = text.replace(/\b(a gosto|qb|q b|para provar).*$/, "").trim();
-      if (!text || SKIP.has(text)) return null;
+      if (!text || SKIP.has(normalize(text))) return null;
+    }
+
+    // Água — irrelevante para macros
+    if (/^\d[\d\s\/\.]*\s*(ml|cl|dl|l|litros?|xicaras?|chavenas?|cups?)?\s*(de\s+)?agua\b/.test(text)
+      || /\bagua\b/.test(text) && !/\b(de coco|tonica|com gas)\b/.test(text) && text.split(/\s+/).length <= 5) {
+      if (/\bagua\b/.test(text) && !/\b(de coco|tonica)\b/.test(text)) return null;
     }
 
     let foodText = parenFood || text;
@@ -195,48 +296,46 @@
     if (grams != null && parenFood) {
       foodText = parenFood
         .replace(/^\d+[\d\s\/\.]*\s*/, "")
-        .replace(/^(fatias?|unidades?|latas?|colheres?)\s+(de\s+)?/, "")
+        .replace(/^(fatias?|unidades?|latas?|colher(?:es)?)\s+(de\s+)?/, "")
         .replace(/^(sopa|cha)\s+(de\s+)?/, "")
-        .replace(/^colher de cha de\s+/, "")
-        .replace(/^colher de sopa de\s+/, "")
+        .replace(/^colher(?:es)?\s+de\s+(?:cha|sopa)\s+(?:de\s+)?/, "")
         .replace(/^(ovos?|ovo)\b/, "ovo")
-        .replace(/\b\d+\s*g\b/g, " ")
+        .replace(/\b\d+\s*(g|ml)\b/g, " ")
         .replace(/\s+/g, " ")
         .trim();
+      if (parenUnit === "ml") grams = Number(String(paren[1]).replace(",", ".")) * densityMl(foodText);
     }
 
-    // N g / N ml
+    // N g / N ml / …
     if (grams == null) {
-      m = text.match(/^(\d+[\d\s\/\.]*?)\s*(g|gr|gramas?|kg|ml|cl|dl|l|litros?|oz|lb|libras?)\b\s*(?:de\s+)?(.+)$/);
+      m = text.match(/^(\d+(?:\s+\d+\/\d+|\/\d+)?|\d+[.,]\d+)\s*(g|gr|gramas?|kg|ml|cl|dl|l|litros?|oz|lb|libras?)\b\s*(?:de\s+)?(.+)$/);
       if (m) {
         const qty = parseFraction(m[1].replace(/\s+/g, " "));
         const unit = m[2];
         foodText = m[3];
-        if (qty != null) grams = qty * (UNIT_G[unit] || 1);
+        if (qty != null) grams = volumeToGrams(qty, unit, foodText);
       }
     }
 
-    // N colher(es) de sopa/chá de X
+    // N colher(es) de sopa/chá de X  — singular e plural
     if (grams == null) {
-      m = text.match(/^(\d+[\d\s\/\.]*)\s*colheres?\s+de\s+(sopa|cha)\s+(?:de\s+)?(.+)$/);
+      m = text.match(/^(\d+(?:\s+\d+\/\d+|\/\d+)?|\d+[.,]\d+)\s*colher(?:es)?\s+de\s+(sopa|cha)\s+(?:de\s+)?(.+)$/);
       if (m) {
-        const qty = parseFraction(m[1]);
+        const qty = parseFraction(m[1].replace(/\s+/g, " "));
         foodText = m[3];
         if (qty != null) grams = qty * (m[2] === "sopa" ? 15 : 5);
       }
-    } else if (/\bcolheres?\s+de\s+(sopa|cha)\b/.test(text)) {
-      // já temos gramas do parênteses; limpar foodText para o alimento
-      m = text.match(/colheres?\s+de\s+(?:sopa|cha)\s+(?:de\s+)?(.+)$/);
-      if (m) foodText = m[1].replace(/\b\d+\s*g\b/g, " ").replace(/\s+/g, " ").trim();
+    } else if (/\bcolher(?:es)?\s+de\s+(sopa|cha)\b/.test(text)) {
+      m = text.match(/colher(?:es)?\s+de\s+(?:sopa|cha)\s+(?:de\s+)?(.+)$/);
+      if (m) foodText = m[1].replace(/\b\d+\s*(g|ml)\b/g, " ").replace(/\s+/g, " ").trim();
     }
 
     // N xícara(s) / chávena(s) de X
     if (grams == null) {
-      m = text.match(/^(\d+[\d\s\/\.]*)\s*(?:xicaras?|chavenas?|cups?)\s+(?:de\s+)?(.+)$/);
+      m = text.match(/^(\d+(?:\s+\d+\/\d+|\/\d+)?|\d+[.,]\d+)\s*(?:xicaras?|chavenas?|cups?)\s+(?:de\s+)?(.+)$/);
       if (m) {
-        const qty = parseFraction(m[1]);
+        const qty = parseFraction(m[1].replace(/\s+/g, " "));
         foodText = m[2];
-        // farinha ~120g; líquidos/açúcar ~200g; genérico 150g
         const dens = /\b(farinha|aveia|flocos)\b/.test(foodText) ? 120
           : /\b(acucar|leite|agua|oleo|azeite)\b/.test(foodText) ? 200
           : 150;
@@ -246,9 +345,9 @@
 
     // N dente(s) de alho
     if (grams == null) {
-      m = text.match(/^(\d+[\d\s\/\.]*)\s*dentes?\s+(?:de\s+)?(.+)$/);
+      m = text.match(/^(\d+(?:\s+\d+\/\d+|\/\d+)?|\d+[.,]\d+)\s*dentes?\s+(?:de\s+)?(.+)$/);
       if (m) {
-        const qty = parseFraction(m[1]);
+        const qty = parseFraction(m[1].replace(/\s+/g, " "));
         foodText = m[2];
         if (qty != null) grams = qty * 3;
       }
@@ -256,19 +355,19 @@
 
     // N fatia(s) de X
     if (grams == null) {
-      m = text.match(/^(\d+[\d\s\/\.]*)\s*fatias?\s+(?:de\s+)?(.+)$/);
+      m = text.match(/^(\d+(?:\s+\d+\/\d+|\/\d+)?|\d+[.,]\d+)\s*fatias?\s+(?:de\s+)?(.+)$/);
       if (m) {
-        const qty = parseFraction(m[1]);
+        const qty = parseFraction(m[1].replace(/\s+/g, " "));
         foodText = m[2];
         if (qty != null) grams = qty * (/pao|wrap|tortilha/.test(foodText) ? 30 : 25);
       }
     }
 
-    // N ovos / N ovo
+    // N ovos / gemas / claras
     if (grams == null) {
-      m = text.match(/^(\d+[\d\s\/\.]*)\s+(ovos?|gemas?|claras?)(?:\s+(.+))?$/);
+      m = text.match(/^(\d+(?:\s+\d+\/\d+|\/\d+)?|\d+[.,]\d+)\s+(ovos?|gemas?|claras?)(?:\s+(.+))?$/);
       if (m) {
-        const qty = parseFraction(m[1]);
+        const qty = parseFraction(m[1].replace(/\s+/g, " "));
         const kind = m[2];
         foodText = (kind + (m[3] ? " " + m[3] : "")).trim();
         const each = kind.startsWith("gema") ? 18 : kind.startsWith("clara") ? 33 : 55;
@@ -276,7 +375,6 @@
       }
     }
 
-    // bare "ovos" / "ovo"
     if (grams == null && /^(ovos?|gemas?|claras?)(\s|$)/.test(text)) {
       m = text.match(/^(ovos?|gemas?|claras?)(?:\s+(.+))?$/);
       if (m) {
@@ -287,9 +385,9 @@
       }
     }
 
-    // leading number without unit → count heuristic
+    // número inicial sem unidade → heurística de contagem
     if (grams == null) {
-      m = text.match(/^(\d+[\d\s\/\.]*)\s+(.+)$/);
+      m = text.match(/^(\d+(?:\s+\d+\/\d+|\/\d+)?|\d+[.,]\d+)\s+(.+)$/);
       if (m) {
         const qty = parseFraction(m[1].replace(/\s+/g, " "));
         foodText = m[2];
@@ -298,33 +396,28 @@
           else if (/\b(dentes?|alho)\b/.test(foodText)) grams = qty * 3;
           else if (/\b(banana|abacate|tomate|cebola)\b/.test(foodText)) grams = qty * 100;
           else if (/\b(limao|lima)\b/.test(foodText)) grams = qty * 60;
-          else grams = qty * 50; // fallback count
+          else if (/\b(folhas?)\b/.test(foodText)) grams = qty * 1; // louro etc. — massa residual
+          else grams = qty * 50;
         } else if (qty != null && qty > 20) {
-          // assume grams if large number without unit
           grams = qty;
         }
       }
     }
 
-    foodText = foodText
-      .replace(/^(de|do|da|dos|das)\s+/, "")
-      .replace(/\b(picad[oa]s?|ralad[oa]s?|frescos?|grandes?|medios?|pequenos?|derretid[oa]|sem sal|com sal)\b/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
+    foodText = cleanFoodText(foodText);
 
-    if (!foodText || foodText.length < 2 || SKIP.has(foodText)) return null;
+    if (!foodText || foodText.length < 2 || SKIP.has(normalize(foodText))) return null;
     if (grams == null || !(grams > 0)) {
-      // quantidades típicas quando a receita não indica peso
-      if (/\b(manteiga|margarina|azeite|oleo|óleo)\b/.test(foodText)) grams = 10;
+      if (/\b(manteiga|margarina|azeite|oleo)\b/.test(foodText)) grams = 10;
       else if (/\b(mel|xarope|molho|maionese|mostarda)\b/.test(foodText)) grams = 15;
-      else if (/\b(alho|canela|orégão|oregao|tomilho|cominhos|pimentao|paprika)\b/.test(foodText)) grams = 2;
+      else if (/\b(alho|canela|oregao|tomilho|cominhos|pimentao|paprika|fermento)\b/.test(foodText)) grams = 2;
       else if (/\b(ovos?)\b/.test(foodText)) grams = 55;
       else if (/\b(pao|wrap|tortilha)\b/.test(foodText)) grams = 40;
-      else if (/\b(leite|iogurte|nata|natas|agua)\b/.test(foodText)) grams = 100;
+      else if (/\b(leite|iogurte|nata|natas)\b/.test(foodText)) grams = 100;
       else grams = 40;
     }
 
-    return { raw, foodText, grams };
+    return { raw, foodText: normalize(foodText), grams };
   }
 
   function candidatePool(tokens) {
@@ -343,27 +436,46 @@
     return out.length ? out : foodsNorm;
   }
 
-  function scoreFood(food, tokens, preferKey) {
+  function scoreFood(food, tokens, preferKey, normFood) {
     const key = food.key;
     let sc = 0;
     if (preferKey && key === preferKey) return 1000;
-    if (preferKey && key.includes(preferKey)) sc += 40;
+    if (preferKey && key.includes(preferKey)) sc += 50;
+
+    // Evitar "alho em pó" para qualquer "* em pó"
+    if (/\balho em po\b/.test(key) && !/\balho\b/.test(normFood)) return -1;
+    // Evitar pratos "sopa …" quando o utilizador não pediu sopa
+    if (/\bsopa\b/.test(key) && !/\bsopa\b/.test(normFood)) sc -= 20;
+    // Evitar chá infusão quando não é chá como bebida
+    if (/\bcha\b/.test(key) && /\binfus/.test(key) && !/\bcha\b/.test(normFood)) sc -= 25;
+    // Evitar nata genérica para creme de coco
+    if (/\bnata\b/.test(key) && /\bcoco\b/.test(normFood) && !/\bcoco\b/.test(key)) return -1;
+    // Preferir ingredientes simples a pratos compostos
+    if (/\b(estufad|frit|grelhad|assado|cozid|bolo|arroz de|com azeite|com margarina)\b/.test(key)
+      && tokens.length <= 3) sc -= 8;
 
     let hits = 0;
+    let strongHits = 0;
     for (const t of tokens) {
-      if (t.length < 2) continue;
-      if (key === t) { sc += 20; hits++; }
-      else if (key.startsWith(t + " ")) { sc += 12; hits++; }
-      else if (new RegExp("(?:^|\\s)" + t + "(?:\\s|$)").test(key)) { sc += 8; hits++; }
-      else if (key.includes(t)) { sc += 2; hits++; }
+      if (t.length < 2 || STOP_TOKENS.has(t)) continue;
+      // "po" / "folhas" sozinhos são demasiado genéricos
+      if (t === "po" || t === "folhas" || t === "folha") continue;
+      if (key === t) { sc += 22; hits++; strongHits++; }
+      else if (key.startsWith(t + " ")) { sc += 14; hits++; strongHits++; }
+      else if (new RegExp("(?:^|\\s)" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "(?:\\s|$)").test(key)) {
+        sc += 9; hits++; strongHits++;
+      } else if (key.includes(t)) { sc += 2; hits++; }
     }
     if (!hits) return -1;
+    if (strongHits === 0 && hits <= 1) return -1;
+    // extrato/essência não deve mapear para bolacha/bolo
+    if (/\b(extrato|essencia)\b/.test(normFood) && /\b(bolacha|bolo|gelado|waffer|wafer)\b/.test(key)) return -1;
+    if (/\b(folhas?)\b/.test(normFood) && /\b(rabanete|nabiças|nabiça|alface)\b/.test(key) && !/\b(rabanete|nabiças|alface)\b/.test(normFood)) return -1;
 
     if (/\bcru\b/.test(key)) sc += 4;
-    if (/\b(com | a |ao |à |estufad|frit|grelhad|assado|cozid|bolo|sopa|arroz de)\b/.test(key)
-      && tokens.length <= 2) sc -= 6;
     if (tokens[0] && key.startsWith(tokens[0])) sc += 3;
-    sc -= Math.min(key.length, 80) / 40;
+    // nomes curtos / mais específicos ganham ligeiramente
+    sc -= Math.min(key.length, 80) / 50;
     return sc;
   }
 
@@ -371,28 +483,45 @@
     ensureIndex();
     if (!foodsNorm?.length) return null;
     const normFood = normalize(foodText);
+    if (!normFood) return null;
+
     let preferKey = PREFER[normFood] || null;
     if (!preferKey) {
-      // tentar primeiras 1–3 palavras
       const parts = normFood.split(" ");
-      for (let n = Math.min(3, parts.length); n >= 1; n--) {
+      for (let n = Math.min(4, parts.length); n >= 1; n--) {
         const k = parts.slice(0, n).join(" ");
         if (PREFER[k]) { preferKey = PREFER[k]; break; }
       }
     }
+    // sufixos comuns
+    if (!preferKey && /\bem po\b/.test(normFood)) {
+      if (/\bcanela\b/.test(normFood)) preferKey = PREFER["canela em po"];
+      else if (/\bfermento\b/.test(normFood)) preferKey = PREFER["fermento em po"];
+      else if (/\balho\b/.test(normFood)) preferKey = PREFER["alho em po"];
+      else if (/\bacucar\b/.test(normFood)) preferKey = PREFER["acucar em po"];
+    }
 
-    const tokens = normFood.split(" ").filter((t) => t.length >= 2 && !["de", "do", "da", "com", "sem", "para", "e"].includes(t));
-    if (!tokens.length) return null;
+    const tokens = normFood.split(" ").filter((t) => t.length >= 2 && !STOP_TOKENS.has(t));
+    if (!tokens.length && !preferKey) return null;
 
-    const pool = candidatePool(preferKey ? preferKey.split(" ").concat(tokens) : tokens);
+    const pool = candidatePool(
+      preferKey ? preferKey.split(" ").concat(tokens) : tokens
+    );
     let best = null;
     let bestScore = -1;
     for (const f of pool) {
-      const sc = scoreFood(f, tokens, preferKey);
+      const sc = scoreFood(f, tokens, preferKey, normFood);
       if (sc > bestScore) {
         bestScore = sc;
         best = f;
       }
+    }
+    // Se PREFER aponta para um alimento exacto, usar mesmo com score baixo
+    if (preferKey) {
+      const exact = foodsNorm.find((f) => f.key === preferKey);
+      if (exact) return exact;
+      const fuzzy = foodsNorm.find((f) => f.key.includes(preferKey) || preferKey.includes(f.key));
+      if (fuzzy && (!best || bestScore < 20)) return fuzzy;
     }
     if (!best || bestScore < 6) return null;
     return best;
@@ -417,14 +546,19 @@
       }
       const food = matchFood(parsed.foodText);
       if (!food) {
-        lines.push({ raw: ing, foodText: parsed.foodText, grams: parsed.grams, unmatched: true });
+        lines.push({
+          raw: ing,
+          foodText: parsed.foodText,
+          grams: parsed.grams,
+          unmatched: true,
+        });
         continue;
       }
       const factor = parsed.grams / 100;
       const row = {
         raw: ing,
         foodText: parsed.foodText,
-        grams: Math.round(parsed.grams),
+        grams: parsed.grams,
         match: food.name,
         kcal: food.kcal * factor,
         protein: food.protein * factor,
@@ -449,16 +583,20 @@
       coverage,
       matched,
       totalLines,
-      totalG: Math.round(totalG),
-      kcal: Math.round(kcal),
-      protein: Math.round(protein),
-      carbs: Math.round(carbs),
-      fat: Math.round(fat),
+      totalG,
+      kcal,
+      protein,
+      carbs,
+      fat,
       lines,
       source: tca?.source || "",
       url: tca?.url || "https://portfir.insa.min-saude.pt/",
       version: tca?.version || "",
     };
+  }
+
+  function round1(n) {
+    return Math.round(Number(n) || 0);
   }
 
   function formatBlock(est) {
@@ -472,10 +610,10 @@
     return `<div class="nutrition">
       <h3>Nutrição <span class="nutrition-tag">estimativa</span></h3>
       <div class="nutrition-grid">
-        <div><strong>${est.kcal}</strong><span>kcal</span></div>
-        <div><strong>${est.protein} g</strong><span>Proteína</span></div>
-        <div><strong>${est.carbs} g</strong><span>Hidratos</span></div>
-        <div><strong>${est.fat} g</strong><span>Lípidos</span></div>
+        <div><strong>${round1(est.kcal)}</strong><span>kcal</span></div>
+        <div><strong>${round1(est.protein)} g</strong><span>Proteína</span></div>
+        <div><strong>${round1(est.carbs)} g</strong><span>Hidratos</span></div>
+        <div><strong>${round1(est.fat)} g</strong><span>Lípidos</span></div>
       </div>
       <p class="nutrition-note">Valores para a receita completa · ${est.coverage}% dos ingredientes mapeados</p>
       <p class="nutrition-source">Fonte: ${escape(est.source)} · <a href="${escape(est.url)}" target="_blank" rel="noopener">PortFIR</a></p>
@@ -495,5 +633,6 @@
     formatBlock,
     parseIngredient,
     matchFood,
+    round1,
   };
-})(window);
+})(typeof window !== "undefined" ? window : globalThis);

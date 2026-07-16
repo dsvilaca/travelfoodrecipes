@@ -644,8 +644,9 @@
     const steps = (r.steps || []).map((s) => `<li>${escapeHtml(s)}</li>`).join("");
     const note = r.note ? `<div class="note">${escapeHtml(r.note)}</div>` : "";
     const est = recipeNutrition(r);
+    const r1 = (n) => Math.round(Number(n) || 0);
     const macrosLine = est?.ok
-      ? `<div class="recipe-macros">${est.kcal} kcal · P ${est.protein}g · HC ${est.carbs}g · L ${est.fat}g</div>`
+      ? `<div class="recipe-macros">${r1(est.kcal)} kcal · P ${r1(est.protein)}g · HC ${r1(est.carbs)}g · L ${r1(est.fat)}g</div>`
       : "";
     const nutritionBlock = window.MareNutrition?.formatBlock
       ? window.MareNutrition.formatBlock(est || { ok: false, coverage: 0 })
