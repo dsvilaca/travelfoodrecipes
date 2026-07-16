@@ -134,7 +134,7 @@
     return (arr || []).join("\n");
   }
 
-  const MORE_SCREENS = new Set(["lanches", "favoritos", "compras", "conta"]);
+  const MENU_SCREENS = new Set(["favoritos", "compras", "conta"]);
 
   function closeMoreSheet() {
     const sheet = $("#moreSheet");
@@ -147,7 +147,10 @@
     const sheet = $("#moreSheet");
     const btn = $("#btnMoreMenu");
     if (sheet) sheet.hidden = false;
-    if (btn) btn.setAttribute("aria-expanded", "true");
+    if (btn) {
+      btn.setAttribute("aria-expanded", "true");
+      btn.classList.add("active");
+    }
     $$(".more-item").forEach((item) => {
       item.classList.toggle("active", item.dataset.go === state.screen);
     });
@@ -163,8 +166,15 @@
     state.screen = name;
     $$(".screen").forEach((s) => s.classList.toggle("active", s.dataset.screen === name));
     $$(".tab[data-go]").forEach((t) => t.classList.toggle("active", t.dataset.go === name));
-    $("#btnMoreMenu")?.classList.toggle("active", MORE_SCREENS.has(name));
+    $("#btnTabSearch")?.classList.toggle("active", name === "pesquisa");
+    if (MENU_SCREENS.has(name)) {
+      $("#btnMoreMenu")?.classList.add("active");
+    } else {
+      $("#btnMoreMenu")?.classList.remove("active");
+    }
     closeMoreSheet();
+    // re-apply menu highlight after closeMoreSheet clears it
+    if (MENU_SCREENS.has(name)) $("#btnMoreMenu")?.classList.add("active");
     const active = $(".screen.active");
     if (active) active.scrollTop = 0;
     if (name === "favoritos") renderFavorites();
@@ -608,7 +618,7 @@
   }
 
   function updateOnline() {
-    $("#statusDot").classList.toggle("off", !navigator.onLine);
+    /* estado online/offline só via toast — sem indicador no header */
   }
 
   function recipeNutrition(r) {
@@ -1395,11 +1405,14 @@
 
   function wireUi() {
     $$(".tab[data-go]").forEach((tab) => tab.addEventListener("click", () => go(tab.dataset.go)));
-    $("#btnTabAdd")?.addEventListener("click", () => {
+    $("#btnTabSearch")?.addEventListener("click", () => {
+      closeMoreSheet();
+      go("pesquisa");
+    });
+    $("#btnAddRecipe")?.addEventListener("click", () => {
       closeMoreSheet();
       openRecipeModal(null);
     });
-    $("#btnAddRecipe")?.addEventListener("click", () => openRecipeModal(null));
     $("#btnMoreMenu")?.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleMoreSheet();
@@ -1411,7 +1424,6 @@
         if (dest) go(dest);
       });
     });
-    $("#btnSearch")?.addEventListener("click", () => go("pesquisa"));
     $("#btnAddShop")?.addEventListener("click", openShopModal);
     $("#btnAddList")?.addEventListener("click", openListModal);
 
@@ -1524,11 +1536,8 @@
       });
     }, true);
 
-    window.addEventListener("online", () => { updateOnline(); toast("De volta online"); refreshData(); });
-    window.addEventListener("offline", () => { updateOnline(); toast("Modo offline"); });
-    $("#statusBtn")?.addEventListener("click", () => {
-      toast(navigator.onLine ? "Online" : "Offline — cache local");
-    });
+    window.addEventListener("online", () => { toast("De volta online"); refreshData(); });
+    window.addEventListener("offline", () => { toast("Modo offline"); });
   }
 
   async function boot() {
