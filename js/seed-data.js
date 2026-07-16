@@ -74,7 +74,7 @@ window.MARE_SEED = {
         "Empilha e serve."
       ],
       "note": "Baseado em técnicas clássicas · ref. Allrecipes pancakes: https://www.allrecipes.com/recipe/21014/good-old-fashioned-pancakes/",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "manha",
@@ -633,7 +633,7 @@ window.MARE_SEED = {
         "Recheia doce ou salgado."
       ],
       "note": "Baseado em técnicas clássicas · ref. BBC crepes: https://www.bbcgoodfood.com/recipes/easy-crepes",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "manha",
@@ -739,7 +739,7 @@ window.MARE_SEED = {
         "Vira com cuidado."
       ],
       "note": "Baseado em técnicas clássicas · ref. BBC banana pancakes: https://www.bbcgoodfood.com/recipes/banana-pancakes",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "manha",
@@ -893,7 +893,7 @@ window.MARE_SEED = {
         "180 °C 18–22 min."
       ],
       "note": "Baseado em técnicas clássicas · ref. BBC banana oat muffins: https://www.bbcgoodfood.com/recipes/banana-oat-muffins",
-      "servings": 1
+      "servings": 4
     },
     {
       "section": "manha",
@@ -4593,7 +4593,7 @@ window.MARE_SEED = {
         "Retire do forno e pincele a superfície do pão quente com leite. Peneire com uma generosa cobertura de açúcar de confeiteiro."
       ],
       "note": "TheMealDB · Sobremesa · Croata · https://www.themealdb.com/meal/53062 · https://www.visit-croatia.co.uk/croatian-cuisine/croatian-recipes/",
-      "servings": 1
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -4647,7 +4647,7 @@ window.MARE_SEED = {
         "Uma gota de extrato de baunilha adicionada no final do cozimento realça o sabor."
       ],
       "note": "TheMealDB · Sobremesa · Argentina · https://www.themealdb.com/meal/53137 · https://www.munchery.com/blog/the-ten-iconic-dishes-of-argentina-and-how-to-cook-them-at-home/",
-      "servings": 1
+      "servings": 6
     },
     {
       "section": "lanches",
@@ -4937,7 +4937,7 @@ window.MARE_SEED = {
         "Aqueça o forno a 220C/200C ventilador/gás 8. Asse os bolos Eccles por 15-20 minutos até ficarem dourados e pegajosos. Deixe esfriar sobre uma gradinha e saboreie ainda quente ou frio com uma xícara de chá. Se preferir, os bolos Eccles também ficam muito bem servidos com uma fatia de queijo britânico duro e picante, como Lancashire ou cheddar."
       ],
       "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52888 · https://www.bbcgoodfood.com/recipes/786659/eccles-cakes",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -4966,7 +4966,7 @@ window.MARE_SEED = {
         "Retire o bolo da forma e nivele o topo com uma faca serrilhada, depois vire para que o fundo vire o topo. Fure tudo com uma faca ou palito e coloque sobre uma gradinha com uma bandeja ou tigela grande por baixo. Despeje a garoa sobre o bolo aos poucos até que seja totalmente absorvido. Você pode reaproveitar qualquer garoa presa na bandeja ou tigela. A maior parte da garoa deve ser absorvida."
       ],
       "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53485 · https://www.bbcgoodfood.com/recipes/brazilian-carrot-cake",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5426,7 +5426,7 @@ window.MARE_SEED = {
         "Retire os pães do forno e pincele com a cobertura e deixe esfriar sobre uma gradinha."
       ],
       "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52898 · https://www.bbc.co.uk/food/recipes/chelsea_buns_95015",
-      "servings": 1
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -5623,7 +5623,7 @@ window.MARE_SEED = {
         "Deixe os biscoitos de canela assados ​​esfriarem completamente antes de comê-los ou embrulhá-los."
       ],
       "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53462 · https://junedarville.com/cinnamon-roll-cookies.html",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5808,7 +5808,7 @@ window.MARE_SEED = {
         "Deixe esfriar e retire a torta da forma. Misture a canela restante com o açúcar de confeiteiro e polvilhe a torta. Sirva gelado."
       ],
       "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52857 · https://www.bbcgoodfood.com/recipes/1742633/pumpkin-pie",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -5896,7 +5896,7 @@ window.MARE_SEED = {
         "Asse as espéculas recheadas por 40 minutos a 180°C/350℉ (forno convencional) ou até ficarem prontas."
       ],
       "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53381 · https://www.inlaurasbakery.com/gevulde-speculaas-dutch-almond-paste-filled-spiced-cookies/",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6486,7 +6486,7 @@ window.MARE_SEED = {
         "Armazenamento: Guarde em um recipiente hermético fora da geladeira por cerca de 2 a 3 dias ou na geladeira por 5 dias. Congele por até três meses."
       ],
       "note": "TheMealDB · Dessert · Netherlands · https://www.themealdb.com/meal/53385 · https://insimoneskitchen.com/dutch-butter-cake-with-dulce-de-leche/",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6620,7 +6620,7 @@ window.MARE_SEED = {
         "Deixe esfriar por 5 minutos na panela e depois leve para uma gradinha para terminar de esfriar. Sirva com fatias de queijo cheddar."
       ],
       "note": "TheMealDB · Dessert · Jamaican · https://www.themealdb.com/meal/53348 · https://www.myforkinglife.com/easter-spice-bread-jamaican-style/#recipe",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -6715,7 +6715,7 @@ window.MARE_SEED = {
         "Assim que a treliça estiver no lugar, use a borda da lata para cortar as tiras pressionando com as mãos, criando um acabamento perfeito."
       ],
       "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52892 · https://www.bbc.co.uk/food/recipes/mary_berrys_treacle_tart_28524",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -7200,7 +7200,7 @@ window.MARE_SEED = {
         "Deixe esfriar por 15 minutos e retire da forma usando o papel. Quando estiver frio, regue com o mel restante. Corte em fatias grossas."
       ],
       "note": "TheMealDB · Dessert · Turkish · https://www.themealdb.com/meal/53271 · https://www.bbcgoodfood.com/recipes/walnut-date-honey-cake",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -7324,7 +7324,7 @@ window.MARE_SEED = {
         "Asse por 15-20 minutos, até dourar. Retire do forno, deixe esfriar por alguns minutos e depois vire sobre uma gradinha para esfriar."
       ],
       "note": "TheMealDB · Sobremesa · Britânico · https://www.themealdb.com/meal/52901 · https://www.bbc.co.uk/food/recipes/rock_cakes_03094",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -7379,7 +7379,7 @@ window.MARE_SEED = {
         "Asse por 45 minutos até ficar totalmente cozido."
       ],
       "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53424 · https://cookingwithlane.com/laos-plantain-coconut-bake/",
-      "servings": 1
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -7462,7 +7462,7 @@ window.MARE_SEED = {
         "Sirva com sorvete favorito."
       ],
       "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53441 · https://www.visitaruba.com/aruba-recipes/banana-den-forno/",
-      "servings": 1
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -7491,7 +7491,7 @@ window.MARE_SEED = {
         "Sirva quente, com recheio de sua preferência."
       ],
       "note": "TheMealDB · Dessert · Polish · https://www.themealdb.com/meal/53022 · https://www.tasteatlas.com/nalesniki/recipe",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -7538,7 +7538,7 @@ window.MARE_SEED = {
         "Junte o bicarbonato de sódio. Continue cozinhando até que o leite caramelizado atinja a consistência de pudim. Despeje o manjar em uma tigela e deixe esfriar completamente na geladeira."
       ],
       "note": "TheMealDB · Dessert · https://www.themealdb.com/meal/53515 · https://www.allrecipes.com/recipe/145412/manjar-dulce-de-leche-from-scratch/",
-      "servings": 1
+      "servings": 6
     },
     {
       "section": "lanches",
@@ -7994,7 +7994,7 @@ window.MARE_SEED = {
         "Perto do final do tempo de cozimento, derreta a manteiga restante e misture o açúcar e a canela em uma tigela pequena. Depois de retirar as empanadas, pincele imediatamente com a manteiga e polvilhe com a mistura de açúcar. As empanadas podem ser saboreadas ainda quentes ou frias. Se comer quente, tome cuidado para não se queimar com o recheio quente!"
       ],
       "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53324 · https://jennyisbaking.com/2020/05/01/chocolate-empanadas-with-dulce-de-leche/",
-      "servings": 1
+      "servings": 4
     },
     {
       "section": "lanches",
@@ -8048,7 +8048,7 @@ window.MARE_SEED = {
         "Sirva com rodelas de limão e açúcar ou seu recheio preferido. Depois de frias, você pode colocar as panquecas em camadas entre papel manteiga, embrulhar em filme plástico e congelar por até 2 meses."
       ],
       "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52854 · https://www.bbcgoodfood.com/recipes/2907669/easy-pancakes",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8105,7 +8105,7 @@ window.MARE_SEED = {
         "Aqueça uma frigideira grande antiaderente ou panqueca em fogo médio e pincele com metade do óleo. Usando metade da massa, coloque duas panquecas na panela, cozinhe por 1-2 minutos de cada lado e coloque em um prato. Repita o processo com o restante do óleo e da massa. Cubra as panquecas com nozes e framboesas."
       ],
       "note": "TheMealDB · Dessert · United States · https://www.themealdb.com/meal/52855 · https://www.bbcgoodfood.com/recipes/banana-pancakes",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8557,7 +8557,7 @@ window.MARE_SEED = {
         "Para servir polvilhe levemente com açúcar de confeiteiro."
       ],
       "note": "TheMealDB · Dessert · British · https://www.themealdb.com/meal/52991 · https://www.bbcgoodfood.com/recipes/2174/unbelievably-easy-mince-pies",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -8772,7 +8772,7 @@ window.MARE_SEED = {
         "Asse por cerca de 8 a 10 minutos, os biscoitos ficarão bem claros. Deixe esfriar antes de rechear metade com cada uma colher de chá de doce de leite. Coloque a outra metade dos biscoitos por cima e enrole as laterais de cada biscoito nos flocos de coco (ajuda se o doce de leite for pressionado nas laterais do biscoito). Aproveitar."
       ],
       "note": "TheMealDB · Dessert · Uruguayan · https://www.themealdb.com/meal/53321 · https://jennyisbaking.com/2019/05/17/classic-alfajores-from-uruguay/#recipe",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -9210,7 +9210,7 @@ window.MARE_SEED = {
         "Sirva os poffertjes com manteiga e açúcar de confeiteiro"
       ],
       "note": "TheMealDB · Breakfast · Netherlands · https://www.themealdb.com/meal/53379 · https://insimoneskitchen.com/old-dutch-poffertjes/#recipe",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "manha",
@@ -9424,7 +9424,7 @@ window.MARE_SEED = {
         "Assim que a Flija estiver pronta sirva imediatamente com mel ou iogurte."
       ],
       "note": "TheMealDB · Breakfast · https://www.themealdb.com/meal/53413 · https://www.myalbanianfood.com/recipe/albanian-flija-pancake/",
-      "servings": 1
+      "servings": 6
     },
     {
       "section": "manha",
@@ -9629,7 +9629,7 @@ window.MARE_SEED = {
         "Sirva-os quentes ou frios"
       ],
       "note": "TheMealDB · Breakfast · Kenyan · https://www.themealdb.com/meal/52967 · http://chef-raphael.com/home-made-mandazi-recipe/#more-106",
-      "servings": 1
+      "servings": 4
     },
     {
       "section": "manha",
@@ -9984,7 +9984,7 @@ window.MARE_SEED = {
         "Escorra e sirva com uma noz de manteiga e um pouco de creme de leite. Finalize polvilhando as chalotas crocantes por cima para servir."
       ],
       "note": "TheMealDB · Vegetarian · Polish · https://www.themealdb.com/meal/53296 · https://www.bbcgoodfood.com/recipes/pierogi",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
@@ -10035,7 +10035,7 @@ window.MARE_SEED = {
         "Serve morno."
       ],
       "note": "Crepe conforto · Nutella.",
-      "servings": 1
+      "servings": 2
     },
     {
       "section": "lanches",
