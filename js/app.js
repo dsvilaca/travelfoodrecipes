@@ -18,12 +18,24 @@
     authBusy: false,
     searchQuery: "",
     searchTerms: [],
+    searchMethods: [], // forno | fogao | micro | frio | airfryer | grelha
   };
 
   const SEARCH_SUGGESTIONS = [
     "ovos", "atum", "frango", "nutella", "queijo", "banana",
     "massa", "bacon", "salmão", "chocolate", "batata", "iogurte",
   ];
+
+  const COOK_METHODS = [
+    { id: "forno", label: "Forno" },
+    { id: "fogao", label: "Fogão / frigideira" },
+    { id: "micro", label: "Micro-ondas" },
+    { id: "frio", label: "Sem aquecer" },
+    { id: "airfryer", label: "Airfryer" },
+    { id: "grelha", label: "Grelha / BBQ" },
+  ];
+
+  const COOK_METHOD_LABEL = Object.fromEntries(COOK_METHODS.map((m) => [m.id, m.label]));
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -100,11 +112,59 @@
 
   function recipeSearchBlob(r) {
     const ings = (r.ingredients || []).join(" ");
-    return normalizeText([r.title, r.subtitle, r.protein_note, ings, (r.tags || []).join(" ")].join(" "));
+    const steps = (r.steps || []).join(" ");
+    return normalizeText([
+      r.title, r.subtitle, r.protein_note, ings, steps, (r.tags || []).join(" "), r.note || "",
+    ].join(" "));
+  }
+
+  function detectCookMethods(r) {
+    // blob já vem sem acentos (normalizeText)
+    const blob = recipeSearchBlob(r);
+    const tags = normalizeText((r.tags || []).join(" "));
+    const methods = new Set();
+    const has = (re) => re.test(blob);
+
+    if (has(/\b(forno|assar|assado|assada|assados|assadas|pre aquece|preaquece|bake|baked|oven|graus)\b/)
+      || has(/\b\d{2,3}\s*c\b/) || has(/\b\d{2,3}\s*f\b/)) {
+      methods.add("forno");
+    }
+    if (has(/\b(microondas|micro ondas|microwave)\b/) || tags.includes("micro")) {
+      methods.add("micro");
+    }
+    if (has(/\b(airfryer|air fryer|fritadeira de ar|air fry)\b/)) {
+      methods.add("airfryer");
+    }
+    if (has(/\b(grelha|grelhar|grelhado|grelhada|bbq|barbecue|churrasco|grill|grilled)\b/)) {
+      methods.add("grelha");
+    }
+    // fogão: equipamento / técnicas de lume — evitar "cozinhar" genérico
+    if (has(/\b(frigideira|fogao|panela|tacho|refoga|refogar|fritar|frita|fritas|saltear|salteia|ferver|ferve|lume|stove|skillet|saucepan|saute|frying|boil|simmer|wok)\b/)
+      || has(/\b(ovos mexidos|omelete|estufar|estufa|reduzir o caldo)\b/)) {
+      methods.add("fogao");
+    }
+
+    const needsHeat = methods.has("forno") || methods.has("fogao") || methods.has("micro")
+      || methods.has("airfryer") || methods.has("grelha");
+
+    const noHeatHint = has(/\b(sem fogao|sem forno|sem aquecer|sem lume|no cook|nocook|sem cozedura|overnight oats|smoothie|ceviche|carpaccio|tartare|chia pudding)\b/)
+      || tags.includes("sem fogao") || tags.includes("frio") || tags.includes("no cook");
+
+    if (noHeatHint && !needsHeat) methods.add("frio");
+
+    // sanduíches / wraps / saladas / lanches frios sem sinais de calor
+    if (!needsHeat && !methods.has("frio")) {
+      const coldStyle = has(/\b(sandes|sanduiche|wrap|pate|salada|salad|bruschetta|iogurte|granola|hummus|fruta|queijo fresco|trail mix|overnight)\b/)
+        || r.section === "praia" || r.section === "lanches";
+      const heatVerb = has(/\b(assar|fritar|ferver|refogar|grelhar|aquecer|esquentar|bake|boil|fry|simmer|roast|grill|microwave|forno|fogao|microondas|airfryer)\b/);
+      if (coldStyle && !heatVerb) methods.add("frio");
+    }
+
+    return methods;
   }
 
   function recipeMatchesTerms(r, terms) {
-    if (!terms.length) return { ok: false, score: 0, hits: [] };
+    if (!terms.length) return { ok: true, score: 0, hits: [] };
     const ingsNorm = (r.ingredients || []).map((i) => normalizeText(i));
     const titleNorm = normalizeText(r.title + " " + (r.subtitle || ""));
     const blob = recipeSearchBlob(r);
@@ -130,14 +190,27 @@
     return { ok: true, score, hits };
   }
 
-  function searchRecipes(query) {
+  function searchRecipes(query, methods) {
     const terms = parseSearchTerms(query);
     state.searchTerms = terms;
-    if (!terms.length) return [];
+    const methodFilter = Array.isArray(methods) ? methods : state.searchMethods;
+    if (!terms.length && !methodFilter.length) return [];
+
     return state.recipes
       .map((r) => {
         const m = recipeMatchesTerms(r, terms);
-        return m.ok ? { recipe: r, score: m.score, hits: m.hits } : null;
+        if (!m.ok) return null;
+        const cook = detectCookMethods(r);
+        if (methodFilter.length && !methodFilter.some((id) => cook.has(id))) return null;
+        const methodScore = methodFilter.length
+          ? methodFilter.reduce((acc, id) => acc + (cook.has(id) ? 1 : 0), 0)
+          : 0;
+        return {
+          recipe: r,
+          score: m.score + methodScore,
+          hits: m.hits,
+          methods: [...cook],
+        };
       })
       .filter(Boolean)
       .sort((a, b) => b.score - a.score || a.recipe.title.localeCompare(b.recipe.title, "pt"));
@@ -148,11 +221,10 @@
     const listEl = $("#searchList");
     const countEl = $("#searchCountPill");
     const hintsEl = $("#searchHints");
+    const methodsEl = $("#searchMethods");
     if (!listEl) return;
 
-    if (input && input.value !== state.searchQuery) {
-      // keep typed value
-    } else if (input && state.searchQuery && !input.value) {
+    if (input && state.searchQuery && !input.value) {
       input.value = state.searchQuery;
     }
 
@@ -162,31 +234,47 @@
       ).join("");
     }
 
+    if (methodsEl) {
+      methodsEl.innerHTML = COOK_METHODS.map((m) => {
+        const on = state.searchMethods.includes(m.id);
+        return `<button type="button" class="search-chip method${on ? " active" : ""}" data-method="${m.id}" aria-pressed="${on ? "true" : "false"}">${escapeHtml(m.label)}</button>`;
+      }).join("");
+    }
+
     const q = state.searchQuery || input?.value || "";
-    const results = searchRecipes(q);
+    const results = searchRecipes(q, state.searchMethods);
     const terms = state.searchTerms;
+    const hasFilter = terms.length || state.searchMethods.length;
 
     if (countEl) {
-      if (!terms.length) countEl.textContent = "Escreve um alimento";
+      if (!hasFilter) countEl.textContent = "Escreve um alimento ou escolhe um método";
       else countEl.textContent = results.length + " receita" + (results.length === 1 ? "" : "s");
     }
 
-    if (!terms.length) {
-      listEl.innerHTML = `<div class="empty-fav">Experimenta: <strong>atum</strong>, <strong>ovos</strong> ou <strong>nutella</strong>.<br />Podes juntar vários: atum, ovo</div>`;
+    if (!hasFilter) {
+      listEl.innerHTML = `<div class="empty-fav">Experimenta: <strong>atum</strong>, <strong>ovos</strong> ou <strong>nutella</strong>.<br />Ou filtra por <strong>Forno</strong>, <strong>Fogão</strong>, <strong>Micro-ondas</strong> ou <strong>Sem aquecer</strong>.</div>`;
       return;
     }
 
     if (!results.length) {
-      listEl.innerHTML = `<div class="empty-fav">Nada encontrado com “${escapeHtml(terms.join(", "))}”.<br />Tenta outro alimento ou só uma palavra.</div>`;
+      const bits = [];
+      if (terms.length) bits.push(`“${terms.join(", ")}”`);
+      if (state.searchMethods.length) {
+        bits.push(state.searchMethods.map((id) => COOK_METHOD_LABEL[id] || id).join(", "));
+      }
+      listEl.innerHTML = `<div class="empty-fav">Nada encontrado com ${escapeHtml(bits.join(" · "))}.<br />Tenta outro alimento ou outro método.</div>`;
       return;
     }
 
     listEl.innerHTML = results.map((row, i) => {
       const sectionLabel = SECTIONS[row.recipe.section]?.label || row.recipe.section;
       const hitLabel = row.hits.length ? ` · tem: ${row.hits.join(", ")}` : "";
+      const methodLabel = row.methods.length
+        ? ` · ${row.methods.map((id) => COOK_METHOD_LABEL[id] || id).join(", ")}`
+        : "";
       return recipeCard(row.recipe, {
         index: i + 1,
-        subPrefix: sectionLabel + hitLabel,
+        subPrefix: sectionLabel + hitLabel + methodLabel,
       });
     }).join("");
   }
@@ -854,6 +942,16 @@
       state.searchQuery = next;
       renderSearch();
       input.focus();
+    });
+    $("#searchMethods")?.addEventListener("click", (e) => {
+      const chip = e.target.closest("[data-method]");
+      if (!chip) return;
+      const id = chip.dataset.method;
+      if (!id) return;
+      const i = state.searchMethods.indexOf(id);
+      if (i >= 0) state.searchMethods.splice(i, 1);
+      else state.searchMethods.push(id);
+      renderSearch();
     });
     document.addEventListener("click", (e) => {
       if (e.target.closest("#searchList")) handleListClick(e);
