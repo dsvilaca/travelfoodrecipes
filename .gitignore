@@ -1,10 +1,12 @@
-# Segredos / config local (podes versionar config.example.js)
-# Se preferires NÃO publicar a anon key, descomenta a linha seguinte:
-# js/config.js
 
 .DS_Store
-Thumbs.db
-*.log
 .env
 .env.*
+# js/config.js
+*.log
 node_modules/
+scripts/.translate-cache.json
+scripts/.translate-checkpoint.json
+# Segredos / config local (podes versionar config.example.js)
+# Se preferires NÃO publicar a anon key, descomenta a linha seguinte:
+Thumbs.db

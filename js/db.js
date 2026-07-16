@@ -936,18 +936,71 @@
       lists = null;
     }
 
-    // Acrescenta receitas seed cujos títulos ainda não existem na conta
+    // Sincroniza seed: atualiza TheMealDB pelo id da URL e acrescenta títulos em falta
     if (seed.recipes?.length) {
-      const have = new Set(recipes.map((r) => (r.section + "::" + r.title).toLowerCase()));
-      const missing = seed.recipes.filter(
-        (r) => !have.has((r.section + "::" + r.title).toLowerCase())
-      );
-      if (missing.length) {
+      function mealDbId(note) {
+        const m = String(note || "").match(/themealdb\.com\/meal\/(\d+)/i);
+        return m ? m[1] : null;
+      }
+
+      const byMealDb = new Map();
+      recipes.forEach((r) => {
+        const id = mealDbId(r.note);
+        if (id) byMealDb.set(id, r);
+      });
+      const haveTitle = new Set(recipes.map((r) => (r.section + "::" + r.title).toLowerCase()));
+
+      const toInsert = [];
+      for (const s of seed.recipes) {
+        const sid = mealDbId(s.note);
+        const existing = sid ? byMealDb.get(sid) : null;
+        if (existing && existing.id) {
+          // Atualiza para versão PT (mantém favorito)
+          const patch = {
+            title: s.title,
+            subtitle: s.subtitle || "",
+            protein_note: s.protein_note || "",
+            tags: s.tags || [],
+            ingredients: s.ingredients || [],
+            steps: s.steps || [],
+            note: s.note || "",
+            section: s.section,
+          };
+          const same =
+            existing.title === patch.title
+            && JSON.stringify(existing.steps || []) === JSON.stringify(patch.steps)
+            && JSON.stringify(existing.ingredients || []) === JSON.stringify(patch.ingredients);
+          if (!same) {
+            if (isLocalMode()) {
+              const db = readLocalDb();
+              const row = db.recipes.find((r) => r.id === existing.id);
+              if (row) Object.assign(row, patch, { updated_at: new Date().toISOString() });
+              writeLocalDb(db);
+            } else {
+              await rest("recipes?id=eq." + encodeURIComponent(existing.id), {
+                method: "PATCH",
+                body: patch,
+                timeoutMs: 15000,
+              });
+            }
+            changed = true;
+          }
+          continue;
+        }
+
+        const key = (s.section + "::" + s.title).toLowerCase();
+        if (!haveTitle.has(key)) {
+          toInsert.push(s);
+          haveTitle.add(key);
+        }
+      }
+
+      if (toInsert.length) {
         if (isLocalMode()) {
           const db = readLocalDb();
           const now = new Date().toISOString();
           const start = db.recipes.length;
-          missing.forEach((r, i) => {
+          toInsert.forEach((r, i) => {
             db.recipes.push({
               id: uid(),
               user_id: userId,
@@ -967,7 +1020,7 @@
           });
           writeLocalDb(db);
         } else {
-          const recipeRows = missing.map((r, i) => ({
+          const recipeRows = toInsert.map((r, i) => ({
             user_id: userId,
             section: r.section,
             title: r.title,
@@ -980,7 +1033,6 @@
             is_favorite: false,
             sort_order: recipes.length + i,
           }));
-          // Inserir em lotes para não rebentar o payload
           for (let i = 0; i < recipeRows.length; i += 25) {
             const chunk = recipeRows.slice(i, i + 25);
             await rest("recipes", { method: "POST", body: chunk, timeoutMs: 30000 });
