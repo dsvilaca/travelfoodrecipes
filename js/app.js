@@ -1,9 +1,9 @@
 (function () {
   const SECTIONS = {
-    manha: { label: "Pequeno-almoço", title: "Arrancar o dia", blurb: "Rápido, com proteína, sem complicar." },
-    praia: { label: "Almoço na praia", title: "Sandes & wraps", blurb: "Leve, frio, estilo patê." },
-    lanches: { label: "Lanches", title: "Soft & fáceis", blurb: "Textura macia, com proteína." },
-    jantar: { label: "Jantar", title: "Pode ser pesado", blurb: "Burgers, massa, carne.", accent: true },
+    manha: { label: "Pequeno-almoço", title: "Pequeno-almoço", blurb: "Rápido, com proteína, sem complicar." },
+    praia: { label: "Almoço", title: "Almoço", blurb: "Sandes, wraps e pratos leves." },
+    jantar: { label: "Jantar", title: "Jantar", blurb: "Burgers, massa, carne — pode ser mais completo.", accent: true },
+    lanches: { label: "Lanches", title: "Lanches", blurb: "Snacks e opções rápidas entre refeições." },
   };
 
   const state = {
