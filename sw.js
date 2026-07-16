@@ -1,5 +1,5 @@
 /* Travel Food Recipes — cache da UI para uso offline */
-const CACHE = "tfr-v4";
+const CACHE = "tfr-v5";
 const ASSETS = [
   "./",
   "./index.html",
@@ -9,6 +9,8 @@ const ASSETS = [
   "./icon-512.png",
   "./js/config.js",
   "./js/seed-data.js",
+  "./js/tca-data.js",
+  "./js/nutrition.js",
   "./js/db.js",
   "./js/app.js",
 ];

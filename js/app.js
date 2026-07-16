@@ -571,6 +571,15 @@
     $("#statusDot").classList.toggle("off", !navigator.onLine);
   }
 
+  function recipeNutrition(r) {
+    try {
+      if (!window.MareNutrition?.estimateRecipe) return null;
+      return window.MareNutrition.estimateRecipe(r);
+    } catch (_) {
+      return null;
+    }
+  }
+
   function recipeCard(r, opts = {}) {
     const tags = [r.protein_note, ...(r.tags || [])].filter(Boolean)
       .map((t) => `<span class="tag${t === r.protein_note ? " p" : ""}">${escapeHtml(t)}</span>`)
@@ -579,6 +588,13 @@
     const ingredients = (r.ingredients || []).map((i) => `<li>${escapeHtml(i)}</li>`).join("");
     const steps = (r.steps || []).map((s) => `<li>${escapeHtml(s)}</li>`).join("");
     const note = r.note ? `<div class="note">${escapeHtml(r.note)}</div>` : "";
+    const est = recipeNutrition(r);
+    const macrosLine = est?.ok
+      ? `<div class="recipe-macros">${est.kcal} kcal · P ${est.protein}g · HC ${est.carbs}g · L ${est.fat}g</div>`
+      : "";
+    const nutritionBlock = window.MareNutrition?.formatBlock
+      ? window.MareNutrition.formatBlock(est || { ok: false, coverage: 0 })
+      : "";
 
     return `
       <details class="recipe" data-id="${r.id}">
@@ -587,12 +603,14 @@
           <div>
             <div class="recipe-title">${escapeHtml(r.title)}</div>
             <div class="recipe-sub">${escapeHtml(opts.subPrefix ? opts.subPrefix + " · " : "")}${escapeHtml(r.subtitle || "")}</div>
+            ${macrosLine}
           </div>
           <button type="button" class="star-btn${r.is_favorite ? " on" : ""}" data-act="fav" aria-label="Favorito">${r.is_favorite ? "★" : "☆"}</button>
           <div class="chev">›</div>
         </summary>
         <div class="body">
           <div class="tags">${tags}</div>
+          ${nutritionBlock}
           <div class="row-actions">
             <button type="button" class="mini-btn" data-act="edit">Editar</button>
             <button type="button" class="mini-btn danger" data-act="del">Apagar</button>

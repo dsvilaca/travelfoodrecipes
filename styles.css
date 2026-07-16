@@ -844,6 +844,89 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   line-height: 1.35;
 }
 
+.recipe-macros {
+  margin-top: 3px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--sea);
+  letter-spacing: 0.01em;
+}
+
+.nutrition {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(42, 107, 116, 0.06);
+}
+
+.nutrition h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+}
+
+.nutrition-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.nutrition-grid div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 6px 2px;
+}
+
+.nutrition-grid strong {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.nutrition-grid span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.nutrition-note,
+.nutrition-miss,
+.nutrition-source {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.nutrition-source {
+  margin-top: 4px;
+}
+
+.nutrition-source a {
+  color: var(--sea);
+  font-weight: 700;
+}
+
+@media (max-width: 380px) {
+  .nutrition-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .diet-filter-note:empty {
   display: none;
 }
