@@ -11,13 +11,13 @@
   <meta name="description" content="Receitas e lista de compras de férias — acessível no telemóvel e no computador." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Travel Food Recipes</title>
-  <link rel="manifest" href="manifest.webmanifest?v=15" />
-  <link rel="icon" href="icon-192.png?v=15" sizes="192x192" />
-  <link rel="apple-touch-icon" href="icon-192.png?v=15" />
+  <link rel="manifest" href="manifest.webmanifest?v=16" />
+  <link rel="icon" href="icon-192.png?v=16" sizes="192x192" />
+  <link rel="apple-touch-icon" href="icon-192.png?v=16" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=15" />
+  <link rel="stylesheet" href="styles.css?v=16" />
   <script>
     (function () {
       var APP_BUILD = "11";
@@ -45,7 +45,7 @@
     <section id="authScreen" class="auth">
       <div class="auth-card">
         <div class="brand brand-auth">
-          <img class="brand-mark" src="icon-192.png?v=15" width="56" height="56" alt="Travel Food Recipes" />
+          <img class="brand-mark" src="icon-192.png?v=16" width="56" height="56" alt="Travel Food Recipes" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -89,7 +89,7 @@
     <div class="phone" id="appShell" hidden>
       <header class="app-header">
         <div class="brand brand-header">
-          <img class="brand-mark" src="icon-192.png?v=15" width="32" height="32" alt="" />
+          <img class="brand-mark" src="icon-192.png?v=16" width="32" height="32" alt="" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -134,15 +134,14 @@
         <section class="screen" data-screen="compras">
           <div class="screen-intro">
             <p class="label">Compras</p>
-            <h1>Lista do super</h1>
-            <p>Adiciona, marca e apaga — sincronizado na tua conta.</p>
-            <button type="button" class="count-pill as-btn" id="btnAddShop">+ Adicionar item</button>
+            <h1>Listas de compras</h1>
+            <p>Cria várias listas, adiciona itens e marca o que já tens.</p>
+            <div class="intro-actions">
+              <button type="button" class="count-pill as-btn" id="btnAddList">+ Lista</button>
+              <button type="button" class="count-pill as-btn" id="btnAddShop">+ Item</button>
+            </div>
           </div>
           <div id="shopContainer"></div>
-          <div class="tip-box">
-            <strong>Ritmo do dia</strong>
-            Manhã → praia → lanche soft → jantar. Alterna atum, frango, ovo e salmão.
-          </div>
         </section>
 
         <section class="screen" data-screen="conta">
@@ -200,31 +199,38 @@
     </div>
   </div>
 
-  <!-- MODAL SHOP -->
+  <!-- MODAL SHOP ITEM -->
   <div class="modal" id="shopModal" hidden>
     <div class="modal-sheet">
       <div class="modal-head">
-        <h2>Novo item</h2>
+        <h2 id="shopModalTitle">Novo item</h2>
         <button type="button" class="hdr-btn icon-only" id="shopModalClose">✕</button>
       </div>
       <form id="shopForm" class="modal-form">
-        <label>Nome<input id="sLabel" required maxlength="120" /></label>
-        <label>Categoria
-          <select id="sCategory">
-            <option value="proteina">Proteína</option>
-            <option value="bases">Bases</option>
-            <option value="frescos">Frescos &amp; extras</option>
-          </select>
-        </label>
+        <label>Nome<input id="sLabel" required maxlength="120" placeholder="ex.: Ovos" /></label>
         <button type="submit" class="btn primary">Adicionar</button>
       </form>
     </div>
   </div>
 
+  <!-- MODAL NOVA LISTA -->
+  <div class="modal" id="listModal" hidden>
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <h2>Nova lista</h2>
+        <button type="button" class="hdr-btn icon-only" id="listModalClose">✕</button>
+      </div>
+      <form id="listForm" class="modal-form">
+        <label>Nome da lista<input id="listName" required maxlength="80" placeholder="ex.: Supermercado, Praia…" /></label>
+        <button type="submit" class="btn primary">Criar lista</button>
+      </form>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/config.js?v=15"></script>
-  <script src="js/seed-data.js?v=15"></script>
-  <script src="js/db.js?v=15"></script>
-  <script src="js/app.js?v=15"></script>
+  <script src="js/config.js?v=16"></script>
+  <script src="js/seed-data.js?v=16"></script>
+  <script src="js/db.js?v=16"></script>
+  <script src="js/app.js?v=16"></script>
 </body>
 </html>

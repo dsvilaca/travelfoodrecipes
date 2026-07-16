@@ -1,5 +1,6 @@
 -- Travel Food Recipes — schema Supabase
 -- Corre isto no SQL Editor do projeto (Run)
+-- Se já tinhas a versão antiga com categorias, corre também migration-shopping-lists.sql
 
 create extension if not exists "pgcrypto";
 
@@ -24,19 +25,32 @@ create table if not exists public.recipes (
 create index if not exists recipes_user_section_idx
   on public.recipes (user_id, section, sort_order);
 
--- Lista de compras
+-- Listas de compras (várias por utilizador)
+create table if not exists public.shopping_lists (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
+  name text not null,
+  sort_order int not null default 0,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists shopping_lists_user_idx
+  on public.shopping_lists (user_id, sort_order, created_at);
+
+-- Itens de uma lista
 create table if not exists public.shopping_items (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
+  list_id uuid references public.shopping_lists (id) on delete cascade,
   label text not null,
-  category text not null check (category in ('proteina', 'bases', 'frescos')),
+  category text not null default '',
   checked boolean not null default false,
   sort_order int not null default 0,
   created_at timestamptz not null default now()
 );
 
-create index if not exists shopping_user_cat_idx
-  on public.shopping_items (user_id, category, sort_order);
+create index if not exists shopping_user_list_idx
+  on public.shopping_items (user_id, list_id, sort_order);
 
 -- updated_at automático
 create or replace function public.set_updated_at()
@@ -56,6 +70,7 @@ create trigger recipes_set_updated_at
 
 -- RLS
 alter table public.recipes enable row level security;
+alter table public.shopping_lists enable row level security;
 alter table public.shopping_items enable row level security;
 
 drop policy if exists "recipes_select_own" on public.recipes;
@@ -72,6 +87,20 @@ create policy "recipes_update_own" on public.recipes
 create policy "recipes_delete_own" on public.recipes
   for delete using (auth.uid() = user_id);
 
+drop policy if exists "lists_select_own" on public.shopping_lists;
+drop policy if exists "lists_insert_own" on public.shopping_lists;
+drop policy if exists "lists_update_own" on public.shopping_lists;
+drop policy if exists "lists_delete_own" on public.shopping_lists;
+
+create policy "lists_select_own" on public.shopping_lists
+  for select using (auth.uid() = user_id);
+create policy "lists_insert_own" on public.shopping_lists
+  for insert with check (auth.uid() = user_id);
+create policy "lists_update_own" on public.shopping_lists
+  for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create policy "lists_delete_own" on public.shopping_lists
+  for delete using (auth.uid() = user_id);
+
 drop policy if exists "shopping_select_own" on public.shopping_items;
 drop policy if exists "shopping_insert_own" on public.shopping_items;
 drop policy if exists "shopping_update_own" on public.shopping_items;
@@ -86,11 +115,11 @@ create policy "shopping_update_own" on public.shopping_items
 create policy "shopping_delete_own" on public.shopping_items
   for delete using (auth.uid() = user_id);
 
--- Default user_id = utilizador autenticado (também em tabelas já criadas)
 alter table public.recipes alter column user_id set default auth.uid();
+alter table public.shopping_lists alter column user_id set default auth.uid();
 alter table public.shopping_items alter column user_id set default auth.uid();
 
--- Permissões da API (além do RLS)
 grant usage on schema public to anon, authenticated;
 grant select, insert, update, delete on public.recipes to authenticated;
+grant select, insert, update, delete on public.shopping_lists to authenticated;
 grant select, insert, update, delete on public.shopping_items to authenticated;
