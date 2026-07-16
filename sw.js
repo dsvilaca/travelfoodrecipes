@@ -1,5 +1,5 @@
 /* Maré service worker — cache da UI para uso offline */
-const CACHE = "mare-v2";
+const CACHE = "mare-v3";
 const ASSETS = [
   "./",
   "./index.html",
