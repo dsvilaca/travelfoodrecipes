@@ -11,10 +11,11 @@
   --sheet: #ffffff;
   --bg: #eef3f2;
   --danger-soft: #fff4ee;
-  --radius: 14px;
-  --radius-sm: 10px;
-  --nav-h: 72px;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --nav-h: 88px;
   --header-h: 56px;
+  --dock-h: 64px;
   --font-display: "Bricolage Grotesque", Georgia, serif;
   --font-body: "Figtree", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -71,32 +72,29 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
     margin-inline: auto;
   }
 
-  .app-header,
-  .tabbar {
+  .app-header {
     padding-left: max(12px, calc((100% - 720px) / 2));
     padding-right: max(12px, calc((100% - 720px) / 2));
   }
 
-  .tabbar {
-    grid-template-columns: repeat(8, minmax(64px, 1fr));
-    justify-content: center;
-  }
-
-  .tab .lbl {
-    font-size: 0.72rem;
+  .tabbar-dock {
+    max-width: 420px;
   }
 }
 
 .app-header {
   flex: 0 0 auto;
   height: calc(var(--header-h) + env(safe-area-inset-top, 0px));
-  padding: env(safe-area-inset-top, 0px) 12px 0;
+  padding: env(safe-area-inset-top, 0px) 14px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--sea);
+  background: rgba(26, 74, 82, 0.94);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
   color: var(--foam);
   z-index: 20;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .brand {
@@ -210,7 +208,7 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  padding: 14px 14px calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px);
+  padding: 14px 14px calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 8px);
   opacity: 0;
   visibility: hidden;
   transform: translateX(12px);
@@ -685,15 +683,33 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 30;
-  height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
-  padding: 6px 2px env(safe-area-inset-bottom, 0px);
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-top: 1px solid var(--line);
+  z-index: 40;
+  pointer-events: none;
+  padding: 0 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  height: auto;
+}
+
+.tabbar-dock {
+  pointer-events: auto;
+  width: min(100%, 420px);
+  height: var(--dock-h);
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: 1fr 1fr 1.15fr 1fr 1fr;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 8px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    0 10px 30px rgba(20, 40, 44, 0.14),
+    0 2px 8px rgba(20, 40, 44, 0.06);
 }
 
 .tab {
@@ -703,35 +719,165 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2px;
-  padding: 4px 0;
-  border-radius: 12px;
+  padding: 4px 2px;
+  border-radius: 16px;
   color: var(--muted);
   cursor: pointer;
+  min-width: 0;
+  transition: color 0.18s var(--ease), transform 0.18s var(--ease);
+}
+
+.tab:active {
+  transform: scale(0.94);
 }
 
 .tab .ico {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   display: grid;
   place-items: center;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  border-radius: 10px;
 }
 
 .tab .lbl {
-  font-size: 0.52rem;
+  font-size: 0.58rem;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.1;
   text-align: center;
   max-width: 100%;
-  padding: 0 1px;
+  letter-spacing: -0.01em;
 }
 
 .tab.active { color: var(--sea); }
 
 .tab.active .ico {
-  background: rgba(42, 107, 116, 0.12);
-  border-radius: 8px;
+  background: rgba(42, 107, 116, 0.14);
+}
+
+.tab-fab {
+  align-self: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.tab-fab .fab-plus {
+  width: 52px;
+  height: 52px;
+  margin-top: -18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.85rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #fff;
+  background: linear-gradient(160deg, var(--sea-mid), var(--sea));
+  box-shadow:
+    0 8px 20px rgba(26, 74, 82, 0.35),
+    0 0 0 4px rgba(255, 255, 255, 0.9);
+  transition: transform 0.18s var(--ease);
+}
+
+.tab-fab:active .fab-plus {
+  transform: scale(0.92);
+}
+
+/* Menu Mais — action sheet iOS */
+.more-sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 14px calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) - 8px);
+}
+
+.more-sheet-backdrop {
+  appearance: none;
+  border: 0;
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 25, 28, 0.35);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  cursor: pointer;
+  animation: fadeIn 0.2s var(--ease);
+}
+
+.more-sheet-panel {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 22px;
+  padding: 10px 8px 12px;
+  box-shadow: 0 16px 40px rgba(20, 40, 44, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  animation: sheetUp 0.28s var(--ease);
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.more-sheet-title {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 8px 10px;
+}
+
+.more-item {
+  appearance: none;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+.more-item:active {
+  background: rgba(42, 107, 116, 0.1);
+}
+
+.more-item.active {
+  color: var(--sea);
+  background: rgba(42, 107, 116, 0.1);
+}
+
+.more-ico {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  font-size: 1.05rem;
+  color: var(--sea);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sheetUp {
+  from { transform: translateY(18px); opacity: 0.6; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* Auth */
