@@ -336,88 +336,74 @@
     showAuth(false);
     go("manha");
     updateAccountMeta();
-    try {
-      const seeded = await MareDB.seedIfEmpty();
-      if (seeded) toast("Receitas iniciais carregadas");
-      await refreshData();
-    } catch (err) {
-      console.error(err);
-      toast("Não foi possível carregar os dados. Tenta outra vez.");
-    }
-    updateAccountMeta();
+    // Carrega dados em background — não bloqueia a entrada na app
+    setTimeout(async () => {
+      try {
+        const seeded = await MareDB.seedIfEmpty();
+        await refreshData();
+        if (seeded) toast("Receitas iniciais carregadas");
+      } catch (err) {
+        console.error(err);
+        toast("Não foi possível carregar os dados. Puxa para atualizar.");
+      }
+      updateAccountMeta();
+    }, 0);
   }
 
   async function handleAuthSubmit(e) {
-    if (e) e.preventDefault();
-    if (state.authBusy) return;
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (state.authBusy) return false;
     const email = ($("#authEmail")?.value || "").trim();
     const password = $("#authPassword")?.value || "";
     const mode = $("#authMode")?.value || "login";
     if (!email || password.length < 6) {
       authMessage("Escreve o email e uma password com pelo menos 6 caracteres.");
       $("#authPassword")?.focus();
-      return;
+      return false;
     }
     if (!globalThis.MareDB) {
       authMessage("Recarrega a página e tenta outra vez.");
-      return;
+      return false;
     }
     const submit = $("#authSubmit");
-    const prevLabel = submit.textContent;
+    const prevLabel = submit ? submit.textContent : "Entrar";
     state.authBusy = true;
-    submit.disabled = true;
-    submit.textContent = "A entrar…";
-    $("#authHint").hidden = true;
+    if (submit) {
+      submit.disabled = true;
+      submit.textContent = "A entrar…";
+    }
+    if ($("#authHint")) $("#authHint").hidden = true;
     try {
       const data = mode === "signup"
         ? await MareDB.signUp(email, password)
         : await MareDB.signIn(email, password);
-      if (!data?.session) throw new Error("Não foi possível entrar.");
+      if (!data?.session?.user) throw new Error("Não foi possível entrar.");
       await afterLogin(data.session);
     } catch (err) {
       console.error(err);
       authMessage(err.message || "Não foi possível entrar.");
+      showAuth(true);
     } finally {
       state.authBusy = false;
-      submit.disabled = false;
-      submit.textContent = prevLabel;
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = prevLabel;
+      }
     }
+    return false;
   }
 
   async function initAuthForm() {
     const form = $("#authForm");
     const submit = $("#authSubmit");
-    if (!form || !submit) return;
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      handleAuthSubmit(e);
-    });
-
-    submit.setAttribute("type", "button");
-    submit.addEventListener("click", (e) => {
-      e.preventDefault();
-      handleAuthSubmit(e);
-    });
-
-    $("#authToggle")?.addEventListener("click", () => {
-      const mode = $("#authMode");
-      if (!mode) return;
-      $("#authHint").hidden = true;
-      if (mode.value === "login") {
-        mode.value = "signup";
-        $("#authSubmit").textContent = "Criar conta";
-        $("#authToggle").textContent = "Já tens conta? Entrar";
-        $("#authPassword").setAttribute("autocomplete", "new-password");
-      } else {
-        mode.value = "login";
-        $("#authSubmit").textContent = "Entrar";
-        $("#authToggle").textContent = "Criar conta nova";
-        $("#authPassword").setAttribute("autocomplete", "current-password");
-      }
-    });
-
-    $("#authForgot")?.addEventListener("click", async () => {
+    // API global — o HTML chama isto no onclick (fiável no iPhone)
+    globalThis.TFR = globalThis.TFR || {};
+    globalThis.TFR.login = handleAuthSubmit;
+    globalThis.TFR.forgot = async function () {
       const email = ($("#authEmail")?.value || "").trim();
       if (!email) {
         authMessage("Escreve o teu email primeiro.");
@@ -429,7 +415,30 @@
       } catch (err) {
         authMessage(err.message || "Não foi possível enviar o email.");
       }
-    });
+    };
+    globalThis.TFR.toggle = function () {
+      const mode = $("#authMode");
+      if (!mode) return;
+      if ($("#authHint")) $("#authHint").hidden = true;
+      if (mode.value === "login") {
+        mode.value = "signup";
+        if (submit) submit.textContent = "Criar conta";
+        if ($("#authToggle")) $("#authToggle").textContent = "Já tens conta? Entrar";
+      } else {
+        mode.value = "login";
+        if (submit) submit.textContent = "Entrar";
+        if ($("#authToggle")) $("#authToggle").textContent = "Criar conta nova";
+      }
+    };
+
+    if (form) {
+      form.addEventListener("submit", handleAuthSubmit);
+    }
+    if (submit) {
+      submit.addEventListener("click", handleAuthSubmit);
+    }
+    $("#authToggle")?.addEventListener("click", globalThis.TFR.toggle);
+    $("#authForgot")?.addEventListener("click", globalThis.TFR.forgot);
   }
 
   function wireUi() {
@@ -491,29 +500,24 @@
 
       try {
         MareDB.getClient().auth.onAuthStateChange(async (event, session) => {
-          if (MareDB.isLocalMode()) return;
           if (event === "PASSWORD_RECOVERY" && session) {
             showAuth(true);
-            let nova = "";
-            while (!nova || nova.length < 6) {
-              nova = prompt("Escolhe a nova password (mín. 6 caracteres):") || "";
-              if (!nova) {
-                authMessage("Password não atualizada. Pede outro email em Recuperar password.");
-                return;
-              }
-              if (nova.length < 6) authMessage("A password precisa de pelo menos 6 caracteres.");
+            const nova = prompt("Escolhe a nova password (mín. 6 caracteres):");
+            if (!nova || nova.length < 6) {
+              authMessage("Password não atualizada.");
+              return;
             }
             try {
               const { error } = await MareDB.getClient().auth.updateUser({ password: nova });
               if (error) throw error;
               toast("Password atualizada");
               await afterLogin(session);
-            } catch (err) {
-              authMessage("Não foi possível atualizar a password. Tenta outra vez.");
+            } catch (_) {
+              authMessage("Não foi possível atualizar a password.");
             }
             return;
           }
-          if (!session && state.user && !state.authBusy) {
+          if (event === "SIGNED_OUT") {
             state.user = null;
             showAuth(true);
           }

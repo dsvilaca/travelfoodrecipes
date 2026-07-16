@@ -10,17 +10,17 @@
   <meta name="apple-mobile-web-app-title" content="Travel Food Recipes" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Travel Food Recipes</title>
-  <link rel="manifest" href="manifest.webmanifest?v=9" />
-  <link rel="icon" href="icon-192.png?v=9" sizes="192x192" />
-  <link rel="apple-touch-icon" href="icon-192.png?v=9" />
+  <link rel="manifest" href="manifest.webmanifest?v=10" />
+  <link rel="icon" href="icon-192.png?v=10" sizes="192x192" />
+  <link rel="apple-touch-icon" href="icon-192.png?v=10" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=10" />
   <script>
     /* Limpa service workers / caches antigos para as atualizações aparecerem */
     (function () {
-      var APP_BUILD = "9";
+      var APP_BUILD = "10";
       try {
         if (localStorage.getItem("tfr-build") !== APP_BUILD) {
           localStorage.setItem("tfr-build", APP_BUILD);
@@ -41,10 +41,10 @@
 </head>
 <body>
   <!-- AUTH -->
-  <section id="authScreen" class="auth" hidden>
+  <section id="authScreen" class="auth">
     <div class="auth-card">
       <div class="brand brand-auth">
-        <img class="brand-mark" src="icon-192.png?v=9" width="56" height="56" alt="" />
+        <img class="brand-mark" src="icon-192.png?v=10" width="56" height="56" alt="" />
         <div class="brand-text">
           <span class="brand-title">Travel Food</span>
           <span class="brand-sub">Recipes</span>
@@ -53,14 +53,14 @@
       <h1>Entra na tua conta</h1>
       <p class="auth-sub">Email e password para as tuas receitas e lista de compras.</p>
       <p id="authHint" class="auth-hint" hidden></p>
-      <form id="authForm" action="javascript:void(0)" novalidate>
+      <form id="authForm" action="#" method="post" onsubmit="return window.TFR ? window.TFR.login(event) : false;">
         <input type="hidden" id="authMode" value="login" />
-        <label>Email<input id="authEmail" type="email" autocomplete="username" value="vilaca97@hotmail.com" /></label>
+        <label>Email<input id="authEmail" type="email" autocomplete="username" value="vilaca97@hotmail.com" inputmode="email" /></label>
         <label>Password<input id="authPassword" type="password" autocomplete="current-password" placeholder="mínimo 6 caracteres" /></label>
-        <button type="button" class="btn primary" id="authSubmit">Entrar</button>
+        <button type="button" class="btn primary" id="authSubmit" onclick="return window.TFR ? window.TFR.login(event) : false;">Entrar</button>
       </form>
-      <button type="button" class="link-btn" id="authToggle">Criar conta nova</button>
-      <button type="button" class="link-btn" id="authForgot">Recuperar password</button>
+      <button type="button" class="link-btn" id="authToggle" onclick="window.TFR && window.TFR.toggle()">Criar conta nova</button>
+      <button type="button" class="link-btn" id="authForgot" onclick="window.TFR && window.TFR.forgot()">Recuperar password</button>
     </div>
   </section>
 
@@ -70,7 +70,7 @@
   <div class="phone" id="appShell" hidden>
     <header class="app-header">
       <div class="brand brand-header">
-        <img class="brand-mark" src="icon-192.png?v=9" width="32" height="32" alt="" />
+        <img class="brand-mark" src="icon-192.png?v=10" width="32" height="32" alt="" />
         <div class="brand-text">
           <span class="brand-title">Travel Food</span>
           <span class="brand-sub">Recipes</span>
@@ -201,10 +201,11 @@
     </div>
   </div>
 
+  <script>window.TFR=window.TFR||{login:function(e){if(e&&e.preventDefault)e.preventDefault();return false;},toggle:function(){},forgot:function(){}};</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/config.js?v=9"></script>
-  <script src="js/seed-data.js?v=9"></script>
-  <script src="js/db.js?v=9"></script>
-  <script src="js/app.js?v=9"></script>
+  <script src="js/config.js?v=10"></script>
+  <script src="js/seed-data.js?v=10"></script>
+  <script src="js/db.js?v=10"></script>
+  <script src="js/app.js?v=10"></script>
 </body>
 </html>
