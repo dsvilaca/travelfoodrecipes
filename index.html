@@ -7,8 +7,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Maré" />
-  <title>Maré</title>
+  <meta name="apple-mobile-web-app-title" content="Travel Food Recipes" />
+  <title>Travel Food Recipes</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon-192.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="icon-192.png" />
@@ -21,7 +21,13 @@
   <!-- AUTH -->
   <section id="authScreen" class="auth" hidden>
     <div class="auth-card">
-      <p class="brand">Mar<span>é</span></p>
+      <div class="brand brand-auth">
+        <img class="brand-mark" src="icon-192.png" width="56" height="56" alt="" />
+        <div class="brand-text">
+          <span class="brand-title">Travel Food</span>
+          <span class="brand-sub">Recipes</span>
+        </div>
+      </div>
       <h1>Entra na tua conta</h1>
       <p class="auth-sub">Cria conta com email + password. Se o Supabase pedir confirmação de email, usa «Neste telemóvel» para começar já.</p>
       <p id="authHint" class="auth-hint" hidden></p>
@@ -39,7 +45,13 @@
   <!-- APP -->
   <div class="phone" id="appShell" hidden>
     <header class="app-header">
-      <div class="brand">Mar<span>é</span></div>
+      <div class="brand brand-header">
+        <img class="brand-mark" src="icon-192.png" width="32" height="32" alt="" />
+        <div class="brand-text">
+          <span class="brand-title">Travel Food</span>
+          <span class="brand-sub">Recipes</span>
+        </div>
+      </div>
       <div class="header-actions">
         <button class="hdr-btn" id="btnAddRecipe" type="button">+ Receita</button>
         <button class="hdr-btn icon-only" id="statusBtn" type="button" aria-label="Estado">

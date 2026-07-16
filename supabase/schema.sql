@@ -1,4 +1,4 @@
--- Maré — schema Supabase
+-- Travel Food Recipes — schema Supabase
 -- Corre isto no SQL Editor do projeto (Run)
 
 create extension if not exists "pgcrypto";

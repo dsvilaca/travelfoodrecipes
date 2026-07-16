@@ -59,13 +59,67 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .brand {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.35rem;
-  letter-spacing: -0.04em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
 }
 
-.brand span { color: var(--sun); }
+.brand-mark {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+  min-width: 0;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.98rem;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.brand-sub {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sun);
+}
+
+.brand-auth {
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.brand-auth .brand-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.brand-auth .brand-title {
+  font-size: 1.35rem;
+  color: var(--sea);
+}
+
+.brand-auth .brand-sub {
+  font-size: 0.82rem;
+  color: var(--sun-deep);
+}
 
 .header-actions { display: flex; align-items: center; gap: 8px; }
 
@@ -518,8 +572,6 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
-
-.auth-card .brand { color: var(--sea); font-size: 2rem; margin-bottom: 8px; }
 
 .auth-card h1 {
   font-family: var(--font-display);

@@ -1,4 +1,4 @@
-# Maré
+# Travel Food Recipes
 
 App de refeições de férias (PWA) com receitas e lista de compras no **Supabase**.
 
@@ -31,7 +31,7 @@ Não precisas de “ligar” GitHub ao Supabase. A app no Pages fala diretamente
 ```bash
 git init
 git add .
-git commit -m "Maré: app com Supabase"
+git commit -m "Travel Food Recipes: app com Supabase"
 git branch -M main
 git remote add origin https://github.com/TEU_USER/Recipes.git
 git push -u origin main

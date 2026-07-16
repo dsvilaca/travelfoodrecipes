@@ -1,4 +1,4 @@
-# Serve a app Maré na rede local para abrires no telemóvel
+# Serve a app Travel Food Recipes na rede local para abrires no telemóvel
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
@@ -10,7 +10,7 @@ $ip = (Get-NetIPAddress -AddressFamily IPv4 |
 if (-not $ip) { $ip = "127.0.0.1" }
 
 Write-Host ""
-Write-Host "  Mare a correr!" -ForegroundColor Cyan
+Write-Host "  Travel Food Recipes a correr!" -ForegroundColor Cyan
 Write-Host "  No PC:        http://localhost:$port" -ForegroundColor White
 Write-Host "  No telemovel: http://${ip}:$port" -ForegroundColor Yellow
 Write-Host ""
