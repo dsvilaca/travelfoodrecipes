@@ -6,7 +6,7 @@ create extension if not exists "pgcrypto";
 -- Receitas
 create table if not exists public.recipes (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid not null references auth.users (id) on delete cascade,
+  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
   section text not null check (section in ('manha', 'praia', 'lanches', 'jantar')),
   title text not null,
   subtitle text not null default '',
@@ -27,7 +27,7 @@ create index if not exists recipes_user_section_idx
 -- Lista de compras
 create table if not exists public.shopping_items (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid not null references auth.users (id) on delete cascade,
+  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
   label text not null,
   category text not null check (category in ('proteina', 'bases', 'frescos')),
   checked boolean not null default false,
@@ -85,6 +85,10 @@ create policy "shopping_update_own" on public.shopping_items
   for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
 create policy "shopping_delete_own" on public.shopping_items
   for delete using (auth.uid() = user_id);
+
+-- Default user_id = utilizador autenticado (também em tabelas já criadas)
+alter table public.recipes alter column user_id set default auth.uid();
+alter table public.shopping_items alter column user_id set default auth.uid();
 
 -- Permissões da API (além do RLS)
 grant usage on schema public to anon, authenticated;

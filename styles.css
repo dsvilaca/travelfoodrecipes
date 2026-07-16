@@ -582,19 +582,6 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   margin-bottom: 6px;
 }
 
-.build-pill {
-  display: inline-block;
-  margin: 0 0 10px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(26, 74, 82, 0.08);
-  color: var(--sea);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
 .auth-sub, .auth-hint {
   font-size: 0.9rem;
   color: var(--muted);
@@ -603,26 +590,6 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .auth-hint { color: #a33b1f; }
-
-.db-status {
-  font-size: 0.8rem;
-  line-height: 1.4;
-  margin: -6px 0 14px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: rgba(26, 74, 82, 0.06);
-  color: var(--sea);
-}
-
-.db-status.warn {
-  background: #fff4ee;
-  color: #a33b1f;
-}
-
-.db-status.ok {
-  background: rgba(125, 206, 160, 0.22);
-  color: #1f6b45;
-}
 
 .auth-card label,
 .modal-form label {
