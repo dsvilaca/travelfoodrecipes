@@ -134,20 +134,26 @@
     return (arr || []).join("\n");
   }
 
-  const MORE_SCREENS = new Set(["lanches", "favoritos", "compras", "conta"]);
+  const MENU_SCREENS = new Set(["favoritos", "compras", "conta"]);
 
   function closeMoreSheet() {
     const sheet = $("#moreSheet");
     const btn = $("#btnMoreMenu");
     if (sheet) sheet.hidden = true;
-    if (btn) btn.setAttribute("aria-expanded", "false");
+    if (btn) {
+      btn.setAttribute("aria-expanded", "false");
+      btn.classList.remove("active");
+    }
   }
 
   function openMoreSheet() {
     const sheet = $("#moreSheet");
     const btn = $("#btnMoreMenu");
     if (sheet) sheet.hidden = false;
-    if (btn) btn.setAttribute("aria-expanded", "true");
+    if (btn) {
+      btn.setAttribute("aria-expanded", "true");
+      btn.classList.add("active");
+    }
     $$(".more-item").forEach((item) => {
       item.classList.toggle("active", item.dataset.go === state.screen);
     });
@@ -163,8 +169,15 @@
     state.screen = name;
     $$(".screen").forEach((s) => s.classList.toggle("active", s.dataset.screen === name));
     $$(".tab[data-go]").forEach((t) => t.classList.toggle("active", t.dataset.go === name));
-    $("#btnMoreMenu")?.classList.toggle("active", MORE_SCREENS.has(name));
+    $("#btnTabSearch")?.classList.toggle("active", name === "pesquisa");
+    if (MENU_SCREENS.has(name)) {
+      $("#btnMoreMenu")?.classList.add("active");
+    } else {
+      $("#btnMoreMenu")?.classList.remove("active");
+    }
     closeMoreSheet();
+    // re-apply menu highlight after closeMoreSheet clears it
+    if (MENU_SCREENS.has(name)) $("#btnMoreMenu")?.classList.add("active");
     const active = $(".screen.active");
     if (active) active.scrollTop = 0;
     if (name === "favoritos") renderFavorites();
