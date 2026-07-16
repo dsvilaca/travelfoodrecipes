@@ -446,9 +446,17 @@
 
   async function signIn(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
+    const raw = String(password || "");
     try {
-      return await cloudSignIn(normalized, password);
+      return await cloudSignIn(normalized, raw);
     } catch (err) {
+      // Autofill no telemóvel por vezes mete espaços no fim
+      const trimmed = raw.trim();
+      if (trimmed && trimmed !== raw) {
+        try {
+          return await cloudSignIn(normalized, trimmed);
+        } catch (_) { /* keep original error */ }
+      }
       throw mapAuthError(err);
     }
   }
@@ -475,23 +483,29 @@
     const normalized = String(email || "").trim().toLowerCase();
     if (!normalized) throw new Error("Escreve o teu email.");
     const cfg = getConfig();
+    const redirectTo = siteRedirectTo();
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 10000);
     try {
-      const redirect = encodeURIComponent(siteRedirectTo());
-      const res = await fetch(cfg.supabaseUrl + "/auth/v1/recover?redirect_to=" + redirect, {
-        method: "POST",
-        signal: controller.signal,
-        headers: {
-          apikey: cfg.supabaseAnonKey,
-          Authorization: "Bearer " + cfg.supabaseAnonKey,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: normalized,
-          gotrue_meta_security: {},
-        }),
-      });
+      // redirect_to no query + body — o Supabase só o usa se estiver na Allow List;
+      // senão cai no Site URL do dashboard (por isso localhost:3000 aparece).
+      const res = await fetch(
+        cfg.supabaseUrl + "/auth/v1/recover?redirect_to=" + encodeURIComponent(redirectTo),
+        {
+          method: "POST",
+          signal: controller.signal,
+          headers: {
+            apikey: cfg.supabaseAnonKey,
+            Authorization: "Bearer " + cfg.supabaseAnonKey,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: normalized,
+            redirect_to: redirectTo,
+            gotrue_meta_security: {},
+          }),
+        }
+      );
       const json = await res.json().catch(() => ({}));
       if (!res.ok) {
         const err = new Error(json.msg || json.error_description || "Recuperação falhou");
@@ -505,6 +519,73 @@
     } finally {
       clearTimeout(timer);
     }
+  }
+
+  async function updatePassword(newPassword) {
+    const password = String(newPassword || "");
+    if (password.length < 6) throw new Error("A password precisa de pelo menos 6 caracteres.");
+    const session = await getCloudSession();
+    if (!session?.access_token) throw new Error("Sessão de recuperação em falta. Abre o link do email outra vez.");
+    const cfg = getConfig();
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 12000);
+    try {
+      const res = await fetch(cfg.supabaseUrl + "/auth/v1/user", {
+        method: "PUT",
+        signal: controller.signal,
+        headers: {
+          apikey: cfg.supabaseAnonKey,
+          Authorization: "Bearer " + session.access_token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ password }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const err = new Error(json.msg || json.error_description || "Não foi possível atualizar a password.");
+        err.code = json.error_code || json.error;
+        throw err;
+      }
+      return true;
+    } catch (err) {
+      if (err.name === "AbortError") throw new Error("Ligação lenta. Tenta outra vez.");
+      throw mapAuthError(err);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  function parseAuthParamsFromUrl() {
+    const out = {};
+    try {
+      const hash = String(global.location.hash || "").replace(/^#/, "");
+      const search = String(global.location.search || "").replace(/^\?/, "");
+      const raw = [hash, search].filter(Boolean).join("&");
+      if (!raw) return null;
+      for (const part of raw.split("&")) {
+        if (!part) continue;
+        const eq = part.indexOf("=");
+        const k = decodeURIComponent(eq >= 0 ? part.slice(0, eq) : part);
+        const v = decodeURIComponent(eq >= 0 ? part.slice(eq + 1) : "");
+        out[k] = v;
+      }
+      if (!out.access_token && !out.error) return null;
+      return out;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function clearAuthParamsFromUrl() {
+    try {
+      const u = new URL(global.location.href);
+      u.hash = "";
+      // remove common auth query params
+      ["access_token", "refresh_token", "expires_in", "expires_at", "token_type", "type", "error", "error_description"].forEach((k) => {
+        u.searchParams.delete(k);
+      });
+      global.history.replaceState({}, "", u.pathname + u.search);
+    } catch (_) { /* ignore */ }
   }
 
   function signUpLocal(email, password, extra = {}) {
@@ -837,6 +918,9 @@
     signInLocal,
     signUpLocal,
     recoverPassword,
+    updatePassword,
+    parseAuthParamsFromUrl,
+    clearAuthParamsFromUrl,
     signOut,
     isLocalMode,
     probeStatus,

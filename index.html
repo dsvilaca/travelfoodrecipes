@@ -11,13 +11,13 @@
   <meta name="description" content="Receitas e lista de compras de férias — acessível no telemóvel e no computador." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Travel Food Recipes</title>
-  <link rel="manifest" href="manifest.webmanifest?v=12" />
-  <link rel="icon" href="icon-192.png?v=12" sizes="192x192" />
-  <link rel="apple-touch-icon" href="icon-192.png?v=12" />
+  <link rel="manifest" href="manifest.webmanifest?v=13" />
+  <link rel="icon" href="icon-192.png?v=13" sizes="192x192" />
+  <link rel="apple-touch-icon" href="icon-192.png?v=13" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="styles.css?v=13" />
   <script>
     (function () {
       var APP_BUILD = "11";
@@ -45,7 +45,7 @@
     <section id="authScreen" class="auth">
       <div class="auth-card">
         <div class="brand brand-auth">
-          <img class="brand-mark" src="icon-192.png?v=12" width="56" height="56" alt="Travel Food Recipes" />
+          <img class="brand-mark" src="icon-192.png?v=13" width="56" height="56" alt="Travel Food Recipes" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -54,17 +54,32 @@
         <h1 id="authHeading">Iniciar sessão</h1>
         <p class="auth-sub" id="authSub">Entra para ver as tuas receitas e lista de compras.</p>
         <p id="authHint" class="auth-hint" hidden></p>
-        <form id="authForm" novalidate>
-          <label>Email
-            <input id="authEmail" type="email" autocomplete="username" inputmode="email" required placeholder="o.teu@email.com" />
-          </label>
-          <label>Password
-            <input id="authPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="mínimo 6 caracteres" />
-          </label>
-          <button type="submit" class="btn primary" id="authSubmit">Entrar</button>
-        </form>
-        <button type="button" class="btn ghost" id="authAltBtn">Criar conta</button>
-        <button type="button" class="link-btn" id="authForgot">Esqueci a password</button>
+        <div id="authLoginBlock">
+          <form id="authForm" novalidate>
+            <label>Email
+              <input id="authEmail" type="email" autocomplete="username" inputmode="email" required placeholder="o.teu@email.com" />
+            </label>
+            <label>Password
+              <input id="authPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="mínimo 6 caracteres" />
+            </label>
+            <button type="submit" class="btn primary" id="authSubmit">Entrar</button>
+          </form>
+          <button type="button" class="btn ghost" id="authAltBtn">Criar conta</button>
+          <button type="button" class="link-btn" id="authForgot">Esqueci a password</button>
+        </div>
+
+        <div id="authRecoverBlock" hidden>
+          <form id="recoverForm" novalidate>
+            <label>Nova password
+              <input id="recoverPassword" type="password" autocomplete="new-password" required minlength="6" placeholder="mínimo 6 caracteres" />
+            </label>
+            <label>Confirmar password
+              <input id="recoverPassword2" type="password" autocomplete="new-password" required minlength="6" placeholder="repete a password" />
+            </label>
+            <button type="submit" class="btn primary" id="recoverSubmit">Guardar password</button>
+          </form>
+          <button type="button" class="link-btn" id="recoverCancel">Voltar ao login</button>
+        </div>
       </div>
     </section>
 
@@ -74,7 +89,7 @@
     <div class="phone" id="appShell" hidden>
       <header class="app-header">
         <div class="brand brand-header">
-          <img class="brand-mark" src="icon-192.png?v=12" width="32" height="32" alt="" />
+          <img class="brand-mark" src="icon-192.png?v=13" width="32" height="32" alt="" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -207,9 +222,9 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/config.js?v=12"></script>
-  <script src="js/seed-data.js?v=12"></script>
-  <script src="js/db.js?v=12"></script>
-  <script src="js/app.js?v=12"></script>
+  <script src="js/config.js?v=13"></script>
+  <script src="js/seed-data.js?v=13"></script>
+  <script src="js/db.js?v=13"></script>
+  <script src="js/app.js?v=13"></script>
 </body>
 </html>

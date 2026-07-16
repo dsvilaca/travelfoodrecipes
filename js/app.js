@@ -353,16 +353,30 @@
     }, 0);
   }
 
-  let authMode = "login"; // login | signup
+  let authMode = "login"; // login | signup | recover
 
   function setAuthModeUi(mode) {
-    authMode = mode === "signup" ? "signup" : "login";
+    authMode = mode === "signup" ? "signup" : mode === "recover" ? "recover" : "login";
     const heading = $("#authHeading");
     const sub = $("#authSub");
     const submit = $("#authSubmit");
     const alt = $("#authAltBtn");
     const pass = $("#authPassword");
+    const loginBlock = $("#authLoginBlock");
+    const recoverBlock = $("#authRecoverBlock");
     if ($("#authHint")) $("#authHint").hidden = true;
+
+    if (authMode === "recover") {
+      if (heading) heading.textContent = "Nova password";
+      if (sub) sub.textContent = "Escolhe uma password nova para a tua conta.";
+      if (loginBlock) loginBlock.hidden = true;
+      if (recoverBlock) recoverBlock.hidden = false;
+      return;
+    }
+
+    if (loginBlock) loginBlock.hidden = false;
+    if (recoverBlock) recoverBlock.hidden = true;
+
     if (authMode === "signup") {
       if (heading) heading.textContent = "Criar conta";
       if (sub) sub.textContent = "Cria a tua conta para guardar receitas e a lista de compras.";
@@ -444,11 +458,105 @@
       }
       try {
         await MareDB.recoverPassword(email);
-        authMessage("Se o email existir, enviámos um link para redefineires a password.");
+        authMessage(
+          "Email enviado. Se o link abrir localhost:3000, troca só essa parte por https://dsvilaca.github.io/travelfoodrecipes/ e mantém o resto do link (incluindo o #...)."
+        );
       } catch (err) {
         authMessage(err.message || "Não foi possível enviar o email.");
       }
     });
+
+    $("#recoverForm")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (state.authBusy) return;
+      const p1 = $("#recoverPassword")?.value || "";
+      const p2 = $("#recoverPassword2")?.value || "";
+      if (p1.length < 6) {
+        authMessage("A password precisa de pelo menos 6 caracteres.");
+        return;
+      }
+      if (p1 !== p2) {
+        authMessage("As passwords não coincidem.");
+        return;
+      }
+      const submit = $("#recoverSubmit");
+      state.authBusy = true;
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = "A guardar…";
+      }
+      try {
+        await MareDB.updatePassword(p1);
+        MareDB.clearAuthParamsFromUrl();
+        const session = await MareDB.getSession();
+        if (!session?.user) throw new Error("Password guardada. Entra com a nova password.");
+        toast("Password atualizada");
+        await afterLogin(session);
+      } catch (err) {
+        authMessage(err.message || "Não foi possível atualizar a password.");
+        showAuth(true);
+      } finally {
+        state.authBusy = false;
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = "Guardar password";
+        }
+      }
+    });
+
+    $("#recoverCancel")?.addEventListener("click", () => {
+      MareDB.clearAuthParamsFromUrl();
+      setAuthModeUi("login");
+    });
+  }
+
+  async function handleAuthRedirect() {
+    const params = MareDB.parseAuthParamsFromUrl?.();
+    if (!params) return false;
+
+    if (params.error) {
+      authMessage(params.error_description || params.error || "Link de recuperação inválido.");
+      MareDB.clearAuthParamsFromUrl();
+      return false;
+    }
+
+    if (!params.access_token || !params.refresh_token) return false;
+
+    const expiresAt = params.expires_at
+      || (params.expires_in ? Math.floor(Date.now() / 1000) + Number(params.expires_in) : null);
+
+    // Precisamos do user — pedimos /auth/v1/user
+    try {
+      const cfg = globalThis.MARE_CONFIG || {};
+      const res = await fetch(cfg.supabaseUrl + "/auth/v1/user", {
+        headers: {
+          apikey: cfg.supabaseAnonKey,
+          Authorization: "Bearer " + params.access_token,
+        },
+      });
+      const user = await res.json();
+      if (!res.ok || !user?.id) throw new Error("Link inválido ou expirado.");
+      const session = MareDB.adoptSession({
+        access_token: params.access_token,
+        refresh_token: params.refresh_token,
+        expires_at: expiresAt,
+        user,
+      });
+      if (params.type === "recovery") {
+        setAuthModeUi("recover");
+        showAuth(true);
+        authMessage("Link válido. Escolhe a tua nova password.");
+        return true;
+      }
+      await afterLogin(session);
+      MareDB.clearAuthParamsFromUrl();
+      return true;
+    } catch (err) {
+      authMessage(err.message || "Não foi possível abrir o link de recuperação.");
+      MareDB.clearAuthParamsFromUrl();
+      return false;
+    }
   }
 
   function wireUi() {
@@ -501,38 +609,15 @@
         return;
       }
 
+      const fromLink = await handleAuthRedirect();
+      if (fromLink) return;
+
       const session = await MareDB.getSession();
       if (session && !MareDB.isLocalMode()) {
         await afterLogin(session);
       } else {
         showAuth(true);
       }
-
-      try {
-        MareDB.getClient().auth.onAuthStateChange(async (event, session) => {
-          if (event === "PASSWORD_RECOVERY" && session) {
-            showAuth(true);
-            const nova = prompt("Escolhe a nova password (mín. 6 caracteres):");
-            if (!nova || nova.length < 6) {
-              authMessage("Password não atualizada.");
-              return;
-            }
-            try {
-              const { error } = await MareDB.getClient().auth.updateUser({ password: nova });
-              if (error) throw error;
-              toast("Password atualizada");
-              await afterLogin(session);
-            } catch (_) {
-              authMessage("Não foi possível atualizar a password.");
-            }
-            return;
-          }
-          if (event === "SIGNED_OUT") {
-            state.user = null;
-            showAuth(true);
-          }
-        });
-      } catch (_) { /* ignore */ }
     } catch (err) {
       console.error(err);
       showAuth(true);
