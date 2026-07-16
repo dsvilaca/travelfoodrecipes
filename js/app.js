@@ -6,16 +6,13 @@
     jantar: { label: "Jantar", title: "Pode ser pesado", blurb: "Burgers, massa, carne.", accent: true },
   };
 
-  const CAT_LABELS = {
-    proteina: "Proteína",
-    bases: "Bases",
-    frescos: "Frescos & extras",
-  };
-
   const state = {
     user: null,
     recipes: [],
+    shoppingLists: [],
     shopping: [],
+    activeListId: null,
+    shoppingReady: true,
     screen: "manha",
     busy: false,
     authBusy: false,
@@ -148,31 +145,85 @@
 
   function renderShopping() {
     const root = $("#shopContainer");
-    const cats = ["proteina", "bases", "frescos"];
-    root.innerHTML = cats.map((cat) => {
-      const items = state.shopping.filter((s) => s.category === cat);
-      const rows = items.map((item) => `
-        <label class="check">
-          <input type="checkbox" data-shop-id="${item.id}" ${item.checked ? "checked" : ""} />
-          <span>${escapeHtml(item.label)}</span>
-          <button type="button" class="del-shop" data-del-shop="${item.id}" aria-label="Apagar">✕</button>
-        </label>`).join("") || `<p class="shop-empty">Nada nesta categoria.</p>`;
-      return `<div class="shop-block"><h2>${CAT_LABELS[cat]}</h2>${rows}</div>`;
-    }).join("");
+    if (!root) return;
+
+    if (!state.shoppingReady) {
+      root.innerHTML = `
+        <div class="tip-box">
+          <strong>Atualização da base de dados</strong>
+          Para criares várias listas, corre no Supabase → SQL Editor o ficheiro
+          <code>supabase/migration-shopping-lists.sql</code> e volta a entrar.
+        </div>`;
+      return;
+    }
+
+    const lists = state.shoppingLists || [];
+    if (!lists.length) {
+      root.innerHTML = `
+        <div class="empty-fav">Ainda sem listas.<br />Toca em + Lista para criar a primeira.</div>`;
+      return;
+    }
+
+    if (!state.activeListId || !lists.some((l) => l.id === state.activeListId)) {
+      state.activeListId = lists[0].id;
+    }
+
+    const chips = lists.map((l) => `
+      <button type="button" class="list-chip${l.id === state.activeListId ? " active" : ""}" data-list-id="${l.id}">
+        ${escapeHtml(l.name)}
+      </button>`).join("");
+
+    const items = state.shopping.filter((s) => s.list_id === state.activeListId);
+    const rows = items.map((item) => `
+      <label class="check">
+        <input type="checkbox" data-shop-id="${item.id}" ${item.checked ? "checked" : ""} />
+        <span>${escapeHtml(item.label)}</span>
+        <button type="button" class="del-shop" data-del-shop="${item.id}" aria-label="Apagar">✕</button>
+      </label>`).join("")
+      || `<p class="shop-empty">Lista vazia. Toca em + Item para adicionar.</p>`;
+
+    const active = lists.find((l) => l.id === state.activeListId);
+
+    root.innerHTML = `
+      <div class="list-chip-row">${chips}</div>
+      <div class="shop-block">
+        <div class="shop-block-head">
+          <h2>${escapeHtml(active?.name || "Lista")}</h2>
+          <div class="shop-block-actions">
+            <button type="button" class="link-btn inline" id="btnRenameList">Renomear</button>
+            <button type="button" class="link-btn inline danger" id="btnDeleteList">Apagar lista</button>
+          </div>
+        </div>
+        ${rows}
+      </div>`;
   }
 
   async function refreshData() {
     try {
-      const [recipes, shopping] = await Promise.all([
-        MareDB.listRecipes(),
-        MareDB.listShopping(),
-      ]);
+      const recipes = await MareDB.listRecipes();
       state.recipes = recipes;
-      state.shopping = shopping;
       MareDB.cacheSet("recipes", recipes);
-      MareDB.cacheSet("shopping", shopping);
+
+      state.shoppingReady = await MareDB.shoppingListsReady();
+      if (state.shoppingReady) {
+        const lists = await MareDB.listShoppingLists();
+        state.shoppingLists = lists;
+        if (!state.activeListId || !lists.some((l) => l.id === state.activeListId)) {
+          state.activeListId = lists[0]?.id || null;
+        }
+        const shopping = state.activeListId
+          ? await MareDB.listShopping(state.activeListId)
+          : await MareDB.listShopping();
+        state.shopping = shopping;
+        MareDB.cacheSet("shoppingLists", lists);
+        MareDB.cacheSet("shopping", shopping);
+      } else {
+        state.shoppingLists = [];
+        state.shopping = [];
+      }
     } catch (err) {
       state.recipes = MareDB.cacheGet("recipes", []);
+      state.shoppingLists = MareDB.cacheGet("shoppingLists", []);
       state.shopping = MareDB.cacheGet("shopping", []);
       toast("Offline — a mostrar cache local");
       console.warn(err);
@@ -207,13 +258,36 @@
   }
 
   function openShopModal() {
+    if (!state.shoppingReady) {
+      toast("Corre a migração SQL das listas no Supabase primeiro.");
+      return;
+    }
+    if (!state.activeListId) {
+      toast("Cria uma lista primeiro.");
+      return;
+    }
+    $("#shopModalTitle").textContent = "Novo item";
     $("#shopModal").hidden = false;
     $("#sLabel").value = "";
-    $("#sCategory").value = "proteina";
+    $("#sLabel")?.focus();
   }
 
   function closeShopModal() {
     $("#shopModal").hidden = true;
+  }
+
+  function openListModal() {
+    if (!state.shoppingReady) {
+      toast("Corre a migração SQL das listas no Supabase primeiro.");
+      return;
+    }
+    $("#listModal").hidden = false;
+    $("#listName").value = "";
+    $("#listName")?.focus();
+  }
+
+  function closeListModal() {
+    $("#listModal").hidden = true;
   }
 
   async function onRecipeSubmit(e) {
@@ -246,12 +320,13 @@
     e.preventDefault();
     const label = $("#sLabel").value.trim();
     if (!label) return toast("Escreve o item");
+    if (!state.activeListId) return toast("Escolhe uma lista");
     try {
       await MareDB.addShoppingItem({
+        list_id: state.activeListId,
         label,
-        category: $("#sCategory").value,
         checked: false,
-        sort_order: state.shopping.length,
+        sort_order: state.shopping.filter((s) => s.list_id === state.activeListId).length,
       });
       closeShopModal();
       await refreshData();
@@ -259,6 +334,22 @@
       go("compras");
     } catch (err) {
       toast(err.message || "Erro ao adicionar");
+    }
+  }
+
+  async function onListSubmit(e) {
+    e.preventDefault();
+    const name = $("#listName").value.trim();
+    if (!name) return toast("Escreve o nome da lista");
+    try {
+      const list = await MareDB.createShoppingList(name);
+      state.activeListId = list.id;
+      closeListModal();
+      await refreshData();
+      toast("Lista criada");
+      go("compras");
+    } catch (err) {
+      toast(err.message || "Erro ao criar lista");
     }
   }
 
@@ -307,6 +398,45 @@
   }
 
   async function handleShopClick(e) {
+    const chip = e.target.closest("[data-list-id]");
+    if (chip) {
+      state.activeListId = chip.dataset.listId;
+      try {
+        state.shopping = await MareDB.listShopping(state.activeListId);
+        MareDB.cacheSet("shopping", state.shopping);
+      } catch (_) { /* keep cache */ }
+      renderShopping();
+      return;
+    }
+
+    if (e.target.closest("#btnRenameList")) {
+      const current = state.shoppingLists.find((l) => l.id === state.activeListId);
+      const name = prompt("Novo nome da lista:", current?.name || "");
+      if (!name || !name.trim()) return;
+      try {
+        await MareDB.renameShoppingList(state.activeListId, name.trim());
+        await refreshData();
+        toast("Lista renomeada");
+      } catch (err) {
+        toast(err.message || "Erro ao renomear");
+      }
+      return;
+    }
+
+    if (e.target.closest("#btnDeleteList")) {
+      const current = state.shoppingLists.find((l) => l.id === state.activeListId);
+      if (!confirm(`Apagar a lista “${current?.name || ""}” e todos os itens?`)) return;
+      try {
+        await MareDB.deleteShoppingList(state.activeListId);
+        state.activeListId = null;
+        await refreshData();
+        toast("Lista apagada");
+      } catch (err) {
+        toast(err.message || "Erro ao apagar lista");
+      }
+      return;
+    }
+
     const del = e.target.closest("[data-del-shop]");
     if (del) {
       e.preventDefault();
@@ -571,10 +701,13 @@
     $$(".tab").forEach((tab) => tab.addEventListener("click", () => go(tab.dataset.go)));
     $("#btnAddRecipe")?.addEventListener("click", () => openRecipeModal(null));
     $("#btnAddShop")?.addEventListener("click", openShopModal);
+    $("#btnAddList")?.addEventListener("click", openListModal);
     $("#recipeForm")?.addEventListener("submit", onRecipeSubmit);
     $("#shopForm")?.addEventListener("submit", onShopSubmit);
+    $("#listForm")?.addEventListener("submit", onListSubmit);
     $("#recipeModalClose")?.addEventListener("click", closeRecipeModal);
     $("#shopModalClose")?.addEventListener("click", closeShopModal);
+    $("#listModalClose")?.addEventListener("click", closeListModal);
     $("#btnLogout")?.addEventListener("click", async () => {
       try { await MareDB.signOut(); } catch (_) { /* ignore */ }
       state.user = null;

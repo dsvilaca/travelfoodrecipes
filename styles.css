@@ -545,6 +545,64 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 .toast[hidden] { display: none !important; }
 .toast.show { display: block !important; }
 
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.list-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.list-chip {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--sheet);
+  color: var(--sea);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.list-chip.active {
+  background: var(--sea);
+  border-color: var(--sea);
+  color: var(--foam);
+}
+
+.shop-block-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.shop-block-head h2 { margin: 0; }
+
+.shop-block-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.link-btn.inline {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  font-size: 0.78rem;
+}
+
+.link-btn.inline.danger { color: #a33b1f; }
+
 .tabbar {
   position: absolute;
   left: 0;

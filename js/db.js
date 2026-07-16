@@ -159,16 +159,19 @@
   function readLocalDb() {
     try {
       const raw = localStorage.getItem(LOCAL_DB_KEY);
-      if (!raw) return { users: [], sessionEmail: null, recipes: [], shopping: [] };
+      if (!raw) {
+        return { users: [], sessionEmail: null, recipes: [], shoppingLists: [], shopping: [] };
+      }
       const db = JSON.parse(raw);
       return {
         users: db.users || [],
         sessionEmail: db.sessionEmail || null,
         recipes: db.recipes || [],
+        shoppingLists: db.shoppingLists || [],
         shopping: db.shopping || [],
       };
     } catch (_) {
-      return { users: [], sessionEmail: null, recipes: [], shopping: [] };
+      return { users: [], sessionEmail: null, recipes: [], shoppingLists: [], shopping: [] };
     }
   }
 
@@ -655,8 +658,14 @@
 
   function sortShopping(rows) {
     return [...rows].sort((a, b) =>
-      (a.category || "").localeCompare(b.category || "")
-      || (a.sort_order || 0) - (b.sort_order || 0)
+      (a.sort_order || 0) - (b.sort_order || 0)
+      || String(a.created_at || "").localeCompare(String(b.created_at || ""))
+    );
+  }
+
+  function sortLists(rows) {
+    return [...rows].sort((a, b) =>
+      (a.sort_order || 0) - (b.sort_order || 0)
       || String(a.created_at || "").localeCompare(String(b.created_at || ""))
     );
   }
@@ -755,29 +764,110 @@
     return Array.isArray(data) ? data[0] : data;
   }
 
-  async function listShopping() {
+  async function listShoppingLists() {
     if (isLocalMode()) {
-      return sortShopping(readLocalDb().shopping);
+      return sortLists(readLocalDb().shoppingLists);
     }
     const data = await rest(
-      "shopping_items?select=*&order=category.asc,sort_order.asc,created_at.asc"
+      "shopping_lists?select=*&order=sort_order.asc,created_at.asc"
     );
     return data || [];
   }
 
-  async function addShoppingItem(item) {
+  async function createShoppingList(name) {
     const session = await getSession();
     if (!session) throw new Error("Sem sessão");
+    const trimmed = String(name || "").trim();
+    if (!trimmed) throw new Error("Escreve um nome para a lista.");
 
     if (isLocalMode()) {
       const db = readLocalDb();
       const row = {
         id: uid(),
         user_id: session.user.id,
+        name: trimmed,
+        sort_order: db.shoppingLists.length,
+        created_at: new Date().toISOString(),
+      };
+      db.shoppingLists.push(row);
+      writeLocalDb(db);
+      return row;
+    }
+
+    const data = await rest("shopping_lists", {
+      method: "POST",
+      body: {
+        user_id: session.user.id,
+        name: trimmed,
+        sort_order: 0,
+      },
+    });
+    return Array.isArray(data) ? data[0] : data;
+  }
+
+  async function renameShoppingList(id, name) {
+    const trimmed = String(name || "").trim();
+    if (!trimmed) throw new Error("Escreve um nome para a lista.");
+    if (isLocalMode()) {
+      const db = readLocalDb();
+      const row = db.shoppingLists.find((l) => l.id === id);
+      if (!row) throw new Error("Lista não encontrada");
+      row.name = trimmed;
+      writeLocalDb(db);
+      return row;
+    }
+    const data = await rest("shopping_lists?id=eq." + encodeURIComponent(id), {
+      method: "PATCH",
+      body: { name: trimmed },
+    });
+    return Array.isArray(data) ? data[0] : data;
+  }
+
+  async function deleteShoppingList(id) {
+    if (isLocalMode()) {
+      const db = readLocalDb();
+      db.shoppingLists = db.shoppingLists.filter((l) => l.id !== id);
+      db.shopping = db.shopping.filter((s) => s.list_id !== id);
+      writeLocalDb(db);
+      return;
+    }
+    // cascade apaga itens se a FK estiver bem; apaga itens primeiro por segurança
+    await rest("shopping_items?list_id=eq." + encodeURIComponent(id), {
+      method: "DELETE",
+      prefer: "return=minimal",
+    });
+    await rest("shopping_lists?id=eq." + encodeURIComponent(id), {
+      method: "DELETE",
+      prefer: "return=minimal",
+    });
+  }
+
+  async function listShopping(listId) {
+    if (isLocalMode()) {
+      const rows = readLocalDb().shopping.filter((s) => !listId || s.list_id === listId);
+      return sortShopping(rows);
+    }
+    let path = "shopping_items?select=*&order=sort_order.asc,created_at.asc";
+    if (listId) path += "&list_id=eq." + encodeURIComponent(listId);
+    const data = await rest(path);
+    return data || [];
+  }
+
+  async function addShoppingItem(item) {
+    const session = await getSession();
+    if (!session) throw new Error("Sem sessão");
+    if (!item?.list_id) throw new Error("Escolhe uma lista primeiro.");
+
+    if (isLocalMode()) {
+      const db = readLocalDb();
+      const row = {
+        id: uid(),
+        user_id: session.user.id,
+        list_id: item.list_id,
         label: item.label,
-        category: item.category,
+        category: "",
         checked: !!item.checked,
-        sort_order: item.sort_order ?? db.shopping.length,
+        sort_order: item.sort_order ?? db.shopping.filter((s) => s.list_id === item.list_id).length,
         created_at: new Date().toISOString(),
       };
       db.shopping.push(row);
@@ -787,7 +877,14 @@
 
     const data = await rest("shopping_items", {
       method: "POST",
-      body: { ...item, user_id: session.user.id },
+      body: {
+        user_id: session.user.id,
+        list_id: item.list_id,
+        label: item.label,
+        category: "",
+        checked: !!item.checked,
+        sort_order: item.sort_order ?? 0,
+      },
     });
     return Array.isArray(data) ? data[0] : data;
   }
@@ -824,74 +921,99 @@
   async function seedIfEmpty() {
     const session = await getSession();
     if (!session) return false;
-    const recipes = await listRecipes();
-    const shopping = await listShopping();
-    if (recipes.length || shopping.length) return false;
 
-    const seed = global.MARE_SEED || { recipes: [], shopping: [] };
+    const seed = global.MARE_SEED || { recipes: [], shoppingLists: [] };
     const userId = session.user.id;
+    let changed = false;
 
-    if (isLocalMode()) {
-      const db = readLocalDb();
-      const now = new Date().toISOString();
-      db.recipes = seed.recipes.map((r, i) => ({
-        id: uid(),
-        user_id: userId,
-        section: r.section,
-        title: r.title,
-        subtitle: r.subtitle || "",
-        protein_note: r.protein_note || "",
-        tags: r.tags || [],
-        ingredients: r.ingredients || [],
-        steps: r.steps || [],
-        note: r.note || "",
-        is_favorite: false,
-        sort_order: i,
-        created_at: now,
-        updated_at: now,
-      }));
-      db.shopping = seed.shopping.map((s, i) => ({
-        id: uid(),
-        user_id: userId,
-        label: s.label,
-        category: s.category,
-        checked: false,
-        sort_order: i,
-        created_at: now,
-      }));
-      writeLocalDb(db);
+    const recipes = await listRecipes();
+    let lists = [];
+    try {
+      lists = await listShoppingLists();
+    } catch (err) {
+      // Tabela ainda não migrada
+      console.warn(err);
+      lists = null;
+    }
+
+    // Contas novas: seed completo. Contas quase vazias: acrescenta só títulos em falta.
+    if (seed.recipes?.length) {
+      const have = new Set(recipes.map((r) => (r.section + "::" + r.title).toLowerCase()));
+      const missing = seed.recipes.filter(
+        (r) => !have.has((r.section + "::" + r.title).toLowerCase())
+      );
+      const shouldSeed = !recipes.length || (recipes.length < 8 && missing.length);
+      if (shouldSeed && missing.length) {
+        if (isLocalMode()) {
+          const db = readLocalDb();
+          const now = new Date().toISOString();
+          const start = db.recipes.length;
+          missing.forEach((r, i) => {
+            db.recipes.push({
+              id: uid(),
+              user_id: userId,
+              section: r.section,
+              title: r.title,
+              subtitle: r.subtitle || "",
+              protein_note: r.protein_note || "",
+              tags: r.tags || [],
+              ingredients: r.ingredients || [],
+              steps: r.steps || [],
+              note: r.note || "",
+              is_favorite: false,
+              sort_order: start + i,
+              created_at: now,
+              updated_at: now,
+            });
+          });
+          writeLocalDb(db);
+        } else {
+          const recipeRows = missing.map((r, i) => ({
+            user_id: userId,
+            section: r.section,
+            title: r.title,
+            subtitle: r.subtitle || "",
+            protein_note: r.protein_note || "",
+            tags: r.tags || [],
+            ingredients: r.ingredients || [],
+            steps: r.steps || [],
+            note: r.note || "",
+            is_favorite: false,
+            sort_order: recipes.length + i,
+          }));
+          await rest("recipes", { method: "POST", body: recipeRows, timeoutMs: 30000 });
+        }
+        changed = true;
+      }
+    }
+
+    if (lists && !lists.length && seed.shoppingLists?.length) {
+      for (let i = 0; i < seed.shoppingLists.length; i++) {
+        const listSeed = seed.shoppingLists[i];
+        const list = await createShoppingList(listSeed.name);
+        const items = listSeed.items || [];
+        for (let j = 0; j < items.length; j++) {
+          await addShoppingItem({
+            list_id: list.id,
+            label: items[j],
+            checked: false,
+            sort_order: j,
+          });
+        }
+      }
+      changed = true;
+    }
+
+    return changed;
+  }
+
+  async function shoppingListsReady() {
+    try {
+      await listShoppingLists();
       return true;
+    } catch (_) {
+      return false;
     }
-
-    const recipeRows = seed.recipes.map((r, i) => ({
-      user_id: userId,
-      section: r.section,
-      title: r.title,
-      subtitle: r.subtitle || "",
-      protein_note: r.protein_note || "",
-      tags: r.tags || [],
-      ingredients: r.ingredients || [],
-      steps: r.steps || [],
-      note: r.note || "",
-      is_favorite: false,
-      sort_order: i,
-    }));
-
-    const shopRows = seed.shopping.map((s, i) => ({
-      user_id: userId,
-      label: s.label,
-      category: s.category,
-      checked: false,
-      sort_order: i,
-    }));
-
-    if (recipeRows.length) {
-      await rest("recipes", { method: "POST", body: recipeRows, timeoutMs: 20000 });
-    }
-    if (shopRows.length) {
-      await rest("shopping_items", { method: "POST", body: shopRows, timeoutMs: 20000 });
-    }
-    return true;
   }
 
   function cacheSet(key, value) {
@@ -929,10 +1051,15 @@
     upsertRecipe,
     deleteRecipe,
     toggleFavorite,
+    listShoppingLists,
+    createShoppingList,
+    renameShoppingList,
+    deleteShoppingList,
     listShopping,
     addShoppingItem,
     updateShoppingItem,
     deleteShoppingItem,
+    shoppingListsReady,
     seedIfEmpty,
     cacheSet,
     cacheGet,

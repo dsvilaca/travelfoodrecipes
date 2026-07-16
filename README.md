@@ -17,11 +17,12 @@ App web de receitas e lista de compras para férias. Funciona no **browser** (co
 - Receitas por secção (manhã, praia, lanches, jantar)
 - Criar, editar e apagar receitas
 - Favoritos
-- Lista de compras sincronizada na conta
+- Várias listas de compras sincronizadas na conta
 
 ## Setup (Supabase)
 
 1. No projeto Supabase → **SQL Editor** → corre [`supabase/schema.sql`](supabase/schema.sql)
+   - Se já tinhas a versão antiga com categorias, corre também [`supabase/migration-shopping-lists.sql`](supabase/migration-shopping-lists.sql)
 2. **Project Settings → API** → copia Project URL e chave `anon` / publishable
 3. Cola em [`js/config.js`](js/config.js) (usa [`js/config.example.js`](js/config.example.js) como modelo)
 4. **Authentication → Providers → Email** → ativa Email e **desliga Confirm email** (uso pessoal / MVP)
