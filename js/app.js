@@ -475,10 +475,14 @@
     });
   }
 
+  // Service worker desligado por agora — estava a impedir ver atualizações no iPhone.
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js?v=3").then((reg) => {
-      reg.update().catch(() => {});
+    navigator.serviceWorker.getRegistrations().then((regs) => {
+      regs.forEach((r) => r.unregister());
     }).catch(() => {});
+    if (window.caches?.keys) {
+      caches.keys().then((keys) => keys.forEach((k) => caches.delete(k))).catch(() => {});
+    }
   }
 
   boot();

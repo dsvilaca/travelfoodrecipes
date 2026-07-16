@@ -579,6 +579,19 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   margin-bottom: 6px;
 }
 
+.build-pill {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(26, 74, 82, 0.08);
+  color: var(--sea);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .auth-sub, .auth-hint {
   font-size: 0.9rem;
   color: var(--muted);
