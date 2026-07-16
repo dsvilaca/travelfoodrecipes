@@ -72,6 +72,18 @@
   const DIET_OPTIONS = [...LIFESTYLE_OPTIONS, ...ALLERGEN_OPTIONS];
   const DIET_LABEL = Object.fromEntries(DIET_OPTIONS.map((d) => [d.id, d.label]));
 
+  // Alimentos frequentes em alergias / intolerâncias (além da lista UE)
+  const COMMON_EXCLUDE_FOODS = [
+    "Queijo", "Leite", "Iogurte", "Manteiga", "Natas",
+    "Ovo", "Glúten", "Trigo", "Pão", "Massa",
+    "Amendoim", "Nozes", "Amêndoa", "Avelã",
+    "Peixe", "Atum", "Salmão", "Camarão", "Marisco",
+    "Soja", "Sésamo", "Mostarda",
+    "Tomate", "Cebola", "Alho", "Coentros", "Pimento",
+    "Kiwi", "Morango", "Banana", "Abacate",
+    "Chocolate", "Café", "Álcool",
+  ];
+
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
@@ -497,6 +509,7 @@
       }).join("");
     }
 
+    renderExcludeSuggestions("#searchExcludeSuggestions");
     const excludeChipsEl = $("#excludeFoodChips");
     if (excludeChipsEl) {
       excludeChipsEl.innerHTML = state.excludeFoods.length
@@ -661,29 +674,49 @@
     return `<button type="button" class="search-chip method${on ? " active" : ""}" data-diet="${d.id}" aria-pressed="${on ? "true" : "false"}">${escapeHtml(d.label)}</button>`;
   }
 
+  function excludeSuggestionHtml(food) {
+    const key = normalizeText(food);
+    const on = state.excludeFoods.some((f) => f === key || normalizeText(f) === key);
+    return `<button type="button" class="search-chip method${on ? " active" : ""}" data-toggle-exclude="${escapeHtml(key)}" aria-pressed="${on ? "true" : "false"}">${escapeHtml(displayLabel(food))}</button>`;
+  }
+
+  function renderExcludeSuggestions(rootId) {
+    const el = $(rootId);
+    if (!el) return;
+    el.innerHTML = COMMON_EXCLUDE_FOODS.map(excludeSuggestionHtml).join("");
+  }
+
+  function renderActiveExcludeChips(rootId) {
+    const el = $(rootId);
+    if (!el) return;
+    el.innerHTML = state.excludeFoods.length
+      ? state.excludeFoods.map((food) =>
+        `<button type="button" class="search-chip method active" data-remove-exclude="${escapeHtml(food)}" aria-label="Remover ${escapeHtml(displayLabel(food))}">${escapeHtml(displayLabel(food))} ✕</button>`
+      ).join("")
+      : "";
+  }
+
   function renderAccount() {
     updateAccountMeta();
     const life = $("#dietLifestyleChips");
     const allerg = $("#dietAllergenChips");
     const status = $("#dietStatus");
     const tip = $("#dietMigrationTip");
-    const excludeList = $("#accountExcludeChips");
+    const activeLabel = $("#accountExcludeActiveLabel");
     if (life) life.innerHTML = LIFESTYLE_OPTIONS.map(dietChipHtml).join("");
     if (allerg) allerg.innerHTML = ALLERGEN_OPTIONS.map(dietChipHtml).join("");
-    if (excludeList) {
-      excludeList.innerHTML = state.excludeFoods.length
-        ? state.excludeFoods.map((food) =>
-          `<button type="button" class="search-chip method active" data-remove-exclude="${escapeHtml(food)}">${escapeHtml(displayLabel(food))} ✕</button>`
-        ).join("")
-        : "";
-    }
+    renderExcludeSuggestions("#accountExcludeSuggestions");
+    renderActiveExcludeChips("#accountExcludeChips");
+    if (activeLabel) activeLabel.hidden = !state.excludeFoods.length;
     if (status) {
       if (!state.diet.length && !state.excludeFoods.length) {
         status.textContent = "Sem restrições — mostram-se todas as receitas.";
       } else {
         const bits = [];
         if (state.diet.length) bits.push(state.diet.map((id) => DIET_LABEL[id] || id).join(", "));
-        if (state.excludeFoods.length) bits.push("excluir: " + state.excludeFoods.join(", "));
+        if (state.excludeFoods.length) {
+          bits.push("excluir: " + state.excludeFoods.map(displayLabel).join(", "));
+        }
         status.textContent = "Ativo: " + bits.join(" · ") + ". Aplicado em listas e pesquisa.";
       }
     }
@@ -822,6 +855,22 @@
     }
   }
 
+  async function saveExcludeFoods(showToast) {
+    refreshFilteredViews();
+    try {
+      await persistPrefs();
+      state.prefsReady = await MareDB.preferencesReady();
+      renderAccount();
+      if (state.screen === "pesquisa") renderSearch();
+      if (showToast) toast("Alimentos excluídos atualizados");
+    } catch (err) {
+      state.prefsReady = false;
+      renderAccount();
+      if (state.screen === "pesquisa") renderSearch();
+      console.warn(err);
+    }
+  }
+
   async function addExcludeFoodsFromText(text) {
     const terms = parseSearchTerms(text);
     if (!terms.length) return;
@@ -829,31 +878,29 @@
     terms.forEach((t) => set.add(t));
     state.excludeFoods = [...set];
     state.excludeDraft = "";
-    refreshFilteredViews();
-    try {
-      await persistPrefs();
-      state.prefsReady = await MareDB.preferencesReady();
-      renderAccount();
-      if (state.screen === "pesquisa") renderSearch();
-      toast("Alimentos excluídos atualizados");
-    } catch (err) {
-      state.prefsReady = false;
-      renderAccount();
-      console.warn(err);
+    const searchInput = $("#excludeFoodInput");
+    const accountInput = $("#accountExcludeInput");
+    if (searchInput) searchInput.value = "";
+    if (accountInput) accountInput.value = "";
+    await saveExcludeFoods(true);
+  }
+
+  async function toggleExcludeFood(food) {
+    const key = normalizeText(food);
+    if (!key) return;
+    const exists = state.excludeFoods.some((f) => f === key || normalizeText(f) === key);
+    if (exists) {
+      state.excludeFoods = state.excludeFoods.filter((f) => f !== key && normalizeText(f) !== key);
+    } else {
+      state.excludeFoods = state.excludeFoods.concat(key);
     }
+    await saveExcludeFoods(false);
   }
 
   async function removeExcludeFood(food) {
     const key = normalizeText(food);
     state.excludeFoods = state.excludeFoods.filter((f) => f !== key && normalizeText(f) !== key);
-    refreshFilteredViews();
-    try {
-      await persistPrefs();
-      renderAccount();
-      if (state.screen === "pesquisa") renderSearch();
-    } catch (err) {
-      console.warn(err);
-    }
+    await saveExcludeFoods(false);
   }
 
   function openRecipeModal(recipe) {
@@ -1365,25 +1412,34 @@
       else state.searchMethods.push(id);
       renderSearch();
     });
-    const onExcludeSubmit = () => {
-      const input = $("#excludeFoodInput");
-      const text = input?.value || state.excludeDraft || "";
-      addExcludeFoodsFromText(text);
+    const wireExcludeInput = (inputSel, btnSel) => {
+      const submit = () => {
+        const input = $(inputSel);
+        const text = input?.value || "";
+        addExcludeFoodsFromText(text);
+      };
+      $(btnSel)?.addEventListener("click", submit);
+      $(inputSel)?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          submit();
+        }
+      });
     };
-    $("#btnAddExclude")?.addEventListener("click", onExcludeSubmit);
+    wireExcludeInput("#excludeFoodInput", "#btnAddExclude");
+    wireExcludeInput("#accountExcludeInput", "#btnAccountAddExclude");
     $("#excludeFoodInput")?.addEventListener("input", (e) => {
       state.excludeDraft = e.target.value || "";
-    });
-    $("#excludeFoodInput")?.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        onExcludeSubmit();
-      }
     });
     document.addEventListener("click", (e) => {
       const dietChip = e.target.closest("[data-diet]");
       if (dietChip && e.target.closest("#dietLifestyleChips, #dietAllergenChips, #searchAllergens")) {
         toggleDiet(dietChip.dataset.diet);
+        return;
+      }
+      const toggleEx = e.target.closest("[data-toggle-exclude]");
+      if (toggleEx) {
+        toggleExcludeFood(toggleEx.dataset.toggleExclude);
         return;
       }
       const rem = e.target.closest("[data-remove-exclude]");
