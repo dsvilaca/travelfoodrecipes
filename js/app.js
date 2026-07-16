@@ -25,10 +25,21 @@
 
   function toast(msg) {
     const el = $("#toast");
+    if (!el) return;
+    el.hidden = false;
     el.textContent = msg;
     el.classList.add("show");
     clearTimeout(toast._t);
-    toast._t = setTimeout(() => el.classList.remove("show"), 2200);
+    toast._t = setTimeout(() => el.classList.remove("show"), 2800);
+  }
+
+  function authMessage(msg) {
+    const hint = $("#authHint");
+    if (hint) {
+      hint.textContent = msg;
+      hint.hidden = false;
+    }
+    toast(msg);
   }
 
   function escapeHtml(str) {
@@ -344,45 +355,59 @@
     go("manha");
   }
 
+  async function handleAuthSubmit(e) {
+    if (e) e.preventDefault();
+    const email = ($("#authEmail")?.value || "").trim();
+    const password = $("#authPassword")?.value || "";
+    const mode = $("#authMode")?.value || "signup";
+    if (!email || password.length < 6) {
+      authMessage("Escreve o email e uma password com pelo menos 6 caracteres.");
+      $("#authPassword")?.focus();
+      return;
+    }
+    if (!globalThis.MareDB) {
+      authMessage("Erro a carregar a app. Abre nova.html outra vez.");
+      return;
+    }
+    const submit = $("#authSubmit");
+    const prevLabel = submit.textContent;
+    submit.disabled = true;
+    submit.textContent = "A entrar…";
+    authMessage("A criar sessão…");
+    try {
+      const data = mode === "signup"
+        ? await MareDB.signUp(email, password)
+        : await MareDB.signIn(email, password);
+      if (!data?.session) throw new Error("Não foi possível entrar.");
+      await afterLogin(data.session, data.notice || "Conta pronta");
+    } catch (err) {
+      console.error(err);
+      authMessage(err.message || "Erro de autenticação");
+      submit.textContent = prevLabel;
+      submit.disabled = false;
+    }
+  }
+
   async function initAuthForm() {
-    $("#authForm").addEventListener("submit", async (e) => {
+    const form = $("#authForm");
+    const submit = $("#authSubmit");
+    if (!form || !submit) return;
+
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const email = $("#authEmail").value.trim();
-      const password = $("#authPassword").value;
-      const mode = $("#authMode").value;
-      if (!email || password.length < 6) return toast("Escreve email + password (mín. 6)");
-      const submit = $("#authSubmit");
-      const prevLabel = submit.textContent;
-      submit.disabled = true;
-      submit.textContent = "A entrar…";
-      try {
-        if (mode === "signup") {
-          const data = await MareDB.signUp(email, password);
-          if (!data.session) {
-            throw new Error("Não foi possível criar sessão. Tenta outra password.");
-          }
-          await afterLogin(data.session, data.notice || "Conta pronta");
-        } else {
-          const data = await MareDB.signIn(email, password);
-          if (!data.session) throw new Error("Não foi possível entrar.");
-          await afterLogin(data.session, data.notice || (data.local ? "Sessão neste telemóvel" : null));
-        }
-      } catch (err) {
-        toast(err.message || "Erro de autenticação");
-        const hint = $("#authHint");
-        if (hint) {
-          hint.textContent = err.message || "Erro de autenticação";
-          hint.hidden = false;
-        }
-        submit.textContent = prevLabel;
-      } finally {
-        submit.disabled = false;
-        if ($("#appShell").hidden) submit.textContent = prevLabel;
-      }
+      handleAuthSubmit(e);
     });
 
-    $("#authToggle").addEventListener("click", () => {
+    // type=button evita quirks de submit no iOS; o clique trata do login
+    submit.setAttribute("type", "button");
+    submit.addEventListener("click", (e) => {
+      e.preventDefault();
+      handleAuthSubmit(e);
+    });
+
+    $("#authToggle")?.addEventListener("click", () => {
       const mode = $("#authMode");
+      if (!mode) return;
       if (mode.value === "login") {
         mode.value = "signup";
         $("#authSubmit").textContent = "Criar conta";
@@ -393,24 +418,23 @@
         $("#authToggle").textContent = "Criar conta nova";
       }
     });
-
   }
 
   function wireUi() {
     $$(".tab").forEach((tab) => tab.addEventListener("click", () => go(tab.dataset.go)));
-    $("#btnAddRecipe").addEventListener("click", () => openRecipeModal(null));
-    $("#btnAddShop").addEventListener("click", openShopModal);
-    $("#recipeForm").addEventListener("submit", onRecipeSubmit);
-    $("#shopForm").addEventListener("submit", onShopSubmit);
-    $("#recipeModalClose").addEventListener("click", closeRecipeModal);
-    $("#shopModalClose").addEventListener("click", closeShopModal);
-    $("#btnLogout").addEventListener("click", async () => {
-      await MareDB.signOut();
+    $("#btnAddRecipe")?.addEventListener("click", () => openRecipeModal(null));
+    $("#btnAddShop")?.addEventListener("click", openShopModal);
+    $("#recipeForm")?.addEventListener("submit", onRecipeSubmit);
+    $("#shopForm")?.addEventListener("submit", onShopSubmit);
+    $("#recipeModalClose")?.addEventListener("click", closeRecipeModal);
+    $("#shopModalClose")?.addEventListener("click", closeShopModal);
+    $("#btnLogout")?.addEventListener("click", async () => {
+      try { await MareDB.signOut(); } catch (_) { /* ignore */ }
       state.user = null;
       showAuth(true);
       toast("Sessão terminada");
     });
-    $("#btnSeed").addEventListener("click", async () => {
+    $("#btnSeed")?.addEventListener("click", async () => {
       if (!confirm("Isto só adiciona dados se a conta estiver vazia. Continuar?")) return;
       try {
         const seeded = await MareDB.seedIfEmpty();
@@ -424,10 +448,9 @@
     document.addEventListener("click", (e) => {
       if (e.target.closest(".list, #favList")) handleListClick(e);
     });
-    $("#shopContainer").addEventListener("click", handleShopClick);
-    $("#shopContainer").addEventListener("change", handleShopClick);
+    $("#shopContainer")?.addEventListener("click", handleShopClick);
+    $("#shopContainer")?.addEventListener("change", handleShopClick);
 
-    // accordion: one open per screen
     document.addEventListener("toggle", (e) => {
       const t = e.target;
       if (!(t instanceof HTMLDetailsElement) || !t.classList.contains("recipe") || !t.open) return;
@@ -440,39 +463,46 @@
 
     window.addEventListener("online", () => { updateOnline(); toast("De volta online"); refreshData(); });
     window.addEventListener("offline", () => { updateOnline(); toast("Modo offline"); });
-    $("#statusBtn").addEventListener("click", () => {
-      toast(navigator.onLine ? "Online — dados no Supabase" : "Offline — cache local");
+    $("#statusBtn")?.addEventListener("click", () => {
+      toast(navigator.onLine ? "Online" : "Offline — cache local");
     });
   }
 
   async function boot() {
-    wireUi();
-    await initAuthForm();
-    updateOnline();
-
     try {
-      MareDB.getClient();
-    } catch (err) {
+      await initAuthForm();
+      wireUi();
+      updateOnline();
       showAuth(true);
-      $("#authHint").textContent = err.message;
-      $("#authHint").hidden = false;
-      return;
-    }
 
-    const session = await MareDB.getSession();
-    if (session) {
-      await afterLogin(session);
-    } else {
-      showAuth(true);
-    }
+      if (!globalThis.MareDB) {
+        authMessage("Erro a carregar. Abre https://dsvilaca.github.io/travelfoodrecipes/nova.html");
+        return;
+      }
 
-    MareDB.getClient().auth.onAuthStateChange((_event, session) => {
-      if (MareDB.isLocalMode()) return;
-      if (!session) {
-        state.user = null;
+      const session = await MareDB.getSession();
+      if (session) {
+        await afterLogin(session);
+      } else {
         showAuth(true);
       }
-    });
+
+      try {
+        MareDB.getClient().auth.onAuthStateChange((_event, session) => {
+          if (MareDB.isLocalMode()) return;
+          if (!session) {
+            state.user = null;
+            showAuth(true);
+          }
+        });
+      } catch (_) {
+        // Sem Supabase — modo local basta
+      }
+    } catch (err) {
+      console.error(err);
+      showAuth(true);
+      authMessage(err.message || "Erro ao iniciar a app");
+    }
   }
 
   // Service worker desligado por agora — estava a impedir ver atualizações no iPhone.

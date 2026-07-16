@@ -1,5 +1,4 @@
 (function (global) {
-  const { createClient } = supabase;
   const LOCAL_DB_KEY = "mare-local-db-v1";
   const MODE_KEY = "mare-auth-mode"; // "supabase" | "local"
 
@@ -12,17 +11,30 @@
   }
 
   let client = null;
+  let clientFailed = false;
+
+  function hasSupabaseLib() {
+    return !!(global.supabase && typeof global.supabase.createClient === "function");
+  }
 
   function getClient() {
     if (client) return client;
+    if (clientFailed || !hasSupabaseLib()) {
+      throw new Error("Supabase indisponível — a app continua em modo local.");
+    }
     const cfg = getConfig();
-    client = createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true,
-      },
-    });
+    try {
+      client = global.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true,
+        },
+      });
+    } catch (err) {
+      clientFailed = true;
+      throw err;
+    }
     return client;
   }
 
@@ -102,44 +114,21 @@
   }
 
   async function getSession() {
-    if (authMode() === "local") {
+    // Preferir sessão local (rápida e fiável no iPhone)
+    if (authMode() === "local" || authMode() == null) {
       const db = readLocalDb();
-      if (!db.sessionEmail) return null;
-      const user = localUserFromEmail(db.sessionEmail);
-      return { user, access_token: "local" };
-    }
-    const { data, error } = await getClient().auth.getSession();
-    if (error) throw mapAuthError(error);
-    return data.session;
-  }
-
-  async function trySupabaseSignIn(email, password) {
-    try {
-      const { data, error } = await getClient().auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error || !data?.session) return null;
-      setAuthMode("supabase");
-      return data;
-    } catch (_) {
-      return null;
-    }
-  }
-
-  async function trySupabaseSignUp(email, password) {
-    try {
-      const { data, error } = await getClient().auth.signUp({
-        email,
-        password,
-        options: { emailRedirectTo: siteRedirectTo() },
-      });
-      if (error) return null;
-      if (data?.session) {
-        setAuthMode("supabase");
-        return data;
+      if (db.sessionEmail) {
+        const user = localUserFromEmail(db.sessionEmail);
+        setAuthMode("local");
+        return { user, access_token: "local" };
       }
-      return trySupabaseSignIn(email, password);
+      if (authMode() === "local") return null;
+    }
+    if (!hasSupabaseLib()) return null;
+    try {
+      const { data, error } = await getClient().auth.getSession();
+      if (error) throw mapAuthError(error);
+      return data.session;
     } catch (_) {
       return null;
     }
@@ -147,34 +136,20 @@
 
   async function signIn(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
-    const cloud = await trySupabaseSignIn(normalized, password);
-    if (cloud?.session) return cloud;
-
-    // Sempre funciona neste dispositivo (a cloud pode estar com rate limit / confirm email)
     const db = readLocalDb();
     const local = db.users.find((u) => u.email === normalized);
     if (local && local.password !== password) {
       throw new Error("Password incorreta para esta conta neste telemóvel.");
     }
+    // Entrar/criar já neste dispositivo — sem esperar pelo Supabase
     return signInLocal(normalized, password);
   }
 
   async function signUp(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
-
-    // Conta local primeiro — os botões têm de funcionar mesmo com Supabase bloqueado
-    const local = signUpLocal(normalized, password, {
-      notice: "Conta pronta. Podes usar a app já neste telemóvel.",
+    return signUpLocal(normalized, password, {
+      notice: "Conta pronta. Já podes usar a app.",
     });
-
-    const cloud = await trySupabaseSignUp(normalized, password);
-    if (cloud?.session) {
-      return {
-        ...cloud,
-        notice: "Conta cloud ativa — dados sincronizam no Supabase.",
-      };
-    }
-    return local;
   }
 
   function signUpLocal(email, password, extra = {}) {

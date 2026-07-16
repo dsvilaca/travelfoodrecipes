@@ -479,11 +479,11 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .toast {
-  position: absolute;
+  position: fixed;
   left: 14px;
   right: 14px;
-  bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 12px);
-  z-index: 50;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 200;
   background: var(--ink);
   color: var(--foam);
   padding: 12px 14px;
@@ -500,6 +500,9 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   transform: translateY(0);
   opacity: 1;
 }
+
+.toast[hidden] { display: none !important; }
+.toast.show { display: block !important; }
 
 .tabbar {
   position: absolute;
