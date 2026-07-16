@@ -657,9 +657,10 @@
 
   function macrosLineHtml(est, servings) {
     if (!est?.ok) return "";
+    // Sempre por 1 pessoa: totais da lista de ingredientes ÷ nº de pessoas da receita
     const s = Math.max(1, servings || 1);
     const r1 = roundMacro;
-    return `<div class="recipe-macros" data-macros-line>${r1(est.kcal / s)} kcal · P ${r1(est.protein / s)}g · HC ${r1(est.carbs / s)}g · L ${r1(est.fat / s)}g <span class="macros-per">/ pessoa</span></div>`;
+    return `<div class="recipe-macros" data-macros-line>${r1(est.kcal / s)} kcal · P ${r1(est.protein / s)}g · HC ${r1(est.carbs / s)}g · L ${r1(est.fat / s)}g <span class="macros-per">/ 1 pessoa</span></div>`;
   }
 
   function rerenderOpenRecipe(recipeId) {

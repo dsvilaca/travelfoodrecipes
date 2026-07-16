@@ -733,6 +733,7 @@
       </div>`;
     }
 
+    // Quantidades dos ingredientes são para N pessoas → macros da receita ÷ N = sempre 1 pessoa.
     const servings = Math.max(1, Math.min(12, Math.round(Number(opts.servings) || 1)));
     const perKcal = est.kcal / servings;
     const perProtein = est.protein / servings;
@@ -746,24 +747,24 @@
     )).join("");
     const pessoaLabel = servings === 1 ? "1 pessoa" : `${servings} pessoas`;
 
-    return `<div class="nutrition" data-nutrition-totals
-        data-kcal="${est.kcal}" data-protein="${est.protein}" data-carbs="${est.carbs}" data-fat="${est.fat}"
+    return `<div class="nutrition" data-nutrition-per-person
+        data-kcal="${round1(perKcal)}" data-protein="${round1(perProtein)}" data-carbs="${round1(perCarbs)}" data-fat="${round1(perFat)}"
         data-servings="${servings}" data-coverage="${est.coverage}">
       <div class="servings-row">
         <div class="servings-ref">
-          <span class="servings-ref-label">Receita para</span>
+          <span class="servings-ref-label">Ingredientes para</span>
           <span class="servings-ref-value" data-n="serve-label">${escape(pessoaLabel)}</span>
         </div>
-        <div class="servings-picker" role="group" aria-label="Alterar para quantas pessoas é a receita (escala ingredientes)">${pickBtns}</div>
+        <div class="servings-picker" role="group" aria-label="Alterar ingredientes para quantas pessoas">${pickBtns}</div>
       </div>
-      <h3>Nutrição <span class="nutrition-tag">por pessoa</span></h3>
+      <h3>Nutrição <span class="nutrition-tag">por 1 pessoa</span></h3>
       <div class="nutrition-grid">
         <div><strong data-n="kcal">${round1(perKcal)}</strong><span>kcal</span></div>
         <div><strong data-n="protein">${round1(perProtein)} g</strong><span>Proteína</span></div>
         <div><strong data-n="carbs">${round1(perCarbs)} g</strong><span>Hidratos</span></div>
         <div><strong data-n="fat">${round1(perFat)} g</strong><span>Lípidos</span></div>
       </div>
-      <p class="nutrition-note" data-n="note">Total para ${escape(pessoaLabel)}: ${round1(est.kcal)} kcal · P ${round1(est.protein)}g · HC ${round1(est.carbs)}g · L ${round1(est.fat)}g</p>
+      <p class="nutrition-note" data-n="note">Valores sempre por 1 pessoa. Ao mudar o número de pessoas, só os ingredientes mudam.</p>
       <p class="nutrition-source">Fonte: ${escape(est.source)} · <a href="${escape(est.url)}" target="_blank" rel="noopener">PortFIR</a></p>
     </div>`;
   }

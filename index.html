@@ -24,13 +24,13 @@
   <meta name="description" content="Receitas e lista de compras de férias — acessível no telemóvel e no computador." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Travel Food Recipes</title>
-  <link rel="manifest" href="./manifest.webmanifest?v=40" />
-  <link rel="icon" href="./icon-192.png?v=40" sizes="192x192" />
-  <link rel="apple-touch-icon" href="./icon-192.png?v=40" />
+  <link rel="manifest" href="./manifest.webmanifest?v=41" />
+  <link rel="icon" href="./icon-192.png?v=41" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./icon-192.png?v=41" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link id="appCss" rel="stylesheet" href="./styles.css?v=40" />
+  <link id="appCss" rel="stylesheet" href="./styles.css?v=41" />
   <style>
     /* Fallback mínimo se o CSS externo falhar (ex.: cache após domínio custom) */
     html, body { margin: 0; height: 100%; font-family: Figtree, system-ui, sans-serif; background: #d9e4e2; color: #102428; }
@@ -62,7 +62,7 @@
           if (probe) return;
           var link = document.getElementById("appCss");
           if (!link) return;
-          var href = "./styles.css?v=40&t=" + Date.now();
+          var href = "./styles.css?v=41&t=" + Date.now();
           link.href = href;
         } catch (e) { /* ignore */ }
       });
@@ -75,7 +75,7 @@
     <section id="authScreen" class="auth">
       <div class="auth-card">
         <div class="brand brand-auth">
-          <img class="brand-mark" src="./icon-192.png?v=40" width="56" height="56" alt="Travel Food Recipes" />
+          <img class="brand-mark" src="./icon-192.png?v=41" width="56" height="56" alt="Travel Food Recipes" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -122,7 +122,7 @@
     <div class="phone" id="appShell" hidden>
       <header class="app-header">
         <div class="brand brand-header">
-          <img class="brand-mark" src="./icon-192.png?v=40" width="32" height="32" alt="" />
+          <img class="brand-mark" src="./icon-192.png?v=41" width="32" height="32" alt="" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -348,7 +348,7 @@
         </label>
         <label>Título<input id="fTitle" required maxlength="120" /></label>
         <label>Subtítulo<input id="fSubtitle" maxlength="120" /></label>
-        <label>As quantidades desta receita são para
+        <label>Ingredientes escritos para (as calorias ficam sempre por 1 pessoa)
           <select id="fServings">
             <option value="1">1 pessoa</option>
             <option value="2">2 pessoas</option>
@@ -395,11 +395,11 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./js/config.js?v=40"></script>
-  <script src="./js/seed-data.js?v=40"></script>
-  <script src="./js/tca-data.js?v=40"></script>
-  <script src="./js/nutrition.js?v=40"></script>
-  <script src="./js/db.js?v=40"></script>
-  <script src="./js/app.js?v=40"></script>
+  <script src="./js/config.js?v=41"></script>
+  <script src="./js/seed-data.js?v=41"></script>
+  <script src="./js/tca-data.js?v=41"></script>
+  <script src="./js/nutrition.js?v=41"></script>
+  <script src="./js/db.js?v=41"></script>
+  <script src="./js/app.js?v=41"></script>
 </body>
 </html>
