@@ -8,26 +8,49 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Travel Food Recipes" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Travel Food Recipes</title>
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" href="icon-192.png?v=3" sizes="192x192" />
-  <link rel="apple-touch-icon" href="icon-192.png?v=3" />
+  <link rel="manifest" href="manifest.webmanifest?v=4" />
+  <link rel="icon" href="icon-192.png?v=4" sizes="192x192" />
+  <link rel="apple-touch-icon" href="icon-192.png?v=4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <script>
+    /* Limpa service workers / caches antigos para as atualizações aparecerem */
+    (function () {
+      var APP_BUILD = "4";
+      try {
+        if (localStorage.getItem("tfr-build") !== APP_BUILD) {
+          localStorage.setItem("tfr-build", APP_BUILD);
+          if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function (regs) {
+              regs.forEach(function (r) { r.unregister(); });
+            });
+          }
+          if (window.caches && caches.keys) {
+            caches.keys().then(function (keys) {
+              keys.forEach(function (k) { caches.delete(k); });
+            });
+          }
+        }
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
 </head>
 <body>
   <!-- AUTH -->
   <section id="authScreen" class="auth" hidden>
     <div class="auth-card">
       <div class="brand brand-auth">
-        <img class="brand-mark" src="icon-192.png?v=3" width="56" height="56" alt="" />
+        <img class="brand-mark" src="icon-192.png?v=4" width="56" height="56" alt="" />
         <div class="brand-text">
           <span class="brand-title">Travel Food</span>
           <span class="brand-sub">Recipes</span>
         </div>
       </div>
+      <p class="build-pill" id="buildPill">Versão 4</p>
       <h1>Entra na tua conta</h1>
       <p class="auth-sub">Email + password (mín. 6 caracteres). Funciona já neste telemóvel — mesmo se o Supabase estiver com limite de emails.</p>
       <p id="authHint" class="auth-hint" hidden></p>
@@ -45,7 +68,7 @@
   <div class="phone" id="appShell" hidden>
     <header class="app-header">
       <div class="brand brand-header">
-        <img class="brand-mark" src="icon-192.png?v=3" width="32" height="32" alt="" />
+        <img class="brand-mark" src="icon-192.png?v=4" width="32" height="32" alt="" />
         <div class="brand-text">
           <span class="brand-title">Travel Food</span>
           <span class="brand-sub">Recipes</span>
@@ -185,9 +208,9 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/config.js?v=3"></script>
-  <script src="js/seed-data.js?v=3"></script>
-  <script src="js/db.js?v=3"></script>
-  <script src="js/app.js?v=3"></script>
+  <script src="js/config.js?v=4"></script>
+  <script src="js/seed-data.js?v=4"></script>
+  <script src="js/db.js?v=4"></script>
+  <script src="js/app.js?v=4"></script>
 </body>
 </html>
