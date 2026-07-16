@@ -1,6 +1,7 @@
 (function (global) {
   const LOCAL_DB_KEY = "mare-local-db-v1";
   const MODE_KEY = "mare-auth-mode"; // "supabase" | "local"
+  const SESSION_KEY = "tfr-session-v1";
 
   function getConfig() {
     const cfg = global.MARE_CONFIG || {};
@@ -13,6 +14,7 @@
   let client = null;
   let clientFailed = false;
   let lastStatus = null;
+  let refreshPromise = null;
 
   function hasSupabaseLib() {
     return !!(global.supabase && typeof global.supabase.createClient === "function");
@@ -27,8 +29,8 @@
     try {
       client = global.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
         auth: {
-          persistSession: true,
-          autoRefreshToken: true,
+          persistSession: false,
+          autoRefreshToken: false,
           detectSessionInUrl: true,
         },
       });
@@ -54,6 +56,104 @@
       timer = setTimeout(() => reject(new Error(label || ("Timeout (" + ms + "ms)"))), ms);
     });
     return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+  }
+
+  function readStoredSession() {
+    try {
+      const raw = localStorage.getItem(SESSION_KEY);
+      if (!raw) return null;
+      const s = JSON.parse(raw);
+      if (!s?.access_token || !s?.user?.id) return null;
+      return s;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function writeStoredSession(session) {
+    if (!session?.access_token || !session?.user) {
+      localStorage.removeItem(SESSION_KEY);
+      return;
+    }
+    const payload = {
+      access_token: session.access_token,
+      refresh_token: session.refresh_token || "",
+      expires_at: session.expires_at || null,
+      user: session.user,
+    };
+    localStorage.setItem(SESSION_KEY, JSON.stringify(payload));
+  }
+
+  function clearStoredSession() {
+    localStorage.removeItem(SESSION_KEY);
+  }
+
+  function sessionFromTokenResponse(json) {
+    const expiresAt = json.expires_at
+      || (json.expires_in ? Math.floor(Date.now() / 1000) + Number(json.expires_in) : null);
+    return {
+      access_token: json.access_token,
+      refresh_token: json.refresh_token,
+      expires_at: expiresAt,
+      user: json.user,
+    };
+  }
+
+  function isExpired(session) {
+    if (!session?.expires_at) return false;
+    // Renova 60s antes do fim
+    return Number(session.expires_at) * 1000 <= Date.now() + 60000;
+  }
+
+  async function refreshStoredSession() {
+    const current = readStoredSession();
+    if (!current?.refresh_token) return current;
+    if (refreshPromise) return refreshPromise;
+
+    refreshPromise = (async () => {
+      const cfg = getConfig();
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 10000);
+      try {
+        const res = await fetch(cfg.supabaseUrl + "/auth/v1/token?grant_type=refresh_token", {
+          method: "POST",
+          signal: controller.signal,
+          headers: {
+            apikey: cfg.supabaseAnonKey,
+            Authorization: "Bearer " + cfg.supabaseAnonKey,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ refresh_token: current.refresh_token }),
+        });
+        const json = await res.json();
+        if (!res.ok || !json.access_token) {
+          clearStoredSession();
+          setAuthMode(null);
+          return null;
+        }
+        const next = sessionFromTokenResponse(json);
+        writeStoredSession(next);
+        setAuthMode("supabase");
+        return next;
+      } catch (_) {
+        // Mantém a sessão atual se o refresh falhar por rede
+        return current;
+      } finally {
+        clearTimeout(timer);
+        refreshPromise = null;
+      }
+    })();
+
+    return refreshPromise;
+  }
+
+  async function getCloudSession() {
+    let session = readStoredSession();
+    if (!session) return null;
+    if (isExpired(session)) {
+      session = await refreshStoredSession();
+    }
+    return session;
   }
 
   function readLocalDb() {
@@ -125,13 +225,49 @@
       const u = new URL(global.location.href);
       u.hash = "";
       u.search = "";
-      // Nunca devolver localhost para emails de reset
       if (/localhost|127\.0\.0\.1/i.test(u.hostname)) {
         return "https://dsvilaca.github.io/travelfoodrecipes/";
       }
       return u.origin + u.pathname.replace(/\/?$/, "/");
     } catch (_) {
       return "https://dsvilaca.github.io/travelfoodrecipes/";
+    }
+  }
+
+  async function rest(path, options = {}) {
+    const session = await getCloudSession();
+    if (!session?.access_token) throw new Error("Sem sessão");
+    const cfg = getConfig();
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), options.timeoutMs || 12000);
+    try {
+      const res = await fetch(cfg.supabaseUrl + "/rest/v1/" + path, {
+        method: options.method || "GET",
+        signal: controller.signal,
+        headers: {
+          apikey: cfg.supabaseAnonKey,
+          Authorization: "Bearer " + session.access_token,
+          "Content-Type": "application/json",
+          Prefer: options.prefer || "return=representation",
+          ...(options.headers || {}),
+        },
+        body: options.body != null ? JSON.stringify(options.body) : undefined,
+      });
+      if (res.status === 204) return null;
+      const text = await res.text();
+      let json = null;
+      try { json = text ? JSON.parse(text) : null; } catch (_) { json = text; }
+      if (!res.ok) {
+        const err = new Error(json?.message || json?.error_description || ("HTTP " + res.status));
+        err.code = json?.code;
+        throw err;
+      }
+      return json;
+    } catch (err) {
+      if (err.name === "AbortError") throw new Error("Ligação lenta. Tenta outra vez.");
+      throw err;
+    } finally {
+      clearTimeout(timer);
     }
   }
 
@@ -195,19 +331,10 @@
   }
 
   async function getSession() {
-    // Sessão Supabase persistida
-    if (hasSupabaseLib()) {
-      try {
-        const { data, error } = await withTimeout(
-          getClient().auth.getSession(),
-          6000,
-          "Timeout a ler sessão Supabase"
-        );
-        if (!error && data?.session) {
-          setAuthMode("supabase");
-          return data.session;
-        }
-      } catch (_) { /* tenta local */ }
+    const cloud = await getCloudSession();
+    if (cloud) {
+      setAuthMode("supabase");
+      return cloud;
     }
 
     if (authMode() === "local") {
@@ -216,6 +343,19 @@
       return { user: localUserFromEmail(db.sessionEmail), access_token: "local" };
     }
     return null;
+  }
+
+  function adoptSession(session) {
+    if (!session?.access_token || !session?.user) return null;
+    const normalized = {
+      access_token: session.access_token,
+      refresh_token: session.refresh_token || "",
+      expires_at: session.expires_at || null,
+      user: session.user,
+    };
+    writeStoredSession(normalized);
+    setAuthMode("supabase");
+    return normalized;
   }
 
   async function cloudSignIn(email, password) {
@@ -247,33 +387,15 @@
       clearTimeout(timer);
     }
 
-    // Sincroniza a sessão no cliente Supabase (para RLS nas tabelas)
-    if (hasSupabaseLib()) {
-      try {
-        const { error } = await getClient().auth.setSession({
-          access_token: json.access_token,
-          refresh_token: json.refresh_token,
-        });
-        if (error) throw error;
-      } catch (err) {
-        // Mesmo sem setSession, devolvemos sessão fetch para a UI entrar
-        console.warn(err);
-      }
-    }
-
+    const session = sessionFromTokenResponse(json);
+    writeStoredSession(session);
     setAuthMode("supabase");
     const db = readLocalDb();
     db.sessionEmail = null;
     writeLocalDb(db);
 
-    return {
-      user: json.user,
-      session: {
-        access_token: json.access_token,
-        refresh_token: json.refresh_token,
-        user: json.user,
-      },
-    };
+    // Nunca bloquear a UI no setSession do supabase-js (trava em Safari/iOS)
+    return { user: session.user, session };
   }
 
   async function cloudSignUp(email, password) {
@@ -310,29 +432,15 @@
     }
 
     if (json.access_token && json.user) {
-      if (hasSupabaseLib()) {
-        try {
-          await getClient().auth.setSession({
-            access_token: json.access_token,
-            refresh_token: json.refresh_token,
-          });
-        } catch (_) { /* ignore */ }
-      }
+      const session = sessionFromTokenResponse(json);
+      writeStoredSession(session);
       setAuthMode("supabase");
       const db = readLocalDb();
       db.sessionEmail = null;
       writeLocalDb(db);
-      return {
-        user: json.user,
-        session: {
-          access_token: json.access_token,
-          refresh_token: json.refresh_token,
-          user: json.user,
-        },
-      };
+      return { user: session.user, session };
     }
 
-    // Resposta sem sessão (ex.: confirm email) — tenta login imediato
     return cloudSignIn(email, password);
   }
 
@@ -366,16 +474,37 @@
   async function recoverPassword(email) {
     const normalized = String(email || "").trim().toLowerCase();
     if (!normalized) throw new Error("Escreve o teu email.");
-    if (!hasSupabaseLib()) throw new Error("Recarrega a página e tenta outra vez.");
-    const { error } = await withTimeout(
-      getClient().auth.resetPasswordForEmail(normalized, {
-        redirectTo: siteRedirectTo(),
-      }),
-      10000,
-      "Timeout"
-    );
-    if (error) throw mapAuthError(error);
-    return true;
+    const cfg = getConfig();
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10000);
+    try {
+      const redirect = encodeURIComponent(siteRedirectTo());
+      const res = await fetch(cfg.supabaseUrl + "/auth/v1/recover?redirect_to=" + redirect, {
+        method: "POST",
+        signal: controller.signal,
+        headers: {
+          apikey: cfg.supabaseAnonKey,
+          Authorization: "Bearer " + cfg.supabaseAnonKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: normalized,
+          gotrue_meta_security: {},
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const err = new Error(json.msg || json.error_description || "Recuperação falhou");
+        err.code = json.error_code || json.error;
+        throw err;
+      }
+      return true;
+    } catch (err) {
+      if (err.name === "AbortError") throw new Error("Ligação lenta. Tenta outra vez.");
+      throw mapAuthError(err);
+    } finally {
+      clearTimeout(timer);
+    }
   }
 
   function signUpLocal(email, password, extra = {}) {
@@ -393,6 +522,7 @@
     db.sessionEmail = normalized;
     writeLocalDb(db);
     setAuthMode("local");
+    clearStoredSession();
     const sessionUser = localUserFromEmail(normalized);
     return {
       user: sessionUser,
@@ -414,41 +544,49 @@
 
   async function signOut() {
     const mode = authMode();
+    clearStoredSession();
+    setAuthMode(null);
     if (mode === "local") {
       const db = readLocalDb();
       db.sessionEmail = null;
       writeLocalDb(db);
-      setAuthMode(null);
       return;
     }
-    setAuthMode(null);
+    // Logout do cliente Supabase em background (não bloquear UI)
     try {
-      const { error } = await withTimeout(getClient().auth.signOut(), 5000, "Timeout logout");
-      if (error) throw mapAuthError(error);
-    } catch (_) {
-      setAuthMode(null);
-    }
+      if (hasSupabaseLib()) {
+        getClient().auth.signOut().catch(() => {});
+      }
+    } catch (_) { /* ignore */ }
   }
 
   function isLocalMode() {
     return authMode() === "local";
   }
 
+  function sortRecipes(rows) {
+    return [...rows].sort((a, b) =>
+      (a.section || "").localeCompare(b.section || "")
+      || (a.sort_order || 0) - (b.sort_order || 0)
+      || String(a.created_at || "").localeCompare(String(b.created_at || ""))
+    );
+  }
+
+  function sortShopping(rows) {
+    return [...rows].sort((a, b) =>
+      (a.category || "").localeCompare(b.category || "")
+      || (a.sort_order || 0) - (b.sort_order || 0)
+      || String(a.created_at || "").localeCompare(String(b.created_at || ""))
+    );
+  }
+
   async function listRecipes() {
     if (isLocalMode()) {
-      const db = readLocalDb();
-      return [...db.recipes].sort((a, b) =>
-        (a.section || "").localeCompare(b.section || "")
-        || (a.sort_order || 0) - (b.sort_order || 0)
-        || String(a.created_at || "").localeCompare(String(b.created_at || ""))
-      );
+      return sortRecipes(readLocalDb().recipes);
     }
-    const { data, error } = await withTimeout(
-      getClient().from("recipes").select("*").order("section").order("sort_order").order("created_at"),
-      10000,
-      "Timeout a ler receitas"
+    const data = await rest(
+      "recipes?select=*&order=section.asc,sort_order.asc,created_at.asc"
     );
-    if (error) throw error;
     return data || [];
   }
 
@@ -492,13 +630,18 @@
       user_id: session.user.id,
       updated_at: new Date().toISOString(),
     };
-    const { data, error } = await withTimeout(
-      getClient().from("recipes").upsert(payload).select().single(),
-      10000,
-      "Timeout a guardar receita"
-    );
-    if (error) throw error;
-    return data;
+    if (recipe.id) {
+      const data = await rest("recipes?id=eq." + encodeURIComponent(recipe.id), {
+        method: "PATCH",
+        body: payload,
+      });
+      return Array.isArray(data) ? data[0] : data;
+    }
+    const data = await rest("recipes", {
+      method: "POST",
+      body: payload,
+    });
+    return Array.isArray(data) ? data[0] : data;
   }
 
   async function deleteRecipe(id) {
@@ -508,12 +651,10 @@
       writeLocalDb(db);
       return;
     }
-    const { error } = await withTimeout(
-      getClient().from("recipes").delete().eq("id", id),
-      10000,
-      "Timeout a apagar receita"
-    );
-    if (error) throw error;
+    await rest("recipes?id=eq." + encodeURIComponent(id), {
+      method: "DELETE",
+      prefer: "return=minimal",
+    });
   }
 
   async function toggleFavorite(id, isFavorite) {
@@ -526,30 +667,20 @@
       writeLocalDb(db);
       return row;
     }
-    const { data, error } = await withTimeout(
-      getClient().from("recipes").update({ is_favorite: isFavorite }).eq("id", id).select().single(),
-      10000,
-      "Timeout favorito"
-    );
-    if (error) throw error;
-    return data;
+    const data = await rest("recipes?id=eq." + encodeURIComponent(id), {
+      method: "PATCH",
+      body: { is_favorite: !!isFavorite },
+    });
+    return Array.isArray(data) ? data[0] : data;
   }
 
   async function listShopping() {
     if (isLocalMode()) {
-      const db = readLocalDb();
-      return [...db.shopping].sort((a, b) =>
-        (a.category || "").localeCompare(b.category || "")
-        || (a.sort_order || 0) - (b.sort_order || 0)
-        || String(a.created_at || "").localeCompare(String(b.created_at || ""))
-      );
+      return sortShopping(readLocalDb().shopping);
     }
-    const { data, error } = await withTimeout(
-      getClient().from("shopping_items").select("*").order("category").order("sort_order").order("created_at"),
-      10000,
-      "Timeout a ler lista"
+    const data = await rest(
+      "shopping_items?select=*&order=category.asc,sort_order.asc,created_at.asc"
     );
-    if (error) throw error;
     return data || [];
   }
 
@@ -573,13 +704,11 @@
       return row;
     }
 
-    const { data, error } = await withTimeout(
-      getClient().from("shopping_items").insert({ ...item, user_id: session.user.id }).select().single(),
-      10000,
-      "Timeout a adicionar item"
-    );
-    if (error) throw error;
-    return data;
+    const data = await rest("shopping_items", {
+      method: "POST",
+      body: { ...item, user_id: session.user.id },
+    });
+    return Array.isArray(data) ? data[0] : data;
   }
 
   async function updateShoppingItem(id, patch) {
@@ -591,13 +720,11 @@
       writeLocalDb(db);
       return row;
     }
-    const { data, error } = await withTimeout(
-      getClient().from("shopping_items").update(patch).eq("id", id).select().single(),
-      10000,
-      "Timeout a atualizar item"
-    );
-    if (error) throw error;
-    return data;
+    const data = await rest("shopping_items?id=eq." + encodeURIComponent(id), {
+      method: "PATCH",
+      body: patch,
+    });
+    return Array.isArray(data) ? data[0] : data;
   }
 
   async function deleteShoppingItem(id) {
@@ -607,12 +734,10 @@
       writeLocalDb(db);
       return;
     }
-    const { error } = await withTimeout(
-      getClient().from("shopping_items").delete().eq("id", id),
-      10000,
-      "Timeout a apagar item"
-    );
-    if (error) throw error;
+    await rest("shopping_items?id=eq." + encodeURIComponent(id), {
+      method: "DELETE",
+      prefer: "return=minimal",
+    });
   }
 
   async function seedIfEmpty() {
@@ -680,20 +805,10 @@
     }));
 
     if (recipeRows.length) {
-      const { error } = await withTimeout(
-        getClient().from("recipes").insert(recipeRows),
-        20000,
-        "Timeout no seed de receitas"
-      );
-      if (error) throw error;
+      await rest("recipes", { method: "POST", body: recipeRows, timeoutMs: 20000 });
     }
     if (shopRows.length) {
-      const { error } = await withTimeout(
-        getClient().from("shopping_items").insert(shopRows),
-        20000,
-        "Timeout no seed da lista"
-      );
-      if (error) throw error;
+      await rest("shopping_items", { method: "POST", body: shopRows, timeoutMs: 20000 });
     }
     return true;
   }
@@ -716,6 +831,7 @@
   global.MareDB = {
     getClient,
     getSession,
+    adoptSession,
     signIn,
     signUp,
     signInLocal,

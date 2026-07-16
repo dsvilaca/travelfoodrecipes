@@ -332,6 +332,9 @@
   }
 
   async function afterLogin(session) {
+    if (session?.access_token && MareDB.adoptSession) {
+      MareDB.adoptSession(session);
+    }
     state.user = session.user;
     showAuth(false);
     go("manha");
