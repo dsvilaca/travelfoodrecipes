@@ -140,10 +140,7 @@
     const sheet = $("#moreSheet");
     const btn = $("#btnMoreMenu");
     if (sheet) sheet.hidden = true;
-    if (btn) {
-      btn.setAttribute("aria-expanded", "false");
-      btn.classList.remove("active");
-    }
+    if (btn) btn.setAttribute("aria-expanded", "false");
   }
 
   function openMoreSheet() {
@@ -621,7 +618,7 @@
   }
 
   function updateOnline() {
-    $("#statusDot").classList.toggle("off", !navigator.onLine);
+    /* estado online/offline só via toast — sem indicador no header */
   }
 
   function recipeNutrition(r) {
@@ -1408,11 +1405,14 @@
 
   function wireUi() {
     $$(".tab[data-go]").forEach((tab) => tab.addEventListener("click", () => go(tab.dataset.go)));
-    $("#btnTabAdd")?.addEventListener("click", () => {
+    $("#btnTabSearch")?.addEventListener("click", () => {
+      closeMoreSheet();
+      go("pesquisa");
+    });
+    $("#btnAddRecipe")?.addEventListener("click", () => {
       closeMoreSheet();
       openRecipeModal(null);
     });
-    $("#btnAddRecipe")?.addEventListener("click", () => openRecipeModal(null));
     $("#btnMoreMenu")?.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleMoreSheet();
@@ -1424,7 +1424,6 @@
         if (dest) go(dest);
       });
     });
-    $("#btnSearch")?.addEventListener("click", () => go("pesquisa"));
     $("#btnAddShop")?.addEventListener("click", openShopModal);
     $("#btnAddList")?.addEventListener("click", openListModal);
 
@@ -1537,11 +1536,8 @@
       });
     }, true);
 
-    window.addEventListener("online", () => { updateOnline(); toast("De volta online"); refreshData(); });
-    window.addEventListener("offline", () => { updateOnline(); toast("Modo offline"); });
-    $("#statusBtn")?.addEventListener("click", () => {
-      toast(navigator.onLine ? "Online" : "Offline — cache local");
-    });
+    window.addEventListener("online", () => { toast("De volta online"); refreshData(); });
+    window.addEventListener("offline", () => { toast("Modo offline"); });
   }
 
   async function boot() {
