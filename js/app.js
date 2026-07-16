@@ -662,42 +662,27 @@
     return `<div class="recipe-macros" data-macros-line>${r1(est.kcal / s)} kcal · P ${r1(est.protein / s)}g · HC ${r1(est.carbs / s)}g · L ${r1(est.fat / s)}g <span class="macros-per">/ pessoa</span></div>`;
   }
 
-  function applyServingsToCard(card, servings) {
-    const nut = card?.querySelector?.("[data-nutrition-totals]");
-    if (!nut) return;
-    const n = Math.max(1, Math.min(12, Math.round(Number(servings) || 1)));
-    const kcal = Number(nut.dataset.kcal) || 0;
-    const protein = Number(nut.dataset.protein) || 0;
-    const carbs = Number(nut.dataset.carbs) || 0;
-    const fat = Number(nut.dataset.fat) || 0;
-    const label = serveLabel(n);
-    nut.dataset.servings = String(n);
-    const set = (key, text) => {
-      const el = nut.querySelector(`[data-n="${key}"]`);
-      if (el) el.textContent = text;
-    };
-    set("serve-label", label);
-    set("kcal", String(roundMacro(kcal / n)));
-    set("protein", `${roundMacro(protein / n)} g`);
-    set("carbs", `${roundMacro(carbs / n)} g`);
-    set("fat", `${roundMacro(fat / n)} g`);
-    set("note", `Total da receita (${label}): ${roundMacro(kcal)} kcal · P ${roundMacro(protein)}g · HC ${roundMacro(carbs)}g · L ${roundMacro(fat)}g`);
-    nut.querySelectorAll("[data-set-servings]").forEach((btn) => {
-      const on = Number(btn.dataset.setServings) === n;
-      btn.classList.toggle("active", on);
-      btn.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    const badge = card.querySelector("[data-servings-badge]");
-    if (badge) badge.textContent = `Para ${label}`;
-    const line = card.querySelector("[data-macros-line]");
-    if (line) {
-      line.innerHTML = `${roundMacro(kcal / n)} kcal · P ${roundMacro(protein / n)}g · HC ${roundMacro(carbs / n)}g · L ${roundMacro(fat / n)}g <span class="macros-per">/ pessoa</span>`;
+  function rerenderOpenRecipe(recipeId) {
+    const screen = state.screen;
+    if (SECTIONS[screen]) renderSection(screen);
+    else if (screen === "favoritos") renderFavorites();
+    else if (screen === "pesquisa") renderSearch();
+    const el = document.querySelector(`details.recipe[data-id="${recipeId}"]`);
+    if (el) {
+      el.open = true;
+      el.scrollIntoView({ block: "nearest", behavior: "smooth" });
     }
   }
 
   async function setRecipeServings(recipe, servings) {
     const n = Math.max(1, Math.min(12, Math.round(Number(servings) || 1)));
-    if (recipeServings(recipe) === n) return;
+    const base = recipeServings(recipe);
+    if (n === base) return false;
+    const factor = n / base;
+    const scale = window.MareNutrition?.scaleIngredients;
+    const ingredients = scale
+      ? scale(recipe.ingredients || [], factor)
+      : (recipe.ingredients || []);
     const payload = {
       id: recipe.id,
       section: recipe.section,
@@ -706,7 +691,7 @@
       protein_note: recipe.protein_note || "",
       servings: n,
       tags: recipe.tags || [],
-      ingredients: recipe.ingredients || [],
+      ingredients,
       steps: recipe.steps || [],
       note: recipe.note || "",
       is_favorite: !!recipe.is_favorite,
@@ -714,6 +699,12 @@
     };
     await MareDB.upsertRecipe(payload);
     recipe.servings = n;
+    recipe.ingredients = ingredients;
+    const idx = state.recipes.findIndex((r) => r.id === recipe.id);
+    if (idx >= 0) {
+      state.recipes[idx] = { ...state.recipes[idx], servings: n, ingredients };
+    }
+    return true;
   }
 
   function recipeCard(r, opts = {}) {
@@ -1174,13 +1165,14 @@
       e.preventDefault();
       e.stopPropagation();
       const n = Number(servingsBtn.dataset.setServings);
-      applyServingsToCard(recipeEl, n);
       try {
-        await setRecipeServings(recipe, n);
-        toast(`Receita marcada para ${serveLabel(n)}`);
+        const changed = await setRecipeServings(recipe, n);
+        if (changed) {
+          toast(`Ingredientes ajustados para ${serveLabel(n)}`);
+          rerenderOpenRecipe(recipe.id);
+        }
       } catch (err) {
-        toast(err.message || "Não foi possível guardar as porções");
-        applyServingsToCard(recipeEl, recipeServings(recipe));
+        toast(err.message || "Não foi possível ajustar as porções");
       }
       return;
     }

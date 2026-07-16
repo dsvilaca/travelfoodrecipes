@@ -599,6 +599,131 @@
     return Math.round(Number(n) || 0);
   }
 
+  function formatQtyNumber(n, { asInt = false, style = "count" } = {}) {
+    if (!Number.isFinite(n) || n <= 0) return null;
+    if (asInt || style === "count") {
+      if (n < 0.9) {
+        if (Math.abs(n - 0.5) <= 0.12) return "1/2";
+        if (Math.abs(n - 0.25) <= 0.08) return "1/4";
+        if (Math.abs(n - 0.75) <= 0.08) return "3/4";
+      }
+      return String(Math.max(1, Math.round(n)));
+    }
+    // pesos/volumes: números simples (sem "7 1/2 g")
+    if (n < 10) {
+      const r = Math.round(n * 2) / 2;
+      return Number.isInteger(r) ? String(r) : String(r);
+    }
+    if (n < 50) return String(Math.round(n));
+    return String(Math.round(n / 5) * 5);
+  }
+
+  /** Escala quantidades num texto de ingrediente (factor = pessoasAlvo / pessoasBase). */
+  function scaleIngredientLine(line, factor) {
+    const raw = String(line || "");
+    if (!raw.trim() || !Number.isFinite(factor) || Math.abs(factor - 1) < 1e-9) return raw;
+    if (/\b(pitada|a gosto|qb|q\.?\s*b\.?|provar|opcional)\b/i.test(raw) && !/\d/.test(raw)) return raw;
+
+    let out = raw;
+
+    const scaleNum = (numStr, opts = {}) => {
+      let n;
+      const s = String(numStr).trim().replace(",", ".");
+      if (/^\d+\s+\d+\/\d+$/.test(s)) {
+        const [w, fr] = s.split(/\s+/);
+        const [a, b] = fr.split("/").map(Number);
+        n = Number(w) + a / b;
+      } else if (/^\d+\/\d+$/.test(s)) {
+        const [a, b] = s.split("/").map(Number);
+        n = a / b;
+      } else {
+        n = Number(s);
+      }
+      if (!Number.isFinite(n)) return numStr;
+      return formatQtyNumber(n * factor, opts) ?? numStr;
+    };
+
+    const pluralWord = (nStr, word) => {
+      let n = Number(String(nStr).replace(",", "."));
+      if (!Number.isFinite(n) && /^\d+\/\d+$/.test(String(nStr))) {
+        const [a, b] = String(nStr).split("/").map(Number);
+        n = a / b;
+      }
+      const w = word;
+      const one = Number.isFinite(n) && n > 0 && n <= 1;
+      const map = [
+        [/^ovos?$/i, one ? "ovo" : "ovos"],
+        [/^gemas?$/i, one ? "gema" : "gemas"],
+        [/^claras?$/i, one ? "clara" : "claras"],
+        [/^fatias?$/i, one ? "fatia" : "fatias"],
+        [/^dentes?$/i, one ? "dente" : "dentes"],
+        [/^wraps?$/i, one ? "wrap" : "wraps"],
+        [/^tortilhas?$/i, one ? "tortilha" : "tortilhas"],
+        [/^unidades?$/i, one ? "unidade" : "unidades"],
+        [/^latas?$/i, one ? "lata" : "latas"],
+        [/^cebolas?$/i, one ? "cebola" : "cebolas"],
+        [/^tomates?$/i, one ? "tomate" : "tomates"],
+        [/^bananas?$/i, one ? "banana" : "bananas"],
+        [/^abacates?$/i, one ? "abacate" : "abacates"],
+        [/^pimentos?$/i, one ? "pimento" : "pimentos"],
+        [/^cenouras?$/i, one ? "cenoura" : "cenouras"],
+        [/^colher(?:es)?$/i, one ? "colher" : "colheres"],
+      ];
+      for (const [re, out] of map) {
+        if (re.test(w)) return out;
+      }
+      return w;
+    };
+
+    // (N g) / (N ml)
+    out = out.replace(/\((\d+[.,]?\d*)\s*(g|ml)\)/gi, (_, n, u) => `(${scaleNum(n, { style: "mass" })} ${u.toLowerCase()})`);
+
+    // N g / N ml no início
+    out = out.replace(
+      /^(\d+[.,]?\d*|\d+\/\d+|\d+\s+\d+\/\d+)\s*(g|kg|ml|cl|dl|l)\b/i,
+      (_, n, u) => `${scaleNum(n, { style: "mass" })} ${u}`
+    );
+
+    // N ovos / fatias / dentes / wraps / unidades
+    out = out.replace(
+      /^(\d+[.,]?\d*|\d+\/\d+|\d+\s+\d+\/\d+)\s+(ovos?|gemas?|claras?|fatias?|dentes?|wraps?|tortilhas?|unidades?|latas?)\b/i,
+      (_, n, word) => {
+        const q = scaleNum(n, { style: "count" });
+        return `${q} ${pluralWord(q, word)}`;
+      }
+    );
+
+    // N colheres de sopa/chá  (evitar \\b após "chá" — \\b ASCII falha com acentos)
+    out = out.replace(
+      /^(\d+[.,]?\d*|\d+\/\d+|\d+\s+\d+\/\d+)\s+(colher(?:es)?)(\s+de\s+(?:sopa|chá|cha))(?=\s|$)/i,
+      (_, n, word, rest) => {
+        const q = scaleNum(n, { style: "count" });
+        return `${q} ${pluralWord(q, word)}${rest}`;
+      }
+    );
+
+    // N xícaras
+    out = out.replace(
+      /^(\d+[.,]?\d*|\d+\/\d+|\d+\s+\d+\/\d+)\s+(xícaras?|xicaras?|chávenas?|chavenas?|cups?)\b/i,
+      (_, n, rest) => `${scaleNum(n, { style: "count" })} ${rest}`
+    );
+
+    // cebola/tomate/etc. contados
+    out = out.replace(
+      /^(\d+[.,]?\d*|\d+\/\d+)\s+(cebolas?|tomates?|bananas?|abacates?|lim[aã]o|lim[oõ]es|pimentos?|maçãs?|macas?|cenouras?)\b/i,
+      (_, n, word) => {
+        const q = scaleNum(n, { style: "count" });
+        return `${q} ${pluralWord(q, word)}`;
+      }
+    );
+
+    return out;
+  }
+
+  function scaleIngredients(lines, factor) {
+    return (lines || []).map((line) => scaleIngredientLine(line, factor));
+  }
+
   function formatBlock(est, opts = {}) {
     if (!est?.ok) {
       return `<div class="nutrition">
@@ -626,10 +751,10 @@
         data-servings="${servings}" data-coverage="${est.coverage}">
       <div class="servings-row">
         <div class="servings-ref">
-          <span class="servings-ref-label">Esta receita é para</span>
+          <span class="servings-ref-label">Receita para</span>
           <span class="servings-ref-value" data-n="serve-label">${escape(pessoaLabel)}</span>
         </div>
-        <div class="servings-picker" role="group" aria-label="Definir para quantas pessoas é a receita">${pickBtns}</div>
+        <div class="servings-picker" role="group" aria-label="Alterar para quantas pessoas é a receita (escala ingredientes)">${pickBtns}</div>
       </div>
       <h3>Nutrição <span class="nutrition-tag">por pessoa</span></h3>
       <div class="nutrition-grid">
@@ -638,7 +763,7 @@
         <div><strong data-n="carbs">${round1(perCarbs)} g</strong><span>Hidratos</span></div>
         <div><strong data-n="fat">${round1(perFat)} g</strong><span>Lípidos</span></div>
       </div>
-      <p class="nutrition-note" data-n="note">Total da receita (${escape(pessoaLabel)}): ${round1(est.kcal)} kcal · P ${round1(est.protein)}g · HC ${round1(est.carbs)}g · L ${round1(est.fat)}g</p>
+      <p class="nutrition-note" data-n="note">Total para ${escape(pessoaLabel)}: ${round1(est.kcal)} kcal · P ${round1(est.protein)}g · HC ${round1(est.carbs)}g · L ${round1(est.fat)}g</p>
       <p class="nutrition-source">Fonte: ${escape(est.source)} · <a href="${escape(est.url)}" target="_blank" rel="noopener">PortFIR</a></p>
     </div>`;
   }
@@ -656,6 +781,8 @@
     formatBlock,
     parseIngredient,
     matchFood,
+    scaleIngredientLine,
+    scaleIngredients,
     round1,
   };
 })(typeof window !== "undefined" ? window : globalThis);
