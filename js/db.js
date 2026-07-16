@@ -214,7 +214,7 @@
       "Timeout no login Supabase"
     );
     if (error) throw error;
-    if (!data?.session) throw new Error("Supabase não devolveu sessão.");
+    if (!data?.session) throw new Error("Não foi possível entrar.");
     setAuthMode("supabase");
     // limpa sessão local para não misturar
     const db = readLocalDb();
