@@ -219,45 +219,125 @@
   }
 
   async function cloudSignIn(email, password) {
-    const { data, error } = await withTimeout(
-      getClient().auth.signInWithPassword({ email, password }),
-      10000,
-      "Timeout no login Supabase"
-    );
-    if (error) throw error;
-    if (!data?.session) throw new Error("Não foi possível entrar.");
+    const cfg = getConfig();
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 12000);
+    let json;
+    try {
+      const res = await fetch(cfg.supabaseUrl + "/auth/v1/token?grant_type=password", {
+        method: "POST",
+        signal: controller.signal,
+        headers: {
+          apikey: cfg.supabaseAnonKey,
+          Authorization: "Bearer " + cfg.supabaseAnonKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      json = await res.json();
+      if (!res.ok || !json.access_token) {
+        const err = new Error(json.msg || json.error_description || "Login falhou");
+        err.code = json.error_code || json.error;
+        throw err;
+      }
+    } catch (err) {
+      if (err.name === "AbortError") throw new Error("Ligação lenta. Tenta outra vez.");
+      throw err;
+    } finally {
+      clearTimeout(timer);
+    }
+
+    // Sincroniza a sessão no cliente Supabase (para RLS nas tabelas)
+    if (hasSupabaseLib()) {
+      try {
+        const { error } = await getClient().auth.setSession({
+          access_token: json.access_token,
+          refresh_token: json.refresh_token,
+        });
+        if (error) throw error;
+      } catch (err) {
+        // Mesmo sem setSession, devolvemos sessão fetch para a UI entrar
+        console.warn(err);
+      }
+    }
+
     setAuthMode("supabase");
-    // limpa sessão local para não misturar
     const db = readLocalDb();
     db.sessionEmail = null;
     writeLocalDb(db);
-    return data;
+
+    return {
+      user: json.user,
+      session: {
+        access_token: json.access_token,
+        refresh_token: json.refresh_token,
+        user: json.user,
+      },
+    };
   }
 
   async function cloudSignUp(email, password) {
-    const { data, error } = await withTimeout(
-      getClient().auth.signUp({
-        email,
-        password,
-        options: { emailRedirectTo: siteRedirectTo() },
-      }),
-      10000,
-      "Timeout no registo"
-    );
-    if (error) throw error;
-    if (data?.session) {
+    const cfg = getConfig();
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 12000);
+    let json;
+    try {
+      const res = await fetch(cfg.supabaseUrl + "/auth/v1/signup", {
+        method: "POST",
+        signal: controller.signal,
+        headers: {
+          apikey: cfg.supabaseAnonKey,
+          Authorization: "Bearer " + cfg.supabaseAnonKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          gotrue_meta_security: {},
+        }),
+      });
+      json = await res.json();
+      if (!res.ok) {
+        const err = new Error(json.msg || json.error_description || "Registo falhou");
+        err.code = json.error_code || json.error;
+        throw err;
+      }
+    } catch (err) {
+      if (err.name === "AbortError") throw new Error("Ligação lenta. Tenta outra vez.");
+      throw err;
+    } finally {
+      clearTimeout(timer);
+    }
+
+    if (json.access_token && json.user) {
+      if (hasSupabaseLib()) {
+        try {
+          await getClient().auth.setSession({
+            access_token: json.access_token,
+            refresh_token: json.refresh_token,
+          });
+        } catch (_) { /* ignore */ }
+      }
       setAuthMode("supabase");
       const db = readLocalDb();
       db.sessionEmail = null;
       writeLocalDb(db);
-      return data;
+      return {
+        user: json.user,
+        session: {
+          access_token: json.access_token,
+          refresh_token: json.refresh_token,
+          user: json.user,
+        },
+      };
     }
-    throw new Error("Não foi possível criar a conta. Tenta Entrar ou recuperar a password.");
+
+    // Resposta sem sessão (ex.: confirm email) — tenta login imediato
+    return cloudSignIn(email, password);
   }
 
   async function signIn(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
-    if (!hasSupabaseLib()) throw new Error("Recarrega a página e tenta outra vez.");
     try {
       return await cloudSignIn(normalized, password);
     } catch (err) {
@@ -267,7 +347,6 @@
 
   async function signUp(email, password) {
     const normalized = String(email || "").trim().toLowerCase();
-    if (!hasSupabaseLib()) throw new Error("Recarrega a página e tenta outra vez.");
     try {
       return await cloudSignUp(normalized, password);
     } catch (err) {
