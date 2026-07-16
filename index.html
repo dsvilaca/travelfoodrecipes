@@ -24,21 +24,21 @@
   <meta name="description" content="Receitas e lista de compras de férias — acessível no telemóvel e no computador." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Travel Food Recipes</title>
-  <link rel="manifest" href="./manifest.webmanifest?v=32" />
-  <link rel="icon" href="./icon-192.png?v=32" sizes="192x192" />
-  <link rel="apple-touch-icon" href="./icon-192.png?v=32" />
+  <link rel="manifest" href="./manifest.webmanifest?v=33" />
+  <link rel="icon" href="./icon-192.png?v=33" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./icon-192.png?v=33" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link id="appCss" rel="stylesheet" href="./styles.css?v=32" />
+  <link id="appCss" rel="stylesheet" href="./styles.css?v=33" />
   <style>
     /* Fallback mínimo se o CSS externo falhar (ex.: cache após domínio custom) */
-    html, body { margin: 0; height: 100%; font-family: Figtree, system-ui, sans-serif; background: #eef3f2; color: #14282c; }
-    .app-header { background: #1a4a52; color: #fff; }
+    html, body { margin: 0; height: 100%; font-family: Figtree, system-ui, sans-serif; background: #d9e4e2; color: #102428; }
+    .app-header { background: rgba(23,70,78,0.85); color: #fff; }
   </style>
   <script>
     (function () {
-      var APP_BUILD = "31";
+      var APP_BUILD = "33";
       try {
         if (localStorage.getItem("tfr-build") !== APP_BUILD) {
           localStorage.setItem("tfr-build", APP_BUILD);
@@ -62,7 +62,7 @@
           if (probe) return;
           var link = document.getElementById("appCss");
           if (!link) return;
-          var href = "./styles.css?v=32&t=" + Date.now();
+          var href = "./styles.css?v=33&t=" + Date.now();
           link.href = href;
         } catch (e) { /* ignore */ }
       });
@@ -75,7 +75,7 @@
     <section id="authScreen" class="auth">
       <div class="auth-card">
         <div class="brand brand-auth">
-          <img class="brand-mark" src="./icon-192.png?v=32" width="56" height="56" alt="Travel Food Recipes" />
+          <img class="brand-mark" src="./icon-192.png?v=33" width="56" height="56" alt="Travel Food Recipes" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -113,13 +113,16 @@
       </div>
     </section>
 
-    <div class="toast" id="toast" role="status" hidden></div>
+    <div class="toast" id="toast" role="status" hidden aria-live="polite">
+      <button type="button" class="toast-backdrop" id="toastDismiss" aria-label="Fechar aviso"></button>
+      <p class="toast-card" id="toastMsg"></p>
+    </div>
 
     <!-- APP -->
     <div class="phone" id="appShell" hidden>
       <header class="app-header">
         <div class="brand brand-header">
-          <img class="brand-mark" src="./icon-192.png?v=32" width="32" height="32" alt="" />
+          <img class="brand-mark" src="./icon-192.png?v=33" width="32" height="32" alt="" />
           <div class="brand-text">
             <span class="brand-title">Travel Food</span>
             <span class="brand-sub">Recipes</span>
@@ -293,20 +296,34 @@
 
       <div class="more-sheet" id="moreSheet" hidden>
         <button type="button" class="more-sheet-backdrop" id="moreSheetBackdrop" aria-label="Fechar menu"></button>
-        <div class="more-sheet-panel" role="menu" aria-label="Mais opções">
-          <p class="more-sheet-title">Menu</p>
-          <button type="button" class="more-item" role="menuitem" data-go="favoritos">
-            <span class="more-ico">★</span>
-            <span>Favoritos</span>
-          </button>
-          <button type="button" class="more-item" role="menuitem" data-go="compras">
-            <span class="more-ico">☰</span>
-            <span>Lista</span>
-          </button>
-          <button type="button" class="more-item" role="menuitem" data-go="conta">
-            <span class="more-ico">◎</span>
-            <span>Conta</span>
-          </button>
+        <div class="more-sheet-panel" role="menu" aria-label="Menu">
+          <div class="more-sheet-head">
+            <p class="more-sheet-title">Menu</p>
+            <button type="button" class="more-sheet-close" id="moreSheetClose" aria-label="Fechar">✕</button>
+          </div>
+          <div class="more-sheet-body">
+            <button type="button" class="more-item" role="menuitem" data-go="favoritos">
+              <span class="more-ico">★</span>
+              <span class="more-item-text">
+                <span class="more-item-label">Favoritos</span>
+                <span class="more-item-sub">Receitas guardadas</span>
+              </span>
+            </button>
+            <button type="button" class="more-item" role="menuitem" data-go="compras">
+              <span class="more-ico">☰</span>
+              <span class="more-item-text">
+                <span class="more-item-label">Lista</span>
+                <span class="more-item-sub">Compras e planeamento</span>
+              </span>
+            </button>
+            <button type="button" class="more-item" role="menuitem" data-go="conta">
+              <span class="more-ico">◎</span>
+              <span class="more-item-text">
+                <span class="more-item-label">Conta</span>
+                <span class="more-item-sub">Preferências e sessão</span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -370,11 +387,11 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./js/config.js?v=32"></script>
-  <script src="./js/seed-data.js?v=32"></script>
-  <script src="./js/tca-data.js?v=32"></script>
-  <script src="./js/nutrition.js?v=32"></script>
-  <script src="./js/db.js?v=32"></script>
-  <script src="./js/app.js?v=32"></script>
+  <script src="./js/config.js?v=33"></script>
+  <script src="./js/seed-data.js?v=33"></script>
+  <script src="./js/tca-data.js?v=33"></script>
+  <script src="./js/nutrition.js?v=33"></script>
+  <script src="./js/db.js?v=33"></script>
+  <script src="./js/app.js?v=33"></script>
 </body>
 </html>

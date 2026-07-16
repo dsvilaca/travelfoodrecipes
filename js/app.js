@@ -87,14 +87,25 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
-  function toast(msg) {
+  function hideToast() {
     const el = $("#toast");
     if (!el) return;
-    el.hidden = false;
-    el.textContent = msg;
-    el.classList.add("show");
+    el.classList.remove("show");
     clearTimeout(toast._t);
-    toast._t = setTimeout(() => el.classList.remove("show"), 2800);
+    toast._t = setTimeout(() => {
+      if (!el.classList.contains("show")) el.hidden = true;
+    }, 280);
+  }
+
+  function toast(msg) {
+    const el = $("#toast");
+    const card = $("#toastMsg");
+    if (!el || !card) return;
+    card.textContent = msg;
+    el.hidden = false;
+    requestAnimationFrame(() => el.classList.add("show"));
+    clearTimeout(toast._t);
+    toast._t = setTimeout(hideToast, 3200);
   }
 
   function authMessage(msg) {
@@ -1412,6 +1423,11 @@
       toggleMoreSheet();
     });
     $("#moreSheetBackdrop")?.addEventListener("click", closeMoreSheet);
+    $("#moreSheetClose")?.addEventListener("click", closeMoreSheet);
+    $("#toastDismiss")?.addEventListener("click", hideToast);
+    $("#toast")?.addEventListener("click", (e) => {
+      if (e.target === e.currentTarget) hideToast();
+    });
     $$(".more-item").forEach((item) => {
       item.addEventListener("click", () => {
         const dest = item.dataset.go;
