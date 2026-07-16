@@ -765,6 +765,7 @@
         title: recipe.title,
         subtitle: recipe.subtitle || "",
         protein_note: recipe.protein_note || "",
+        servings: Math.max(1, Math.min(12, Math.round(Number(recipe.servings) || (recipe.section === "manha" || recipe.section === "lanches" ? 1 : 2)))),
         tags: recipe.tags || [],
         ingredients: recipe.ingredients || [],
         steps: recipe.steps || [],
@@ -784,17 +785,28 @@
       user_id: session.user.id,
       updated_at: new Date().toISOString(),
     };
+    async function writeRemote(method, path, body) {
+      try {
+        return await rest(path, { method, body });
+      } catch (err) {
+        // Coluna servings ainda não migrada no Supabase
+        if (body && Object.prototype.hasOwnProperty.call(body, "servings")
+          && /servings|PGRST204|42703/i.test(String(err.message || err))) {
+          const { servings, ...rest } = body;
+          return await rest(path, { method, body: rest });
+        }
+        throw err;
+      }
+    }
     if (recipe.id) {
-      const data = await rest("recipes?id=eq." + encodeURIComponent(recipe.id), {
-        method: "PATCH",
-        body: payload,
-      });
+      const data = await writeRemote(
+        "PATCH",
+        "recipes?id=eq." + encodeURIComponent(recipe.id),
+        payload
+      );
       return Array.isArray(data) ? data[0] : data;
     }
-    const data = await rest("recipes", {
-      method: "POST",
-      body: payload,
-    });
+    const data = await writeRemote("POST", "recipes", payload);
     return Array.isArray(data) ? data[0] : data;
   }
 
@@ -1019,11 +1031,18 @@
         byTitle.set((r.section + "::" + r.title).toLowerCase(), r);
       });
 
+      function seedServings(s) {
+        const n = Number(s.servings);
+        if (Number.isFinite(n) && n >= 1 && n <= 12) return Math.round(n);
+        return s.section === "manha" || s.section === "lanches" ? 1 : 2;
+      }
+
       async function patchRecipe(existing, s) {
         const patch = {
           title: s.title,
           subtitle: s.subtitle || "",
           protein_note: s.protein_note || "",
+          servings: seedServings(s),
           tags: s.tags || [],
           ingredients: s.ingredients || [],
           steps: s.steps || [],
@@ -1033,6 +1052,7 @@
         const same =
           existing.title === patch.title
           && existing.section === patch.section
+          && Number(existing.servings || 0) === patch.servings
           && JSON.stringify(existing.steps || []) === JSON.stringify(patch.steps)
           && JSON.stringify(existing.ingredients || []) === JSON.stringify(patch.ingredients);
         if (same) return false;
@@ -1042,11 +1062,24 @@
           if (row) Object.assign(row, patch, { updated_at: new Date().toISOString() });
           writeLocalDb(db);
         } else {
-          await rest("recipes?id=eq." + encodeURIComponent(existing.id), {
-            method: "PATCH",
-            body: patch,
-            timeoutMs: 15000,
-          });
+          try {
+            await rest("recipes?id=eq." + encodeURIComponent(existing.id), {
+              method: "PATCH",
+              body: patch,
+              timeoutMs: 15000,
+            });
+          } catch (err) {
+            if (/servings|PGRST204|42703/i.test(String(err.message || err))) {
+              const { servings, ...rest } = patch;
+              await rest("recipes?id=eq." + encodeURIComponent(existing.id), {
+                method: "PATCH",
+                body: rest,
+                timeoutMs: 15000,
+              });
+            } else {
+              throw err;
+            }
+          }
         }
         return true;
       }
@@ -1081,6 +1114,7 @@
               title: r.title,
               subtitle: r.subtitle || "",
               protein_note: r.protein_note || "",
+              servings: seedServings(r),
               tags: r.tags || [],
               ingredients: r.ingredients || [],
               steps: r.steps || [],
@@ -1099,6 +1133,7 @@
             title: r.title,
             subtitle: r.subtitle || "",
             protein_note: r.protein_note || "",
+            servings: seedServings(r),
             tags: r.tags || [],
             ingredients: r.ingredients || [],
             steps: r.steps || [],

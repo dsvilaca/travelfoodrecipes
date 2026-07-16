@@ -1173,12 +1173,77 @@ button, summary, input, select, textarea { font: inherit; color: inherit; }
   letter-spacing: 0.01em;
 }
 
+.recipe-macros .macros-per {
+  font-weight: 600;
+  color: var(--muted);
+}
+
 .nutrition {
   margin: 0 0 12px;
   padding: 12px;
   border: 1px solid rgba(42, 111, 121, 0.12);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.4);
+}
+
+.servings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.servings-ref {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.servings-ref-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.servings-ref-value {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.servings-picker {
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(16, 36, 40, 0.08);
+  flex: 0 0 auto;
+}
+
+.servings-btn {
+  appearance: none;
+  border: 0;
+  min-width: 34px;
+  height: 32px;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease), transform 0.18s var(--ease);
+}
+
+.servings-btn:active { transform: scale(0.96); }
+
+.servings-btn.active {
+  background: rgba(23, 70, 78, 0.92);
+  color: var(--foam);
 }
 
 .nutrition h3 {

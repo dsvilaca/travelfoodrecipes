@@ -12,6 +12,7 @@ create table if not exists public.recipes (
   title text not null,
   subtitle text not null default '',
   protein_note text not null default '',
+  servings int not null default 2 check (servings >= 1 and servings <= 12),
   tags text[] not null default '{}',
   ingredients text[] not null default '{}',
   steps text[] not null default '{}',

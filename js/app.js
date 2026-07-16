@@ -635,6 +635,61 @@
     }
   }
 
+  /** Defaults: peq. almoço/lanches = 1; almoço/jantar = 2 */
+  function defaultServings(section) {
+    return section === "manha" || section === "lanches" ? 1 : 2;
+  }
+
+  function recipeServings(r) {
+    const n = Number(r?.servings);
+    if (Number.isFinite(n) && n >= 1 && n <= 12) return Math.round(n);
+    return defaultServings(r?.section);
+  }
+
+  function roundMacro(n) {
+    return Math.round(Number(n) || 0);
+  }
+
+  function macrosLineHtml(est, servings) {
+    if (!est?.ok) return "";
+    const s = Math.max(1, servings || 1);
+    const r1 = roundMacro;
+    return `<div class="recipe-macros" data-macros-line>${r1(est.kcal / s)} kcal · P ${r1(est.protein / s)}g · HC ${r1(est.carbs / s)}g · L ${r1(est.fat / s)}g <span class="macros-per">/ porção</span></div>`;
+  }
+
+  function updateRecipeServingsView(card, view) {
+    const nut = card?.querySelector?.("[data-nutrition-totals]");
+    if (!nut) return;
+    const servings = Math.max(1, Math.min(12, Math.round(Number(view) || 1)));
+    const kcal = Number(nut.dataset.kcal) || 0;
+    const protein = Number(nut.dataset.protein) || 0;
+    const carbs = Number(nut.dataset.carbs) || 0;
+    const fat = Number(nut.dataset.fat) || 0;
+    const coverage = nut.dataset.coverage || "0";
+    nut.dataset.servingsView = String(servings);
+    const set = (key, text) => {
+      const el = nut.querySelector(`[data-n="${key}"]`);
+      if (el) el.textContent = text;
+    };
+    set("kcal", String(roundMacro(kcal / servings)));
+    set("protein", `${roundMacro(protein / servings)} g`);
+    set("carbs", `${roundMacro(carbs / servings)} g`);
+    set("fat", `${roundMacro(fat / servings)} g`);
+    set(
+      "note",
+      `Receita completa: ${roundMacro(kcal)} kcal · P ${roundMacro(protein)}g · HC ${roundMacro(carbs)}g · L ${roundMacro(fat)}g · ${coverage}% mapeado`
+    );
+    nut.querySelectorAll("[data-servings-view]").forEach((btn) => {
+      const on = Number(btn.dataset.servingsView) === servings;
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    const line = card.querySelector("[data-macros-line]");
+    if (line) {
+      line.innerHTML = `${roundMacro(kcal / servings)} kcal · P ${roundMacro(protein / servings)}g · HC ${roundMacro(carbs / servings)}g · L ${roundMacro(fat / servings)}g <span class="macros-per">/ porção</span>`;
+    }
+  }
+
   function recipeCard(r, opts = {}) {
     // protein_note é legado e conflita com os macros PortFIR — não mostrar como tag
     const tags = (r.tags || [])
@@ -646,13 +701,12 @@
     const steps = (r.steps || []).map((s) => `<li>${escapeHtml(s)}</li>`).join("");
     const note = r.note ? `<div class="note">${escapeHtml(r.note)}</div>` : "";
     const est = recipeNutrition(r);
-    const r1 = (n) => Math.round(Number(n) || 0);
-    const macrosLine = est?.ok
-      ? `<div class="recipe-macros">${r1(est.kcal)} kcal · P ${r1(est.protein)}g · HC ${r1(est.carbs)}g · L ${r1(est.fat)}g</div>`
-      : "";
+    const servings = recipeServings(r);
+    const macrosLine = macrosLineHtml(est, servings);
     const nutritionBlock = window.MareNutrition?.formatBlock
-      ? window.MareNutrition.formatBlock(est || { ok: false, coverage: 0 })
+      ? window.MareNutrition.formatBlock(est || { ok: false, coverage: 0 }, { servings, viewServings: servings })
       : "";
+    const serveLabel = servings === 1 ? "1 pessoa" : `${servings} pessoas`;
 
     return `
       <details class="recipe" data-id="${r.id}">
@@ -660,7 +714,7 @@
           <div class="num">${String(opts.index ?? "").padStart(2, "0") || "★"}</div>
           <div>
             <div class="recipe-title">${escapeHtml(r.title)}</div>
-            <div class="recipe-sub">${escapeHtml(opts.subPrefix ? opts.subPrefix + " · " : "")}${escapeHtml(r.subtitle || "")}</div>
+            <div class="recipe-sub">${escapeHtml(opts.subPrefix ? opts.subPrefix + " · " : "")}${escapeHtml(r.subtitle || "")} · Serve ${escapeHtml(serveLabel)}</div>
             ${macrosLine}
           </div>
           <button type="button" class="star-btn${r.is_favorite ? " on" : ""}" data-act="fav" aria-label="Favorito">${r.is_favorite ? "★" : "☆"}</button>
@@ -959,7 +1013,12 @@
     $("#fSection").value = section;
     $("#fTitle").value = recipe?.title || "";
     $("#fSubtitle").value = recipe?.subtitle || "";
-    $("#fProtein").value = recipe?.protein_note || "";
+    const servingsEl = $("#fServings");
+    if (servingsEl) {
+      const s = recipe ? recipeServings(recipe) : defaultServings(section);
+      const allowed = ["1", "2", "3", "4", "6"];
+      servingsEl.value = allowed.includes(String(s)) ? String(s) : String(defaultServings(section));
+    }
     $("#fTags").value = (recipe?.tags || []).join(", ");
     $("#fIngredients").value = arrToLines(recipe?.ingredients);
     $("#fSteps").value = arrToLines(recipe?.steps);
@@ -1007,11 +1066,17 @@
   async function onRecipeSubmit(e) {
     e.preventDefault();
     const id = $("#fId").value.trim();
+    const existing = id ? state.recipes.find((r) => r.id === id) : null;
+    const section = $("#fSection").value;
+    let servings = Number($("#fServings")?.value);
+    if (!Number.isFinite(servings) || servings < 1) servings = defaultServings(section);
+    servings = Math.max(1, Math.min(12, Math.round(servings)));
     const payload = {
-      section: $("#fSection").value,
+      section,
       title: $("#fTitle").value.trim(),
       subtitle: $("#fSubtitle").value.trim(),
-      protein_note: $("#fProtein").value.trim(),
+      protein_note: existing?.protein_note || "",
+      servings,
       tags: $("#fTags").value.split(",").map((s) => s.trim()).filter(Boolean),
       ingredients: linesToArr($("#fIngredients").value),
       steps: linesToArr($("#fSteps").value),
@@ -1068,6 +1133,7 @@
   }
 
   async function handleListClick(e) {
+    const servingsBtn = e.target.closest("[data-servings-view]");
     const favBtn = e.target.closest("[data-act='fav']");
     const editBtn = e.target.closest("[data-act='edit']");
     const delBtn = e.target.closest("[data-act='del']");
@@ -1076,6 +1142,13 @@
     const id = recipeEl.dataset.id;
     const recipe = state.recipes.find((r) => r.id === id);
     if (!recipe) return;
+
+    if (servingsBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      updateRecipeServingsView(recipeEl, servingsBtn.dataset.servingsView);
+      return;
+    }
 
     if (favBtn) {
       e.preventDefault();
@@ -1517,6 +1590,12 @@
       if (e.target.closest("#searchList")) handleListClick(e);
     });
     $("#recipeForm")?.addEventListener("submit", onRecipeSubmit);
+    $("#fSection")?.addEventListener("change", () => {
+      // Em receita nova, alinhar porções ao default da secção
+      if ($("#fId")?.value) return;
+      const servingsEl = $("#fServings");
+      if (servingsEl) servingsEl.value = String(defaultServings($("#fSection").value));
+    });
     $("#shopForm")?.addEventListener("submit", onShopSubmit);
     $("#listForm")?.addEventListener("submit", onListSubmit);
     $("#recipeModalClose")?.addEventListener("click", closeRecipeModal);
