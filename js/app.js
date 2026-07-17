@@ -1688,15 +1688,62 @@
     }
   }
 
-  // Service worker desligado por agora — estava a impedir ver atualizações no iPhone.
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.getRegistrations().then((regs) => {
-      regs.forEach((r) => r.unregister());
-    }).catch(() => {});
-    if (window.caches?.keys) {
-      caches.keys().then((keys) => keys.forEach((k) => caches.delete(k))).catch(() => {});
-    }
+  /**
+   * PWA updates: register SW (network-first) and check for a new version
+   * whenever the app opens / returns to the foreground (critical for iOS home-screen).
+   * When a new SW activates, reload once so the installed app picks up the push.
+   */
+  function setupServiceWorker() {
+    if (!("serviceWorker" in navigator)) return;
+
+    const hadController = !!navigator.serviceWorker.controller;
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      // Só recarrega em atualizações (já havia SW); no 1.º install não faz falta
+      if (!hadController || refreshing) return;
+      refreshing = true;
+      location.reload();
+    });
+
+    navigator.serviceWorker
+      .register("./sw.js", { updateViaCache: "none" })
+      .then((reg) => {
+        const askUpdate = () => {
+          try {
+            reg.update();
+          } catch (_) { /* ignore */ }
+        };
+
+        askUpdate();
+
+        // App do ecrã inicial (iOS/Android): voltar a verificar ao reabrir
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "visible") askUpdate();
+        });
+        window.addEventListener("pageshow", askUpdate);
+        window.addEventListener("focus", askUpdate);
+        setInterval(askUpdate, 60_000);
+
+        reg.addEventListener("updatefound", () => {
+          const worker = reg.installing;
+          if (!worker) return;
+          worker.addEventListener("statechange", () => {
+            if (worker.state === "installed" && navigator.serviceWorker.controller) {
+              worker.postMessage({ type: "SKIP_WAITING" });
+            }
+          });
+        });
+
+        // Se já houver um SW à espera (ex.: atualização anterior), ativa já
+        if (reg.waiting && navigator.serviceWorker.controller) {
+          reg.waiting.postMessage({ type: "SKIP_WAITING" });
+        }
+      })
+      .catch((err) => {
+        console.warn("Service worker não registado:", err);
+      });
   }
 
+  setupServiceWorker();
   boot();
 })();
